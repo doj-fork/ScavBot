@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bf6fm3exdsqv7"]
+
+[ext_resource type="Script" uid="uid://bhymjvo0ul3o3" path="res://Overlays/craft.gd" id="1_7eoyn"]
+[ext_resource type="FontFile" uid="uid://c7oafmhek6vhy" path="res://Assets/Fonts/SunkenMini.ttf" id="1_q4deu"]
+
+[node name="Crafting" type="CanvasLayer" unique_id=843875894]
+layer = 49
+script = ExtResource("1_7eoyn")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=614372387]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.15686275)
+
+[node name="Background" type="ColorRect" parent="." unique_id=92592701]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 188.0
+offset_top = 98.0
+offset_right = -186.0
+offset_bottom = -136.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.013759349, 0.10198567, 0.16850618, 1)
+
+[node name="Text" type="RichTextLabel" parent="." unique_id=576345047]
+offset_left = 19.0
+offset_right = 933.0
+offset_bottom = 497.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("1_q4deu")
+theme_override_font_sizes/normal_font_size = 160
+text = "craft a gun"
+horizontal_alignment = 1
+visible_characters_behavior = 1

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b7dd1246wrpd8"]
+
+[ext_resource type="Script" uid="uid://fobgnnn105ln" path="res://Screens/intro.gd" id="1_sf1ch"]
+[ext_resource type="FontFile" uid="uid://c7oafmhek6vhy" path="res://Assets/Fonts/SunkenMini.ttf" id="2_20wva"]
+
+[node name="Intro" type="Node2D" unique_id=1445321149]
+script = ExtResource("1_sf1ch")
+
+[node name="Text" type="RichTextLabel" parent="." unique_id=1825317851]
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 934.0
+offset_bottom = 509.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("2_20wva")
+theme_override_font_sizes/normal_font_size = 160
+text = "gtrvegt"
+horizontal_alignment = 1
+visible_characters_behavior = 1

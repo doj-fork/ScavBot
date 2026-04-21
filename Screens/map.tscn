@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://bd8auslb2ygr0"]
+
+[ext_resource type="PackedScene" uid="uid://cwfjmmvi5mck" path="res://Player/player.tscn" id="1_7igx6"]
+[ext_resource type="PackedScene" uid="uid://cunsuenbpva52" path="res://Enemies/Melee/melee.tscn" id="2_6lcc8"]
+[ext_resource type="Texture2D" uid="uid://b3sifrl1jxjky" path="res://Assets/Misc/Grass.png" id="2_ib1il"]
+[ext_resource type="Texture2D" uid="uid://c8eqbmd0afa33" path="res://Assets/Misc/pngtree-background-a-rock-png-image_16683368.png" id="4_j67id"]
+[ext_resource type="PackedScene" uid="uid://cjwu1mthtoyrn" path="res://Assets/Misc/roomtest.tscn" id="5_h1w7h"]
+[ext_resource type="PackedScene" uid="uid://c6tmh6v73lh1a" path="res://Assets/Misc/meleeEVILVERSION.tscn" id="6_urb5g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1w7h"]
+size = Vector2(1805, 545)
+
+[node name="Map" type="Node2D" unique_id=1031170873]
+
+[node name="Player" parent="." unique_id=253815592 instance=ExtResource("1_7igx6")]
+position = Vector2(299, 132)
+
+[node name="CameraLink" type="RemoteTransform2D" parent="Player" unique_id=822386098]
+remote_path = NodePath("../../Camera")
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1756609286]
+process_mode = 3
+position = Vector2(299, 132)
+scale = Vector2(0.075, 0.075)
+position_smoothing_enabled = true
+position_smoothing_speed = 5.5
+
+[node name="Grass" type="Sprite2D" parent="." unique_id=2088586906]
+modulate = Color(0, 0.42535287, 0.36177427, 1)
+z_index = -10
+position = Vector2(-57, -192)
+texture = ExtResource("2_ib1il")
+
+[node name="Grass2" type="Sprite2D" parent="." unique_id=2086197898]
+modulate = Color(0, 0.42535287, 0.36177427, 1)
+z_index = -10
+position = Vector2(800, -196)
+texture = ExtResource("2_ib1il")
+
+[node name="Grass3" type="Sprite2D" parent="." unique_id=300121224]
+modulate = Color(0, 0.42535287, 0.36177427, 1)
+z_index = -10
+position = Vector2(-51, 598)
+texture = ExtResource("2_ib1il")
+
+[node name="Grass4" type="Sprite2D" parent="." unique_id=1662837266]
+modulate = Color(0, 0.42535287, 0.36177427, 1)
+z_index = -10
+position = Vector2(799, 597)
+texture = ExtResource("2_ib1il")
+
+[node name="Melee" parent="." unique_id=1471520854 instance=ExtResource("2_6lcc8")]
+position = Vector2(-224, -167)
+
+[node name="Melee2" parent="." unique_id=1321612585 instance=ExtResource("2_6lcc8")]
+position = Vector2(823, -132)
+
+[node name="Melee3" parent="." unique_id=394786361 instance=ExtResource("2_6lcc8")]
+position = Vector2(320, 648)
+
+[node name="Rock1" type="StaticBody2D" parent="." unique_id=1626470822]
+position = Vector2(76.00001, -20.000008)
+scale = Vector2(0.1, 0.1)
+
+[node name="Rock" type="Sprite2D" parent="Rock1" unique_id=735016217]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("4_j67id")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock1" unique_id=247374946]
+position = Vector2(29.999939, 150.00008)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_h1w7h")
+
+[node name="Rock2" type="StaticBody2D" parent="." unique_id=482085508]
+position = Vector2(819.99994, 308.99997)
+scale = Vector2(0.1, 0.1)
+
+[node name="Rock" type="Sprite2D" parent="Rock2" unique_id=554855064]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("4_j67id")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock2" unique_id=611026343]
+position = Vector2(29.999939, 150.00008)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_h1w7h")
+
+[node name="Rock3" type="StaticBody2D" parent="." unique_id=1802477788]
+position = Vector2(-29.999992, 421.99997)
+scale = Vector2(0.1, 0.1)
+
+[node name="Rock" type="Sprite2D" parent="Rock3" unique_id=737771514]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("4_j67id")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock3" unique_id=1148598927]
+position = Vector2(19.999924, 110.00038)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_h1w7h")
+
+[node name="Rock4" type="StaticBody2D" parent="." unique_id=82987808]
+position = Vector2(435, 245)
+scale = Vector2(0.070815966, -0.3399997)
+
+[node name="Rock" type="Sprite2D" parent="Rock4" unique_id=1691200214]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("4_j67id")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock4" unique_id=235023191]
+position = Vector2(29.999939, 150.00008)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_h1w7h")
+
+[node name="StaticBody2D" parent="." unique_id=1786780614 instance=ExtResource("5_h1w7h")]
+position = Vector2(405.99997, -72)
+scale = Vector2(0.33627686, 0.33627686)
+
+[node name="Melee" parent="StaticBody2D" unique_id=415581866 instance=ExtResource("6_urb5g")]
+position = Vector2(2019.1696, 252.76791)
+scale = Vector2(1.0765967, 1.0765967)

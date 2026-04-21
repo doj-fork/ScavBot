@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cjwu1mthtoyrn"]
+
+[ext_resource type="Texture2D" uid="uid://bwdxtlv7r4tf7" path="res://Assets/Misc/asset.png" id="1_ycx44"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rom1h"]
+size = Vector2(20, 22.052685)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4se6s"]
+size = Vector2(477, 22)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=1786780614]
+
+[node name="Asset" type="Sprite2D" parent="." unique_id=249354161]
+position = Vector2(10, 4)
+texture = ExtResource("1_ycx44")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1173129247]
+position = Vector2(-238, 34.22538)
+rotation = 3.1415927
+scale = Vector2(2.6630116, -21.654924)
+shape = SubResource("RectangleShape2D_rom1h")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=70569305]
+position = Vector2(296, 42.000004)
+rotation = 3.1415927
+scale = Vector2(2.6630116, -21.654924)
+shape = SubResource("RectangleShape2D_rom1h")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=1853993651]
+position = Vector2(28.5, -192)
+shape = SubResource("RectangleShape2D_4se6s")

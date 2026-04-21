@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c6tmh6v73lh1a"]
+
+[ext_resource type="Script" uid="uid://dif8d7qt4eunx" path="res://Enemies/Melee/testing_meleeEVILVERSION.gd" id="1_bakyu"]
+[ext_resource type="Texture2D" uid="uid://dufa2uxniwg8e" path="res://Assets/Misc/low_poly_umamusume_image.png" id="2_ghcwn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_igllg"]
+radius = 66.666664
+height = 325.33325
+
+[node name="Melee" type="CharacterBody2D" unique_id=1471520854]
+scale = Vector2(0.125, 0.125)
+motion_mode = 1
+script = ExtResource("1_bakyu")
+
+[node name="LowPolyUmamusumeImage" type="Sprite2D" parent="." unique_id=608088916]
+position = Vector2(40, -592)
+scale = Vector2(3.8800178, 3.8800178)
+texture = ExtResource("2_ghcwn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=523009327]
+position = Vector2(24, -584)
+shape = SubResource("CapsuleShape2D_igllg")

@@ -1,0 +1,360 @@
+[gd_scene format=3 uid="uid://bf6fm3exdsqv7"]
+
+[ext_resource type="Script" uid="uid://bhymjvo0ul3o3" path="res://Overlays/craft.gd" id="1_7eoyn"]
+[ext_resource type="FontFile" uid="uid://c7oafmhek6vhy" path="res://Assets/Fonts/SunkenMini.ttf" id="1_q4deu"]
+[ext_resource type="Texture2D" uid="uid://b44f4g6ybjtji" path="res://Assets/Crafting Module/gunthing.png" id="2_6fn2w"]
+[ext_resource type="Texture2D" uid="uid://de10fvtg1evhn" path="res://Assets/Crafting Module/SlotOutline.png" id="3_j6qb2"]
+[ext_resource type="Texture2D" uid="uid://8eo7bggt88kb" path="res://Assets/Crafting Module/Items.png" id="4_jxvbi"]
+
+[node name="Crafting" type="CanvasLayer" unique_id=843875894]
+process_mode = 3
+layer = 49
+script = ExtResource("1_7eoyn")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=614372387]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.38431373)
+
+[node name="Blueprint" type="ColorRect" parent="." unique_id=92592701]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 71.0
+offset_right = -337.0
+offset_bottom = -109.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.49995214, 0.74472994, 0.9459986, 1)
+
+[node name="GunSprite" type="Sprite2D" parent="Blueprint" unique_id=2056564337]
+position = Vector2(276.00003, 160)
+scale = Vector2(1.953125, 1.953125)
+texture = ExtResource("2_6fn2w")
+
+[node name="HandleSlot" type="Sprite2D" parent="Blueprint" unique_id=859169626]
+position = Vector2(80.99999, 145)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_j6qb2")
+
+[node name="ChamberSlot" type="Sprite2D" parent="Blueprint" unique_id=1977722218]
+position = Vector2(230, 193)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_j6qb2")
+
+[node name="BarrelSlot" type="Sprite2D" parent="Blueprint" unique_id=468671310]
+position = Vector2(383, 104)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_j6qb2")
+
+[node name="MuzzleSlot" type="Sprite2D" parent="Blueprint" unique_id=32329867]
+position = Vector2(517.99994, 110)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_j6qb2")
+
+[node name="HandleItem" type="Sprite2D" parent="Blueprint" unique_id=828647554]
+position = Vector2(80, 145.00002)
+scale = Vector2(0.33, 0.33)
+
+[node name="ChamberItem" type="Sprite2D" parent="Blueprint" unique_id=648000631]
+position = Vector2(229.99998, 193.00002)
+scale = Vector2(0.33, 0.33)
+
+[node name="BarrelItem" type="Sprite2D" parent="Blueprint" unique_id=1481769308]
+position = Vector2(383.99997, 105.000015)
+scale = Vector2(0.33, 0.33)
+
+[node name="MuzzleItem" type="Sprite2D" parent="Blueprint" unique_id=1036282011]
+position = Vector2(520, 111.000015)
+scale = Vector2(0.33, 0.33)
+
+[node name="Inventory" type="ColorRect" parent="." unique_id=83593173]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 528.0
+offset_top = 238.0
+offset_right = -19.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0.48567224, 0.58898556, 1)
+
+[node name="Box1" type="Sprite2D" parent="Inventory" unique_id=655092102]
+position = Vector2(75.00006, 75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_j6qb2")
+
+[node name="Box2" type="Sprite2D" parent="Inventory" unique_id=1442390913]
+position = Vector2(207, 75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_j6qb2")
+
+[node name="Box3" type="Sprite2D" parent="Inventory" unique_id=2056036849]
+position = Vector2(339, 75)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_j6qb2")
+
+[node name="Box4" type="Sprite2D" parent="Inventory" unique_id=1415865028]
+position = Vector2(75, 207)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_j6qb2")
+
+[node name="Box5" type="Sprite2D" parent="Inventory" unique_id=1525086224]
+position = Vector2(207, 207)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_j6qb2")
+
+[node name="Box6" type="Sprite2D" parent="Inventory" unique_id=561839664]
+position = Vector2(338.99994, 207)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_j6qb2")
+
+[node name="Wood" type="Sprite2D" parent="Inventory" unique_id=805062114]
+position = Vector2(72.99997, 72)
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("4_jxvbi")
+hframes = 6
+
+[node name="Rock" type="Sprite2D" parent="Inventory" unique_id=1165595136]
+position = Vector2(206.99998, 75)
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("4_jxvbi")
+hframes = 6
+frame = 1
+
+[node name="Scrap" type="Sprite2D" parent="Inventory" unique_id=1599853586]
+position = Vector2(341.99997, 74)
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("4_jxvbi")
+hframes = 6
+frame = 2
+
+[node name="Steel" type="Sprite2D" parent="Inventory" unique_id=1926902683]
+position = Vector2(70, 201.99998)
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("4_jxvbi")
+hframes = 6
+frame = 3
+
+[node name="Circuit" type="Sprite2D" parent="Inventory" unique_id=2077847397]
+position = Vector2(217.99998, 206.99998)
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("4_jxvbi")
+hframes = 6
+frame = 4
+
+[node name="Battery" type="Sprite2D" parent="Inventory" unique_id=846224095]
+position = Vector2(340.99997, 207.99998)
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("4_jxvbi")
+hframes = 6
+frame = 5
+
+[node name="WoodNum" type="RichTextLabel" parent="Inventory" unique_id=1933788107]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 96.0
+offset_right = 140.0
+offset_bottom = 152.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("1_q4deu")
+theme_override_font_sizes/normal_font_size = 64
+text = " 0"
+horizontal_alignment = 2
+visible_characters_behavior = 1
+
+[node name="RockNum" type="RichTextLabel" parent="Inventory" unique_id=2041289933]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 95.0
+offset_right = 275.0
+offset_bottom = 151.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("1_q4deu")
+theme_override_font_sizes/normal_font_size = 64
+text = " 0"
+horizontal_alignment = 2
+visible_characters_behavior = 1
+
+[node name="ScrapNum" type="RichTextLabel" parent="Inventory" unique_id=373867212]
+layout_mode = 0
+offset_left = 271.0
+offset_top = 96.0
+offset_right = 406.0
+offset_bottom = 152.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("1_q4deu")
+theme_override_font_sizes/normal_font_size = 64
+text = " 0"
+horizontal_alignment = 2
+visible_characters_behavior = 1
+
+[node name="SteelNum" type="RichTextLabel" parent="Inventory" unique_id=1626876926]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 226.0
+offset_right = 141.0
+offset_bottom = 282.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("1_q4deu")
+theme_override_font_sizes/normal_font_size = 64
+text = " 0"
+horizontal_alignment = 2
+visible_characters_behavior = 1
+
+[node name="CircuitNum" type="RichTextLabel" parent="Inventory" unique_id=657014275]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 226.0
+offset_right = 275.0
+offset_bottom = 282.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("1_q4deu")
+theme_override_font_sizes/normal_font_size = 64
+text = " 0"
+horizontal_alignment = 2
+visible_characters_behavior = 1
+
+[node name="BatteryNum" type="RichTextLabel" parent="Inventory" unique_id=357050729]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 228.0
+offset_right = 411.0
+offset_bottom = 284.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("1_q4deu")
+theme_override_font_sizes/normal_font_size = 64
+text = " 0"
+horizontal_alignment = 2
+visible_characters_behavior = 1
+
+[node name="Text" type="RichTextLabel" parent="." unique_id=576345047]
+offset_left = 356.0
+offset_top = -20.0
+offset_right = 943.3518
+offset_bottom = 141.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("1_q4deu")
+theme_override_font_sizes/normal_font_size = 160
+text = "craft a gun"
+horizontal_alignment = 1
+visible_characters_behavior = 1
+
+[node name="CraftButton" type="Button" parent="." unique_id=1360673911]
+offset_left = 98.0
+offset_top = 379.0
+offset_right = 486.0
+offset_bottom = 502.0
+theme_override_fonts/font = ExtResource("1_q4deu")
+theme_override_font_sizes/font_size = 80
+text = "CRAFT!"
+
+[node name="PickWood" type="Button" parent="." unique_id=1372887253]
+modulate = Color(1, 1, 1, 0)
+offset_left = 543.0
+offset_top = 255.0
+offset_right = 662.0
+offset_bottom = 371.0
+
+[node name="PickRock" type="Button" parent="." unique_id=1694230467]
+modulate = Color(1, 1, 1, 0)
+offset_left = 674.0
+offset_top = 256.0
+offset_right = 793.0
+offset_bottom = 372.0
+
+[node name="PickScrap" type="Button" parent="." unique_id=1847236988]
+modulate = Color(1, 1, 1, 0)
+offset_left = 809.0
+offset_top = 255.0
+offset_right = 928.0
+offset_bottom = 371.0
+
+[node name="PickSteel" type="Button" parent="." unique_id=776129173]
+modulate = Color(1, 1, 1, 0)
+offset_left = 543.0
+offset_top = 387.0
+offset_right = 662.0
+offset_bottom = 503.0
+
+[node name="PickCircuit" type="Button" parent="." unique_id=155200883]
+modulate = Color(1, 1, 1, 0)
+offset_left = 676.0
+offset_top = 385.0
+offset_right = 795.0
+offset_bottom = 501.0
+
+[node name="PickBattery" type="Button" parent="." unique_id=1562924996]
+modulate = Color(1, 1, 1, 0)
+offset_left = 809.0
+offset_top = 388.0
+offset_right = 928.0
+offset_bottom = 504.0
+
+[node name="PickHandle" type="Button" parent="." unique_id=1723973047]
+modulate = Color(1, 1, 1, 0)
+offset_left = 98.0
+offset_top = 186.0
+offset_right = 159.0
+offset_bottom = 247.0
+
+[node name="PickChamber" type="Button" parent="." unique_id=1664717470]
+modulate = Color(1, 1, 1, 0)
+offset_left = 249.0
+offset_top = 235.0
+offset_right = 310.0
+offset_bottom = 296.0
+
+[node name="PickBarrel" type="Button" parent="." unique_id=1932787843]
+modulate = Color(1, 1, 1, 0)
+offset_left = 400.0
+offset_top = 144.0
+offset_right = 461.0
+offset_bottom = 205.0
+
+[node name="PickMuzzle" type="Button" parent="." unique_id=1497512886]
+modulate = Color(1, 1, 1, 0)
+offset_left = 536.0
+offset_top = 150.0
+offset_right = 597.0
+offset_bottom = 211.0
+
+[node name="Hover" type="Sprite2D" parent="." unique_id=398669222]
+position = Vector2(601.00006, 312)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_jxvbi")
+hframes = 6
+
+[connection signal="pressed" from="CraftButton" to="." method="craftGun"]
+[connection signal="pressed" from="PickWood" to="." method="pickWood"]
+[connection signal="pressed" from="PickRock" to="." method="pickRock"]
+[connection signal="pressed" from="PickScrap" to="." method="pickScrap"]
+[connection signal="pressed" from="PickSteel" to="." method="pickSteel"]
+[connection signal="pressed" from="PickCircuit" to="." method="pickCircuit"]
+[connection signal="pressed" from="PickBattery" to="." method="pickBattery"]
+[connection signal="pressed" from="PickHandle" to="." method="setHandle"]
+[connection signal="pressed" from="PickChamber" to="." method="setChamber"]
+[connection signal="pressed" from="PickBarrel" to="." method="setBarrel"]
+[connection signal="pressed" from="PickMuzzle" to="." method="setMuzzle"]

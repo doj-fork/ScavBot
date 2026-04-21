@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://ds8qv4pipafgb"]
+
+[node name="Console" type="CanvasLayer" unique_id=211602251]
+layer = 47
