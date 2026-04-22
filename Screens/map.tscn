@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b3sifrl1jxjky" path="res://Assets/Misc/Grass.png" id="2_ib1il"]
 [ext_resource type="Texture2D" uid="uid://c8eqbmd0afa33" path="res://Assets/Misc/pngtree-background-a-rock-png-image_16683368.png" id="4_j67id"]
 [ext_resource type="PackedScene" uid="uid://cjwu1mthtoyrn" path="res://Assets/Misc/roomtest.tscn" id="5_h1w7h"]
-[ext_resource type="PackedScene" uid="uid://c6tmh6v73lh1a" path="res://Assets/Misc/meleeEVILVERSION.tscn" id="6_urb5g"]
+[ext_resource type="PackedScene" uid="uid://c6tmh6v73lh1a" path="res://Enemies/Tank/tank.tscn" id="6_urb5g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1w7h"]
 size = Vector2(1805, 545)
