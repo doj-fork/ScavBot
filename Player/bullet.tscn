@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cvfvgsvdcttlv"]
+
+[ext_resource type="Script" uid="uid://b5fercas84pe3" path="res://Player/bullet.gd" id="1_kxw81"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxw81"]
+size = Vector2(50.5, 50)
+
+[node name="Bullet" type="CharacterBody2D" unique_id=298973965]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_kxw81")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1639559189]
+offset_left = -25.0
+offset_top = -23.0
+offset_right = 25.0
+offset_bottom = 27.0
+
+[node name="EnemyMask" type="Area2D" parent="." unique_id=1341842380]
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyMask" unique_id=638679868]
+position = Vector2(-0.25, 2)
+shape = SubResource("RectangleShape2D_kxw81")
+debug_color = Color(0.95147854, 2.5027991e-06, 0.5658839, 0.41960785)
+
+[connection signal="area_entered" from="EnemyMask" to="." method="_on_enemy_mask_area_entered"]

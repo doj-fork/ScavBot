@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var animTree = $AnimationTree
 @onready var stateMachine = animTree.get("parameters/playback")
 
+var immunity = false
+
 var inputDir = Vector2(0, 0)
 var animDir = Vector2(0, 0)
 
@@ -24,3 +26,11 @@ func animUpdate():
 		stateMachine.travel("Walk")
 	elif velocity == Vector2(0, 0):
 		stateMachine.travel("Idle")
+
+
+func _on_area_2d_area_entered(_area: Area2D) -> void:
+	if immunity == false:
+		immunity = true
+		Stats.health -= 10
+		await get_tree().create_timer(0.75, false).timeout
+		immunity = false

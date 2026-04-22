@@ -254,9 +254,8 @@ func _isMeleeCollider(collider: Object) -> bool:
 			return true
 	return false
 
-# left these functions that you typed
-func _on_area_2d_area_entered(_area: Area2D) -> void:
-	var bulletDamage: int = int(Global.bulletDamage)
+func _on_bullet_collision_area_entered(_area: Area2D) -> void:
+	var bulletDamage: int = int(Gun.damage)
 	health -= bulletDamage
 	if health <= 0:
 		queue_free()

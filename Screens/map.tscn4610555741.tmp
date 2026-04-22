@@ -122,5 +122,4 @@ position = Vector2(1204, 372)
 script = ExtResource("7_4g37g")
 
 [node name="TankSpawner" type="Node2D" parent="." unique_id=1081021157]
-position = Vector2(908, -260)
 script = ExtResource("8_tf4ai")

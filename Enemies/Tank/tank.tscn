@@ -7,7 +7,13 @@
 radius = 66.666664
 height = 325.33325
 
-[node name="Melee" type="CharacterBody2D" unique_id=1471520854]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5la1q"]
+size = Vector2(856, 280)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kn70c"]
+size = Vector2(864, 296)
+
+[node name="Tank" type="CharacterBody2D" unique_id=1471520854]
 scale = Vector2(0.125, 0.125)
 motion_mode = 1
 script = ExtResource("1_5la1q")
@@ -20,3 +26,23 @@ texture = ExtResource("2_5la1q")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=523009327]
 position = Vector2(24, -584)
 shape = SubResource("CapsuleShape2D_igllg")
+
+[node name="EnemyPlayerCollision" type="Area2D" parent="." unique_id=1487661102]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyPlayerCollision" unique_id=150895215]
+position = Vector2(0, -552)
+shape = SubResource("RectangleShape2D_5la1q")
+debug_color = Color(0.95147854, 2.5027991e-06, 0.5658839, 0.41960785)
+
+[node name="BulletCollision" type="Area2D" parent="." unique_id=1575249260]
+collision_layer = 32
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletCollision" unique_id=1016492552]
+position = Vector2(0, -548)
+shape = SubResource("RectangleShape2D_kn70c")
+debug_color = Color(0.19813973, 0.61040646, 0.5649672, 0.41960785)
+
+[connection signal="area_entered" from="BulletCollision" to="." method="_on_bullet_collision_area_entered"]

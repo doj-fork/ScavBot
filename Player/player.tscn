@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dh1r14d3b673d" path="res://Player/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://bxp6tv1fcjlj0" path="res://Player/Assets/PlayerTestSprite.png" id="2_btcbx"]
+[ext_resource type="PackedScene" uid="uid://cyi5ia1lmgu1t" path="res://Player/weapon.tscn" id="3_btcbx"]
 
 [sub_resource type="Animation" id="Animation_4ntmi"]
 resource_name = "Charge"
@@ -448,6 +449,10 @@ graph_offset = Vector2(-24.061285, 0)
 radius = 66.666664
 height = 480.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btcbx"]
+radius = 80.0
+height = 960.00006
+
 [node name="Player" type="CharacterBody2D" unique_id=253815592]
 scale = Vector2(0.075, 0.075)
 motion_mode = 1
@@ -474,3 +479,17 @@ parameters/Walk/blend_position = Vector2(0, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1578713208]
 position = Vector2(13.333333, -386.66663)
 shape = SubResource("CapsuleShape2D_4ntmi")
+
+[node name="Gun" parent="." unique_id=2069946445 instance=ExtResource("3_btcbx")]
+position = Vector2(13.333321, -426.6667)
+
+[node name="EnemyPlayerCollision" type="Area2D" parent="." unique_id=1535774745]
+collision_layer = 64
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyPlayerCollision" unique_id=1043391158]
+position = Vector2(13.333333, -413.3333)
+shape = SubResource("CapsuleShape2D_btcbx")
+debug_color = Color(0.95147854, 2.5027991e-06, 0.5658839, 0.41960785)
+
+[connection signal="area_entered" from="EnemyPlayerCollision" to="." method="_on_area_2d_area_entered"]

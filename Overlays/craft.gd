@@ -247,6 +247,7 @@ func pickScrap() -> void:
 
 func craftGun() -> void:
 	if "Null" not in activeCraftList:
+		Gun.craft(activeCraftList[0], activeCraftList[1], activeCraftList[2], activeCraftList[3])
 		reset("Y")
 		visible = false
 		Global.craftActive = false

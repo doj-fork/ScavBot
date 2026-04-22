@@ -130,12 +130,13 @@ func _isObstacleCollider(collider: Object) -> bool:
 		return true
 	return false
 
-# i have zero clue on bullet implementation right now so ill leave these in
-func _on_area_2d_area_entered(_area: Area2D) -> void:
-	var bulletDamage: int = int(Global.bulletDamage)
-	health -= bulletDamage
-	if health <= 0:
-		queue_free()
 
 func _on_area_2d_2_area_entered(_area: Area2D) -> void:
 	queue_free()
+
+
+func _on_bullet_collision_area_entered(_area: Area2D) -> void:
+	var bulletDamage: int = int(Gun.damage)
+	health -= bulletDamage
+	if health <= 0:
+		queue_free()
