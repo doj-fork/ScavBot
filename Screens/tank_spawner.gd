@@ -6,7 +6,7 @@ func _ready():
 	spawnTank()
 	
 func spawnTank():
-	await get_tree().create_timer(17).timeout
+	await get_tree().create_timer(17, false).timeout
 	var newTank = tank.instantiate()
 	self.call_deferred("add_child", newTank)
 	spawnTank()
