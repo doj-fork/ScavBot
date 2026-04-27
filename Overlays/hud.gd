@@ -13,5 +13,3 @@ func _process(_delta):
 	health.text = " Energy: " + str(Stats.health)
 	gun.text = " " + Gun.type
 	ammo.text = " " + str(Gun.ammo)
-	
-	print(Gun.ammo)

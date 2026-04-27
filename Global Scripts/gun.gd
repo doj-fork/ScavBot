@@ -8,7 +8,10 @@ var damage = 0
 var speed = 0
 
 func craft(handle, chamber, barrel, muzzle):
-	
+	print(handle)
+	print(chamber)
+	print(barrel)
+	print(muzzle)
 	var burnType = "Null"
 	var burnSpecial = "Null"
 	var burnAmmo = 0
@@ -20,6 +23,7 @@ func craft(handle, chamber, barrel, muzzle):
 	elif handle in ["Rock"]:
 		burnAmmoMult = 1.25
 	elif handle in ["Scrap", "Battery"]:
+		print("RUN")
 		burnAmmoMult = 1.5
 	elif handle in ["Steel", "Circuit"]:
 		burnAmmoMult = 1.75
@@ -42,7 +46,7 @@ func craft(handle, chamber, barrel, muzzle):
 		burnPrecision = 2
 		damage = 80
 		speed = 2000
-	elif chamber in ["Steel", "Circuit"]:
+	elif chamber in ["Battery", "Circuit"]:
 		burnType = "AR"
 		burnAmmo = 90
 		burnPrecision = 10
@@ -61,7 +65,7 @@ func craft(handle, chamber, barrel, muzzle):
 	elif barrel in ["Scrap", "Steel"]:
 		damage *= 1.33
 		damage = int(ceil(damage))
-	elif barrel in ["Steel", "Circuit", "Battery"]:
+	elif barrel in ["Circuit", "Battery"]:
 		burnSpecial = "Electricity"
 		
 	type = burnType
