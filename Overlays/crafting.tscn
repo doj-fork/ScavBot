@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bhymjvo0ul3o3" path="res://Overlays/craft.gd" id="1_7eoyn"]
 [ext_resource type="FontFile" uid="uid://c7oafmhek6vhy" path="res://Assets/Fonts/SunkenMini.ttf" id="1_q4deu"]
 [ext_resource type="Texture2D" uid="uid://ci08006jpll1y" path="res://Assets/Crafting Module/AllItems.png" id="2_b25ti"]
+[ext_resource type="Shader" uid="uid://b5o7l4cpum7ua" path="res://Shaders/blur.gdshader" id="2_c5i8u"]
 [ext_resource type="Texture2D" uid="uid://dcv4cmbc24uw1" path="res://Assets/MenuAssets/CraftingMenu.png" id="2_j6qb2"]
 [ext_resource type="Texture2D" uid="uid://crmxpc0wiks8m" path="res://Assets/MenuAssets/InventoryMenu.png" id="3_o8v6y"]
 [ext_resource type="Texture2D" uid="uid://dj5f2u6g1w78x" path="res://Assets/Crafting Module/WoodItem.png" id="4_vs3fj"]
@@ -15,9 +16,14 @@
 [ext_resource type="Texture2D" uid="uid://d3figth235jvs" path="res://Assets/MenuAssets/MenuButtonClick.png" id="11_6qsce"]
 [ext_resource type="Texture2D" uid="uid://c0jlu2gdrewgp" path="res://Assets/MenuAssets/MenuButtonHover.png" id="12_b25ti"]
 [ext_resource type="BitMap" uid="uid://d3b7viyhl66q5" path="res://Assets/MenuAssets/MenuButtonBitmap.png" id="13_6qsce"]
+[ext_resource type="Script" uid="uid://bj3rdndin6hkt" path="res://Overlays/hover_item.gd" id="16_18qjx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0w4hh"]
+shader = ExtResource("2_c5i8u")
+shader_parameter/blur_size = Vector2(1, 0.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b38m7"]
-size = Vector2(78.5, 77)
+size = Vector2(92.75, 99)
 
 [node name="Crafting" type="CanvasLayer" unique_id=843875894]
 process_mode = 3
@@ -31,7 +37,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.38431373)
+color = Color(0, 0, 0, 0.52156866)
+
+[node name="Blur" type="ColorRect" parent="." unique_id=1750108415]
+material = SubResource("ShaderMaterial_0w4hh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Blueprint" type="Sprite2D" parent="." unique_id=432123856]
 position = Vector2(364.00003, 225.00002)
@@ -213,10 +228,10 @@ texture = ExtResource("9_c5i8u")
 [node name="Text" type="Node2D" parent="." unique_id=1629145600]
 
 [node name="Text" type="RichTextLabel" parent="Text" unique_id=576345047]
-offset_left = 285.0
-offset_top = -19.0
-offset_right = 1025.574
-offset_bottom = 184.0
+offset_left = 290.0
+offset_top = -16.0
+offset_right = 1030.574
+offset_bottom = 187.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.75666225, 0.8037532, 0.8459766, 1)
 theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)
@@ -227,7 +242,7 @@ theme_override_constants/shadow_offset_y = 10
 theme_override_constants/outline_size = 32
 theme_override_fonts/normal_font = ExtResource("1_q4deu")
 theme_override_font_sizes/normal_font_size = 192
-text = "Craft Gun"
+text = "Build Gun"
 horizontal_alignment = 1
 visible_characters_behavior = 1
 
@@ -360,10 +375,10 @@ texture_click_mask = ExtResource("13_6qsce")
 
 [node name="BatteryNum" type="RichTextLabel" parent="Buttons/Craft" unique_id=32629920]
 layout_mode = 0
-offset_left = 227.99997
-offset_top = 213.33333
-offset_right = 605.3333
-offset_bottom = 342.66663
+offset_left = 230.66666
+offset_top = 212.0
+offset_right = 740.0
+offset_bottom = 341.3333
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.75666225, 0.8037532, 0.8459766, 1)
 theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)
@@ -375,14 +390,14 @@ theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("1_q4deu")
 theme_override_font_sizes/normal_font_size = 128
 text = "CRAFT"
-horizontal_alignment = 2
+horizontal_alignment = 1
 visible_characters_behavior = 1
 
 [node name="H_Hover" type="Area2D" parent="Buttons" unique_id=2081440899]
 scale = Vector2(1.3333334, 1.3333334)
 
 [node name="Area" type="CollisionShape2D" parent="Buttons/H_Hover" unique_id=851479604]
-position = Vector2(113.75, 223.5)
+position = Vector2(115, 223)
 shape = SubResource("RectangleShape2D_b38m7")
 
 [node name="C_Hover" type="Area2D" parent="Buttons" unique_id=971650247]
@@ -390,7 +405,7 @@ position = Vector2(213.33334, -45.333336)
 scale = Vector2(1.3333334, 1.3333334)
 
 [node name="Area" type="CollisionShape2D" parent="Buttons/C_Hover" unique_id=1548073319]
-position = Vector2(113.75, 223.5)
+position = Vector2(115, 225)
 shape = SubResource("RectangleShape2D_b38m7")
 
 [node name="B_Hover" type="Area2D" parent="Buttons" unique_id=823901308]
@@ -398,7 +413,7 @@ position = Vector2(398.6667, 22.666668)
 scale = Vector2(1.3333334, 1.3333334)
 
 [node name="Area" type="CollisionShape2D" parent="Buttons/B_Hover" unique_id=795074449]
-position = Vector2(113.75, 223.5)
+position = Vector2(114, 222)
 shape = SubResource("RectangleShape2D_b38m7")
 
 [node name="M_Hover" type="Area2D" parent="Buttons" unique_id=2132721190]
@@ -406,45 +421,58 @@ position = Vector2(665.3334, -26.666668)
 scale = Vector2(1.3333334, 1.3333334)
 
 [node name="Area" type="CollisionShape2D" parent="Buttons/M_Hover" unique_id=666087956]
-position = Vector2(113.75, 223.5)
+position = Vector2(112, 221)
 shape = SubResource("RectangleShape2D_b38m7")
 
 [node name="woodPick" type="Button" parent="Buttons" unique_id=1270385252]
+modulate = Color(1, 1, 1, 0)
 offset_left = 734.6667
 offset_top = 341.33334
 offset_right = 893.3334
 offset_bottom = 509.33334
 
 [node name="rockPick" type="Button" parent="Buttons" unique_id=1674975047]
+modulate = Color(1, 1, 1, 0)
 offset_left = 900.0
 offset_top = 341.33334
 offset_right = 1058.6667
 offset_bottom = 509.33334
 
-[node name="stonePick" type="Button" parent="Buttons" unique_id=780136482]
+[node name="scrapPick" type="Button" parent="Buttons" unique_id=780136482]
+modulate = Color(1, 1, 1, 0)
 offset_left = 1066.6667
 offset_top = 342.6667
 offset_right = 1225.3335
 offset_bottom = 510.6667
 
 [node name="steelPick" type="Button" parent="Buttons" unique_id=648972168]
+modulate = Color(1, 1, 1, 0)
 offset_left = 733.3334
 offset_top = 513.3334
 offset_right = 892.00006
 offset_bottom = 681.3334
 
 [node name="circuitPick" type="Button" parent="Buttons" unique_id=710831530]
+modulate = Color(1, 1, 1, 0)
 offset_left = 898.6667
 offset_top = 513.3334
 offset_right = 1057.3335
 offset_bottom = 681.3334
 
 [node name="batteryPick" type="Button" parent="Buttons" unique_id=1811233029]
+modulate = Color(1, 1, 1, 0)
 offset_left = 1065.3334
 offset_top = 514.6667
 offset_right = 1224.0001
 offset_bottom = 682.6667
 
+[node name="HoverItem" type="Sprite2D" parent="." unique_id=1321502699]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_b25ti")
+hframes = 6
+script = ExtResource("16_18qjx")
+
+[connection signal="pressed" from="Buttons/Craft" to="." method="craftGun"]
 [connection signal="mouse_entered" from="Buttons/H_Hover" to="." method="hEnter"]
 [connection signal="mouse_exited" from="Buttons/H_Hover" to="." method="hExit"]
 [connection signal="mouse_entered" from="Buttons/C_Hover" to="." method="cEnter"]
@@ -455,7 +483,7 @@ offset_bottom = 682.6667
 [connection signal="mouse_exited" from="Buttons/M_Hover" to="." method="mExit"]
 [connection signal="button_down" from="Buttons/woodPick" to="." method="woodPick"]
 [connection signal="button_down" from="Buttons/rockPick" to="." method="rockPick"]
-[connection signal="button_down" from="Buttons/stonePick" to="." method="stonePick"]
+[connection signal="button_down" from="Buttons/scrapPick" to="." method="scrapPick"]
 [connection signal="button_down" from="Buttons/steelPick" to="." method="steelPick"]
 [connection signal="button_down" from="Buttons/circuitPick" to="." method="circuitPick"]
 [connection signal="button_down" from="Buttons/batteryPick" to="." method="batteryPick"]
