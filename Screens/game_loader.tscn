@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://bjpxqhbrumksy"]
+
+[ext_resource type="PackedScene" uid="uid://c55ivgvfsmowm" path="res://Chunks/c_01.tscn" id="1_7efq7"]
+[ext_resource type="Script" uid="uid://bljueoroxruh1" path="res://Screens/chunkLoad.gd" id="1_y1sh6"]
+[ext_resource type="Script" uid="uid://bljueoroxruh1" path="res://Screens/chunkload.gd" id="2_7efq7"]
+[ext_resource type="PackedScene" uid="uid://cwfjmmvi5mck" path="res://Player/player.tscn" id="2_iyh47"]
+
+[node name="GameLoader" type="Node2D" unique_id=1504878694]
+
+[node name="Chunks" type="Node2D" parent="." unique_id=222700011]
+
+[node name="Chunk1" type="Node2D" parent="Chunks" unique_id=1315444310]
+script = ExtResource("1_y1sh6")
+
+[node name="C_01" parent="Chunks/Chunk1" unique_id=317759896 instance=ExtResource("1_7efq7")]
+
+[node name="Chunk2" type="Node2D" parent="Chunks" unique_id=1773913790]
+position = Vector2(960, 0)
+script = ExtResource("2_7efq7")
+
+[node name="C_01" parent="Chunks/Chunk2" unique_id=1008185914 instance=ExtResource("1_7efq7")]
+
+[node name="Chunk3" type="Node2D" parent="Chunks" unique_id=511231418]
+position = Vector2(-401, 533)
+script = ExtResource("2_7efq7")
+
+[node name="C_01" parent="Chunks/Chunk3" unique_id=39284502 instance=ExtResource("1_7efq7")]
+
+[node name="Chunk4" type="Node2D" parent="Chunks" unique_id=1725634478]
+position = Vector2(559, 533)
+script = ExtResource("2_7efq7")
+
+[node name="C_01" parent="Chunks/Chunk4" unique_id=1483924927 instance=ExtResource("1_7efq7")]
+
+[node name="Chunk5" type="Node2D" parent="Chunks" unique_id=666914723]
+position = Vector2(1519, 538)
+script = ExtResource("2_7efq7")
+
+[node name="C_01" parent="Chunks/Chunk5" unique_id=1894952165 instance=ExtResource("1_7efq7")]
+
+[node name="Chunk6" type="Node2D" parent="Chunks" unique_id=1564742823]
+position = Vector2(-1, 1071)
+script = ExtResource("2_7efq7")
+
+[node name="C_01" parent="Chunks/Chunk6" unique_id=1761591009 instance=ExtResource("1_7efq7")]
+
+[node name="Chunk7" type="Node2D" parent="Chunks" unique_id=700422836]
+position = Vector2(959, 1071)
+script = ExtResource("2_7efq7")
+
+[node name="C_01" parent="Chunks/Chunk7" unique_id=128401246 instance=ExtResource("1_7efq7")]
+
+[node name="Player" parent="." unique_id=253815592 instance=ExtResource("2_iyh47")]
+position = Vector2(530, 563)

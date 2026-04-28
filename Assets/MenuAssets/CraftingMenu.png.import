@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c07qugjts3iml"
-path="res://.godot/imported/Steel.png-cd2be9eb59bedf8c26802bf5c77ee2bc.ctex"
+uid="uid://dcv4cmbc24uw1"
+path="res://.godot/imported/CraftingMenu.png-f973a861c047f51615d73feefc7d45bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Crafting Module/Steel.png"
-dest_files=["res://.godot/imported/Steel.png-cd2be9eb59bedf8c26802bf5c77ee2bc.ctex"]
+source_file="res://Assets/MenuAssets/CraftingMenu.png"
+dest_files=["res://.godot/imported/CraftingMenu.png-f973a861c047f51615d73feefc7d45bb.ctex"]
 
 [params]
 

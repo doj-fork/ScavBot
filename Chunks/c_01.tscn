@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c55ivgvfsmowm"]
+
+[ext_resource type="Texture2D" uid="uid://c3lc15yyssnvd" path="res://Assets/Chunks/ground.png" id="1_q7jay"]
+
+[node name="C_01" type="Node2D" unique_id=317759896]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=900892796]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_q7jay")

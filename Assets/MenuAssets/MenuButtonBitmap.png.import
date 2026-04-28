@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://d3b7viyhl66q5"
+path="res://.godot/imported/MenuButtonBitmap.png-b25b3b445aeec85ba519eec8f4779bde.res"
+
+[deps]
+
+source_file="res://Assets/MenuAssets/MenuButtonBitmap.png"
+dest_files=["res://.godot/imported/MenuButtonBitmap.png-b25b3b445aeec85ba519eec8f4779bde.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

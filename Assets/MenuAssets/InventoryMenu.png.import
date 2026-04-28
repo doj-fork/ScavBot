@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5c2ll5eswfgi"
-path="res://.godot/imported/Circuit.png-5b8e70fe5e215da9e65c8d3ccc6f3bcd.ctex"
+uid="uid://crmxpc0wiks8m"
+path="res://.godot/imported/InventoryMenu.png-7deef7fd8a02a3364b457f79a21f7653.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Crafting Module/Circuit.png"
-dest_files=["res://.godot/imported/Circuit.png-5b8e70fe5e215da9e65c8d3ccc6f3bcd.ctex"]
+source_file="res://Assets/MenuAssets/InventoryMenu.png"
+dest_files=["res://.godot/imported/InventoryMenu.png-7deef7fd8a02a3364b457f79a21f7653.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de10fvtg1evhn"
-path="res://.godot/imported/SlotOutline.png-681ce060ed9fe62647f197ce4739a9d1.ctex"
+uid="uid://b2sneal5uejuu"
+path="res://.godot/imported/CircuitItem.png-f3eab5fa9b4007caca2242fdc9156125.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Crafting Module/SlotOutline.png"
-dest_files=["res://.godot/imported/SlotOutline.png-681ce060ed9fe62647f197ce4739a9d1.ctex"]
+source_file="res://Assets/Crafting Module/CircuitItem.png"
+dest_files=["res://.godot/imported/CircuitItem.png-f3eab5fa9b4007caca2242fdc9156125.ctex"]
 
 [params]
 

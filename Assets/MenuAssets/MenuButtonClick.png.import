@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b44f4g6ybjtji"
-path="res://.godot/imported/gunthing.png-65beeb3e9f472287d2225fdc28362931.ctex"
+uid="uid://d3figth235jvs"
+path="res://.godot/imported/MenuButtonClick.png-a78a5195141f7511ec07f894443d6a7b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Crafting Module/gunthing.png"
-dest_files=["res://.godot/imported/gunthing.png-65beeb3e9f472287d2225fdc28362931.ctex"]
+source_file="res://Assets/MenuAssets/MenuButtonClick.png"
+dest_files=["res://.godot/imported/MenuButtonClick.png-a78a5195141f7511ec07f894443d6a7b.ctex"]
 
 [params]
 

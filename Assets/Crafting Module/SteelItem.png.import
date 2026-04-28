@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2b4o6nxptp1x"
-path="res://.godot/imported/Battery.png-4bdac1e65fdde67982e0ed698ba9dfd5.ctex"
+uid="uid://23ovq5xevrod"
+path="res://.godot/imported/SteelItem.png-cc38ad6521021bd00f87b21a935af1a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Crafting Module/Battery.png"
-dest_files=["res://.godot/imported/Battery.png-4bdac1e65fdde67982e0ed698ba9dfd5.ctex"]
+source_file="res://Assets/Crafting Module/SteelItem.png"
+dest_files=["res://.godot/imported/SteelItem.png-cc38ad6521021bd00f87b21a935af1a9.ctex"]
 
 [params]
 

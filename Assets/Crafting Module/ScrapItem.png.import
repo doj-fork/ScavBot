@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wg845iatow6e"
-path="res://.godot/imported/Wood.png-312a12f350d1a8c9e30e3d9bf08a25ce.ctex"
+uid="uid://g53dd5pq2tpf"
+path="res://.godot/imported/ScrapItem.png-ba1cf06fe0b8e117f806c5a1c4bb8993.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Crafting Module/Wood.png"
-dest_files=["res://.godot/imported/Wood.png-312a12f350d1a8c9e30e3d9bf08a25ce.ctex"]
+source_file="res://Assets/Crafting Module/ScrapItem.png"
+dest_files=["res://.godot/imported/ScrapItem.png-ba1cf06fe0b8e117f806c5a1c4bb8993.ctex"]
 
 [params]
 

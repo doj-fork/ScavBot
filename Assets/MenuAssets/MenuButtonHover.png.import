@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8eo7bggt88kb"
-path="res://.godot/imported/Items.png-f7331a394db4d081dd39e6043b3aa91c.ctex"
+uid="uid://c0jlu2gdrewgp"
+path="res://.godot/imported/MenuButtonHover.png-b2acbf7eab017f410e09f35217a1ea35.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Crafting Module/Items.png"
-dest_files=["res://.godot/imported/Items.png-f7331a394db4d081dd39e6043b3aa91c.ctex"]
+source_file="res://Assets/MenuAssets/MenuButtonHover.png"
+dest_files=["res://.godot/imported/MenuButtonHover.png-b2acbf7eab017f410e09f35217a1ea35.ctex"]
 
 [params]
 
