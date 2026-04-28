@@ -6,11 +6,18 @@ var obstacleSlowMultiplier: float = 0.85
 var slowRecoveryRate: float = 3.5
 var detourDistance: float = 140.0
 var detourDuration: float = 0.75
-var detectionRadius: float = 200.0
-var wanderSpeedMultiplier: float = 0.25
+var detectionRadius: float = 400.0
+var wanderSpeedMultiplier: float = 0.5
 var wanderDirectionMinTime: float = 0.5
 var wanderDirectionMaxTime: float = 2.5
 var health: int = 100
+var separationRadius: float = 110.0
+var separationStrength: float = 1.25
+var crowdStrafeBias: float = 0.0
+var antiCramRetreatDuration: float = 3.0
+var antiCramRetreatTimer: float = 0.0
+var justEndedAntiCramRetreat: bool = false
+var antiCramNeighborThreshold: int = 5
 
 var chaseSpeedMultiplier: float = 1.0
 var detourTarget: Vector2 = Vector2.ZERO
@@ -23,18 +30,27 @@ var wanderDirectionTimer: float = 0.0
 var randomNumberGenerator: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
+	add_to_group("Enemies")
+	add_to_group("Melee")
 	randomNumberGenerator.randomize()
+	crowdStrafeBias = randomNumberGenerator.randf_range(-1.0, 1.0)
 	_pickRandomWanderDirection()
 
 # main enemy movement from your thing
 func _physics_process(delta: float) -> void:
 	var playerPosition: Vector2 = Vector2(Global.playerPos)
-	_updateChaseState(playerPosition)
+	justEndedAntiCramRetreat = false
+	_updateAntiCramRetreat(delta)
 
-	if isChasingPlayer:
-		_updateChaseMovement(playerPosition, delta)
+	if _isAntiCramRetreating() or justEndedAntiCramRetreat:
+		isChasingPlayer = false
+		_updateWanderMovement(playerPosition, delta)
 	else:
-		_updateWanderMovement(delta)
+		_updateChaseState(playerPosition)
+		if isChasingPlayer:
+			_updateChaseMovement(playerPosition, delta)
+		else:
+			_updateWanderMovement(playerPosition, delta)
 
 	move_and_slide()
 	_applyCollisionResponses(playerPosition)
@@ -46,6 +62,25 @@ func _updateChaseState(playerPosition: Vector2) -> void:
 	if global_position.distance_to(playerPosition) <= detectionRadius:
 		isChasingPlayer = true
 		hasDetourTarget = false
+
+func _updateAntiCramRetreat(delta: float) -> void:
+	if antiCramRetreatTimer > 0.0:
+		antiCramRetreatTimer = max(antiCramRetreatTimer - delta, 0.0)
+		if antiCramRetreatTimer <= 0.0:
+			isChasingPlayer = false
+			hasDetourTarget = false
+			justEndedAntiCramRetreat = true
+			_pickRandomWanderDirection()
+		return
+
+	var nearbyEnemyCount: int = _getNearbyEnemyCount()
+	if nearbyEnemyCount > antiCramNeighborThreshold:
+		antiCramRetreatTimer = antiCramRetreatDuration
+		isChasingPlayer = false
+		hasDetourTarget = false
+
+func _isAntiCramRetreating() -> bool:
+	return antiCramRetreatTimer > 0.0
 
 func _updateChaseMovement(playerPosition: Vector2, delta: float) -> void:
 	var activeTarget: Vector2 = playerPosition
@@ -59,6 +94,7 @@ func _updateChaseMovement(playerPosition: Vector2, delta: float) -> void:
 			activeTarget = detourTarget
 
 	var moveDirection: Vector2 = global_position.direction_to(activeTarget)
+	moveDirection = _applyEnemySeparation(moveDirection, playerPosition)
 	if moveDirection != Vector2.ZERO:
 		lastMoveDirection = moveDirection
 
@@ -66,22 +102,77 @@ func _updateChaseMovement(playerPosition: Vector2, delta: float) -> void:
 	velocity = moveDirection * currentSpeed
 
 # enemy randomly moves around until you enter its radius
-func _updateWanderMovement(delta: float) -> void:
+func _updateWanderMovement(playerPosition: Vector2, delta: float) -> void:
 	wanderDirectionTimer -= delta
 	if wanderDirectionTimer <= 0.0:
 		_pickRandomWanderDirection()
 
-	if wanderDirection != Vector2.ZERO:
-		lastMoveDirection = wanderDirection
+	var moveDirection: Vector2 = _applyEnemySeparation(wanderDirection, playerPosition)
+	if moveDirection != Vector2.ZERO:
+		lastMoveDirection = moveDirection
 
 	var currentSpeed: float = baseSpeed * wanderSpeedMultiplier * chaseSpeedMultiplier
-	velocity = wanderDirection * currentSpeed
+	velocity = moveDirection * currentSpeed
 
 # ^ditto to previous comment
 func _pickRandomWanderDirection() -> void:
 	var randomAngle: float = randomNumberGenerator.randf_range(0.0, TAU)
 	wanderDirection = Vector2.RIGHT.rotated(randomAngle).normalized()
 	wanderDirectionTimer = randomNumberGenerator.randf_range(wanderDirectionMinTime, wanderDirectionMaxTime)
+
+func _applyEnemySeparation(baseDirection: Vector2, playerPosition: Vector2) -> Vector2:
+	var forceRetreat: bool = _isAntiCramRetreating()
+	if not forceRetreat:
+		return baseDirection
+
+	var crowdPressure: float = _getEnemyCrowdPressure()
+	var awayFromPlayer: Vector2 = playerPosition.direction_to(global_position)
+	if awayFromPlayer == Vector2.ZERO:
+		awayFromPlayer = -baseDirection
+	if awayFromPlayer == Vector2.ZERO:
+		awayFromPlayer = Vector2.RIGHT
+
+	var tangentFromPlayer: Vector2 = Vector2(-awayFromPlayer.y, awayFromPlayer.x).normalized()
+	var retreatDirection: Vector2 = (awayFromPlayer + (tangentFromPlayer * crowdStrafeBias * 0.45)).normalized()
+	var retreatPressure: float = max(crowdPressure, 1.0)
+	var retreatWeight: float = clamp(retreatPressure * separationStrength, 0.0, 1.0)
+	var combinedDirection: Vector2 = ((baseDirection * (1.0 - retreatWeight)) + (retreatDirection * retreatWeight)).normalized()
+
+	if combinedDirection == Vector2.ZERO:
+		return retreatDirection
+	return combinedDirection
+
+func _getNearbyEnemyCount() -> int:
+	var nearbyCount: int = 0
+	var enemyNodes: Array[Node] = get_tree().get_nodes_in_group("Enemies")
+	for enemyNode: Node in enemyNodes:
+		if enemyNode == self:
+			continue
+		if not (enemyNode is CharacterBody2D):
+			continue
+		var enemyBody: CharacterBody2D = enemyNode as CharacterBody2D
+		if global_position.distance_to(enemyBody.global_position) > separationRadius:
+			continue
+		nearbyCount += 1
+	return nearbyCount
+
+func _getEnemyCrowdPressure() -> float:
+	var pressureTotal: float = 0.0
+	var nearbyEnemies: Array[Node] = get_tree().get_nodes_in_group("Enemies")
+	for enemyNode: Node in nearbyEnemies:
+		if enemyNode == self:
+			continue
+		if not enemyNode is CharacterBody2D:
+			continue
+
+		var enemyBody: CharacterBody2D = enemyNode as CharacterBody2D
+		var distanceToEnemy: float = global_position.distance_to(enemyBody.global_position)
+		if distanceToEnemy <= 0.001 or distanceToEnemy > separationRadius:
+			continue
+
+		pressureTotal += 1.0 - (distanceToEnemy / separationRadius)
+
+	return clamp(pressureTotal, 0.0, 1.0)
 
 func _applyCollisionResponses(playerPosition: Vector2) -> void:
 	var collisionCount: int = get_slide_collision_count()
