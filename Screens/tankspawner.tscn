@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://xnfiy2duk5cb"]
+
+[ext_resource type="Script" uid="uid://bpgs2iovj4ui0" path="res://Screens/tank_spawner.gd" id="1_gnlog"]
+
+[node name="TankSpawner" type="Node2D" unique_id=156898322]
+script = ExtResource("1_gnlog")

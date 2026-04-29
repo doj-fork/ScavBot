@@ -15,8 +15,11 @@ func _process(_delta):
 	if inputDir != Vector2(0, 0):
 		animDir = inputDir
 	animUpdate()
-	move_and_slide()
-
+	if Global.canMove == 0:
+		move_and_slide()
+	
+	if Stats.health < 1:
+		get_tree().change_scene_to_file.call_deferred("res://Screens/death.tscn")
 
 func animUpdate():
 	animTree.set("parameters/Idle/blend_position", animDir)

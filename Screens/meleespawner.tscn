@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ddygo00e65gg"]
+
+[ext_resource type="Script" uid="uid://yaejdyb2whoo" path="res://Screens/melee_spawner.gd" id="1_6th0i"]
+
+[node name="MeleeSpawner" type="Node2D" unique_id=156898322]
+script = ExtResource("1_6th0i")

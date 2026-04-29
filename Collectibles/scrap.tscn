@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dmnlpl2sm8twp"]
+
+[ext_resource type="Script" uid="uid://cbpicwany4xr3" path="res://Collectibles/scrap.gd" id="1_54s73"]
+[ext_resource type="Texture2D" uid="uid://jdm3kgsvlwxx" path="res://Assets/NatureAssets/Scrap1.png" id="2_54s73"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_18u5j"]
+radius = 113.004425
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqeof"]
+size = Vector2(185, 9.5)
+
+[node name="Scrap" type="Node2D" unique_id=1227711547]
+script = ExtResource("1_54s73")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1692961618]
+position = Vector2(-0.7630987, -39.920715)
+scale = Vector2(0.3118159, 0.3118159)
+texture = ExtResource("2_54s73")
+
+[node name="ItemCollect" type="Area2D" parent="." unique_id=1283826316]
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemCollect" unique_id=418323955]
+position = Vector2(-4, -30)
+shape = SubResource("CircleShape2D_18u5j")
+debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
+
+[node name="Collision" type="StaticBody2D" parent="." unique_id=677594490]
+collision_layer = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=209587586]
+position = Vector2(-3.5, -11.25)
+shape = SubResource("RectangleShape2D_uqeof")
+
+[connection signal="area_entered" from="ItemCollect" to="." method="areaEntered"]
+[connection signal="area_exited" from="ItemCollect" to="." method="areaExited"]

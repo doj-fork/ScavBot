@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ckq2wmhmr0jsx"]
+
+[ext_resource type="Texture2D" uid="uid://d3sngiw31qdka" path="res://Assets/NatureAssets/Wall1.png" id="2_moave"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqeof"]
+size = Vector2(205.5, 55)
+
+[node name="Wall" type="Node2D" unique_id=1227711547]
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1692961618]
+position = Vector2(0.18823242, -29.714706)
+scale = Vector2(0.2717647, 0.2717647)
+texture = ExtResource("2_moave")
+offset = Vector2(0, -105)
+
+[node name="Collision" type="StaticBody2D" parent="." unique_id=677594490]
+collision_layer = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=209587586]
+position = Vector2(0.43826294, -26.214706)
+shape = SubResource("RectangleShape2D_uqeof")

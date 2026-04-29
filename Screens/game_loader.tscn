@@ -1,54 +1,122 @@
 [gd_scene format=3 uid="uid://bjpxqhbrumksy"]
 
-[ext_resource type="PackedScene" uid="uid://c55ivgvfsmowm" path="res://Chunks/c_01.tscn" id="1_7efq7"]
-[ext_resource type="Script" uid="uid://bljueoroxruh1" path="res://Screens/chunkLoad.gd" id="1_y1sh6"]
-[ext_resource type="Script" uid="uid://bljueoroxruh1" path="res://Screens/chunkload.gd" id="2_7efq7"]
+[ext_resource type="Script" uid="uid://bljueoroxruh1" path="res://Screens/chunkLoad.gd" id="2_7efq7"]
 [ext_resource type="PackedScene" uid="uid://cwfjmmvi5mck" path="res://Player/player.tscn" id="2_iyh47"]
 
 [node name="GameLoader" type="Node2D" unique_id=1504878694]
+y_sort_enabled = true
 
-[node name="Chunks" type="Node2D" parent="." unique_id=222700011]
+[node name="Chunk1" type="Node2D" parent="." unique_id=1315444310]
+script = ExtResource("2_7efq7")
 
-[node name="Chunk1" type="Node2D" parent="Chunks" unique_id=1315444310]
-script = ExtResource("1_y1sh6")
-
-[node name="C_01" parent="Chunks/Chunk1" unique_id=317759896 instance=ExtResource("1_7efq7")]
-
-[node name="Chunk2" type="Node2D" parent="Chunks" unique_id=1773913790]
+[node name="Chunk2" type="Node2D" parent="." unique_id=1773913790]
 position = Vector2(960, 0)
 script = ExtResource("2_7efq7")
 
-[node name="C_01" parent="Chunks/Chunk2" unique_id=1008185914 instance=ExtResource("1_7efq7")]
-
-[node name="Chunk3" type="Node2D" parent="Chunks" unique_id=511231418]
+[node name="Chunk3" type="Node2D" parent="." unique_id=511231418]
 position = Vector2(-401, 533)
 script = ExtResource("2_7efq7")
 
-[node name="C_01" parent="Chunks/Chunk3" unique_id=39284502 instance=ExtResource("1_7efq7")]
-
-[node name="Chunk4" type="Node2D" parent="Chunks" unique_id=1725634478]
+[node name="Chunk4" type="Node2D" parent="." unique_id=1725634478]
 position = Vector2(559, 533)
 script = ExtResource("2_7efq7")
 
-[node name="C_01" parent="Chunks/Chunk4" unique_id=1483924927 instance=ExtResource("1_7efq7")]
-
-[node name="Chunk5" type="Node2D" parent="Chunks" unique_id=666914723]
+[node name="Chunk5" type="Node2D" parent="." unique_id=666914723]
 position = Vector2(1519, 538)
 script = ExtResource("2_7efq7")
 
-[node name="C_01" parent="Chunks/Chunk5" unique_id=1894952165 instance=ExtResource("1_7efq7")]
-
-[node name="Chunk6" type="Node2D" parent="Chunks" unique_id=1564742823]
+[node name="Chunk6" type="Node2D" parent="." unique_id=1564742823]
 position = Vector2(-1, 1071)
 script = ExtResource("2_7efq7")
 
-[node name="C_01" parent="Chunks/Chunk6" unique_id=1761591009 instance=ExtResource("1_7efq7")]
-
-[node name="Chunk7" type="Node2D" parent="Chunks" unique_id=700422836]
+[node name="Chunk7" type="Node2D" parent="." unique_id=700422836]
 position = Vector2(959, 1071)
 script = ExtResource("2_7efq7")
 
-[node name="C_01" parent="Chunks/Chunk7" unique_id=128401246 instance=ExtResource("1_7efq7")]
-
 [node name="Player" parent="." unique_id=253815592 instance=ExtResource("2_iyh47")]
-position = Vector2(530, 563)
+y_sort_enabled = true
+position = Vector2(530, 548)
+
+[node name="CameraLink" type="RemoteTransform2D" parent="Player" unique_id=904402373]
+remote_path = NodePath("../../Camera")
+
+[node name="Camera" type="Camera2D" parent="." unique_id=811053232]
+process_mode = 3
+position = Vector2(530, 548)
+scale = Vector2(0.075, 0.075)
+position_smoothing_enabled = true
+position_smoothing_speed = 5.5
+
+[node name="Walls" type="Node2D" parent="." unique_id=844518757]
+
+[node name="ColorRect" type="ColorRect" parent="Walls" unique_id=945463652]
+offset_left = -528.0
+offset_top = -339.0
+offset_right = 1454.0
+offset_bottom = -268.0
+
+[node name="ColorRect2" type="ColorRect" parent="Walls" unique_id=427763604]
+offset_left = -505.0
+offset_top = 1331.0
+offset_right = 1477.0
+offset_bottom = 1402.0
+
+[node name="ColorRect3" type="ColorRect" parent="Walls" unique_id=331493594]
+offset_left = -544.0
+offset_top = -337.0
+offset_right = -480.0
+offset_bottom = 265.0
+
+[node name="ColorRect4" type="ColorRect" parent="Walls" unique_id=1451665740]
+offset_left = -541.0
+offset_top = 795.0
+offset_right = -477.0
+offset_bottom = 1397.0
+
+[node name="ColorRect5" type="ColorRect" parent="Walls" unique_id=846287869]
+offset_left = 1431.0
+offset_top = -327.0
+offset_right = 1495.0
+offset_bottom = 275.0
+
+[node name="ColorRect6" type="ColorRect" parent="Walls" unique_id=1066572888]
+offset_left = 1437.0
+offset_top = 806.0
+offset_right = 1501.0
+offset_bottom = 1408.0
+
+[node name="ColorRect7" type="ColorRect" parent="Walls" unique_id=901877226]
+offset_left = 1477.0
+offset_top = 806.0
+offset_right = 2022.0
+offset_bottom = 877.0
+
+[node name="ColorRect8" type="ColorRect" parent="Walls" unique_id=572303518]
+offset_left = -940.0
+offset_top = 798.0
+offset_right = -493.0
+offset_bottom = 869.0
+
+[node name="ColorRect9" type="ColorRect" parent="Walls" unique_id=1925425678]
+offset_left = 1477.0
+offset_top = 207.0
+offset_right = 2022.0
+offset_bottom = 278.0
+
+[node name="ColorRect10" type="ColorRect" parent="Walls" unique_id=989787991]
+offset_left = -939.0
+offset_top = 199.0
+offset_right = -493.0
+offset_bottom = 270.0
+
+[node name="ColorRect11" type="ColorRect" parent="Walls" unique_id=1460239193]
+offset_left = -941.0
+offset_top = 238.0
+offset_right = -877.0
+offset_bottom = 840.0
+
+[node name="ColorRect12" type="ColorRect" parent="Walls" unique_id=1889068944]
+offset_left = 1967.0
+offset_top = 246.0
+offset_right = 2031.0
+offset_bottom = 848.0

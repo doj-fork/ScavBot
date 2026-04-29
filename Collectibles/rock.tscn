@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://csnhe5ji6disy"]
+
+[ext_resource type="Script" uid="uid://b4oq0q7yvrbj0" path="res://Collectibles/rock.gd" id="1_eblmw"]
+[ext_resource type="Texture2D" uid="uid://dcq3k4w6716a0" path="res://Assets/NatureAssets/Rock1.png" id="1_vrk0g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vrk0g"]
+radius = 145.00345
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eblmw"]
+size = Vector2(193, 37.5)
+
+[node name="Rock" type="Node2D" unique_id=1227711547]
+script = ExtResource("1_eblmw")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=409611177]
+position = Vector2(0.7501221, 62.51024)
+scale = Vector2(0.0798001, 0.0798001)
+texture = ExtResource("1_vrk0g")
+offset = Vector2(0, -1200)
+
+[node name="ItemCollect" type="Area2D" parent="." unique_id=2121326085]
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemCollect" unique_id=236895671]
+position = Vector2(0.50024414, -23.719818)
+shape = SubResource("CircleShape2D_vrk0g")
+debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
+
+[node name="Collision" type="StaticBody2D" parent="." unique_id=1747792036]
+collision_layer = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=2121215114]
+position = Vector2(0.00024414063, -3.969818)
+shape = SubResource("RectangleShape2D_eblmw")
+
+[connection signal="area_entered" from="ItemCollect" to="." method="areaEntered"]
+[connection signal="area_exited" from="ItemCollect" to="." method="areaExited"]

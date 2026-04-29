@@ -453,6 +453,9 @@ height = 480.0
 radius = 80.0
 height = 960.00006
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_btcbx"]
+radius = 554.5769
+
 [node name="Player" type="CharacterBody2D" unique_id=253815592]
 scale = Vector2(0.075, 0.075)
 motion_mode = 1
@@ -491,5 +494,14 @@ collision_mask = 128
 position = Vector2(13.333333, -413.3333)
 shape = SubResource("CapsuleShape2D_btcbx")
 debug_color = Color(0.95147854, 2.5027991e-06, 0.5658839, 0.41960785)
+
+[node name="ItemCollect" type="Area2D" parent="." unique_id=2089912060]
+collision_layer = 2048
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemCollect" unique_id=349487758]
+position = Vector2(13.333333, -413.3333)
+shape = SubResource("CircleShape2D_btcbx")
+debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 
 [connection signal="area_entered" from="EnemyPlayerCollision" to="." method="_on_area_2d_area_entered"]

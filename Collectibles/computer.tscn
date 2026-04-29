@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://blk7eljqwewgo"]
+
+[ext_resource type="Script" uid="uid://cnkngm4ha6ovp" path="res://Collectibles/computer.gd" id="1_8730w"]
+[ext_resource type="Texture2D" uid="uid://navvw5pegkel" path="res://Assets/NatureAssets/Computer1.png" id="2_8730w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_18u5j"]
+radius = 103.17461
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqeof"]
+size = Vector2(114, 29)
+
+[node name="Computer" type="Node2D" unique_id=1227711547]
+script = ExtResource("1_8730w")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1692961618]
+position = Vector2(0.5828687, -58.320004)
+scale = Vector2(0.3331429, 0.3331429)
+texture = ExtResource("2_8730w")
+
+[node name="ItemCollect" type="Area2D" parent="." unique_id=1283826316]
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemCollect" unique_id=418323955]
+position = Vector2(1, -54)
+shape = SubResource("CircleShape2D_18u5j")
+debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
+
+[node name="Collision" type="StaticBody2D" parent="." unique_id=677594490]
+collision_layer = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=209587586]
+position = Vector2(3, -21)
+shape = SubResource("RectangleShape2D_uqeof")
+
+[connection signal="area_entered" from="ItemCollect" to="." method="areaEntered"]
+[connection signal="area_exited" from="ItemCollect" to="." method="areaExited"]

@@ -23,7 +23,7 @@ shader = ExtResource("2_c5i8u")
 shader_parameter/blur_size = Vector2(1, 0.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b38m7"]
-size = Vector2(92.75, 99)
+size = Vector2(129.6875, 124.375)
 
 [node name="Crafting" type="CanvasLayer" unique_id=843875894]
 process_mode = 3
@@ -397,7 +397,7 @@ visible_characters_behavior = 1
 scale = Vector2(1.3333334, 1.3333334)
 
 [node name="Area" type="CollisionShape2D" parent="Buttons/H_Hover" unique_id=851479604]
-position = Vector2(115, 223)
+position = Vector2(113, 226)
 shape = SubResource("RectangleShape2D_b38m7")
 
 [node name="C_Hover" type="Area2D" parent="Buttons" unique_id=971650247]
@@ -405,7 +405,7 @@ position = Vector2(213.33334, -45.333336)
 scale = Vector2(1.3333334, 1.3333334)
 
 [node name="Area" type="CollisionShape2D" parent="Buttons/C_Hover" unique_id=1548073319]
-position = Vector2(115, 225)
+position = Vector2(115, 223)
 shape = SubResource("RectangleShape2D_b38m7")
 
 [node name="B_Hover" type="Area2D" parent="Buttons" unique_id=823901308]
@@ -413,7 +413,7 @@ position = Vector2(398.6667, 22.666668)
 scale = Vector2(1.3333334, 1.3333334)
 
 [node name="Area" type="CollisionShape2D" parent="Buttons/B_Hover" unique_id=795074449]
-position = Vector2(114, 222)
+position = Vector2(120, 227)
 shape = SubResource("RectangleShape2D_b38m7")
 
 [node name="M_Hover" type="Area2D" parent="Buttons" unique_id=2132721190]
@@ -421,7 +421,7 @@ position = Vector2(665.3334, -26.666668)
 scale = Vector2(1.3333334, 1.3333334)
 
 [node name="Area" type="CollisionShape2D" parent="Buttons/M_Hover" unique_id=666087956]
-position = Vector2(112, 221)
+position = Vector2(110.15622, 212.8125)
 shape = SubResource("RectangleShape2D_b38m7")
 
 [node name="woodPick" type="Button" parent="Buttons" unique_id=1270385252]
@@ -467,6 +467,7 @@ offset_right = 1224.0001
 offset_bottom = 682.6667
 
 [node name="HoverItem" type="Sprite2D" parent="." unique_id=1321502699]
+position = Vector2(-38, -35)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_b25ti")
 hframes = 6

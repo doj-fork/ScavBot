@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bbh2c1cidykie"]
+
+[ext_resource type="Script" uid="uid://dufmw0kvgqnou" path="res://Chunks/chunk.gd" id="1_30rvn"]
+[ext_resource type="Texture2D" uid="uid://c3lc15yyssnvd" path="res://Assets/Chunks/ground.png" id="1_opk8v"]
+[ext_resource type="PackedScene" uid="uid://csnhe5ji6disy" path="res://Collectibles/rock.tscn" id="3_23cxr"]
+[ext_resource type="PackedScene" uid="uid://dmnlpl2sm8twp" path="res://Collectibles/scrap.tscn" id="3_l07bt"]
+[ext_resource type="PackedScene" uid="uid://dv0ht2wpr73nc" path="res://Collectibles/steel.tscn" id="4_23cxr"]
+[ext_resource type="PackedScene" uid="uid://ckq2wmhmr0jsx" path="res://Collectibles/wall.tscn" id="5_23cxr"]
+[ext_resource type="PackedScene" uid="uid://ddygo00e65gg" path="res://Screens/meleespawner.tscn" id="7_s3er8"]
+
+[node name="Junkyard" type="Node2D" unique_id=317759896]
+script = ExtResource("1_30rvn")
+
+[node name="Floor" type="Sprite2D" parent="." unique_id=900892796]
+z_index = -3
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_opk8v")
+
+[node name="Rock" parent="." unique_id=665590815 instance=ExtResource("3_23cxr")]
+position = Vector2(-46, 174)
+
+[node name="Scrap" parent="." unique_id=1227711547 instance=ExtResource("3_l07bt")]
+position = Vector2(-317, -95)
+
+[node name="Scrap2" parent="." unique_id=239484727 instance=ExtResource("3_l07bt")]
+position = Vector2(317, 133)
+
+[node name="Steel" parent="." unique_id=1516161333 instance=ExtResource("4_23cxr")]
+position = Vector2(201, -124)
+
+[node name="Wall" parent="." unique_id=343806929 instance=ExtResource("5_23cxr")]
+position = Vector2(-313, 209)
+
+[node name="MeleeSpawner" parent="." unique_id=156898322 instance=ExtResource("7_s3er8")]
+position = Vector2(-53, -135)

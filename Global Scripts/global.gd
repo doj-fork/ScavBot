@@ -2,6 +2,8 @@ extends Node
 
 var playerPos = Vector2(0, 0)
 
+var canMove = 0
+
 var hudActive = false
 var craftActive = false
 var pauseActive = false
