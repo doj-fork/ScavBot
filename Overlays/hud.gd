@@ -24,6 +24,6 @@ func waveCountdown():
 		waveTimer.text = " Wave ends in " + str(i) + " seconds"
 		await get_tree().create_timer(1, false).timeout
 	Signals.waveEnd.emit()
-	waveTimer.text = ""
+	waveTimer.text = "Get Out!"
 	waveCountdown()
 	
