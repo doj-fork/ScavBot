@@ -58,7 +58,7 @@ position_smoothing_speed = 5.5
 
 [node name="ColorRect" type="ColorRect" parent="Walls" unique_id=945463652]
 offset_left = -528.0
-offset_top = -959.0
+offset_top = -979.0
 offset_right = 1454.0
 offset_bottom = -268.0
 color = Color(0.07060834, 0.0925144, 0.13586745, 1)
@@ -94,8 +94,8 @@ color = Color(0.07060834, 0.0925144, 0.13586745, 1)
 [node name="ColorRect6" type="ColorRect" parent="Walls" unique_id=1066572888]
 offset_left = 1437.0
 offset_top = 806.0
-offset_right = 2429.0
-offset_bottom = 2074.0
+offset_right = 2734.0
+offset_bottom = 2146.0
 color = Color(0.07060834, 0.0925144, 0.13586745, 1)
 
 [node name="ColorRect7" type="ColorRect" parent="Walls" unique_id=901877226]
@@ -106,7 +106,7 @@ offset_bottom = 877.0
 color = Color(0.07060834, 0.0925144, 0.13586745, 1)
 
 [node name="ColorRect8" type="ColorRect" parent="Walls" unique_id=572303518]
-offset_left = -1386.0
+offset_left = -1740.0
 offset_top = 798.0
 offset_right = -493.0
 offset_bottom = 2146.0
@@ -115,19 +115,19 @@ color = Color(0.07060834, 0.0925144, 0.13586745, 1)
 [node name="ColorRect9" type="ColorRect" parent="Walls" unique_id=1925425678]
 offset_left = 1445.0
 offset_top = -979.0
-offset_right = 2440.0
+offset_right = 2734.0
 offset_bottom = 278.0
 color = Color(0.07060834, 0.0925144, 0.13586745, 1)
 
 [node name="ColorRect10" type="ColorRect" parent="Walls" unique_id=989787991]
-offset_left = -1385.0
+offset_left = -1739.0
 offset_top = -987.0
 offset_right = -493.0
 offset_bottom = 270.0
 color = Color(0.07060834, 0.0925144, 0.13586745, 1)
 
 [node name="ColorRect11" type="ColorRect" parent="Walls" unique_id=1460239193]
-offset_left = -1382.0
+offset_left = -1740.0
 offset_top = 238.0
 offset_right = -877.0
 offset_bottom = 840.0
@@ -136,7 +136,7 @@ color = Color(0.07060834, 0.0925144, 0.13586745, 1)
 [node name="ColorRect12" type="ColorRect" parent="Walls" unique_id=1889068944]
 offset_left = 1967.0
 offset_top = 246.0
-offset_right = 2445.0
+offset_right = 2734.0
 offset_bottom = 848.0
 color = Color(0.07060834, 0.0925144, 0.13586745, 1)
 
