@@ -33,4 +33,5 @@ func bulletDeath():
 	queue_free.call_deferred()
 
 func _on_enemy_mask_area_entered(_area: Area2D) -> void:
+	await get_tree().create_timer(0.05, false).timeout
 	bulletDeath()

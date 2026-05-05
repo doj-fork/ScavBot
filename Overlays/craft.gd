@@ -19,6 +19,8 @@ extends CanvasLayer
 @onready var craftButton = $Buttons/Craft
 @onready var hoverItem = $HoverItem
 
+var canCraft = false
+
 var woodActive = false
 var rockActive = false
 var scrapActive = false
@@ -58,8 +60,10 @@ func _process(_delta):
 	
 	if "Null" not in activeCraftList:
 		craftButton.visible = true
+		canCraft = true
 	else:
 		craftButton.visible = false
+		canCraft = false
 		
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		mousePressed = true
