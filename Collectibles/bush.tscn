@@ -1,15 +1,17 @@
 [gd_scene format=3 uid="uid://d1mssaq48q7r7"]
 
 [ext_resource type="Texture2D" uid="uid://7k8204ibpxgh" path="res://Assets/NatureAssets/Bush1.png" id="1_ggc3o"]
+[ext_resource type="Script" uid="uid://bcy387f2n0iom" path="res://Collectibles/bush.gd" id="1_i1g35"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqeof"]
 size = Vector2(129.5, 29)
 
 [node name="Bush" type="Node2D" unique_id=1227711547]
+script = ExtResource("1_i1g35")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1692961618]
-position = Vector2(-1, -13)
-scale = Vector2(0.16950297, 0.16950297)
+position = Vector2(-22.99997, 70)
+scale = Vector2(1.0010418, 1.0010417)
 texture = ExtResource("1_ggc3o")
 offset = Vector2(0, -105)
 

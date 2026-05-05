@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmnlpl2sm8twp"]
 
 [ext_resource type="Script" uid="uid://cbpicwany4xr3" path="res://Collectibles/scrap.gd" id="1_54s73"]
-[ext_resource type="Texture2D" uid="uid://jdm3kgsvlwxx" path="res://Assets/NatureAssets/Scrap1.png" id="2_54s73"]
+[ext_resource type="Texture2D" uid="uid://l662qjpjiur1" path="res://Assets/NatureAssets/ScrapPile1.png" id="2_54s73"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_18u5j"]
 radius = 113.004425
@@ -13,8 +13,8 @@ size = Vector2(185, 9.5)
 script = ExtResource("1_54s73")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1692961618]
-position = Vector2(-0.7630987, -39.920715)
-scale = Vector2(0.3118159, 0.3118159)
+position = Vector2(1.9999924, -45)
+scale = Vector2(0.65754694, 0.65754694)
 texture = ExtResource("2_54s73")
 
 [node name="ItemCollect" type="Area2D" parent="." unique_id=1283826316]

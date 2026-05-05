@@ -13,8 +13,8 @@ size = Vector2(114, 29)
 script = ExtResource("1_8730w")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1692961618]
-position = Vector2(0.5828687, -58.320004)
-scale = Vector2(0.3331429, 0.3331429)
+position = Vector2(8.999985, -39.999992)
+scale = Vector2(0.72139686, 0.72139686)
 texture = ExtResource("2_8730w")
 
 [node name="ItemCollect" type="Area2D" parent="." unique_id=1283826316]

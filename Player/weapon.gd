@@ -2,6 +2,8 @@ extends Node2D
 
 var cooldown = false
 
+signal shootClick
+
 @onready var sprite = $Sprite
 @onready var bullet = preload("res://Player/bullet.tscn")
 @onready var ar_sfx: AudioStreamPlayer2D = $"../arSFX"
@@ -25,17 +27,22 @@ func _process(_delta):
 		sprite.visible = true
 	else:
 		sprite.visible = false
+	if Input.is_action_just_pressed("Shoot") and Gun.ammo >= 1 and cooldown == false:
+		shootClick.emit()
 		
 func runAR():
-	if Input.is_action_pressed("Shoot") and Gun.ammo >= 1 and cooldown == false:
-		ar_sfx.play()
-		shoot()
-		Gun.ammo -= 1
-	await get_tree().create_timer(0.0557, false).timeout
+	await shootClick
+	if Gun.type == "AR":
+		while Input.is_action_pressed("Shoot") and Gun.ammo >= 1 and cooldown == false:
+			ar_sfx.play()
+			shoot()
+			Gun.ammo -= 1
+			await get_tree().create_timer(0.0857, false).timeout
 	runAR()
-		
+	
 func runShotgun():
-	if Input.is_action_just_pressed("Shoot") and Gun.ammo >= 1 and cooldown == false:
+	await shootClick
+	if Gun.type == "Shotgun":
 		cooldown = true
 		shotgun_sfx.play()
 		for i in range(5):
@@ -47,25 +54,26 @@ func runShotgun():
 		shotgunrackforward_sfx.play()
 		await get_tree().create_timer(0.3, false).timeout
 		cooldown = false
-	await get_tree().create_timer(0.1, false).timeout
 	runShotgun()
-
+	
 func runSniper():
-	if Input.is_action_just_pressed("Shoot") and Gun.ammo >= 1 and cooldown == false:
+	await shootClick
+	if Gun.type == "Sniper":
 		cooldown = true
 		sniper_sfx.play()
 		shoot()
 		Gun.ammo -= 1
 		await get_tree().create_timer(0.8, false).timeout
 		sniperboltout_sfx.play()
-		await get_tree().create_timer(0.5, false).timeout
-		sniperboltin_sfx.play()
 		await get_tree().create_timer(0.3, false).timeout
+		sniperboltin_sfx.play()
+		await get_tree().create_timer(0.1, false).timeout
 		cooldown = false
-		runSniper()
-		
+	runSniper()
+
 func runHandgun():
-	if Input.is_action_just_pressed("Shoot") and Gun.ammo >= 1 and cooldown == false:
+	await shootClick
+	if Gun.type == "Handgun":
 		cooldown = true
 		handgun_sfx.play()
 		shoot()
@@ -73,7 +81,7 @@ func runHandgun():
 		await get_tree().create_timer(0.25, false).timeout
 		cooldown = false
 	runHandgun()
-		
+
 func shoot():
 	var newBullet = bullet.instantiate()
 	self.call_deferred("add_child", newBullet)

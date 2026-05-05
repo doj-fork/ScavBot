@@ -6,7 +6,7 @@ var cooldown = false
 var entered = false
 
 func _ready():
-	pass
+	sprite.texture = load("res://Assets/NatureAssets/Rock" + str(randi_range(1, 3)) + ".png")
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("Interact") and cooldown == false and entered == true:
