@@ -497,7 +497,7 @@ position = Vector2(13.333321, -426.6667)
 
 [node name="arSFX" type="AudioStreamPlayer2D" parent="." unique_id=1345529706]
 stream = ExtResource("4_gwnis")
-volume_db = -10.0
+volume_db = -15.0
 
 [node name="sniperSFX" type="AudioStreamPlayer2D" parent="." unique_id=1782542731]
 stream = ExtResource("5_vtle1")

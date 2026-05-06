@@ -30,6 +30,7 @@ func animUpdate():
 	elif velocity == Vector2(0, 0):
 		stateMachine.travel("Idle")
 
+# add walking sfx
 
 func _on_area_2d_area_entered(_area: Area2D) -> void:
 	if immunity == false:
