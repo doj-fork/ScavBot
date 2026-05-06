@@ -2,10 +2,17 @@
 
 [ext_resource type="Script" uid="uid://bx7g0xyviugqw" path="res://Screens/title.gd" id="1_6fv3b"]
 [ext_resource type="FontFile" uid="uid://c7oafmhek6vhy" path="res://Assets/Fonts/SunkenMini.ttf" id="2_font"]
+[ext_resource type="Shader" uid="uid://cwyinpeljd41b" path="res://Shaders/grain_overlay.gdshader" id="3_1e64e"]
 [ext_resource type="Texture2D" uid="uid://c3lc15yyssnvd" path="res://Assets/Chunks/ground.png" id="3_ground"]
 [ext_resource type="AudioStream" uid="uid://1b83mnmwynxa" path="res://Assets/SFX/UI/SCP-x6x-by-Kevin-Macleod.mp3" id="4_jkbyu"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_grain"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_itjia"]
+shader = ExtResource("3_1e64e")
+shader_parameter/intensity = 0.08
+shader_parameter/scale = 220.0
+shader_parameter/scroll_velocity = Vector2(0.06, 0.02)
+shader_parameter/refresh_rate = 60.0
+shader_parameter/seed = 1.0
 
 [node name="Title" type="Node2D" unique_id=843122108]
 script = ExtResource("1_6fv3b")
@@ -16,7 +23,7 @@ scale = Vector2(7.5, 7.5)
 texture = ExtResource("3_ground")
 
 [node name="GrainOverlay" type="ColorRect" parent="." unique_id=1925132456]
-material = SubResource("ShaderMaterial_grain")
+material = SubResource("ShaderMaterial_itjia")
 anchors_preset = -1
 anchor_left = 1.0
 anchor_top = 1.0
