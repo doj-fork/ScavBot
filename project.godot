@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GDIM61GameProject"
-run/main_scene="uid://bgjffvhfyfwb"
+run/main_scene="uid://ds51iwghq622k"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Assets/Misc/icon.svg"
 
