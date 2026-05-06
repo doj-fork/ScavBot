@@ -63,6 +63,7 @@ func craft(handle, chamber, barrel, muzzle):
 	elif barrel in ["Circuit", "Battery"]:
 		burnSpecial = "Electricity"
 		
+	damage += ceil(3 * Stats.damageMult)
 	type = burnType
 	ammo = int(ceil(burnAmmo * burnAmmoMult))
 	precision = burnPrecision

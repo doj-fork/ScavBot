@@ -35,6 +35,6 @@ func animUpdate():
 func _on_area_2d_area_entered(_area: Area2D) -> void:
 	if immunity == false:
 		immunity = true
-		Stats.health -= 10
+		Stats.health -= 10 + (3 * Stats.damageMult)
 		await get_tree().create_timer(0.75, false).timeout
 		immunity = false

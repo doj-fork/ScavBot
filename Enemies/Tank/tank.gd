@@ -3,14 +3,14 @@ class_name Tank
 
 # im sorry for the amount of editable variables in advance but ill explain it along the way
 # this is the established speed vairable alongside the detection radius of the enemy
-var baseSpeed: float = 80.0
+var baseSpeed: float = 80.0 + ceil(Stats.speedMult / 2.0)
 var detectionRadius: float = 600.0
 
 #this is the changable values for wandering
 var wanderSpeedMultiplier: float = 0.25
 var wanderDirectionMinTime: float = 3.0
 var wanderDirectionMaxTime: float = 5.0
-var health: int = 750
+var health: int = 750 + (Stats.healthMult * 10)
 var separationRadius: float = 130.0
 var separationStrength: float = 1.1
 var crowdStrafeBias: float = 0.0

@@ -7,10 +7,9 @@ func _ready():
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("Interact") and entered == true and visible == true:
+		Upgrades.visible = true
+		Global.hudActive = false
 		visible = false
-		Stats.health += 50
-		if Stats.health > (100 + Stats.healthMult * 5):
-			Stats.health = (100 + Stats.healthMult * 5)
 
 func areaEntered(_area: Area2D) -> void:
 	entered = true

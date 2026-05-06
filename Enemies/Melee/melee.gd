@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name MeleeEnemy
 
-var baseSpeed: float = 180.0
+var baseSpeed: float = 180.0 + ceil(Stats.speedMult / 2.0)
 var obstacleSlowMultiplier: float = 0.85
 var slowRecoveryRate: float = 3.5
 var detourDistance: float = 140.0
@@ -10,7 +10,7 @@ var detectionRadius: float = 400.0
 var wanderSpeedMultiplier: float = 0.5
 var wanderDirectionMinTime: float = 0.5
 var wanderDirectionMaxTime: float = 2.5
-var health: int = 100
+var health: int = 100 + (Stats.healthMult * 3)
 var separationRadius: float = 110.0
 var separationStrength: float = 1.25
 var crowdStrafeBias: float = 0.0

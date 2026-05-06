@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://qg066lrja8qb" path="res://Assets/NatureAssets/Door1.png" id="3_5v1f8"]
 [ext_resource type="Script" uid="uid://bwyl18wxv5f7n" path="res://Screens/heal.gd" id="4_tow3t"]
 [ext_resource type="Texture2D" uid="uid://trp4s107gpdk" path="res://Assets/NatureAssets/Charge1.png" id="5_3fba7"]
+[ext_resource type="Script" uid="uid://p4dko8dlvqxl" path="res://Screens/upgrade.gd" id="6_3fba7"]
+[ext_resource type="Texture2D" uid="uid://navvw5pegkel" path="res://Assets/NatureAssets/Computer1.png" id="7_7vloe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tow3t"]
 radius = 113.004425
@@ -84,7 +86,28 @@ position = Vector2(480, -25)
 shape = SubResource("CircleShape2D_tow3t")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 
+[node name="Upgrade" type="Node2D" parent="." unique_id=1895100618]
+position = Vector2(268, 267)
+script = ExtResource("6_3fba7")
+
+[node name="Sprite" type="Sprite2D" parent="Upgrade" unique_id=952028038]
+position = Vector2(487.99994, -20)
+scale = Vector2(0.89983046, 0.89983046)
+texture = ExtResource("7_7vloe")
+
+[node name="Collision" type="Area2D" parent="Upgrade" unique_id=1044577827]
+position = Vector2(-6, 13)
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Upgrade/Collision" unique_id=2099386547]
+position = Vector2(480, -25)
+shape = SubResource("CircleShape2D_tow3t")
+debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
+
 [connection signal="area_entered" from="EntranceDoor/Collision" to="EntranceDoor" method="areaEntered"]
 [connection signal="area_exited" from="EntranceDoor/Collision" to="EntranceDoor" method="areaExited"]
 [connection signal="area_entered" from="Heals/Collision" to="Heals" method="areaEntered"]
 [connection signal="area_exited" from="Heals/Collision" to="Heals" method="areaExited"]
+[connection signal="area_entered" from="Upgrade/Collision" to="Upgrade" method="areaEntered"]
+[connection signal="area_exited" from="Upgrade/Collision" to="Upgrade" method="areaExited"]
