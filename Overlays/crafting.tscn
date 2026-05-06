@@ -19,6 +19,9 @@
 [ext_resource type="Script" uid="uid://bj3rdndin6hkt" path="res://Overlays/hover_item.gd" id="16_18qjx"]
 [ext_resource type="AudioStream" uid="uid://bniyh0ubm6tby" path="res://Assets/SFX/Crafting/pickup.mp3" id="18_0w4hh"]
 [ext_resource type="AudioStream" uid="uid://05wk4wyqhirk" path="res://Assets/SFX/Crafting/dropintoslot.mp3" id="18_atwtm"]
+[ext_resource type="AudioStream" uid="uid://cump7b17h3sie" path="res://Assets/SFX/Crafting/craftingconfirm.mp3" id="18_ulw4q"]
+[ext_resource type="AudioStream" uid="uid://ln51k6c4pmtp" path="res://Assets/SFX/UI/hover.mp3" id="19_drtgm"]
+[ext_resource type="AudioStream" uid="uid://dsx0efeerrotc" path="res://Assets/SFX/Crafting/craftingerror.mp3" id="19_lqhh0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0w4hh"]
 shader = ExtResource("2_c5i8u")
@@ -475,8 +478,22 @@ texture = ExtResource("2_b25ti")
 hframes = 6
 script = ExtResource("16_18qjx")
 
+[node name="craftingconfirmSFX" type="AudioStreamPlayer2D" parent="." unique_id=1041846472]
+stream = ExtResource("18_ulw4q")
+volume_db = -10.0
+
 [node name="dropmaterialcraftingSFX" type="AudioStreamPlayer2D" parent="." unique_id=2039093421]
 stream = ExtResource("18_atwtm")
+volume_db = -5.0
+
+[node name="craftingmaterialerrorSFX" type="AudioStreamPlayer2D" parent="." unique_id=496719421]
+position = Vector2(87, 198)
+scale = Vector2(0.587037, 0.587037)
+stream = ExtResource("19_lqhh0")
+
+[node name="hovercraftingSFX" type="AudioStreamPlayer2D" parent="." unique_id=478958857]
+stream = ExtResource("19_drtgm")
+volume_db = -5.0
 
 [node name="pickupcraftingSFX" type="AudioStreamPlayer2D" parent="." unique_id=774744761]
 stream = ExtResource("18_0w4hh")
@@ -492,8 +509,20 @@ volume_db = -5.0
 [connection signal="mouse_entered" from="Buttons/M_Hover" to="." method="mEnter"]
 [connection signal="mouse_exited" from="Buttons/M_Hover" to="." method="mExit"]
 [connection signal="button_down" from="Buttons/woodPick" to="." method="woodPick"]
+[connection signal="mouse_entered" from="Buttons/woodPick" to="." method="_on_wood_pick_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/woodPick" to="." method="_on_wood_pick_mouse_exited"]
 [connection signal="button_down" from="Buttons/rockPick" to="." method="rockPick"]
+[connection signal="mouse_entered" from="Buttons/rockPick" to="." method="_on_rock_pick_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/rockPick" to="." method="_on_rock_pick_mouse_exited"]
 [connection signal="button_down" from="Buttons/scrapPick" to="." method="scrapPick"]
+[connection signal="mouse_entered" from="Buttons/scrapPick" to="." method="_on_scrap_pick_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/scrapPick" to="." method="_on_scrap_pick_mouse_exited"]
 [connection signal="button_down" from="Buttons/steelPick" to="." method="steelPick"]
+[connection signal="mouse_entered" from="Buttons/steelPick" to="." method="_on_steel_pick_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/steelPick" to="." method="_on_steel_pick_mouse_exited"]
 [connection signal="button_down" from="Buttons/circuitPick" to="." method="circuitPick"]
+[connection signal="mouse_entered" from="Buttons/circuitPick" to="." method="_on_circuit_pick_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/circuitPick" to="." method="_on_circuit_pick_mouse_exited"]
 [connection signal="button_down" from="Buttons/batteryPick" to="." method="batteryPick"]
+[connection signal="mouse_entered" from="Buttons/batteryPick" to="." method="_on_battery_pick_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/batteryPick" to="." method="_on_battery_pick_mouse_exited"]

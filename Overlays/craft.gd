@@ -18,8 +18,18 @@ extends CanvasLayer
 
 @onready var craftButton = $Buttons/Craft
 @onready var hoverItem = $HoverItem
+@onready var woodSprite: Sprite2D = $Inventory/Wood
+@onready var rockSprite: Sprite2D = $Inventory/Rock
+@onready var scrapSprite: Sprite2D = $Inventory/Scrap
+@onready var steelSprite: Sprite2D = $Inventory/Steel
+@onready var circuitSprite: Sprite2D = $Inventory/Circuit
+@onready var batterySprite: Sprite2D = $Inventory/Battery
 @onready var dropmaterialcrafting_sfx: AudioStreamPlayer2D = $dropmaterialcraftingSFX
 @onready var pickupcrafting_sfx: AudioStreamPlayer2D = $pickupcraftingSFX
+@onready var hovercrafting_sfx: AudioStreamPlayer2D = $hovercraftingSFX
+@onready var craftingmaterialerror_sfx: AudioStreamPlayer2D = $craftingmaterialerrorSFX
+@onready var craftingconfirm_sfx: AudioStreamPlayer2D = $craftingconfirmSFX
+
 
 var canCraft = false
 
@@ -40,6 +50,9 @@ var mHover = false
 var activeCraftList = ["Null", "Null", "Null", "Null"]
 var activeItem = "Null"
 var last_hover_item_for_sfx: String = "Null"
+var hovered_material_name: String = ""
+const MATERIAL_NORMAL_MODULATE: Color = Color(1.0, 1.0, 1.0, 1.0)
+const MATERIAL_HOVER_MODULATE: Color = Color(1.08, 1.08, 1.08, 1.5)
 
 func _ready():
 	visible = false
@@ -49,6 +62,7 @@ func _ready():
 	mItem.visible = false
 	craftButton.visible = false
 	hoverItem.visible = false
+	reset_material_highlights()
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("Craft") and true not in Global.cannotCraftList and Global.craftActive == false:
@@ -59,6 +73,7 @@ func _process(_delta):
 		visible = false
 		Global.craftActive = false
 		get_tree().paused = false
+		reset_material_highlights()
 		refund(4)
 	
 	if "Null" not in activeCraftList:
@@ -76,6 +91,82 @@ func _process(_delta):
 	updateIcons()
 	updateHover()
 
+func reset_material_highlights() -> void:
+	woodSprite.modulate = MATERIAL_NORMAL_MODULATE
+	rockSprite.modulate = MATERIAL_NORMAL_MODULATE
+	scrapSprite.modulate = MATERIAL_NORMAL_MODULATE
+	steelSprite.modulate = MATERIAL_NORMAL_MODULATE
+	circuitSprite.modulate = MATERIAL_NORMAL_MODULATE
+	batterySprite.modulate = MATERIAL_NORMAL_MODULATE
+	hovered_material_name = ""
+
+func _get_material_sprite(material_name: String) -> Sprite2D:
+	match material_name:
+		"Wood":
+			return woodSprite
+		"Rock":
+			return rockSprite
+		"Scrap":
+			return scrapSprite
+		"Steel":
+			return steelSprite
+		"Circuit":
+			return circuitSprite
+		"Battery":
+			return batterySprite
+		_:
+			return null
+
+func _set_material_highlight(material_name: String, is_hovered: bool) -> void:
+	var target_sprite: Sprite2D = _get_material_sprite(material_name)
+	if target_sprite == null:
+		return
+	if is_hovered:
+		target_sprite.modulate = MATERIAL_HOVER_MODULATE
+		if hovered_material_name != material_name and visible and Global.craftActive:
+			hovercrafting_sfx.play()
+		hovered_material_name = material_name
+	else:
+		target_sprite.modulate = MATERIAL_NORMAL_MODULATE
+		if hovered_material_name == material_name:
+			hovered_material_name = ""
+
+func _on_wood_pick_mouse_entered() -> void:
+	_set_material_highlight("Wood", true)
+
+func _on_wood_pick_mouse_exited() -> void:
+	_set_material_highlight("Wood", false)
+
+func _on_rock_pick_mouse_entered() -> void:
+	_set_material_highlight("Rock", true)
+
+func _on_rock_pick_mouse_exited() -> void:
+	_set_material_highlight("Rock", false)
+
+func _on_scrap_pick_mouse_entered() -> void:
+	_set_material_highlight("Scrap", true)
+
+func _on_scrap_pick_mouse_exited() -> void:
+	_set_material_highlight("Scrap", false)
+
+func _on_steel_pick_mouse_entered() -> void:
+	_set_material_highlight("Steel", true)
+
+func _on_steel_pick_mouse_exited() -> void:
+	_set_material_highlight("Steel", false)
+
+func _on_circuit_pick_mouse_entered() -> void:
+	_set_material_highlight("Circuit", true)
+
+func _on_circuit_pick_mouse_exited() -> void:
+	_set_material_highlight("Circuit", false)
+
+func _on_battery_pick_mouse_entered() -> void:
+	_set_material_highlight("Battery", true)
+
+func _on_battery_pick_mouse_exited() -> void:
+	_set_material_highlight("Battery", false)
+
 func updateText(): 
 	woodNum.text = str(Inventory.wood)
 	rockNum.text = str(Inventory.rock)
@@ -83,10 +174,17 @@ func updateText():
 	steelNum.text = str(Inventory.steel)
 	circuitNum.text = str(Inventory.circuit)
 	batteryNum.text = str(Inventory.battery)
+func play_crafting_error_sfx() -> void:
+	if visible and Global.craftActive:
+		craftingmaterialerror_sfx.play()
+
 func craftGun() -> void:
 	if "Null" not in activeCraftList:
+		craftingconfirm_sfx.play()
 		Gun.craft(activeCraftList[0], activeCraftList[1], activeCraftList[2], activeCraftList[3])
 		refund(5)
+	else:
+		play_crafting_error_sfx()
 
 func updateIcons():
 	if activeCraftList[0] == "Null":
@@ -227,6 +325,8 @@ func woodPick() -> void:
 			await get_tree().create_timer(0.05, true).timeout
 		enterCheck("Wood")
 		activeItem = "Null"
+	else:
+		play_crafting_error_sfx()
 func rockPick() -> void:
 	await get_tree().create_timer(0.01, true).timeout
 	if Inventory.rock > 0:
@@ -235,6 +335,8 @@ func rockPick() -> void:
 			await get_tree().create_timer(0.05, true).timeout
 		enterCheck("Rock")
 		activeItem = "Null"
+	else:
+		play_crafting_error_sfx()
 func scrapPick() -> void:
 	await get_tree().create_timer(0.01, true).timeout
 	if Inventory.scrap > 0:
@@ -243,6 +345,8 @@ func scrapPick() -> void:
 			await get_tree().create_timer(0.05, true).timeout
 		enterCheck("Scrap")
 		activeItem = "Null"
+	else:
+		play_crafting_error_sfx()
 func steelPick() -> void:
 	await get_tree().create_timer(0.01, true).timeout
 	if Inventory.steel > 0:
@@ -251,6 +355,8 @@ func steelPick() -> void:
 			await get_tree().create_timer(0.05, true).timeout
 		enterCheck("Steel")
 		activeItem = "Null"
+	else:
+		play_crafting_error_sfx()
 func circuitPick() -> void:
 	await get_tree().create_timer(0.01, true).timeout
 	if Inventory.circuit > 0:
@@ -259,6 +365,8 @@ func circuitPick() -> void:
 			await get_tree().create_timer(0.05, true).timeout
 		enterCheck("Circuit")
 		activeItem = "Null"
+	else:
+		play_crafting_error_sfx()
 func batteryPick() -> void:
 	await get_tree().create_timer(0.01, true).timeout
 	if Inventory.battery > 0:
@@ -267,6 +375,8 @@ func batteryPick() -> void:
 			await get_tree().create_timer(0.05, true).timeout
 		enterCheck("Battery")
 		activeItem = "Null"
+	else:
+		play_crafting_error_sfx()
 
 func enterCheck(arg: String) -> void:
 	var was_dropped: bool = false
@@ -333,6 +443,7 @@ func refund(arg):
 		visible = false
 		Global.craftActive = false
 		get_tree().paused = false
+		reset_material_highlights()
 func transact(arg):
 	if arg == "Wood":
 		Inventory.wood -= 1
