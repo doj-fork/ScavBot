@@ -378,7 +378,7 @@ texture_pressed = ExtResource("11_6qsce")
 texture_hover = ExtResource("12_b25ti")
 texture_click_mask = ExtResource("13_6qsce")
 
-[node name="BatteryNum" type="RichTextLabel" parent="Buttons/Craft" unique_id=32629920]
+[node name="Label" type="RichTextLabel" parent="Buttons/Craft" unique_id=32629920]
 layout_mode = 0
 offset_left = 230.66666
 offset_top = 212.0

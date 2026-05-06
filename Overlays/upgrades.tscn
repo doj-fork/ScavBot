@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://kpanwu220cf"]
+
+[ext_resource type="Shader" uid="uid://b5o7l4cpum7ua" path="res://Shaders/blur.gdshader" id="2_hgwpu"]
+[ext_resource type="Texture2D" uid="uid://dcv4cmbc24uw1" path="res://Assets/MenuAssets/CraftingMenu.png" id="3_lmtvv"]
+[ext_resource type="Texture2D" uid="uid://bj105ouyf0uq0" path="res://Assets/MenuAssets/MenuButton.png" id="4_eelu2"]
+[ext_resource type="Texture2D" uid="uid://d3figth235jvs" path="res://Assets/MenuAssets/MenuButtonClick.png" id="5_j7r2x"]
+[ext_resource type="Texture2D" uid="uid://c0jlu2gdrewgp" path="res://Assets/MenuAssets/MenuButtonHover.png" id="6_23qa3"]
+[ext_resource type="BitMap" uid="uid://d3b7viyhl66q5" path="res://Assets/MenuAssets/MenuButtonBitmap.png" id="7_p406g"]
+[ext_resource type="FontFile" uid="uid://c7oafmhek6vhy" path="res://Assets/Fonts/SunkenMini.ttf" id="8_0xlyl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f1r6x"]
+shader = ExtResource("2_hgwpu")
+shader_parameter/blur_size = Vector2(1, 0.5)
+
+[node name="Upgrades" type="CanvasLayer" unique_id=1218845012]
+
+[node name="Dim" type="ColorRect" parent="." unique_id=45885683]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.52156866)
+
+[node name="Blur" type="ColorRect" parent="." unique_id=823451807]
+material = SubResource("ShaderMaterial_f1r6x")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Blueprint" type="Sprite2D" parent="." unique_id=93248940]
+position = Vector2(495, 265)
+scale = Vector2(0.72222215, 0.72222215)
+texture = ExtResource("3_lmtvv")
+
+[node name="Shadow" type="Sprite2D" parent="Blueprint" unique_id=131971130]
+modulate = Color(0, 0, 0, 0.52156866)
+show_behind_parent = true
+position = Vector2(-18.738235, 18.73816)
+texture = ExtResource("3_lmtvv")
+
+[node name="ColorRect" type="ColorRect" parent="Blueprint" unique_id=186714496]
+offset_left = -497.41333
+offset_top = -247.00319
+offset_right = 482.08197
+offset_bottom = 277.6656
+mouse_filter = 2
+color = Color(0.3647059, 0.43137255, 0.49019608, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Health" type="TextureButton" parent="Blueprint" unique_id=556401966]
+offset_left = -801.6924
+offset_top = -263.07693
+offset_right = 272.7234
+offset_bottom = 341.28195
+texture_normal = ExtResource("4_eelu2")
+texture_pressed = ExtResource("5_j7r2x")
+texture_hover = ExtResource("6_23qa3")
+texture_click_mask = ExtResource("7_p406g")
+
+[node name="Label" type="RichTextLabel" parent="Blueprint/Health" unique_id=1615052403]
+layout_mode = 0
+offset_left = 230.66666
+offset_top = 212.0
+offset_right = 740.0
+offset_bottom = 341.3333
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.75666225, 0.8037532, 0.8459766, 1)
+theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.52156866)
+theme_override_constants/shadow_outline_size = 8
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("8_0xlyl")
+theme_override_font_sizes/normal_font_size = 128
+text = "Health"
+horizontal_alignment = 1
+visible_characters_behavior = 1
+
+[node name="Speed" type="TextureButton" parent="Blueprint" unique_id=1833251514]
+offset_left = -166.15385
+offset_top = -264.46155
+offset_right = 908.2619
+offset_bottom = 339.89734
+texture_normal = ExtResource("4_eelu2")
+texture_pressed = ExtResource("5_j7r2x")
+texture_hover = ExtResource("6_23qa3")
+texture_click_mask = ExtResource("7_p406g")
+
+[node name="Label" type="RichTextLabel" parent="Blueprint/Speed" unique_id=530245348]
+layout_mode = 0
+offset_left = 230.66666
+offset_top = 212.0
+offset_right = 740.0
+offset_bottom = 341.3333
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.75666225, 0.8037532, 0.8459766, 1)
+theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.52156866)
+theme_override_constants/shadow_outline_size = 8
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("8_0xlyl")
+theme_override_font_sizes/normal_font_size = 128
+text = "Health"
+horizontal_alignment = 1
+visible_characters_behavior = 1
+
+[node name="Damage" type="TextureButton" parent="Blueprint" unique_id=1758707815]
+offset_left = -490.1539
+offset_top = -40.153847
+offset_right = 584.26184
+offset_bottom = 564.205
+texture_normal = ExtResource("4_eelu2")
+texture_pressed = ExtResource("5_j7r2x")
+texture_hover = ExtResource("6_23qa3")
+texture_click_mask = ExtResource("7_p406g")
+
+[node name="Label" type="RichTextLabel" parent="Blueprint/Damage" unique_id=1375452616]
+layout_mode = 0
+offset_left = 230.66666
+offset_top = 212.0
+offset_right = 740.0
+offset_bottom = 341.3333
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.75666225, 0.8037532, 0.8459766, 1)
+theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.52156866)
+theme_override_constants/shadow_outline_size = 8
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("8_0xlyl")
+theme_override_font_sizes/normal_font_size = 128
+text = "Health"
+horizontal_alignment = 1
+visible_characters_behavior = 1
+
+[node name="Text" type="RichTextLabel" parent="." unique_id=601554695]
+offset_left = 86.0
+offset_top = 12.0
+offset_right = 909.0
+offset_bottom = 215.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.75666225, 0.8037532, 0.8459766, 1)
+theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.52156866)
+theme_override_constants/shadow_outline_size = 16
+theme_override_constants/shadow_offset_x = -10
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("8_0xlyl")
+theme_override_font_sizes/normal_font_size = 96
+text = "Upgrade: Improve yourself and your enemies."
+horizontal_alignment = 1
+visible_characters_behavior = 1
