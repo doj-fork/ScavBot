@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://c0jlu2gdrewgp" path="res://Assets/MenuAssets/MenuButtonHover.png" id="12_b25ti"]
 [ext_resource type="BitMap" uid="uid://d3b7viyhl66q5" path="res://Assets/MenuAssets/MenuButtonBitmap.png" id="13_6qsce"]
 [ext_resource type="Script" uid="uid://bj3rdndin6hkt" path="res://Overlays/hover_item.gd" id="16_18qjx"]
+[ext_resource type="AudioStream" uid="uid://bniyh0ubm6tby" path="res://Assets/SFX/Crafting/pickup.mp3" id="18_0w4hh"]
+[ext_resource type="AudioStream" uid="uid://05wk4wyqhirk" path="res://Assets/SFX/Crafting/dropintoslot.mp3" id="18_atwtm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0w4hh"]
 shader = ExtResource("2_c5i8u")
@@ -472,6 +474,13 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_b25ti")
 hframes = 6
 script = ExtResource("16_18qjx")
+
+[node name="dropmaterialcraftingSFX" type="AudioStreamPlayer2D" parent="." unique_id=2039093421]
+stream = ExtResource("18_atwtm")
+
+[node name="pickupcraftingSFX" type="AudioStreamPlayer2D" parent="." unique_id=774744761]
+stream = ExtResource("18_0w4hh")
+volume_db = -5.0
 
 [connection signal="pressed" from="Buttons/Craft" to="." method="craftGun"]
 [connection signal="mouse_entered" from="Buttons/H_Hover" to="." method="hEnter"]

@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://co8i1dqwibtn1" path="res://Assets/SFX/Gun/shotgun.wav" id="9_5htga"]
 [ext_resource type="AudioStream" uid="uid://scmxnrx6hetd" path="res://Assets/SFX/Gun/shotgunrackback.wav" id="10_p5o4e"]
 [ext_resource type="AudioStream" uid="uid://su2jlc7tryg3" path="res://Assets/SFX/Gun/shotgunrackforward.wav" id="11_gu6f8"]
+[ext_resource type="AudioStream" uid="uid://cump7b17h3sie" path="res://Assets/SFX/Crafting/craftingconfirm.mp3" id="12_5htga"]
 
 [sub_resource type="Animation" id="Animation_4ntmi"]
 resource_name = "Charge"
@@ -524,6 +525,10 @@ volume_db = -10.0
 
 [node name="shotgunrackforwardSFX" type="AudioStreamPlayer2D" parent="." unique_id=1025442525]
 stream = ExtResource("11_gu6f8")
+volume_db = -10.0
+
+[node name="craftSFX" type="AudioStreamPlayer2D" parent="." unique_id=774070872]
+stream = ExtResource("12_5htga")
 volume_db = -10.0
 
 [node name="EnemyPlayerCollision" type="Area2D" parent="." unique_id=1535774745]

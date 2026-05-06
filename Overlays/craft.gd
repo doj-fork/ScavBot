@@ -18,6 +18,8 @@ extends CanvasLayer
 
 @onready var craftButton = $Buttons/Craft
 @onready var hoverItem = $HoverItem
+@onready var dropmaterialcrafting_sfx: AudioStreamPlayer2D = $dropmaterialcraftingSFX
+@onready var pickupcrafting_sfx: AudioStreamPlayer2D = $pickupcraftingSFX
 
 var canCraft = false
 
@@ -37,6 +39,7 @@ var mHover = false
 #Handle, Chamber, Barrel, Muzzle
 var activeCraftList = ["Null", "Null", "Null", "Null"]
 var activeItem = "Null"
+var last_hover_item_for_sfx: String = "Null"
 
 func _ready():
 	visible = false
@@ -177,11 +180,15 @@ func updateIcons():
 		elif activeCraftList[3] == "Battery":
 			mItem.frame = 5
 			mShadow.frame = 5
-func updateHover():
+func updateHover() -> void:
 	if activeItem == "Null":
 		hoverItem.visible = false
+		last_hover_item_for_sfx = "Null"
 	else:
 		hoverItem.visible = true
+		if activeItem != last_hover_item_for_sfx:
+			pickupcrafting_sfx.play()
+			last_hover_item_for_sfx = activeItem
 		if activeItem == "Wood":
 			hoverItem.frame = 0
 		elif activeItem == "Rock":
@@ -261,27 +268,35 @@ func batteryPick() -> void:
 		enterCheck("Battery")
 		activeItem = "Null"
 
-func enterCheck(arg):
+func enterCheck(arg: String) -> void:
+	var was_dropped: bool = false
 	if hHover == true:
 		if activeCraftList[0] != "Null":
 			refund(0)
 		activeCraftList[0] = arg
 		transact(arg)
+		was_dropped = true
 	elif cHover == true:
 		if activeCraftList[1] != "Null":
 			refund(1)
 		activeCraftList[1] = arg
 		transact(arg)
+		was_dropped = true
 	elif bHover == true:
 		if activeCraftList[2] != "Null":
 			refund(2)
 		activeCraftList[2] = arg
 		transact(arg)
+		was_dropped = true
 	elif mHover == true:
 		if activeCraftList[3] != "Null":
 			refund(3)
 		activeCraftList[3] = arg
 		transact(arg)
+		was_dropped = true
+
+	if was_dropped:
+		dropmaterialcrafting_sfx.play()
 func refund(arg):
 	if arg not in [4, 5]:
 		if activeCraftList[arg] == "Wood":
