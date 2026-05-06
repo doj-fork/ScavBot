@@ -6,9 +6,9 @@ const BGM_SILENT_DB: float = -40.0
 const PARALLAX_MAX_OFFSET: float = 30.0
 const PARALLAX_FOLLOW_SPEED: float = 6.0
 const PARALLAX_OVERSCAN_SCALE: float = 1.2
-const INTRO_BLACK_HOLD_DURATION: float = 0.8
+const INTRO_BLACK_HOLD_DURATION: float = 2.8
 const INTRO_PRESENTS_FADE_IN_DURATION: float = 1.2
-const INTRO_PRESENTS_HOLD_DURATION: float = 2.5
+const INTRO_PRESENTS_HOLD_DURATION: float = 3.0
 const INTRO_PRESENTS_FADE_OUT_DURATION: float = 0.8
 const INTRO_TITLE_FADE_IN_DURATION: float = 1.1
 const INTRO_BLACK_FADE_OUT_DURATION: float = 1.1
@@ -141,6 +141,4 @@ func pressPlay() -> void:
 	menu_bgm.stop()
 
 	get_tree().change_scene_to_file("res://Screens/game_loader.tscn")
-	var global_singleton: Node = get_tree().root.get_node_or_null("Global")
-	if global_singleton != null:
-		global_singleton.set("hudActive", true)
+	Global.hudActive = true
