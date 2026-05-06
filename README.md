@@ -12,3 +12,5 @@ Repository for the GDIM 61 Game Project for the group made up of Carlos S., Benj
 | Benjamin A. | Scripter, UI/UX |
 | Eric W. | Modeller |
 | Carlos S. | Artist, Rigger |
+
+#### Music used by Kevin MacLeod
