@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://rp1xk35h24bo"]
+
+[ext_resource type="Script" uid="uid://bx7g0xyviugqw" path="res://Screens/title.gd" id="1_dxtvl"]
+[ext_resource type="Texture2D" uid="uid://c3lc15yyssnvd" path="res://Assets/Chunks/ground.png" id="2_e0suu"]
+[ext_resource type="Shader" uid="uid://cwyinpeljd41b" path="res://Shaders/grain_overlay.gdshader" id="3_5ly1h"]
+[ext_resource type="FontFile" uid="uid://c7oafmhek6vhy" path="res://Assets/Fonts/SunkenMini.ttf" id="4_xvcce"]
+[ext_resource type="AudioStream" uid="uid://1b83mnmwynxa" path="res://Assets/SFX/UI/SCP-x6x-by-Kevin-Macleod.mp3" id="5_w46te"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_itjia"]
+shader = ExtResource("3_5ly1h")
+shader_parameter/intensity = 0.08
+shader_parameter/scale = 220.0
+shader_parameter/scroll_velocity = Vector2(0.06, 0.02)
+shader_parameter/refresh_rate = 60.0
+shader_parameter/seed = 1.0
+
+[node name="Title" type="Node2D" unique_id=843122108]
+script = ExtResource("1_dxtvl")
+
+[node name="ParallaxGround" type="Sprite2D" parent="." unique_id=1065959449]
+position = Vector2(480, 270)
+scale = Vector2(7.5, 7.5)
+texture = ExtResource("2_e0suu")
+
+[node name="GrainOverlay" type="ColorRect" parent="." unique_id=1925132456]
+material = SubResource("ShaderMaterial_itjia")
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0.12)
+
+[node name="UIRoot" type="Control" parent="." unique_id=2045176769]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="UIRoot" unique_id=1324006708]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIRoot/CenterContainer" unique_id=244088142]
+layout_mode = 2
+theme_override_constants/separation = 26
+alignment = 1
+
+[node name="TitleText" type="Label" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=948067172]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xvcce")
+theme_override_font_sizes/font_size = 44
+text = "Untitled Robot Gun Game"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=1929770255]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=502190193]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xvcce")
+theme_override_font_sizes/font_size = 36
+text = "PLAY"
+
+[node name="CreditsButton" type="Button" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=1014017058]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xvcce")
+theme_override_font_sizes/font_size = 36
+text = "CREDITS"
+
+[node name="MenuBGM" type="AudioStreamPlayer2D" parent="." unique_id=1247246021]
+position = Vector2(960, 540)
+stream = ExtResource("5_w46te")
+
+[node name="IntroOverlay" type="Control" parent="." unique_id=1506441686]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="BlackScreen" type="ColorRect" parent="IntroOverlay" unique_id=1871066756]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GroupPresentsLabel" type="Label" parent="IntroOverlay" unique_id=1543121292]
+visible = false
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -30.0
+offset_right = 180.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("4_xvcce")
+theme_override_font_sizes/font_size = 40
+text = "GDIM 61 Spring 2026
+
+Group 1 Presents"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="UIRoot/CenterContainer/VBoxContainer/PlayButton" to="." method="pressPlay"]
+[connection signal="finished" from="MenuBGM" to="." method="_on_menu_bgm_finished"]

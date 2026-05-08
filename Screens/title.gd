@@ -3,7 +3,7 @@ extends Node2D
 
 const BGM_FADE_DURATION: float = 0.6
 const BGM_SILENT_DB: float = -40.0
-const PARALLAX_MAX_OFFSET: float = 30.0
+const PARALLAX_MAX_OFFSET: float = 100.0
 const PARALLAX_FOLLOW_SPEED: float = 6.0
 const PARALLAX_OVERSCAN_SCALE: float = 1.2
 const INTRO_BLACK_HOLD_DURATION: float = 2.8
