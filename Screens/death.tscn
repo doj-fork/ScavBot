@@ -1,21 +1,97 @@
 [gd_scene format=3 uid="uid://c4ewbaucesvc"]
 
-[ext_resource type="FontFile" uid="uid://c7oafmhek6vhy" path="res://Assets/Fonts/SunkenMini.ttf" id="2_4705d"]
-[ext_resource type="Texture2D" uid="uid://0qr4tu40wss6" path="res://Assets/Misc/Screenshot 2026-04-20 153536.png" id="3_eed00"]
+[ext_resource type="Script" uid="uid://t6hie36ujvkf" path="res://Screens/death.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://c7oafmhek6vhy" path="res://Assets/Fonts/SunkenMini.ttf" id="2_font"]
+[ext_resource type="AudioStream" uid="uid://ln51k6c4pmtp" path="res://Assets/SFX/UI/hover.mp3" id="4_3ml37"]
+[ext_resource type="Shader" uid="uid://cwyinpeljd41b" path="res://Shaders/grain_overlay.gdshader" id="4_grain_shader"]
+[ext_resource type="AudioStream" uid="uid://dukx0e6ancmsc" path="res://Assets/SFX/UI/click.mp3" id="5_2dbpl"]
 
-[node name="Death" type="Node2D" unique_id=513947301]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_grain"]
+shader = ExtResource("4_grain_shader")
+shader_parameter/intensity = 0.16
+shader_parameter/scale = 220.0
+shader_parameter/scroll_velocity = Vector2(0.06, 0.02)
+shader_parameter/refresh_rate = 60.0
+shader_parameter/seed = 0.0
 
-[node name="Title" type="RichTextLabel" parent="." unique_id=631778144]
-offset_left = -51.0
-offset_top = 80.0
-offset_right = 721.0
-offset_bottom = 481.0
+[node name="Death" type="Node2D" unique_id=350962779]
+script = ExtResource("1_script")
+
+[node name="OverlayLayer" type="CanvasLayer" parent="." unique_id=688808095]
+
+[node name="BlackFade" type="ColorRect" parent="OverlayLayer" unique_id=1126706688]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("2_4705d")
-theme_override_font_sizes/normal_font_size = 160
+color = Color(0, 0, 0, 0)
+
+[node name="GrainOverlay" type="ColorRect" parent="OverlayLayer" unique_id=1180473730]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_grain")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0.12)
+
+[node name="ConnectionLostLabel" type="RichTextLabel" parent="OverlayLayer" unique_id=458128437]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.0
+offset_top = -95.0
+offset_right = 425.0
+offset_bottom = 95.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("2_font")
+theme_override_font_sizes/normal_font_size = 120
 text = "[CONNECTION LOST]"
 horizontal_alignment = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1295399100]
-position = Vector2(764, 263)
-texture = ExtResource("3_eed00")
+[node name="RetryButton" type="Button" parent="OverlayLayer" unique_id=148222281]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = 70.0
+offset_right = 130.0
+offset_bottom = 152.0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 72
+text = "RETRY"
+
+[node name="MenuButton" type="Button" parent="OverlayLayer" unique_id=695113246]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = 170.0
+offset_right = 130.0
+offset_bottom = 252.0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 72
+text = "MENU"
+
+[node name="hoverSFX" type="AudioStreamPlayer2D" parent="." unique_id=80939348]
+stream = ExtResource("4_3ml37")
+volume_db = -5.0
+
+[node name="clickSFX" type="AudioStreamPlayer2D" parent="." unique_id=408436936]
+stream = ExtResource("5_2dbpl")
+volume_db = -5.0
+
+[connection signal="pressed" from="OverlayLayer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="OverlayLayer/MenuButton" to="." method="_on_menu_button_pressed"]

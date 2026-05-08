@@ -14,10 +14,14 @@ const INTRO_TITLE_FADE_IN_DURATION: float = 1.1
 const INTRO_BLACK_FADE_OUT_DURATION: float = 1.1
 const LAYOUT_REGION_SIZE: Vector2 = Vector2(960.0, 540.0)
 
-# i was losing my mind over this i will fix the issues sometime between the 8th and 10th
+# 5/8/26 kind of fixed stuff will work on it more
 
 @onready var menu_bgm: AudioStreamPlayer2D = $MenuBGM
 @onready var play_button: Button = $UIRoot/CenterContainer/VBoxContainer/PlayButton
+@onready var credits_button: Button = $UIRoot/CenterContainer/VBoxContainer/CreditsButton
+@onready var quit_button: Button = $UIRoot/CenterContainer/VBoxContainer/QuitButton
+@onready var hover_sfx: AudioStreamPlayer2D = $hoverSFX
+@onready var click_sfx: AudioStreamPlayer2D = $clickSFX
 @onready var parallax_ground: Sprite2D = $ParallaxGround
 @onready var grain_overlay: ColorRect = $GrainOverlay
 @onready var ui_root: Control = $UIRoot
@@ -44,6 +48,8 @@ func _ready() -> void:
 	black_screen.color = Color(0, 0, 0, 1)
 	intro_overlay.visible = true
 	play_button.disabled = true
+
+	_connect_button_signals()
 
 	await _play_intro_sequence()
 
@@ -86,15 +92,27 @@ func _fit_background_to_viewport() -> void:
 	parallax_ground.position = region_origin + (region_size * 0.5)
 	parallax_offset = Vector2.ZERO
 
+# ok it returns to menu but the game state doesn't get reset
 
 func _play_intro_sequence() -> void:
-	await get_tree().create_timer(INTRO_BLACK_HOLD_DURATION).timeout
+	var skip_intro_once: bool = Global.skipTitleIntroOnce
+	if skip_intro_once:
+		Global.skipTitleIntroOnce = false
+
+	var intro_black_hold_duration: float = 0.0 if skip_intro_once else INTRO_BLACK_HOLD_DURATION
+	var intro_presents_fade_in_duration: float = 0.0 if skip_intro_once else INTRO_PRESENTS_FADE_IN_DURATION
+	var intro_presents_hold_duration: float = 0.0 if skip_intro_once else INTRO_PRESENTS_HOLD_DURATION
+	var intro_presents_fade_out_duration: float = 0.0 if skip_intro_once else INTRO_PRESENTS_FADE_OUT_DURATION
+	var intro_title_fade_in_duration: float = 0.0 if skip_intro_once else INTRO_TITLE_FADE_IN_DURATION
+	var intro_black_fade_out_duration: float = 0.0 if skip_intro_once else INTRO_BLACK_FADE_OUT_DURATION
+
+	await get_tree().create_timer(intro_black_hold_duration).timeout
 
 	var presents_fade_in_tween: Tween = create_tween()
-	presents_fade_in_tween.tween_property(group_presents_label, "modulate:a", 1.0, INTRO_PRESENTS_FADE_IN_DURATION)
+	presents_fade_in_tween.tween_property(group_presents_label, "modulate:a", 1.0, intro_presents_fade_in_duration)
 	await presents_fade_in_tween.finished
 
-	await get_tree().create_timer(INTRO_PRESENTS_HOLD_DURATION).timeout
+	await get_tree().create_timer(intro_presents_hold_duration).timeout
 
 	var should_fade_in_bgm: bool = menu_bgm.stream != null
 	if should_fade_in_bgm:
@@ -103,11 +121,11 @@ func _play_intro_sequence() -> void:
 			menu_bgm.play()
 
 	var transition_tween: Tween = create_tween().set_parallel(true)
-	transition_tween.tween_property(group_presents_label, "modulate:a", 0.0, INTRO_PRESENTS_FADE_OUT_DURATION)
-	transition_tween.tween_property(ui_root, "modulate:a", 1.0, INTRO_TITLE_FADE_IN_DURATION)
-	transition_tween.tween_property(black_screen, "color:a", 0.0, INTRO_BLACK_FADE_OUT_DURATION)
+	transition_tween.tween_property(group_presents_label, "modulate:a", 0.0, intro_presents_fade_out_duration)
+	transition_tween.tween_property(ui_root, "modulate:a", 1.0, intro_title_fade_in_duration)
+	transition_tween.tween_property(black_screen, "color:a", 0.0, intro_black_fade_out_duration)
 	if should_fade_in_bgm:
-		transition_tween.tween_property(menu_bgm, "volume_db", 0.0, INTRO_BLACK_FADE_OUT_DURATION)
+		transition_tween.tween_property(menu_bgm, "volume_db", 0.0, intro_black_fade_out_duration)
 	await transition_tween.finished
 
 	intro_overlay.visible = false
@@ -120,6 +138,33 @@ func _on_menu_bgm_finished() -> void:
 	if is_starting_game:
 		return
 	menu_bgm.play()
+
+
+func _connect_button_signals() -> void:
+	if not play_button.mouse_entered.is_connected(_on_button_hover):
+		play_button.mouse_entered.connect(_on_button_hover)
+	if not play_button.pressed.is_connected(_on_button_click):
+		play_button.pressed.connect(_on_button_click)
+
+	if not credits_button.mouse_entered.is_connected(_on_button_hover):
+		credits_button.mouse_entered.connect(_on_button_hover)
+	if not credits_button.pressed.is_connected(_on_button_click):
+		credits_button.pressed.connect(_on_button_click)
+
+	if not quit_button.mouse_entered.is_connected(_on_button_hover):
+		quit_button.mouse_entered.connect(_on_button_hover)
+	if not quit_button.pressed.is_connected(_on_button_click):
+		quit_button.pressed.connect(_on_button_click)
+
+
+func _on_button_hover() -> void:
+	if hover_sfx.stream != null:
+		hover_sfx.play()
+
+
+func _on_button_click() -> void:
+	if click_sfx.stream != null:
+		click_sfx.play()
 
 
 func pressPlay() -> void:
@@ -142,3 +187,7 @@ func pressPlay() -> void:
 
 	get_tree().change_scene_to_file("res://Screens/game_loader.tscn")
 	Global.hudActive = true
+
+
+func pressQuit() -> void:
+	get_tree().quit()
