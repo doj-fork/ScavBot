@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cwfjmmvi5mck" path="res://Player/player.tscn" id="2_iyh47"]
 [ext_resource type="Script" uid="uid://d17g32cia8g76" path="res://Screens/exit_door.gd" id="3_iyh47"]
 [ext_resource type="Texture2D" uid="uid://qg066lrja8qb" path="res://Assets/NatureAssets/Door1.png" id="4_fybiw"]
+[ext_resource type="Texture2D" uid="uid://c3lc15yyssnvd" path="res://Assets/Chunks/ground.png" id="7_0uf4q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f6i06"]
 radius = 113.004425
@@ -56,89 +57,113 @@ position_smoothing_speed = 5.5
 
 [node name="Walls" type="Node2D" parent="." unique_id=844518757]
 
-[node name="ColorRect" type="ColorRect" parent="Walls" unique_id=945463652]
-offset_left = -528.0
-offset_top = -979.0
-offset_right = 1454.0
-offset_bottom = -268.0
-color = Color(0.07060834, 0.0925144, 0.13586745, 1)
+[node name="ExternalFloor1" type="Sprite2D" parent="Walls" unique_id=2002362225]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(-961, 1073)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
 
-[node name="ColorRect2" type="ColorRect" parent="Walls" unique_id=427763604]
-offset_left = -505.0
-offset_top = 1331.0
-offset_right = 1477.0
-offset_bottom = 2146.0
-color = Color(0.07060834, 0.0925144, 0.13586745, 1)
+[node name="ExternalFloor2" type="Sprite2D" parent="Walls" unique_id=1760867193]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(-1921, 1073)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
 
-[node name="ColorRect3" type="ColorRect" parent="Walls" unique_id=331493594]
-offset_left = -544.0
-offset_top = -337.0
-offset_right = -480.0
-offset_bottom = 265.0
-color = Color(0.07060834, 0.0925144, 0.13586745, 1)
+[node name="ExternalFloor3" type="Sprite2D" parent="Walls" unique_id=1384917731]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(2879, 1073)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
 
-[node name="ColorRect4" type="ColorRect" parent="Walls" unique_id=1451665740]
-offset_left = -541.0
-offset_top = 795.0
-offset_right = -477.0
-offset_bottom = 1397.0
-color = Color(0.07060834, 0.0925144, 0.13586745, 1)
+[node name="ExternalFloor4" type="Sprite2D" parent="Walls" unique_id=1308635711]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(1919, 1073)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
 
-[node name="ColorRect5" type="ColorRect" parent="Walls" unique_id=846287869]
-offset_left = 1431.0
-offset_top = -327.0
-offset_right = 1495.0
-offset_bottom = 275.0
-color = Color(0.07060834, 0.0925144, 0.13586745, 1)
+[node name="ExternalFloor5" type="Sprite2D" parent="Walls" unique_id=1667194880]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(-960, -7)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
 
-[node name="ColorRect6" type="ColorRect" parent="Walls" unique_id=1066572888]
-offset_left = 1437.0
-offset_top = 806.0
-offset_right = 2734.0
-offset_bottom = 2146.0
-color = Color(0.07060834, 0.0925144, 0.13586745, 1)
+[node name="ExternalFloor6" type="Sprite2D" parent="Walls" unique_id=1897519506]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(-1920, -7)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
 
-[node name="ColorRect7" type="ColorRect" parent="Walls" unique_id=901877226]
-offset_left = 1477.0
-offset_top = 806.0
-offset_right = 2022.0
-offset_bottom = 877.0
-color = Color(0.07060834, 0.0925144, 0.13586745, 1)
+[node name="ExternalFloor7" type="Sprite2D" parent="Walls" unique_id=885937518]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(2880, 2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
 
-[node name="ColorRect8" type="ColorRect" parent="Walls" unique_id=572303518]
-offset_left = -1740.0
-offset_top = 798.0
-offset_right = -493.0
-offset_bottom = 2146.0
-color = Color(0.07060834, 0.0925144, 0.13586745, 1)
+[node name="ExternalFloor8" type="Sprite2D" parent="Walls" unique_id=639236580]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(1920, 2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
 
-[node name="ColorRect9" type="ColorRect" parent="Walls" unique_id=1925425678]
-offset_left = 1445.0
-offset_top = -979.0
-offset_right = 2734.0
-offset_bottom = 278.0
-color = Color(0.07060834, 0.0925144, 0.13586745, 1)
+[node name="ExternalFloor10" type="Sprite2D" parent="Walls" unique_id=116240005]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(2479, 533)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
 
-[node name="ColorRect10" type="ColorRect" parent="Walls" unique_id=989787991]
-offset_left = -1739.0
-offset_top = -987.0
-offset_right = -493.0
-offset_bottom = 270.0
-color = Color(0.07060834, 0.0925144, 0.13586745, 1)
+[node name="ExternalFloor11" type="Sprite2D" parent="Walls" unique_id=281560198]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(-1361, 533)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
 
-[node name="ColorRect11" type="ColorRect" parent="Walls" unique_id=1460239193]
-offset_left = -1740.0
-offset_top = 238.0
-offset_right = -877.0
-offset_bottom = 840.0
-color = Color(0.07060834, 0.0925144, 0.13586745, 1)
+[node name="ExternalFloor13" type="Sprite2D" parent="Walls" unique_id=753297962]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(-1, 1606)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
 
-[node name="ColorRect12" type="ColorRect" parent="Walls" unique_id=1889068944]
-offset_left = 1967.0
-offset_top = 246.0
-offset_right = 2734.0
-offset_bottom = 848.0
-color = Color(0.07060834, 0.0925144, 0.13586745, 1)
+[node name="ExternalFloor14" type="Sprite2D" parent="Walls" unique_id=1370758963]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(-961, 1606)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
+
+[node name="ExternalFloor15" type="Sprite2D" parent="Walls" unique_id=1936799056]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(1919, 1606)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
+
+[node name="ExternalFloor16" type="Sprite2D" parent="Walls" unique_id=1938892217]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(959, 1606)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
+
+[node name="ExternalFloor17" type="Sprite2D" parent="Walls" unique_id=409777044]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(0, -538)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
+
+[node name="ExternalFloor18" type="Sprite2D" parent="Walls" unique_id=2060247769]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(-960, -538)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
+
+[node name="ExternalFloor19" type="Sprite2D" parent="Walls" unique_id=1746199382]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(1920, -538)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
+
+[node name="ExternalFloor20" type="Sprite2D" parent="Walls" unique_id=1207908596]
+modulate = Color(1, 0.1764706, 1, 1)
+position = Vector2(960, -538)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_0uf4q")
 
 [node name="ExitDoor" type="Node2D" parent="." unique_id=634711565]
 script = ExtResource("3_iyh47")

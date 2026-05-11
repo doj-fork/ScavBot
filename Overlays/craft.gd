@@ -87,9 +87,45 @@ func _process(_delta):
 		mousePressed = true
 	else:
 		mousePressed = false
+		
+	if Input.is_action_just_pressed("Refund"):
+		refundSlot()
+
 	updateText()
 	updateIcons()
 	updateHover()
+
+func refundSlot():
+	if hHover == true and activeCraftList[0] != "Null":
+		refundItem(activeCraftList[0])
+		pickupcrafting_sfx.play()
+		activeCraftList[0] = "Null"
+	elif cHover == true and activeCraftList[1] != "Null":
+		refundItem(activeCraftList[1])
+		pickupcrafting_sfx.play()
+		activeCraftList[1] = "Null"
+	elif bHover == true and activeCraftList[2] != "Null":
+		refundItem(activeCraftList[2])
+		pickupcrafting_sfx.play()
+		activeCraftList[2] = "Null"
+	elif mHover == true and activeCraftList[3] != "Null":
+		refundItem(activeCraftList[3])
+		pickupcrafting_sfx.play()
+		activeCraftList[3] = "Null"
+
+func refundItem(arg):
+	if arg == "Wood":
+		Inventory.wood += 1
+	elif arg == "Rock":
+		Inventory.rock += 1
+	elif arg == "Scrap":
+		Inventory.scrap += 1
+	elif arg == "Steel":
+		Inventory.steel += 1
+	elif arg == "Circuit":
+		Inventory.circuit += 1
+	elif arg == "Battery":
+		Inventory.battery += 1
 
 func reset_material_highlights() -> void:
 	woodSprite.modulate = MATERIAL_NORMAL_MODULATE

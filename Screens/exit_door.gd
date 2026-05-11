@@ -12,6 +12,7 @@ func runEnd():
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("Interact") and entered == true and visible == true:
+		Signals.intermission.emit()
 		get_tree().change_scene_to_file.call_deferred("res://Screens/intermission.tscn")
 
 

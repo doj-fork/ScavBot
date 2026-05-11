@@ -1,4 +1,55 @@
 [gd_scene format=3 uid="uid://cbkuql05l4rkj"]
 
+[ext_resource type="Shader" uid="uid://b5o7l4cpum7ua" path="res://Shaders/blur.gdshader" id="1_0fefx"]
+[ext_resource type="Script" uid="uid://d0l5hwbw78lr6" path="res://Overlays/pause.gd" id="1_onp70"]
+[ext_resource type="Texture2D" uid="uid://dcv4cmbc24uw1" path="res://Assets/MenuAssets/CraftingMenu.png" id="2_onp70"]
+[ext_resource type="Texture2D" uid="uid://d2djene8yco4u" path="res://Assets/MenuAssets/PauseIcon.png" id="3_xd0p5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_650wi"]
+shader = ExtResource("1_0fefx")
+shader_parameter/blur_size = Vector2(1, 0.5)
+
 [node name="Pause" type="CanvasLayer" unique_id=1312279411]
 layer = 48
+script = ExtResource("1_onp70")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=1798704858]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.52156866)
+
+[node name="Blur" type="ColorRect" parent="." unique_id=1015506845]
+material = SubResource("ShaderMaterial_650wi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Blueprint" type="Sprite2D" parent="." unique_id=1450621308]
+position = Vector2(495, 265)
+scale = Vector2(0.72222215, 0.72222215)
+texture = ExtResource("2_onp70")
+
+[node name="Shadow" type="Sprite2D" parent="Blueprint" unique_id=863329864]
+modulate = Color(0, 0, 0, 0.52156866)
+show_behind_parent = true
+position = Vector2(-18.738235, 18.73816)
+texture = ExtResource("2_onp70")
+
+[node name="ColorRect" type="ColorRect" parent="Blueprint" unique_id=747209260]
+offset_left = -497.41333
+offset_top = -247.00319
+offset_right = 482.08197
+offset_bottom = 277.6656
+mouse_filter = 2
+color = Color(0.3647059, 0.43137255, 0.49019608, 1)
+
+[node name="PauseIcon" type="Sprite2D" parent="Blueprint" unique_id=1799418196]
+position = Vector2(-17.999985, -236.76926)
+texture = ExtResource("3_xd0p5")
