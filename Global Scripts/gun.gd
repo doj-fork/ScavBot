@@ -1,7 +1,6 @@
 extends Node
 
 var type = "Null"
-var special = "Null"
 var ammo = 0
 var precision = 0
 var damage = 0
@@ -9,7 +8,6 @@ var speed = 0
 
 func craft(handle, chamber, barrel, muzzle):
 	var burnType = "Null"
-	var burnSpecial = "Null"
 	var burnAmmo = 0
 	var burnAmmoMult = 0
 	var burnPrecision = 0
@@ -87,11 +85,9 @@ func craft(handle, chamber, barrel, muzzle):
 	type = burnType
 	ammo = int(ceil(burnAmmo * burnAmmoMult))
 	precision = burnPrecision
-	special = burnSpecial
 		
 	Hud.gunCraft(flavorText)
 
 func _process(_delta):
 	if ammo <= 0:
 		type = "Null"
-		special = "Null"
