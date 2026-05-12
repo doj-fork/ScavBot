@@ -531,6 +531,9 @@ volume_db = -10.0
 stream = ExtResource("12_5htga")
 volume_db = -10.0
 
+[node name="walkSFX" type="AudioStreamPlayer2D" parent="." unique_id=-475690447]
+volume_db = -10.0
+
 [node name="EnemyPlayerCollision" type="Area2D" parent="." unique_id=1535774745]
 collision_layer = 64
 collision_mask = 128

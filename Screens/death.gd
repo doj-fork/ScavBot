@@ -14,6 +14,7 @@ const FLASH_OFF_DURATION: float = 0.1
 @onready var menu_button: Button = $OverlayLayer/MenuButton
 @onready var hover_sfx: AudioStreamPlayer2D = $hoverSFX
 @onready var click_sfx: AudioStreamPlayer2D = $clickSFX
+@onready var static_sfx: AudioStreamPlayer2D = $staticSFX
 
 var grain_material: ShaderMaterial = null
 
@@ -45,6 +46,8 @@ func _play_death_sequence() -> void:
 	var fade_tween: Tween = create_tween().set_parallel(true)
 	fade_tween.tween_property(black_fade, "color:a", 1.0, FADE_DURATION)
 	fade_tween.tween_property(grain_overlay, "modulate:a", 1.0, GRAIN_FADE_DURATION)
+	if static_sfx.stream != null:
+		static_sfx.play()
 	await fade_tween.finished
 
 	_stop_grain_noise()

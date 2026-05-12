@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://ln51k6c4pmtp" path="res://Assets/SFX/UI/hover.mp3" id="4_3ml37"]
 [ext_resource type="Shader" uid="uid://cwyinpeljd41b" path="res://Shaders/grain_overlay.gdshader" id="4_grain_shader"]
 [ext_resource type="AudioStream" uid="uid://dukx0e6ancmsc" path="res://Assets/SFX/UI/click.mp3" id="5_2dbpl"]
+[ext_resource type="AudioStream" uid="uid://67552n844br3" path="res://Assets/SFX/UI/static.mp3" id="6_static"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_grain"]
 shader = ExtResource("4_grain_shader")
@@ -98,6 +99,9 @@ volume_db = -5.0
 [node name="clickSFX" type="AudioStreamPlayer2D" parent="." unique_id=408436936]
 stream = ExtResource("5_2dbpl")
 volume_db = -5.0
+
+[node name="staticSFX" type="AudioStreamPlayer2D" parent="." unique_id=385183373]
+stream = ExtResource("6_static")
 
 [connection signal="pressed" from="OverlayLayer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="OverlayLayer/MenuButton" to="." method="_on_menu_button_pressed"]

@@ -11,6 +11,8 @@ var wanderSpeedMultiplier: float = 0.25
 var wanderDirectionMinTime: float = 3.0
 var wanderDirectionMaxTime: float = 5.0
 var health: int = 750 + (Stats.healthMult * 10)
+
+# cram
 var separationRadius: float = 130.0
 var separationStrength: float = 1.1
 var crowdStrafeBias: float = 0.0
@@ -18,6 +20,15 @@ var antiCramRetreatDuration: float = 3.0
 var antiCramRetreatTimer: float = 0.0
 var justEndedAntiCramRetreat: bool = false
 var antiCramNeighborThreshold: int = 5
+
+# hit radius
+var playerHitSlowdownDuration: float = 1.5
+var playerHitSlowdownTimer: float = 0.0
+var playerHitSlowdownRadius: float = 120.0
+var playerHitSlowdownMultiplier: float = 0.4
+var playerHitRetreatDuration: float = 0.25
+var playerHitRetreatTimer: float = 0.0
+var isPlayerHitRetreating: bool = false
 
 # this is the speed for when the tank actually follows you
 var chaseSpeedMultiplier: float = 1.0
@@ -85,6 +96,8 @@ func _physics_process(delta: float) -> void:
 
 	var playerPosition: Vector2 = Vector2(Global.playerPos)
 	justEndedAntiCramRetreat = false
+	_updatePlayerHitSlowdown(delta)
+	_updatePlayerHitRetreat(delta)
 	_updateAntiCramRetreat(delta)
 
 	if _isAntiCramRetreating() or justEndedAntiCramRetreat:
@@ -93,6 +106,12 @@ func _physics_process(delta: float) -> void:
 			chargeState = CHARGE_STATE_CHASE
 			_scheduleNextCharge()
 		_updateWanderMovement(playerPosition, delta)
+	elif _isPlayerHitRetreating():
+		isChasingPlayer = false
+		if chargeState != CHARGE_STATE_CHASE:
+			chargeState = CHARGE_STATE_CHASE
+			_scheduleNextCharge()
+		_updatePlayerHitRetreatMovement(playerPosition)
 	else:
 		_updateChaseState(playerPosition)
 		if isChasingPlayer:
@@ -145,7 +164,7 @@ func _updateChaseMovement(playerPosition: Vector2, delta: float) -> void:
 		if moveDirection != Vector2.ZERO:
 			lastMoveDirection = moveDirection
 
-		var currentSpeed: float = baseSpeed * chaseSpeedMultiplier
+		var currentSpeed: float = baseSpeed * chaseSpeedMultiplier * _getPlayerHitSlowdownMultiplier()
 		velocity = moveDirection * currentSpeed
 		return
 
@@ -323,6 +342,68 @@ func _updateFreeze(delta: float) -> void:
 		isFrozenAfterCrash = false
 		_scheduleNextCharge()
 		_updateFrozenTint()
+
+# updates player hit slowdown timer
+func _updatePlayerHitSlowdown(delta: float) -> void:
+	if playerHitSlowdownTimer > 0.0:
+		playerHitSlowdownTimer -= delta
+
+# gets the slowdown multiplier based on player hit slowdown state
+func _getPlayerHitSlowdownMultiplier() -> float:
+	var playerPosition: Vector2 = Vector2(Global.playerPos)
+	var distanceToPlayer: float = global_position.distance_to(playerPosition)
+	
+	# check if we're within the slowdown radius and moving away from player
+	if playerHitSlowdownTimer > 0.0 and distanceToPlayer < playerHitSlowdownRadius:
+		var directionToPlayer: Vector2 = global_position.direction_to(playerPosition)
+		var movementDirection: Vector2 = velocity.normalized()
+		
+		# check if moving away from player (dot product < 0)
+		if directionToPlayer.dot(movementDirection) < 0.0:
+			return playerHitSlowdownMultiplier
+	
+	return 1.0
+
+# triggers player hit slowdown when player takes damage
+func _triggerPlayerHitSlowdown() -> void:
+	playerHitSlowdownTimer = playerHitSlowdownDuration
+
+# update player hit retreat timer
+func _updatePlayerHitRetreat(delta: float) -> void:
+	if playerHitRetreatTimer > 0.0:
+		playerHitRetreatTimer -= delta
+		if playerHitRetreatTimer <= 0.0:
+			isPlayerHitRetreating = false
+
+# get retreat direction away from player
+func _getPlayerHitRetreatDirection(playerPosition: Vector2) -> Vector2:
+	if isPlayerHitRetreating:
+		return (global_position - playerPosition).normalized()
+	return Vector2.ZERO
+
+# trigger retreat when player is hit by this enemy
+func _triggerPlayerHitRetreat() -> void:
+	playerHitRetreatTimer = playerHitRetreatDuration
+	isPlayerHitRetreating = true
+	isChasingPlayer = false
+	if chargeState != CHARGE_STATE_CHASE:
+		chargeState = CHARGE_STATE_CHASE
+		_scheduleNextCharge()
+
+# check if currently retreating from player hit
+func _isPlayerHitRetreating() -> bool:
+	return playerHitRetreatTimer > 0.0
+
+# move away from player during retreat
+func _updatePlayerHitRetreatMovement(playerPosition: Vector2) -> void:
+	var retreatDirection: Vector2 = _getPlayerHitRetreatDirection(playerPosition)
+	if retreatDirection == Vector2.ZERO:
+		retreatDirection = -lastMoveDirection
+	if retreatDirection == Vector2.ZERO:
+		retreatDirection = Vector2.RIGHT
+	if retreatDirection != Vector2.ZERO:
+		lastMoveDirection = retreatDirection
+	velocity = retreatDirection * baseSpeed * chaseSpeedMultiplier
 
 # idk if this works or not but its supposed to check if it collides to the right things
 func _isObstacleCollider(collider: Object) -> bool:

@@ -18,6 +18,14 @@ var antiCramRetreatDuration: float = 3.0
 var antiCramRetreatTimer: float = 0.0
 var justEndedAntiCramRetreat: bool = false
 var antiCramNeighborThreshold: int = 5
+var playerHitSlowdownDuration: float = 1.5
+var playerHitSlowdownTimer: float = 0.0
+var playerHitSlowdownRadius: float = 120.0
+var playerHitSlowdownMultiplier: float = 0.4
+var playerHitRetreatDuration: float = 0.75
+var playerHitRetreatTimer: float = 0.0
+var playerHitRetreatDistance: float = 200.0
+var isPlayerHitRetreating: bool = false
 
 var chaseSpeedMultiplier: float = 1.0
 var detourTarget: Vector2 = Vector2.ZERO
@@ -41,10 +49,16 @@ func _physics_process(delta: float) -> void:
 	var playerPosition: Vector2 = Vector2(Global.playerPos)
 	justEndedAntiCramRetreat = false
 	_updateAntiCramRetreat(delta)
+	_updatePlayerHitSlowdown(delta, playerPosition)
+	_updatePlayerHitRetreat(delta, playerPosition)
 
 	if _isAntiCramRetreating() or justEndedAntiCramRetreat:
 		isChasingPlayer = false
 		_updateWanderMovement(playerPosition, delta)
+	elif _isPlayerHitRetreating():
+		isChasingPlayer = false
+		hasDetourTarget = false
+		_updatePlayerHitRetreatMovement(playerPosition)
 	else:
 		_updateChaseState(playerPosition)
 		if isChasingPlayer:
@@ -98,7 +112,7 @@ func _updateChaseMovement(playerPosition: Vector2, delta: float) -> void:
 	if moveDirection != Vector2.ZERO:
 		lastMoveDirection = moveDirection
 
-	var currentSpeed: float = baseSpeed * chaseSpeedMultiplier
+	var currentSpeed: float = baseSpeed * chaseSpeedMultiplier * _getPlayerHitSlowdownMultiplier()
 	velocity = moveDirection * currentSpeed
 
 # enemy randomly moves around until you enter its radius
@@ -221,7 +235,58 @@ func _isObstacleCollider(collider: Object) -> bool:
 		return true
 	return false
 
-# add geometric slowdown function here
+# update player hit slowdown timer and check conditions
+func _updatePlayerHitSlowdown(delta: float, playerPosition: Vector2) -> void:
+	if playerHitSlowdownTimer > 0.0:
+		playerHitSlowdownTimer -= delta
+
+# get slowdown multiplier based on distance and timer
+func _getPlayerHitSlowdownMultiplier() -> float:
+	if playerHitSlowdownTimer > 0.0:
+		var distanceToPlayer: float = global_position.distance_to(Vector2(Global.playerPos))
+		if distanceToPlayer < playerHitSlowdownRadius:
+			return playerHitSlowdownMultiplier
+	return 1.0
+
+# trigger slowdown when player is hit
+func _triggerPlayerHitSlowdown() -> void:
+	playerHitSlowdownTimer = playerHitSlowdownDuration
+
+# update player hit retreat timer and check conditions
+func _updatePlayerHitRetreat(delta: float, playerPosition: Vector2) -> void:
+	if playerHitRetreatTimer > 0.0:
+		playerHitRetreatTimer -= delta
+		if playerHitRetreatTimer <= 0.0:
+			isPlayerHitRetreating = false
+
+# get retreat direction away from player
+func _getPlayerHitRetreatDirection(playerPosition: Vector2) -> Vector2:
+	if isPlayerHitRetreating:
+		var directionAwayFromPlayer: Vector2 = (global_position - playerPosition).normalized()
+		return directionAwayFromPlayer
+	return Vector2.ZERO
+
+# trigger retreat when player is hit by this enemy
+func _triggerPlayerHitRetreat() -> void:
+	playerHitRetreatTimer = playerHitRetreatDuration
+	isPlayerHitRetreating = true
+	isChasingPlayer = false
+	hasDetourTarget = false
+
+# move away from player during retreat
+func _updatePlayerHitRetreatMovement(playerPosition: Vector2) -> void:
+	var retreatDirection: Vector2 = _getPlayerHitRetreatDirection(playerPosition)
+	if retreatDirection == Vector2.ZERO:
+		retreatDirection = -lastMoveDirection
+	if retreatDirection == Vector2.ZERO:
+		retreatDirection = Vector2.RIGHT
+	if retreatDirection != Vector2.ZERO:
+		lastMoveDirection = retreatDirection
+	velocity = retreatDirection * baseSpeed * chaseSpeedMultiplier
+
+# check if currently retreating from player hit
+func _isPlayerHitRetreating() -> bool:
+	return playerHitRetreatTimer > 0.0
 
 func _on_area_2d_2_area_entered(_area: Area2D) -> void:
 	queue_free()
