@@ -92,7 +92,7 @@ func _checkEnemyLingerProximity(delta: float) -> void:
 
 func _applyLingerDamage(enemy: Node) -> void:
 	immunity = true
-	Stats.health -= 10 + (3 * Stats.damageMult)
+	Stats.health -= 5 + (3 * Stats.damageMult)
 	if enemy.has_method("_triggerPlayerHitRetreat"):
 		enemy._triggerPlayerHitRetreat()
 	if enemy.has_method("_triggerPlayerHitSlowdown"):
@@ -103,7 +103,7 @@ func _applyLingerDamage(enemy: Node) -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if immunity == false:
 		immunity = true
-		Stats.health -= 10 + (3 * Stats.damageMult)
+		Stats.health -= 5 + (3 * Stats.damageMult)
 		var enemy: Node = area.get_parent()
 		if enemy.has_method("_triggerPlayerHitRetreat"):
 			enemy._triggerPlayerHitRetreat()
