@@ -100,6 +100,19 @@ func _applyLingerDamage(enemy: Node) -> void:
 	await get_tree().create_timer(0.75, false).timeout
 	immunity = false
 
+func apply_flat_damage(amount: int, enemy: Node = null) -> void:
+	if immunity:
+		return
+
+	immunity = true
+	Stats.health -= amount
+	if enemy != null and enemy.has_method("_triggerPlayerHitRetreat"):
+		enemy._triggerPlayerHitRetreat()
+	if enemy != null and enemy.has_method("_triggerPlayerHitSlowdown"):
+		enemy._triggerPlayerHitSlowdown()
+	await get_tree().create_timer(0.75, false).timeout
+	immunity = false
+
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if immunity == false:
 		immunity = true
