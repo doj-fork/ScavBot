@@ -28,6 +28,8 @@ const LAYOUT_REGION_SIZE: Vector2 = Vector2(960.0, 540.0)
 @onready var intro_overlay: Control = $IntroOverlay
 @onready var black_screen: ColorRect = $IntroOverlay/BlackScreen
 @onready var group_presents_label: Label = $IntroOverlay/GroupPresentsLabel
+@onready var credits_overlay: Control = $CreditsOverlay
+@onready var close_button: Button = $CreditsOverlay/CloseButton
 
 var is_starting_game: bool = false
 var is_intro_playing: bool = true
@@ -156,6 +158,11 @@ func _connect_button_signals() -> void:
 	if not quit_button.pressed.is_connected(_on_button_click):
 		quit_button.pressed.connect(_on_button_click)
 
+	if not close_button.mouse_entered.is_connected(_on_button_hover):
+		close_button.mouse_entered.connect(_on_button_hover)
+	if not close_button.pressed.is_connected(_on_button_click):
+		close_button.pressed.connect(_on_button_click)
+
 
 func _on_button_hover() -> void:
 	if hover_sfx.stream != null:
@@ -191,3 +198,13 @@ func pressPlay() -> void:
 
 func pressQuit() -> void:
 	get_tree().quit()
+
+
+func pressCredits() -> void:
+	if is_intro_playing:
+		return
+	credits_overlay.visible = true
+
+
+func pressCreditsClose() -> void:
+	credits_overlay.visible = false
