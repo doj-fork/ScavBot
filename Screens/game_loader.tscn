@@ -155,14 +155,14 @@ script = ExtResource("2_7efq7")
 
 [node name="Player" parent="." unique_id=253815592 instance=ExtResource("2_iyh47")]
 y_sort_enabled = true
-position = Vector2(463, 1494)
+position = Vector2(464, 1567)
 
 [node name="CameraLink" type="RemoteTransform2D" parent="Player" unique_id=904402373]
 remote_path = NodePath("../../Camera")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=811053232]
 process_mode = 3
-position = Vector2(463, 1494)
+position = Vector2(464, 1567)
 scale = Vector2(0.075, 0.075)
 limit_left = -1199
 limit_top = -694
@@ -453,7 +453,6 @@ texture = ExtResource("11_lwy25")
 offset = Vector2(-45, -160)
 
 [node name="Walls_Floor" type="Node2D" parent="." unique_id=844518757]
-visible = false
 z_index = -3
 script = ExtResource("4_oqsqv")
 
