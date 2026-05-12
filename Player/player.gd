@@ -21,7 +21,11 @@ const WALK_SOUND_INTERVAL: float = 1.4
 var walkSoundTimer: float = 0.0
 var isWalking: bool = false
 
-func _process(_delta):
+var lingerDamageRadius: float = 60.0
+var lingerDamageThreshold: float = 0.4
+var lingerTimers: Dictionary = {}
+
+func _process(delta):
 	Global.playerPos = global_position
 	inputDir = (Vector2(Input.get_action_strength("Right") - Input.get_action_strength("Left"), Input.get_action_strength("Down") - Input.get_action_strength("Up"))).normalized()
 	velocity = inputDir * Stats.speed
@@ -32,6 +36,7 @@ func _process(_delta):
 	if Global.canMove == 0:
 		move_and_slide()
 	
+	_checkEnemyLingerProximity(delta)
 	if Stats.health < 1:
 		Global.dead = true
 		get_tree().change_scene_to_file.call_deferred("res://Screens/death.tscn")
@@ -63,6 +68,37 @@ func play_walk_sound() -> void:
 			walkSFX.stream = load(soundPath)
 			walkSFX.play()
 			walkSoundTimer = WALK_SOUND_INTERVAL
+
+# solution to enemy linger issue
+func _checkEnemyLingerProximity(delta: float) -> void:
+	var enemies: Array[Node] = get_tree().get_nodes_in_group("Enemies")
+	var closeEnemies: Array = []
+	for enemy in enemies:
+		if not is_instance_valid(enemy) or not (enemy is CharacterBody2D):
+			continue
+		var dist: float = global_position.distance_to((enemy as CharacterBody2D).global_position)
+		if dist < lingerDamageRadius:
+			closeEnemies.append(enemy)
+			if not immunity:
+				lingerTimers[enemy] = lingerTimers.get(enemy, 0.0) + delta
+				if lingerTimers[enemy] >= lingerDamageThreshold:
+					lingerTimers.erase(enemy)
+					_applyLingerDamage(enemy)
+		else:
+			lingerTimers.erase(enemy)
+	for key in lingerTimers.keys().duplicate():
+		if not is_instance_valid(key) or not closeEnemies.has(key):
+			lingerTimers.erase(key)
+
+func _applyLingerDamage(enemy: Node) -> void:
+	immunity = true
+	Stats.health -= 10 + (3 * Stats.damageMult)
+	if enemy.has_method("_triggerPlayerHitRetreat"):
+		enemy._triggerPlayerHitRetreat()
+	if enemy.has_method("_triggerPlayerHitSlowdown"):
+		enemy._triggerPlayerHitSlowdown()
+	await get_tree().create_timer(0.75, false).timeout
+	immunity = false
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if immunity == false:
