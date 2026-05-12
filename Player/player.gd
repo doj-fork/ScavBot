@@ -16,7 +16,7 @@ const WALK_SOUNDS: Array[String] = [
 	"res://Assets/SFX/Player/walk4.wav",
 	"res://Assets/SFX/Player/walk5.wav"
 ]
-const WALK_SOUND_INTERVAL: float = 1.4
+const WALK_SOUND_INTERVAL: float = 0.6
 
 var walkSoundTimer: float = 0.0
 var isWalking: bool = false
