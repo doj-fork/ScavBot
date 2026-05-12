@@ -10,11 +10,13 @@ func _ready():
 	
 func _process(_delta):
 	if Input.is_action_just_pressed("Interact") and cooldown == false and entered == true:
+		Global.cannotShootIntermission = true
 		Global.cannotCraftCollecting = true
 		cooldown = true
 		Global.canMove += 1
 		await get_tree().create_timer(1, false).timeout
 		cooldown = false
+		Global.cannotShootIntermission = false
 		Global.cannotCraftCollecting = false
 		Global.canMove -= 1
 		health -= 1

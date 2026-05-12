@@ -12,11 +12,8 @@ func _ready():
 	generate()
 	
 func generate():
-	#await Signals.chunkGen
-	#await get_tree().create_timer(1, false).timeout
 	
 	var roll = randi_range(1, 10)
-	
 	if roll == 1:
 		var newChunk = c_01.instantiate()
 		self.call_deferred("add_child", newChunk)
@@ -38,6 +35,4 @@ func generate():
 	else:
 		var newChunk = c_07.instantiate()
 		self.call_deferred("add_child", newChunk)
-
-	#generate()
 	

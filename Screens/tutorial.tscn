@@ -1,25 +1,15 @@
-[gd_scene format=3 uid="uid://cqdm8k83tuccp"]
+[gd_scene format=3 uid="uid://mc0ry67vkl7p"]
 
-[ext_resource type="PackedScene" uid="uid://cwfjmmvi5mck" path="res://Player/player.tscn" id="2_5v1f8"]
-[ext_resource type="Script" uid="uid://bfnbwg0dp5hyk" path="res://Screens/entrance_door.gd" id="2_gbru0"]
-[ext_resource type="Texture2D" uid="uid://qg066lrja8qb" path="res://Assets/NatureAssets/Door1.png" id="3_5v1f8"]
-[ext_resource type="Script" uid="uid://bwyl18wxv5f7n" path="res://Screens/heal.gd" id="4_tow3t"]
-[ext_resource type="Texture2D" uid="uid://trp4s107gpdk" path="res://Assets/NatureAssets/Charge1.png" id="5_3fba7"]
-[ext_resource type="Script" uid="uid://p4dko8dlvqxl" path="res://Screens/upgrade.gd" id="6_3fba7"]
-[ext_resource type="Texture2D" uid="uid://navvw5pegkel" path="res://Assets/NatureAssets/Computer1.png" id="7_7vloe"]
+[ext_resource type="Script" uid="uid://bfnbwg0dp5hyk" path="res://Screens/entrance_door.gd" id="2_d48hf"]
+[ext_resource type="Texture2D" uid="uid://qg066lrja8qb" path="res://Assets/NatureAssets/Door1.png" id="3_aooyq"]
+[ext_resource type="Script" uid="uid://p4dko8dlvqxl" path="res://Screens/upgrade.gd" id="6_tmyyq"]
+[ext_resource type="Texture2D" uid="uid://navvw5pegkel" path="res://Assets/NatureAssets/Computer1.png" id="7_fd10x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tow3t"]
 radius = 113.004425
 
 [node name="Intermission" type="Node2D" unique_id=1504878694]
 y_sort_enabled = true
-
-[node name="Player" parent="." unique_id=253815592 instance=ExtResource("2_5v1f8")]
-y_sort_enabled = true
-position = Vector2(482, 266)
-
-[node name="CameraLink" type="RemoteTransform2D" parent="Player" unique_id=904402373]
-remote_path = NodePath("../../Camera")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=811053232]
 process_mode = 3
@@ -51,12 +41,12 @@ offset_right = 958.0
 offset_bottom = 554.0
 
 [node name="ExitDoor" type="Node2D" parent="." unique_id=634711565]
-script = ExtResource("2_gbru0")
+script = ExtResource("2_d48hf")
 
 [node name="Sprite" type="Sprite2D" parent="ExitDoor" unique_id=1166243583]
 position = Vector2(476, -36)
 scale = Vector2(0.5422535, 0.5422535)
-texture = ExtResource("3_5v1f8")
+texture = ExtResource("3_aooyq")
 
 [node name="Collision" type="Area2D" parent="ExitDoor" unique_id=480629314]
 collision_layer = 0
@@ -67,33 +57,14 @@ position = Vector2(478, 18)
 shape = SubResource("CircleShape2D_tow3t")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 
-[node name="Heals" type="Node2D" parent="." unique_id=1836573874]
-position = Vector2(-243, 266)
-script = ExtResource("4_tow3t")
-
-[node name="Sprite" type="Sprite2D" parent="Heals" unique_id=303143606]
-position = Vector2(476, -36)
-scale = Vector2(0.5422535, 0.5422535)
-texture = ExtResource("5_3fba7")
-
-[node name="Collision" type="Area2D" parent="Heals" unique_id=2084071735]
-position = Vector2(-6, 13)
-collision_layer = 0
-collision_mask = 2048
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Heals/Collision" unique_id=1408869281]
-position = Vector2(480, -25)
-shape = SubResource("CircleShape2D_tow3t")
-debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
-
 [node name="Upgrade" type="Node2D" parent="." unique_id=1895100618]
-position = Vector2(268, 267)
-script = ExtResource("6_3fba7")
+position = Vector2(268, 66)
+script = ExtResource("6_tmyyq")
 
 [node name="Sprite" type="Sprite2D" parent="Upgrade" unique_id=952028038]
 position = Vector2(487.99994, -20)
 scale = Vector2(0.89983046, 0.89983046)
-texture = ExtResource("7_7vloe")
+texture = ExtResource("7_fd10x")
 
 [node name="Collision" type="Area2D" parent="Upgrade" unique_id=1044577827]
 position = Vector2(-6, 13)
@@ -107,7 +78,5 @@ debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 
 [connection signal="area_entered" from="ExitDoor/Collision" to="ExitDoor" method="areaEntered"]
 [connection signal="area_exited" from="ExitDoor/Collision" to="ExitDoor" method="areaExited"]
-[connection signal="area_entered" from="Heals/Collision" to="Heals" method="areaEntered"]
-[connection signal="area_exited" from="Heals/Collision" to="Heals" method="areaExited"]
 [connection signal="area_entered" from="Upgrade/Collision" to="Upgrade" method="areaEntered"]
 [connection signal="area_exited" from="Upgrade/Collision" to="Upgrade" method="areaExited"]

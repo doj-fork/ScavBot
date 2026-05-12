@@ -5,10 +5,13 @@ extends CanvasLayer
 @onready var gun = $GunType
 @onready var ammo = $Ammo
 @onready var waveTimer = $WaveTimer
+@onready var bulletIcon = $BulletIcon
+@onready var reloadIcon = $ReloadIcon
 
 func _ready():
 	gun.text = " "
 	waveCountdown()
+	reloadIcon.frame = 0
 
 func _process(_delta):
 	if Global.hudActive == false or Global.craftActive == true:
@@ -18,25 +21,33 @@ func _process(_delta):
 	health.text = str(Stats.health)
 	ammo.text = " " + str(Gun.ammo) + " / " + str(Global.bulletMax)
 	
-	if Stats.health >= 75:
+	if Stats.health > 75:
 		health.add_theme_color_override("font_outline_color", Color(0.098, 0.549, 0.326, 1.0))
 		battery.texture = load("res://Assets/HUD/HUDBattery100.png")
-	elif Stats.health >= 50:
+	elif Stats.health > 50:
 		health.add_theme_color_override("font_outline_color", Color(0.307, 0.499, 0.082, 1.0))
 		battery.texture = load("res://Assets/HUD/HUDBattery75.png")
-	elif Stats.health >= 25:
+	elif Stats.health > 25:
 		health.add_theme_color_override("font_outline_color", Color(0.583, 0.505, 0.0, 1.0))
 		battery.texture = load("res://Assets/HUD/HUDBattery50.png")
-	elif Stats.health >= 0:
+	elif Stats.health > 0:
 		health.add_theme_color_override("font_outline_color", Color(0.507, 0.052, 0.061, 1.0))
 		battery.texture = load("res://Assets/HUD/HUDBattery25.png")
 		
 	if Gun.ammo > 0:
 		ammo.visible = true
 		gun.visible = true
+		if Gun.type != "AR":
+			bulletIcon.visible = true
+			reloadIcon.visible = true
+		else:
+			bulletIcon.visible = false
+			reloadIcon.visible = false
 	else:
 		ammo.visible = false
 		gun.visible = false
+		bulletIcon.visible = false
+		reloadIcon.visible = false
 
 func waveCountdown():
 	await Signals.waveStart
@@ -69,3 +80,15 @@ func waveEnd():
 func _on_craft_button_pressed() -> void:
 	if true not in Global.cannotCraftList and Global.craftActive == false:
 		Crafting.openCraft()
+
+func reloadGun():
+	var reloadTime = 0
+	if Gun.type == "Shotgun":
+		reloadTime = 1
+	elif Gun.type == "Sniper":
+		reloadTime = 1.2
+	elif Gun.type == "Handgun":
+		reloadTime = 0.25
+	for i in range(8, -1, -1):
+		reloadIcon.frame = i
+		await get_tree().create_timer(reloadTime / 9.0, false).timeout

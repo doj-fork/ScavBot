@@ -27,7 +27,7 @@ func _process(_delta):
 		sprite.visible = true
 	else:
 		sprite.visible = false
-	if Input.is_action_just_pressed("Shoot") and Gun.ammo >= 1 and cooldown == false:
+	if Input.is_action_just_pressed("Shoot") and Gun.ammo >= 1 and cooldown == false and true not in Global.cannotShootList:
 		shootClick.emit()
 		
 func runAR():
@@ -42,6 +42,7 @@ func runAR():
 	
 func runShotgun():
 	await shootClick
+	Hud.reloadGun()
 	if Gun.type == "Shotgun":
 		cooldown = true
 		shotgun_sfx.play()
@@ -58,6 +59,7 @@ func runShotgun():
 	
 func runSniper():
 	await shootClick
+	Hud.reloadGun()
 	if Gun.type == "Sniper":
 		cooldown = true
 		sniper_sfx.play()
@@ -73,6 +75,7 @@ func runSniper():
 
 func runHandgun():
 	await shootClick
+	Hud.reloadGun()
 	if Gun.type == "Handgun":
 		cooldown = true
 		handgun_sfx.play()
