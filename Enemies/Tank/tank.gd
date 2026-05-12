@@ -10,7 +10,7 @@ var detectionRadius: float = 600.0
 var wanderSpeedMultiplier: float = 0.25
 var wanderDirectionMinTime: float = 3.0
 var wanderDirectionMaxTime: float = 5.0
-var health: int = 750 + (Stats.healthMult * 10)
+var health: int = 300 + (Stats.healthMult * 10)
 
 # cram
 var separationRadius: float = 130.0
