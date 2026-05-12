@@ -64,6 +64,11 @@ func _ready():
 	hoverItem.visible = false
 	reset_material_highlights()
 	
+func openCraft():
+		visible = true
+		Global.craftActive = true
+		get_tree().paused = true
+
 func _process(_delta):
 	if Input.is_action_just_pressed("Craft") and true not in Global.cannotCraftList and Global.craftActive == false:
 		visible = true

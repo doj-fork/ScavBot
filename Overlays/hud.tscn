@@ -2,28 +2,52 @@
 
 [ext_resource type="Script" uid="uid://bcnxcd1s1ncfy" path="res://Overlays/hud.gd" id="1_yd1hd"]
 [ext_resource type="FontFile" uid="uid://c7oafmhek6vhy" path="res://Assets/Fonts/SunkenMini.ttf" id="2_036h3"]
+[ext_resource type="Texture2D" uid="uid://d2p2eaa6gy2xa" path="res://Assets/HUD/HUDBattery25.png" id="2_628gg"]
+[ext_resource type="Texture2D" uid="uid://uikyf14lummk" path="res://Assets/HUD/CraftingIcon.png" id="4_628gg"]
 
 [node name="HUD" type="CanvasLayer" unique_id=2126171989]
 process_mode = 3
 layer = 46
 script = ExtResource("1_yd1hd")
 
-[node name="Health" type="RichTextLabel" parent="." unique_id=2058522676]
-offset_left = 4.0
-offset_top = 2.0
-offset_right = 608.0
-offset_bottom = 186.0
+[node name="BatteryBack" type="ColorRect" parent="." unique_id=96372501]
+offset_left = 20.0
+offset_top = 18.0
+offset_right = 148.0
+offset_bottom = 77.0
+color = Color(0, 0, 0, 1)
+
+[node name="BatteryBack2" type="ColorRect" parent="." unique_id=3392218]
+offset_left = 146.0
+offset_top = 31.0
+offset_right = 163.0
+offset_bottom = 63.0
+color = Color(0, 0, 0, 1)
+
+[node name="Battery" type="Sprite2D" parent="." unique_id=1770107728]
+position = Vector2(88, 49)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_628gg")
+
+[node name="Health" type="RichTextLabel" parent="Battery" unique_id=2058522676]
+offset_left = -218.66667
+offset_top = -77.33333
+offset_right = 215.99998
+offset_bottom = 88.000015
 mouse_filter = 2
-theme_override_constants/outline_size = 16
+theme_override_colors/font_outline_color = Color(0.627451, 0.07450981, 0.08627451, 1)
+theme_override_constants/outline_size = 32
 theme_override_fonts/normal_font = ExtResource("2_036h3")
-theme_override_font_sizes/normal_font_size = 64
-text = " Energy:"
+theme_override_font_sizes/normal_font_size = 160
+text = "100"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="GunType" type="RichTextLabel" parent="." unique_id=1366844511]
-offset_left = -1.0
-offset_top = 437.0
-offset_right = 603.0
-offset_bottom = 505.0
+offset_left = 137.0
+offset_top = 471.0
+offset_right = 741.0
+offset_bottom = 539.0
 mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("2_036h3")
@@ -31,39 +55,78 @@ theme_override_font_sizes/normal_font_size = 48
 text = " Shotgun"
 
 [node name="Ammo" type="RichTextLabel" parent="." unique_id=1059730003]
-offset_left = -1.0
-offset_top = 494.0
-offset_right = 603.0
-offset_bottom = 562.0
+offset_left = 137.0
+offset_top = 433.0
+offset_right = 741.0
+offset_bottom = 501.0
 mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("2_036h3")
 theme_override_font_sizes/normal_font_size = 48
 text = " Ammo"
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1770107728]
-
 [node name="Controls" type="RichTextLabel" parent="." unique_id=443755785]
-offset_left = 708.0
-offset_top = 8.0
-offset_right = 950.0
-offset_bottom = 138.0
+offset_left = 701.0
+offset_top = 13.0
+offset_right = 943.0
+offset_bottom = 143.0
 mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("2_036h3")
 theme_override_font_sizes/normal_font_size = 64
-text = "C: Craft
-E: Collect"
+text = "E: Interact"
 horizontal_alignment = 2
 
 [node name="WaveTimer" type="RichTextLabel" parent="." unique_id=406598445]
-offset_left = 148.0
-offset_top = 485.0
-offset_right = 947.0
-offset_bottom = 615.0
+offset_left = 136.0
+offset_top = 474.0
+offset_right = 935.0
+offset_bottom = 604.0
 mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("2_036h3")
 theme_override_font_sizes/normal_font_size = 48
 text = " Wave Ends in:"
 horizontal_alignment = 2
+
+[node name="Craft" type="Sprite2D" parent="." unique_id=821209054]
+position = Vector2(78, 471)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_628gg")
+
+[node name="Background" type="Sprite2D" parent="Craft" unique_id=10224004]
+modulate = Color(0.13333334, 0.21568628, 0.25882354, 1)
+show_behind_parent = true
+position = Vector2(0.44449043, -0.00022506714)
+scale = Vector2(1.088889, 1.0938274)
+texture = ExtResource("4_628gg")
+
+[node name="Health" type="RichTextLabel" parent="Craft" unique_id=1618454399]
+offset_left = -185.33334
+offset_top = -58.66666
+offset_right = 249.33331
+offset_bottom = 106.66669
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0.057742737, 0.10769605, 0.1338354, 1)
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("2_036h3")
+theme_override_font_sizes/normal_font_size = 176
+text = "c"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CraftButton" type="Button" parent="Craft" unique_id=1527810920]
+modulate = Color(1, 1, 1, 0)
+offset_left = -74.666664
+offset_top = -74.66666
+offset_right = 67.99999
+offset_bottom = 68.0
+
+[node name="CraftButton2" type="Button" parent="Craft" unique_id=1105517741]
+modulate = Color(1, 1, 1, 0)
+offset_left = -74.666664
+offset_top = -74.66666
+offset_right = 67.99999
+offset_bottom = 68.0
+
+[connection signal="pressed" from="Craft/CraftButton" to="." method="_on_craft_button_pressed"]

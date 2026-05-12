@@ -1,6 +1,7 @@
 class_name GlobalState
 extends Node
 
+var bulletMax = 0
 var dead = false
 var playerPos: Vector2 = Vector2.ZERO
 

@@ -85,7 +85,9 @@ func craft(handle, chamber, barrel, muzzle):
 	type = burnType
 	ammo = int(ceil(burnAmmo * burnAmmoMult))
 	precision = burnPrecision
-		
+	
+	Global.bulletMax = ammo
+	
 	Hud.gunCraft(flavorText)
 
 func _process(_delta):
