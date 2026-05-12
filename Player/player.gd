@@ -33,6 +33,7 @@ func _process(_delta):
 		move_and_slide()
 	
 	if Stats.health < 1:
+		Global.dead = true
 		get_tree().change_scene_to_file.call_deferred("res://Screens/death.tscn")
 
 func animUpdate():

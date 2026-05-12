@@ -26,9 +26,11 @@ func _process(_delta):
 
 func waveCountdown():
 	await Signals.waveStart
-	for i in range(60, 0, -1):
-		waveTimer.text = " Wave ends in " + str(i) + " seconds"
+	var countdown = 60
+	while countdown > 0 and Global.dead == false:
+		waveTimer.text = " Wave ends in " + str(countdown) + " seconds"
 		await get_tree().create_timer(1, false).timeout
+		countdown -= 1
 	Signals.waveEnd.emit()
 	waveEnd()
 	waveCountdown()

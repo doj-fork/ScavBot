@@ -1,6 +1,7 @@
 class_name GlobalState
 extends Node
 
+var dead = false
 var playerPos: Vector2 = Vector2.ZERO
 
 var canMove: int = 0

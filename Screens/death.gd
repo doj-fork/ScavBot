@@ -84,11 +84,13 @@ func _on_retry_button_pressed() -> void:
 	menu_button.disabled = true
 	Global.hudActive = true
 	Stats.health = 100 + (Stats.healthMult * 5)
+	Stats.majorReset()
 	get_tree().change_scene_to_file("res://Screens/game_loader.tscn")
-
+	
 # game starts tweaking when you press from the menu i might remove
 
 func _on_menu_button_pressed() -> void:
+	Stats.majorReset()
 	retry_button.disabled = true
 	menu_button.disabled = true
 	Global.hudActive = false
