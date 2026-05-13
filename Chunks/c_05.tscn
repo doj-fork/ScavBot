@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dv0ht2wpr73nc" path="res://Collectibles/steel.tscn" id="4_j31s8"]
 [ext_resource type="PackedScene" uid="uid://d1mssaq48q7r7" path="res://Collectibles/bush.tscn" id="4_x868q"]
 [ext_resource type="PackedScene" uid="uid://ddygo00e65gg" path="res://Screens/meleespawner.tscn" id="6_3ckl8"]
+[ext_resource type="Script" uid="uid://d3mbyw4akppa" path="res://Screens/ranger_spawner.gd" id="7_j31s8"]
 
 [node name="Mech Corpse Yard" type="Node2D" unique_id=317759896]
 script = ExtResource("1_asavl")
@@ -33,5 +34,6 @@ position = Vector2(-81, -51)
 [node name="Bush2" parent="." unique_id=1995506618 instance=ExtResource("4_x868q")]
 position = Vector2(340, 211)
 
-[node name="MeleeSpawner" parent="." unique_id=156898322 instance=ExtResource("6_3ckl8")]
+[node name="RangerSpawner" parent="." unique_id=156898322 instance=ExtResource("6_3ckl8")]
 position = Vector2(-329, 121)
+script = ExtResource("7_j31s8")
