@@ -30,3 +30,6 @@ func _on_area_entered(area: Area2D) -> void:
 	if parentNode != null and parentNode.has_method("apply_flat_damage"):
 		parentNode.apply_flat_damage(damage, shooter)
 		queue_free()
+
+func _on_body_entered(_body: Node2D) -> void:
+	queue_free()

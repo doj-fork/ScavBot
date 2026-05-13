@@ -7,7 +7,7 @@
 
 [node name="RangerBullet" type="Area2D" unique_id=374362072]
 collision_layer = 256
-collision_mask = 64
+collision_mask = 97
 script = ExtResource("1_rb")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1537037517]
@@ -18,3 +18,4 @@ texture = ExtResource("2_rb")
 shape = SubResource("CircleShape2D_rb")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
