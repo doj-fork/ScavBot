@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://m3nuxfjdj7g0"
+path="res://.godot/imported/Oppressive Gloom.mp3-1c922c8c4f5622bb62faf3cc21c84f54.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/BGM/Oppressive Gloom.mp3"
+dest_files=["res://.godot/imported/Oppressive Gloom.mp3-1c922c8c4f5622bb62faf3cc21c84f54.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

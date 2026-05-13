@@ -43,6 +43,7 @@ func _setup_initial_state() -> void:
 
 
 func _play_death_sequence() -> void:
+	BGM.fade_out()
 	var fade_tween: Tween = create_tween().set_parallel(true)
 	fade_tween.tween_property(black_fade, "color:a", 1.0, FADE_DURATION)
 	fade_tween.tween_property(grain_overlay, "modulate:a", 1.0, GRAIN_FADE_DURATION)
@@ -94,6 +95,7 @@ func _on_menu_button_pressed() -> void:
 	retry_button.disabled = true
 	menu_button.disabled = true
 	Global.hudActive = false
+	BGM.stop_immediate()
 	var has_skip_property: bool = false
 	for property_info: Dictionary in Global.get_property_list():
 		if property_info.get("name", "") == "skipTitleIntroOnce":

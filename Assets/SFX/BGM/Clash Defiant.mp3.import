@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://hqs8m0gy16p1"
+path="res://.godot/imported/Clash Defiant.mp3-1c5f0ecaa70b1fc2b6f1f674ef6a0869.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/BGM/Clash Defiant.mp3"
+dest_files=["res://.godot/imported/Clash Defiant.mp3-1c5f0ecaa70b1fc2b6f1f674ef6a0869.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

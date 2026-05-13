@@ -29,6 +29,7 @@ Crafting="*uid://bf6fm3exdsqv7"
 Console="*uid://ds8qv4pipafgb"
 Pixelate="*uid://b46h1fqk18bgj"
 Gun="*uid://buofug2khyrjk"
+BGM="*res://Global Scripts/bgm.gd"
 
 [display]
 
