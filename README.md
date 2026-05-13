@@ -8,8 +8,8 @@ Repository for the GDIM 61 Game Project for the group made up of Carlos S., Benj
 
 | Group Member | Role |
 |---------|-----------------|
-| James D. | Scripter, SFX |
-| Benjamin A. | Scripter, UI/UX |
+| James D. | Scripter |
+| Benjamin A. | Scripter |
 | Eric W. | Modeller |
 | Carlos S. | Artist, Rigger |
 
