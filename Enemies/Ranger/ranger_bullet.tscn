@@ -1,22 +1,20 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://clufpr2yd23m6"]
 
 [ext_resource type="Script" uid="uid://wffwnftw2433" path="res://Enemies/Ranger/ranger_bullet.gd" id="1_rb"]
 [ext_resource type="Texture2D" uid="uid://cb6tyk36qlt8h" path="res://Assets/Misc/Bullet.png" id="2_rb"]
 
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_rb"]
-radius = 10.0
 
-[node name="RangerBullet" type="Area2D"]
+[node name="RangerBullet" type="Area2D" unique_id=374362072]
 collision_layer = 256
 collision_mask = 64
 script = ExtResource("1_rb")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1537037517]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_rb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1556211261]
 shape = SubResource("CircleShape2D_rb")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

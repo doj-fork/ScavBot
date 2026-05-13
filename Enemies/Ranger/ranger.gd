@@ -8,7 +8,7 @@ var detectionRadius: float = 700.0
 var wanderSpeedMultiplier: float = 0.35
 var wanderDirectionMinTime: float = 0.75
 var wanderDirectionMaxTime: float = 2.5
-var health: int = 85 + (Stats.healthMult * 3)
+var health: int = 50 + (Stats.healthMult * 3)
 
 var preferredMinDistance: float = 280.0
 var preferredMaxDistance: float = 430.0
@@ -18,7 +18,7 @@ var strafeBias: float = 1.0
 var separationRadius: float = 120.0
 var separationStrength: float = 1.15
 
-var shootCooldown: float = 2.0
+var shootCooldown: float = 2.5
 var shootTimer: float = 0.0
 var projectileSpeed: float = 520.0
 var projectileDamage: int = 5
