@@ -31,8 +31,15 @@ func _process(delta):
 	velocity = inputDir * Stats.speed
 	if inputDir != Vector2(0, 0):
 		animDir = inputDir
-	animUpdate()
-	play_walk_sound()
+	if Global.cannotCraftCollecting:
+		velocity = Vector2.ZERO
+		if walkSFX.playing:
+			walkSFX.stop()
+		isWalking = false
+		stateMachine.travel("Idle")
+	else:
+		animUpdate()
+		play_walk_sound()
 	if Global.canMove == 0:
 		move_and_slide()
 	

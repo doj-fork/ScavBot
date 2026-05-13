@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://tc5hwcyx3x2k" path="res://Collectibles/tree.gd" id="1_uqeof"]
 [ext_resource type="Texture2D" uid="uid://bcd46bmu7kmh1" path="res://Assets/NatureAssets/Tree1.png" id="2_uqeof"]
+[ext_resource type="AudioStream" uid="uid://cqvahmlih7411" path="res://Assets/SFX/UI/collectitem.mp3" id="3_collect"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_18u5j"]
 radius = 126.0
@@ -31,6 +32,12 @@ collision_layer = 33
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=209587586]
 position = Vector2(2, -65)
 shape = SubResource("RectangleShape2D_uqeof")
+
+[node name="InteractSound" type="AudioStreamPlayer2D" parent="." unique_id=1958187646]
+
+[node name="CollectSound" type="AudioStreamPlayer2D" parent="." unique_id=814619661]
+stream = ExtResource("3_collect")
+volume_db = -5.0
 
 [connection signal="area_entered" from="ItemCollect" to="." method="areaEntered"]
 [connection signal="area_exited" from="ItemCollect" to="." method="areaExited"]

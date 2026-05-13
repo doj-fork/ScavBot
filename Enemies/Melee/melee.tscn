@@ -48,11 +48,11 @@ debug_color = Color(0.19813973, 0.61040646, 0.5649672, 0.41960785)
 
 [node name="DetectSound" type="AudioStreamPlayer2D" parent="." unique_id=1067564989]
 stream = ExtResource("3_detect")
-volume_db = -18.0
+volume_db = -20.0
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=2135800205]
 stream = ExtResource("4_death")
-volume_db = -10.0
+volume_db = -15.0
 
 [connection signal="area_entered" from="BulletCollision" to="." method="_on_bullet_collision_area_entered"]
 [connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]
