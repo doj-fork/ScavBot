@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://bxp6tv1fcjlj0" path="res://Player/Assets/PlayerTestSprite.png" id="1_rg"]
 [ext_resource type="Script" uid="uid://dcktvjxpoyfjx" path="res://Enemies/Ranger/ranger.gd" id="2_rg"]
+[ext_resource type="AudioStream" uid="uid://bh07bay2sr8uq" path="res://Assets/SFX/Melee/meleerangerdetect.mp3" id="3_detect"]
+[ext_resource type="AudioStream" uid="uid://cuw4ynh2rqk2p" path="res://Assets/SFX/Melee/meleerangerdeath.mp3" id="4_death"]
+[ext_resource type="AudioStream" uid="uid://bw4ban15b0td0" path="res://Assets/SFX/Gun/handgun.wav" id="5_shoot"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rg"]
 radius = 66.666664
@@ -42,4 +45,17 @@ collision_mask = 16
 position = Vector2(24, -428)
 shape = SubResource("RectangleShape2D_rg")
 
+[node name="DetectSound" type="AudioStreamPlayer2D" parent="." unique_id=1242623392]
+stream = ExtResource("3_detect")
+volume_db = -20.0
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=1201594716]
+stream = ExtResource("4_death")
+volume_db = -15.0
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="." unique_id=1400770925]
+stream = ExtResource("5_shoot")
+volume_db = -18.0
+
 [connection signal="area_entered" from="BulletCollision" to="." method="_on_bullet_collision_area_entered"]
+[connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]

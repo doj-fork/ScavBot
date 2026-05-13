@@ -24,6 +24,12 @@ var projectileSpeed: float = 520.0
 var projectileDamage: int = 5
 
 var isChasingPlayer: bool = false
+var hasPlayedDetectSound: bool = false
+
+@onready var detectSound: AudioStreamPlayer2D = $DetectSound
+@onready var deathSound: AudioStreamPlayer2D = $DeathSound
+@onready var shootSound: AudioStreamPlayer2D = $ShootSound
+
 var wanderDirection: Vector2 = Vector2.RIGHT
 var wanderDirectionTimer: float = 0.0
 var randomNumberGenerator: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -56,6 +62,9 @@ func _updateChaseState(playerPosition: Vector2) -> void:
 
 	if global_position.distance_to(playerPosition) <= detectionRadius:
 		isChasingPlayer = true
+		if not hasPlayedDetectSound:
+			hasPlayedDetectSound = true
+			detectSound.play()
 
 func _updateKiteMovement(playerPosition: Vector2) -> void:
 	var distanceToPlayer: float = global_position.distance_to(playerPosition)
@@ -141,13 +150,25 @@ func _tryShoot(playerPosition: Vector2) -> void:
 		bullet.setup(bulletDirection, projectileSpeed, projectileDamage, self)
 
 	get_tree().current_scene.call_deferred("add_child", bullet)
+	shootSound.play()
 	shootTimer = shootCooldown
 
 func _on_bullet_collision_area_entered(_area: Area2D) -> void:
 	var bulletDamage: int = int(Gun.damage)
 	health -= bulletDamage
 	if health <= 0:
-		queue_free()
+		_die()
+
+func _die() -> void:
+	set_physics_process(false)
+	$Sprite2D.visible = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	$EnemyPlayerCollision/CollisionShape2D.set_deferred("disabled", true)
+	$BulletCollision/CollisionShape2D.set_deferred("disabled", true)
+	deathSound.play()
+
+func _on_death_sound_finished() -> void:
+	queue_free()
 
 func _on_area_2d_2_area_entered(_area: Area2D) -> void:
 	queue_free()

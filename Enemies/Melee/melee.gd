@@ -26,6 +26,10 @@ var playerHitRetreatDuration: float = 0.75
 var playerHitRetreatTimer: float = 0.0
 var playerHitRetreatDistance: float = 200.0
 var isPlayerHitRetreating: bool = false
+var hasPlayedDetectSound: bool = false
+
+@onready var detectSound: AudioStreamPlayer2D = $DetectSound
+@onready var deathSound: AudioStreamPlayer2D = $DeathSound
 
 var chaseSpeedMultiplier: float = 1.0
 var detourTarget: Vector2 = Vector2.ZERO
@@ -76,6 +80,9 @@ func _updateChaseState(playerPosition: Vector2) -> void:
 	if global_position.distance_to(playerPosition) <= detectionRadius:
 		isChasingPlayer = true
 		hasDetourTarget = false
+		if not hasPlayedDetectSound:
+			hasPlayedDetectSound = true
+			detectSound.play()
 
 func _updateAntiCramRetreat(delta: float) -> void:
 	if antiCramRetreatTimer > 0.0:
@@ -295,4 +302,15 @@ func _on_bullet_collision_area_entered(_area: Area2D) -> void:
 	var bulletDamage: int = int(Gun.damage)
 	health -= bulletDamage
 	if health <= 0:
-		queue_free()
+		_die()
+
+func _die() -> void:
+	set_physics_process(false)
+	$Sprite2D.visible = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	$EnemyPlayerCollision/CollisionShape2D.set_deferred("disabled", true)
+	$BulletCollision/CollisionShape2D.set_deferred("disabled", true)
+	deathSound.play()
+
+func _on_death_sound_finished() -> void:
+	queue_free()

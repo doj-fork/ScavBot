@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dif8d7qt4eunx" path="res://Enemies/Tank/tank.gd" id="1_5la1q"]
 [ext_resource type="Texture2D" uid="uid://x65g7vohi67y" path="res://Assets/Misc/tank.png" id="2_5la1q"]
+[ext_resource type="AudioStream" uid="uid://ogd85e6srfr6" path="res://Assets/SFX/Melee/tankdetect.mp3" id="3_tdetect"]
+[ext_resource type="AudioStream" uid="uid://c4k4mbx34dknd" path="res://Assets/SFX/Melee/tankdeath.mp3" id="4_tdeath"]
+[ext_resource type="AudioStream" uid="uid://c2v1g8krd0kqe" path="res://Assets/SFX/Melee/tankcharge.mp3" id="5_tcharge"]
+[ext_resource type="AudioStream" uid="uid://c32a4tc6uakbg" path="res://Assets/SFX/Melee/tankcrash.mp3" id="6_tcrash"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_igllg"]
 radius = 66.666664
@@ -45,4 +49,18 @@ position = Vector2(0, -548)
 shape = SubResource("RectangleShape2D_kn70c")
 debug_color = Color(0.19813973, 0.61040646, 0.5649672, 0.41960785)
 
+[node name="DetectSound" type="AudioStreamPlayer2D" parent="." unique_id=1704496787]
+stream = ExtResource("3_tdetect")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=1595723113]
+stream = ExtResource("4_tdeath")
+
+[node name="ChargeSound" type="AudioStreamPlayer2D" parent="." unique_id=148584166]
+stream = ExtResource("5_tcharge")
+volume_db = -10.0
+
+[node name="CrashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_tcrash")
+
 [connection signal="area_entered" from="BulletCollision" to="." method="_on_bullet_collision_area_entered"]
+[connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]

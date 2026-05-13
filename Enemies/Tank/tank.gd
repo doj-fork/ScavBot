@@ -34,6 +34,7 @@ var isPlayerHitRetreating: bool = false
 var chaseSpeedMultiplier: float = 1.0
 var lastMoveDirection: Vector2 = Vector2.RIGHT
 var isChasingPlayer: bool = false
+var hasPlayedDetectSound: bool = false
 var wanderDirection: Vector2 = Vector2.RIGHT
 var wanderDirectionTimer: float = 0.0
 var randomNumberGenerator: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -75,6 +76,10 @@ var normalSpriteModulate: Color = Color.WHITE
 var frozenSpriteModulate: Color = Color.RED
 
 @onready var tankSprite: Sprite2D = $Tank
+@onready var detectSound: AudioStreamPlayer2D = $DetectSound
+@onready var deathSound: AudioStreamPlayer2D = $DeathSound
+@onready var chargeSound: AudioStreamPlayer2D = $ChargeSound
+@onready var crashSound: AudioStreamPlayer2D = $CrashSound
 
 # main function
 func _ready() -> void:
@@ -130,6 +135,9 @@ func _updateChaseState(playerPosition: Vector2) -> void:
 		isChasingPlayer = true
 		chargeState = CHARGE_STATE_CHASE
 		_scheduleNextCharge()
+		if not hasPlayedDetectSound:
+			hasPlayedDetectSound = true
+			detectSound.play()
 
 func _isAntiCramRetreating() -> bool:
 	return antiCramRetreatTimer > 0.0
@@ -209,6 +217,7 @@ func _startCharge() -> void:
 	chargeState = CHARGE_STATE_CHARGE
 	chargeTimer = chargeDuration
 	currentChargeSpeed = baseSpeed * chargeStartSpeedMultiplier
+	chargeSound.play()
 
 	var refreshedDirection: Vector2 = global_position.direction_to(chargeTargetPosition)
 	if refreshedDirection != Vector2.ZERO:
@@ -332,6 +341,9 @@ func _startFreezeAfterCrash() -> void:
 	freezeTimer = freezeDuration
 	velocity = Vector2.ZERO
 	chargeState = CHARGE_STATE_CHASE
+	if chargeSound.playing:
+		chargeSound.stop()
+	crashSound.play()
 	_updateFrozenTint()
 
 # updates freeze state
@@ -435,7 +447,18 @@ func _on_bullet_collision_area_entered(_area: Area2D) -> void:
 	var bulletDamage: int = int(Gun.damage)
 	health -= bulletDamage
 	if health <= 0:
-		queue_free()
+		_die()
+
+func _die() -> void:
+	set_physics_process(false)
+	tankSprite.visible = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	$EnemyPlayerCollision/CollisionShape2D.set_deferred("disabled", true)
+	$BulletCollision/CollisionShape2D.set_deferred("disabled", true)
+	deathSound.play()
+
+func _on_death_sound_finished() -> void:
+	queue_free()
 
 func _on_area_2d_2_area_entered(_area: Area2D) -> void:
 	queue_free()

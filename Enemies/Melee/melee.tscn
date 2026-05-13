@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://bxp6tv1fcjlj0" path="res://Player/Assets/PlayerTestSprite.png" id="1_cuues"]
 [ext_resource type="Script" uid="uid://dodsrt5jibf8h" path="res://Enemies/Melee/melee.gd" id="1_igllg"]
+[ext_resource type="AudioStream" uid="uid://bh07bay2sr8uq" path="res://Assets/SFX/Melee/meleerangerdetect.mp3" id="3_detect"]
+[ext_resource type="AudioStream" uid="uid://cuw4ynh2rqk2p" path="res://Assets/SFX/Melee/meleerangerdeath.mp3" id="4_death"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_igllg"]
 radius = 66.666664
@@ -44,4 +46,13 @@ position = Vector2(24, -428)
 shape = SubResource("RectangleShape2D_igllg")
 debug_color = Color(0.19813973, 0.61040646, 0.5649672, 0.41960785)
 
+[node name="DetectSound" type="AudioStreamPlayer2D" parent="." unique_id=1067564989]
+stream = ExtResource("3_detect")
+volume_db = -18.0
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=2135800205]
+stream = ExtResource("4_death")
+volume_db = -10.0
+
 [connection signal="area_entered" from="BulletCollision" to="." method="_on_bullet_collision_area_entered"]
+[connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]
