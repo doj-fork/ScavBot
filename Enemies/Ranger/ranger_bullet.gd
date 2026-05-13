@@ -28,7 +28,11 @@ func _on_area_entered(area: Area2D) -> void:
 
 	var parentNode: Node = area.get_parent()
 	if parentNode != null and parentNode.has_method("apply_flat_damage"):
-		parentNode.apply_flat_damage(damage, shooter)
+		#parentNode.apply_flat_damage(damage, shooter)
+		
+		#This wasnt working so this is a very temporary fix
+		Stats.health -= damage
+		
 		queue_free()
 
 func _on_body_entered(_body: Node2D) -> void:

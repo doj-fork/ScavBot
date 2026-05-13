@@ -68,16 +68,19 @@ func openCraft():
 		visible = true
 		Global.craftActive = true
 		get_tree().paused = true
+		Global.cannotPauseCrafting = true
 
 func _process(_delta):
 	if Input.is_action_just_pressed("Craft") and true not in Global.cannotCraftList and Global.craftActive == false:
 		visible = true
 		Global.craftActive = true
+		Global.cannotPauseCrafting = true
 		get_tree().paused = true
 	elif Input.is_action_just_pressed("Craft") and true not in Global.cannotCraftList and Global.craftActive == true:
 		visible = false
 		Global.craftActive = false
 		get_tree().paused = false
+		Global.cannotPauseCrafting = false
 		reset_material_highlights()
 		refund(4)
 	
@@ -484,6 +487,7 @@ func refund(arg):
 		visible = false
 		Global.craftActive = false
 		get_tree().paused = false
+		Global.cannotPauseCrafting = false
 		reset_material_highlights()
 func transact(arg):
 	if arg == "Wood":
