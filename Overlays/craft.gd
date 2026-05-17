@@ -16,6 +16,7 @@ extends CanvasLayer
 @onready var mItem = $Blueprint/MuzzleItem
 @onready var mShadow = $Blueprint/MuzzleItem/Shadow
 
+@onready var gunNameLabel = $Text/GunName
 @onready var craftButton = $Buttons/Craft
 @onready var hoverItem = $HoverItem
 @onready var woodSprite: Sprite2D = $Inventory/Wood
@@ -218,6 +219,17 @@ func updateText():
 	steelNum.text = str(Inventory.steel)
 	circuitNum.text = str(Inventory.circuit)
 	batteryNum.text = str(Inventory.battery)
+	match activeCraftList[1]:
+		"Wood", "Rock":
+			gunNameLabel.text = "Crafting Handgun"
+		"Scrap":
+			gunNameLabel.text = "Crafting Shotgun"
+		"Steel":
+			gunNameLabel.text = "Crafting Sniper"
+		"Battery", "Circuit":
+			gunNameLabel.text = "Crafting AR"
+		_:
+			gunNameLabel.text = ""
 func play_crafting_error_sfx() -> void:
 	if visible and Global.craftActive:
 		craftingmaterialerror_sfx.play()

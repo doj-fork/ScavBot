@@ -251,6 +251,24 @@ text = "Build Gun"
 horizontal_alignment = 1
 visible_characters_behavior = 1
 
+[node name="GunName" type="RichTextLabel" parent="Text" unique_id=1111222333]
+offset_left = 440.0
+offset_top = 172.0
+offset_right = 1180.0
+offset_bottom = 310.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.75666225, 0.8037532, 0.8459766, 1)
+theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.52156866)
+theme_override_constants/shadow_outline_size = 8
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("1_q4deu")
+theme_override_font_sizes/normal_font_size = 40
+horizontal_alignment = 1
+visible_characters_behavior = 1
+
 [node name="WoodNum" type="RichTextLabel" parent="Text" unique_id=1933788107]
 offset_left = 529.0
 offset_top = 330.0
