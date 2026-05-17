@@ -10,6 +10,8 @@ var _flashTween: Tween = null
 @onready var sprite: Sprite2D = $Sprite
 @onready var interactSound: AudioStreamPlayer2D = $InteractSound
 @onready var collectSound: AudioStreamPlayer2D = $CollectSound
+@onready var _itemCollectShape: CollisionShape2D = $ItemCollect/CollisionShape2D
+@onready var _collisionShape: CollisionShape2D = $Collision/CollisionShape2D
 
 func _ready() -> void:
 	_setup()
@@ -46,6 +48,8 @@ func _startCollect() -> void:
 		fadeTween.tween_property(sprite, "modulate:a", 0.0, 0.6)
 		await fadeTween.finished
 		sprite.visible = false
+		_itemCollectShape.set_deferred("disabled", true)
+		_collisionShape.set_deferred("disabled", true)
 		await collectSound.finished
 		queue_free()
 	else:

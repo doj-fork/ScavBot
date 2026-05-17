@@ -35,8 +35,10 @@ position = Vector2(-3.5, -11.25)
 shape = SubResource("RectangleShape2D_uqeof")
 
 [node name="InteractSound" type="AudioStreamPlayer2D" parent="." unique_id=675808358]
+bus = "SFX"
 
 [node name="CollectSound" type="AudioStreamPlayer2D" parent="." unique_id=1108450711]
+bus = "SFX"
 stream = ExtResource("3_collect")
 volume_db = -5.0
 

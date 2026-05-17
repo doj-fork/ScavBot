@@ -50,18 +50,22 @@ shape = SubResource("RectangleShape2D_kn70c")
 debug_color = Color(0.19813973, 0.61040646, 0.5649672, 0.41960785)
 
 [node name="DetectSound" type="AudioStreamPlayer2D" parent="." unique_id=1704496787]
+bus = "SFX"
 stream = ExtResource("3_tdetect")
 volume_db = -15.0
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=1595723113]
+bus = "SFX"
 stream = ExtResource("4_tdeath")
 volume_db = -10.0
 
 [node name="ChargeSound" type="AudioStreamPlayer2D" parent="." unique_id=148584166]
+bus = "SFX"
 stream = ExtResource("5_tcharge")
 volume_db = -10.0
 
 [node name="CrashSound" type="AudioStreamPlayer2D" parent="." unique_id=1963548808]
+bus = "SFX"
 stream = ExtResource("6_tcrash")
 volume_db = -15.0
 

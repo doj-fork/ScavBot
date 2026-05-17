@@ -46,14 +46,17 @@ position = Vector2(24, -428)
 shape = SubResource("RectangleShape2D_rg")
 
 [node name="DetectSound" type="AudioStreamPlayer2D" parent="." unique_id=1242623392]
+bus = "SFX"
 stream = ExtResource("3_detect")
 volume_db = -20.0
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=1201594716]
+bus = "SFX"
 stream = ExtResource("4_death")
 volume_db = -15.0
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="." unique_id=1400770925]
+bus = "SFX"
 stream = ExtResource("5_shoot")
 volume_db = -18.0
 

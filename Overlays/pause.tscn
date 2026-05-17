@@ -56,6 +56,25 @@ color = Color(0.3647059, 0.43137255, 0.49019608, 1)
 position = Vector2(4.153824, -245.07697)
 texture = ExtResource("3_xd0p5")
 
+[node name="HostilesKilled" type="RichTextLabel" parent="." unique_id=635982147]
+offset_left = 294.0
+offset_top = 118.0
+offset_right = 1117.0
+offset_bottom = 162.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.75666225, 0.8037532, 0.8459766, 1)
+theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.52156866)
+theme_override_constants/shadow_outline_size = 8
+theme_override_constants/shadow_offset_x = -5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("5_xd0p5")
+theme_override_font_sizes/normal_font_size = 28
+text = "Hostiles Killed: 0"
+horizontal_alignment = 1
+visible_characters_behavior = 1
+
 [node name="Text" type="RichTextLabel" parent="." unique_id=987517246]
 offset_left = 216.0
 offset_top = 203.0
@@ -73,7 +92,7 @@ theme_override_fonts/normal_font = ExtResource("5_xd0p5")
 theme_override_font_sizes/normal_font_size = 48
 text = "SFX
 
-Music"
+BGM"
 horizontal_alignment = 1
 visible_characters_behavior = 1
 

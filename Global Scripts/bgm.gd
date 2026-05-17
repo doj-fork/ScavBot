@@ -24,10 +24,38 @@ var _player: AudioStreamPlayer = null
 var _tween: Tween = null
 
 func _ready() -> void:
+	if AudioServer.get_bus_index("Music") == -1:
+		AudioServer.add_bus()
+		var music_idx: int = AudioServer.get_bus_count() - 1
+		AudioServer.set_bus_name(music_idx, "Music")
+		AudioServer.set_bus_send(music_idx, "Master")
+	if AudioServer.get_bus_index("SFX") == -1:
+		AudioServer.add_bus()
+		var sfx_idx: int = AudioServer.get_bus_count() - 1
+		AudioServer.set_bus_name(sfx_idx, "SFX")
+		AudioServer.set_bus_send(sfx_idx, "Master")
+	_apply_bus_volumes()
 	_player = AudioStreamPlayer.new()
+	_player.bus = "Music"
 	_player.volume_db = -80.0
 	add_child(_player)
 	_player.finished.connect(_on_track_finished)
+
+func _apply_bus_volumes() -> void:
+	var music_idx: int = AudioServer.get_bus_index("Music")
+	if music_idx != -1:
+		if Stats.music_volume == 0:
+			AudioServer.set_bus_mute(music_idx, true)
+		else:
+			AudioServer.set_bus_mute(music_idx, false)
+			AudioServer.set_bus_volume_db(music_idx, linear_to_db(float(Stats.music_volume) / 5.0))
+	var sfx_idx: int = AudioServer.get_bus_index("SFX")
+	if sfx_idx != -1:
+		if Stats.sfx_volume == 0:
+			AudioServer.set_bus_mute(sfx_idx, true)
+		else:
+			AudioServer.set_bus_mute(sfx_idx, false)
+			AudioServer.set_bus_volume_db(sfx_idx, linear_to_db(float(Stats.sfx_volume) / 5.0))
 
 func play_game_bgm() -> void:
 	_fade_in(_pick_random_game_track())

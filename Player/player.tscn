@@ -496,42 +496,52 @@ shape = SubResource("CapsuleShape2D_4ntmi")
 position = Vector2(13.333321, -426.6667)
 
 [node name="arSFX" type="AudioStreamPlayer2D" parent="." unique_id=1345529706]
+bus = "SFX"
 stream = ExtResource("4_gwnis")
 volume_db = -15.0
 
 [node name="sniperSFX" type="AudioStreamPlayer2D" parent="." unique_id=1782542731]
+bus = "SFX"
 stream = ExtResource("5_vtle1")
 volume_db = -10.0
 
 [node name="sniperboltoutSFX" type="AudioStreamPlayer2D" parent="." unique_id=1050021088]
+bus = "SFX"
 stream = ExtResource("6_od3ui")
 volume_db = -10.0
 
 [node name="sniperboltinSFX" type="AudioStreamPlayer2D" parent="." unique_id=1782780488]
+bus = "SFX"
 stream = ExtResource("7_00tjw")
 volume_db = -10.0
 
 [node name="handgunSFX" type="AudioStreamPlayer2D" parent="." unique_id=451733188]
+bus = "SFX"
 stream = ExtResource("8_apopc")
 volume_db = -10.0
 
 [node name="shotgunSFX" type="AudioStreamPlayer2D" parent="." unique_id=867531754]
+bus = "SFX"
 stream = ExtResource("9_5htga")
 volume_db = -10.0
 
 [node name="shotgunrackbackSFX" type="AudioStreamPlayer2D" parent="." unique_id=233424130]
+bus = "SFX"
 stream = ExtResource("10_p5o4e")
 volume_db = -10.0
 
 [node name="shotgunrackforwardSFX" type="AudioStreamPlayer2D" parent="." unique_id=1025442525]
+bus = "SFX"
 stream = ExtResource("11_gu6f8")
 volume_db = -10.0
 
 [node name="craftSFX" type="AudioStreamPlayer2D" parent="." unique_id=774070872]
+bus = "SFX"
 stream = ExtResource("12_5htga")
 volume_db = -10.0
 
 [node name="walkSFX" type="AudioStreamPlayer2D" parent="." unique_id=-475690447]
+bus = "SFX"
 volume_db = -10.0
 
 [node name="EnemyPlayerCollision" type="Area2D" parent="." unique_id=1535774745]

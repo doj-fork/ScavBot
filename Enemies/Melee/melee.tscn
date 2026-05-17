@@ -47,10 +47,12 @@ shape = SubResource("RectangleShape2D_igllg")
 debug_color = Color(0.19813973, 0.61040646, 0.5649672, 0.41960785)
 
 [node name="DetectSound" type="AudioStreamPlayer2D" parent="." unique_id=1067564989]
+bus = "SFX"
 stream = ExtResource("3_detect")
 volume_db = -20.0
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=2135800205]
+bus = "SFX"
 stream = ExtResource("4_death")
 volume_db = -15.0
 

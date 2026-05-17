@@ -450,6 +450,7 @@ func _on_bullet_collision_area_entered(_area: Area2D) -> void:
 		_die()
 
 func _die() -> void:
+	Stats.tank_kills += 1
 	set_physics_process(false)
 	tankSprite.visible = false
 	$CollisionShape2D.set_deferred("disabled", true)

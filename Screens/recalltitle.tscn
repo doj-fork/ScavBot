@@ -83,6 +83,7 @@ theme_override_font_sizes/font_size = 36
 text = "CREDITS"
 
 [node name="MenuBGM" type="AudioStreamPlayer2D" parent="." unique_id=1247246021]
+bus = "Music"
 position = Vector2(960, 540)
 stream = ExtResource("5_w46te")
 
