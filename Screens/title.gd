@@ -30,6 +30,8 @@ const LAYOUT_REGION_SIZE: Vector2 = Vector2(960.0, 540.0)
 @onready var group_presents_label: Label = $IntroOverlay/GroupPresentsLabel
 @onready var credits_overlay: Control = $CreditsOverlay
 @onready var close_button: Button = $CreditsOverlay/CloseButton
+@onready var options_button: Button = $UIRoot/CenterContainer/VBoxContainer/OptionsButton
+@onready var options_overlay: TitleOptions = $OptionsOverlay
 
 var is_starting_game: bool = false
 var is_intro_playing: bool = true
@@ -52,6 +54,7 @@ func _ready() -> void:
 	play_button.disabled = true
 
 	_connect_button_signals()
+	options_overlay.options_closed.connect(_on_options_closed)
 
 	await _play_intro_sequence()
 
@@ -163,6 +166,11 @@ func _connect_button_signals() -> void:
 	if not close_button.pressed.is_connected(_on_button_click):
 		close_button.pressed.connect(_on_button_click)
 
+	if not options_button.mouse_entered.is_connected(_on_button_hover):
+		options_button.mouse_entered.connect(_on_button_hover)
+	if not options_button.pressed.is_connected(_on_button_click):
+		options_button.pressed.connect(_on_button_click)
+
 
 func _on_button_hover() -> void:
 	if hover_sfx.stream != null:
@@ -208,3 +216,21 @@ func pressCredits() -> void:
 
 func pressCreditsClose() -> void:
 	credits_overlay.visible = false
+
+
+func pressOptions() -> void:
+	if is_intro_playing:
+		return
+	play_button.disabled = true
+	options_button.disabled = true
+	credits_button.disabled = true
+	quit_button.disabled = true
+	options_overlay.open()
+
+
+func _on_options_closed() -> void:
+	if not is_starting_game:
+		play_button.disabled = false
+	options_button.disabled = false
+	credits_button.disabled = false
+	quit_button.disabled = false

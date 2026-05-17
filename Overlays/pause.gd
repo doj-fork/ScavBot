@@ -4,6 +4,8 @@ var active = false
 
 @onready var _hostiles_killed_label: RichTextLabel = $HostilesKilled
 @onready var _sfx_music_label: RichTextLabel = $Text
+@onready var _hover_sfx: AudioStreamPlayer2D = $hoverSFX
+@onready var _click_sfx: AudioStreamPlayer2D = $clickSFX
 
 func _ready():
 	visible = false
@@ -14,6 +16,7 @@ func _process(_delta):
 		active = true
 		visible = true
 		get_tree().paused = true
+		Global.cannotCraftGeneral = true
 		_update_hostiles_killed()
 		_refresh_volume_label()
 	elif Input.is_action_just_pressed("Escape") and true not in Global.cannotPauseList and active == true:
@@ -23,6 +26,7 @@ func resume():
 	active = false
 	visible = false
 	get_tree().paused = false
+	Global.cannotCraftGeneral = false
 
 func _on_menu_pressed() -> void:
 	Stats.majorReset()
@@ -50,43 +54,23 @@ func _on_fullscreen_pressed() -> void:
 
 func _on_music_down_pressed() -> void:
 	Stats.music_volume = max(Stats.music_volume - 1, 0)
-	_apply_music_volume()
+	BGM._apply_bus_volumes()
 	_refresh_volume_label()
 
 func _on_music_up_pressed() -> void:
 	Stats.music_volume = min(Stats.music_volume + 1, 10)
-	_apply_music_volume()
+	BGM._apply_bus_volumes()
 	_refresh_volume_label()
 
 func _on_sfx_up_pressed() -> void:
 	Stats.sfx_volume = min(Stats.sfx_volume + 1, 10)
-	_apply_sfx_volume()
+	BGM._apply_bus_volumes()
 	_refresh_volume_label()
 
 func _on_sfx_down_pressed() -> void:
 	Stats.sfx_volume = max(Stats.sfx_volume - 1, 0)
-	_apply_sfx_volume()
+	BGM._apply_bus_volumes()
 	_refresh_volume_label()
-
-func _apply_sfx_volume() -> void:
-	var idx: int = AudioServer.get_bus_index("SFX")
-	if idx == -1:
-		return
-	if Stats.sfx_volume == 0:
-		AudioServer.set_bus_mute(idx, true)
-	else:
-		AudioServer.set_bus_mute(idx, false)
-		AudioServer.set_bus_volume_db(idx, linear_to_db(float(Stats.sfx_volume) / 5.0))
-
-func _apply_music_volume() -> void:
-	var idx: int = AudioServer.get_bus_index("Music")
-	if idx == -1:
-		return
-	if Stats.music_volume == 0:
-		AudioServer.set_bus_mute(idx, true)
-	else:
-		AudioServer.set_bus_mute(idx, false)
-		AudioServer.set_bus_volume_db(idx, linear_to_db(float(Stats.music_volume) / 5.0))
 
 func _refresh_volume_label() -> void:
 	_sfx_music_label.text = "SFX: " + str(Stats.sfx_volume) + "\n\nBGM: " + str(Stats.music_volume)
@@ -108,3 +92,13 @@ func _format_kills(n: int) -> String:
 		result = s[i] + result
 		count += 1
 	return result
+
+
+func _on_button_hover() -> void:
+	if _hover_sfx.stream != null:
+		_hover_sfx.play()
+
+
+func _on_button_click() -> void:
+	if _click_sfx.stream != null:
+		_click_sfx.play()

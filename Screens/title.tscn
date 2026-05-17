@@ -7,6 +7,9 @@
 [ext_resource type="AudioStream" uid="uid://1b83mnmwynxa" path="res://Assets/SFX/UI/SCP-x6x-by-Kevin-Macleod.mp3" id="4_jkbyu"]
 [ext_resource type="AudioStream" uid="uid://ln51k6c4pmtp" path="res://Assets/SFX/UI/hover.mp3" id="6_fhs18"]
 [ext_resource type="AudioStream" uid="uid://dukx0e6ancmsc" path="res://Assets/SFX/UI/click.mp3" id="7_v3jji"]
+[ext_resource type="Shader" uid="uid://b5o7l4cpum7ua" path="res://Shaders/blur.gdshader" id="8_blur"]
+[ext_resource type="Texture2D" uid="uid://dcv4cmbc24uw1" path="res://Assets/MenuAssets/CraftingMenu.png" id="9_craftmenu"]
+[ext_resource type="Script" uid="uid://bmo05q2tirav0" path="res://Screens/title_options.gd" id="11_optsscript"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_itjia"]
 shader = ExtResource("3_1e64e")
@@ -15,6 +18,10 @@ shader_parameter/scale = 220.0
 shader_parameter/scroll_velocity = Vector2(0.06, 0.02)
 shader_parameter/refresh_rate = 60.0
 shader_parameter/seed = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_opts"]
+shader = ExtResource("8_blur")
+shader_parameter/blur_size = Vector2(1, 0.5)
 
 [node name="Title" type="Node2D" unique_id=843122108]
 script = ExtResource("1_6fv3b")
@@ -78,6 +85,12 @@ theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 36
 text = "PLAY"
 
+[node name="OptionsButton" type="Button" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=1650782601]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 36
+text = "OPTIONS"
+
 [node name="CreditsButton" type="Button" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=331656722]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
@@ -91,17 +104,14 @@ theme_override_font_sizes/font_size = 36
 text = "QUIT"
 
 [node name="MenuBGM" type="AudioStreamPlayer2D" parent="." unique_id=1247246021]
-bus = "Music"
 position = Vector2(960, 540)
 stream = ExtResource("4_jkbyu")
 
 [node name="hoverSFX" type="AudioStreamPlayer2D" parent="." unique_id=58860179]
-bus = "SFX"
 stream = ExtResource("6_fhs18")
 volume_db = -5.0
 
 [node name="clickSFX" type="AudioStreamPlayer2D" parent="." unique_id=1269830717]
-bus = "SFX"
 stream = ExtResource("7_v3jji")
 volume_db = -5.0
 
@@ -204,8 +214,176 @@ theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 28
 text = "BACK"
 
+[node name="OptionsOverlay" type="CanvasLayer" parent="." unique_id=700000001]
+layer = 10
+visible = false
+script = ExtResource("11_optsscript")
+
+[node name="Dim" type="ColorRect" parent="OptionsOverlay" unique_id=700000002]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.52156866)
+
+[node name="Blur" type="ColorRect" parent="OptionsOverlay" unique_id=700000003]
+material = SubResource("ShaderMaterial_opts")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Blueprint" type="Sprite2D" parent="OptionsOverlay" unique_id=700000004]
+position = Vector2(495, 265)
+scale = Vector2(0.72222215, 0.72222215)
+texture = ExtResource("9_craftmenu")
+
+[node name="Shadow" type="Sprite2D" parent="OptionsOverlay/Blueprint" unique_id=700000005]
+modulate = Color(0, 0, 0, 0.52156866)
+show_behind_parent = true
+position = Vector2(-18.738235, 18.73816)
+texture = ExtResource("9_craftmenu")
+
+[node name="ColorRect" type="ColorRect" parent="OptionsOverlay/Blueprint" unique_id=700000006]
+offset_left = -497.41333
+offset_top = -247.00319
+offset_right = 482.08197
+offset_bottom = 277.6656
+mouse_filter = 2
+color = Color(0.3647059, 0.43137255, 0.49019608, 1)
+
+[node name="OptionsTitle" type="RichTextLabel" parent="OptionsOverlay" unique_id=700000019]
+offset_left = 104.0
+offset_top = 80.0
+offset_right = 872.0
+offset_bottom = 136.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.75666225, 0.8037532, 0.8459766, 1)
+theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.52156866)
+theme_override_constants/shadow_outline_size = 8
+theme_override_constants/shadow_offset_x = -5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("2_font")
+theme_override_font_sizes/normal_font_size = 64
+text = "OPTIONS"
+horizontal_alignment = 1
+visible_characters_behavior = 1
+
+[node name="Text" type="RichTextLabel" parent="OptionsOverlay" unique_id=700000009]
+offset_left = 216.0
+offset_top = 176.0
+offset_right = 1039.0
+offset_bottom = 379.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.75666225, 0.8037532, 0.8459766, 1)
+theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.52156866)
+theme_override_constants/shadow_outline_size = 8
+theme_override_constants/shadow_offset_x = -5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("2_font")
+theme_override_font_sizes/normal_font_size = 48
+text = "SFX: 5
+
+BGM: 5"
+horizontal_alignment = 1
+visible_characters_behavior = 1
+
+[node name="MainMenu" type="Button" parent="OptionsOverlay" unique_id=700000010]
+offset_left = 192.0
+offset_top = 384.0
+offset_right = 784.0
+offset_bottom = 448.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 36
+text = "Return"
+
+[node name="Windowed" type="Button" parent="OptionsOverlay" unique_id=700000011]
+offset_left = 192.0
+offset_top = 160.0
+offset_right = 448.0
+offset_bottom = 224.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 36
+text = "Windowed"
+
+[node name="Fullscreen" type="Button" parent="OptionsOverlay" unique_id=700000012]
+offset_left = 192.0
+offset_top = 256.0
+offset_right = 448.0
+offset_bottom = 320.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 36
+text = "Fullscreen"
+
+[node name="BGMUp" type="Button" parent="OptionsOverlay" unique_id=700000013]
+offset_left = 680.0
+offset_top = 248.0
+offset_right = 736.0
+offset_bottom = 312.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 36
+text = "+"
+
+[node name="BGMDown" type="Button" parent="OptionsOverlay" unique_id=700000014]
+offset_left = 512.0
+offset_top = 248.0
+offset_right = 568.0
+offset_bottom = 312.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 36
+text = "-"
+
+[node name="SFXUp" type="Button" parent="OptionsOverlay" unique_id=700000015]
+offset_left = 512.0
+offset_top = 168.0
+offset_right = 568.0
+offset_bottom = 232.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 36
+text = "+"
+
+[node name="SFXDown" type="Button" parent="OptionsOverlay" unique_id=700000016]
+offset_left = 680.0
+offset_top = 168.0
+offset_right = 736.0
+offset_bottom = 232.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 36
+text = "-"
+
+[node name="hoverSFX" type="AudioStreamPlayer2D" parent="OptionsOverlay" unique_id=700000017]
+stream = ExtResource("6_fhs18")
+volume_db = -5.0
+
+[node name="clickSFX" type="AudioStreamPlayer2D" parent="OptionsOverlay" unique_id=700000018]
+stream = ExtResource("7_v3jji")
+volume_db = -5.0
+
 [connection signal="pressed" from="UIRoot/CenterContainer/VBoxContainer/PlayButton" to="." method="pressPlay"]
+[connection signal="pressed" from="UIRoot/CenterContainer/VBoxContainer/OptionsButton" to="." method="pressOptions"]
 [connection signal="pressed" from="UIRoot/CenterContainer/VBoxContainer/CreditsButton" to="." method="pressCredits"]
 [connection signal="pressed" from="UIRoot/CenterContainer/VBoxContainer/QuitButton" to="." method="pressQuit"]
 [connection signal="finished" from="MenuBGM" to="." method="_on_menu_bgm_finished"]
 [connection signal="pressed" from="CreditsOverlay/CloseButton" to="." method="pressCreditsClose"]
+[connection signal="mouse_entered" from="OptionsOverlay/MainMenu" to="OptionsOverlay" method="_on_button_hover"]
+[connection signal="pressed" from="OptionsOverlay/MainMenu" to="OptionsOverlay" method="_on_main_menu_pressed"]
+[connection signal="mouse_entered" from="OptionsOverlay/Windowed" to="OptionsOverlay" method="_on_button_hover"]
+[connection signal="pressed" from="OptionsOverlay/Windowed" to="OptionsOverlay" method="_on_windowed_pressed"]
+[connection signal="mouse_entered" from="OptionsOverlay/Fullscreen" to="OptionsOverlay" method="_on_button_hover"]
+[connection signal="pressed" from="OptionsOverlay/Fullscreen" to="OptionsOverlay" method="_on_fullscreen_pressed"]
+[connection signal="mouse_entered" from="OptionsOverlay/BGMUp" to="OptionsOverlay" method="_on_button_hover"]
+[connection signal="pressed" from="OptionsOverlay/BGMUp" to="OptionsOverlay" method="_on_bgm_up_pressed"]
+[connection signal="mouse_entered" from="OptionsOverlay/BGMDown" to="OptionsOverlay" method="_on_button_hover"]
+[connection signal="pressed" from="OptionsOverlay/BGMDown" to="OptionsOverlay" method="_on_bgm_down_pressed"]
+[connection signal="mouse_entered" from="OptionsOverlay/SFXUp" to="OptionsOverlay" method="_on_button_hover"]
+[connection signal="pressed" from="OptionsOverlay/SFXUp" to="OptionsOverlay" method="_on_sfx_up_pressed"]
+[connection signal="mouse_entered" from="OptionsOverlay/SFXDown" to="OptionsOverlay" method="_on_button_hover"]
+[connection signal="pressed" from="OptionsOverlay/SFXDown" to="OptionsOverlay" method="_on_sfx_down_pressed"]
