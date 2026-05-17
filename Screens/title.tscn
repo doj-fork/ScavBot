@@ -105,6 +105,7 @@ text = "QUIT"
 
 [node name="MenuBGM" type="AudioStreamPlayer2D" parent="." unique_id=1247246021]
 position = Vector2(960, 540)
+bus = "Music"
 stream = ExtResource("4_jkbyu")
 
 [node name="hoverSFX" type="AudioStreamPlayer2D" parent="." unique_id=58860179]
@@ -216,7 +217,6 @@ text = "BACK"
 
 [node name="OptionsOverlay" type="CanvasLayer" parent="." unique_id=700000001]
 layer = 10
-visible = false
 script = ExtResource("11_optsscript")
 
 [node name="Dim" type="ColorRect" parent="OptionsOverlay" unique_id=700000002]
@@ -276,9 +276,9 @@ horizontal_alignment = 1
 visible_characters_behavior = 1
 
 [node name="Text" type="RichTextLabel" parent="OptionsOverlay" unique_id=700000009]
-offset_left = 216.0
+offset_left = 240.0
 offset_top = 176.0
-offset_right = 1039.0
+offset_right = 1063.0
 offset_bottom = 379.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.75666225, 0.8037532, 0.8459766, 1)
@@ -324,9 +324,9 @@ theme_override_font_sizes/font_size = 36
 text = "Fullscreen"
 
 [node name="BGMUp" type="Button" parent="OptionsOverlay" unique_id=700000013]
-offset_left = 680.0
+offset_left = 720.0
 offset_top = 248.0
-offset_right = 736.0
+offset_right = 776.0
 offset_bottom = 312.0
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 36
@@ -342,18 +342,18 @@ theme_override_font_sizes/font_size = 36
 text = "-"
 
 [node name="SFXUp" type="Button" parent="OptionsOverlay" unique_id=700000015]
-offset_left = 512.0
+offset_left = 720.0
 offset_top = 168.0
-offset_right = 568.0
+offset_right = 776.0
 offset_bottom = 232.0
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 36
 text = "+"
 
 [node name="SFXDown" type="Button" parent="OptionsOverlay" unique_id=700000016]
-offset_left = 680.0
+offset_left = 512.0
 offset_top = 168.0
-offset_right = 736.0
+offset_right = 568.0
 offset_bottom = 232.0
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 36
@@ -361,10 +361,12 @@ text = "-"
 
 [node name="hoverSFX" type="AudioStreamPlayer2D" parent="OptionsOverlay" unique_id=700000017]
 stream = ExtResource("6_fhs18")
+bus = "SFX"
 volume_db = -5.0
 
 [node name="clickSFX" type="AudioStreamPlayer2D" parent="OptionsOverlay" unique_id=700000018]
 stream = ExtResource("7_v3jji")
+bus = "SFX"
 volume_db = -5.0
 
 [connection signal="pressed" from="UIRoot/CenterContainer/VBoxContainer/PlayButton" to="." method="pressPlay"]

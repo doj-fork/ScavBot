@@ -41,6 +41,7 @@ var parallax_base_center: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
+	Global.cannotPauseGeneral = true
 	parallax_base_center = parallax_ground.position
 	_fit_background_to_viewport()
 	var viewport: Viewport = get_viewport()
@@ -57,6 +58,10 @@ func _ready() -> void:
 	options_overlay.options_closed.connect(_on_options_closed)
 
 	await _play_intro_sequence()
+
+
+func _exit_tree() -> void:
+	Global.cannotPauseGeneral = false
 
 
 func _process(delta: float) -> void:
