@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://xjwfmg2hw1hx"
+path="res://.godot/imported/Full On.mp3-7ff3d0d5c94b7e38b01e8f72771f8ff6.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/BGM/Full On.mp3"
+dest_files=["res://.godot/imported/Full On.mp3-7ff3d0d5c94b7e38b01e8f72771f8ff6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

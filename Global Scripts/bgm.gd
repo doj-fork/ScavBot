@@ -5,9 +5,15 @@ const GAME_BGM_TRACKS: Array[String] = [
 	"res://Assets/SFX/BGM/Brain Dance.mp3",
 	"res://Assets/SFX/BGM/Clash Defiant.mp3",
 	"res://Assets/SFX/BGM/Curse of the Scarab.mp3",
-	"res://Assets/SFX/BGM/Lord of the Rangs.mp3",
+	"res://Assets/SFX/BGM/Ready Aim Fire.mp3",
 	"res://Assets/SFX/BGM/Obliteration.mp3",
+	"res://Assets/SFX/BGM/Killers.mp3",
 	"res://Assets/SFX/BGM/Oppressive Gloom.mp3",
+	"res://Assets/SFX/BGM/Black Vortex.mp3",
+	"res://Assets/SFX/BGM/Full On.mp3",
+	"res://Assets/SFX/BGM/The Descent.mp3",
+	"res://Assets/SFX/BGM/Prelude and Action.mp3",
+	"res://Assets/SFX/BGM/Five Armies.mp3",
 ]
 const INTERMISSION_TRACK: String = "res://Assets/SFX/BGM/Vibing Over Venus.mp3"
 const TARGET_DB: float = -30.0
