@@ -47,7 +47,7 @@ func runShotgun():
 		cooldown = true
 		shotgun_sfx.play()
 		for i in range(5):
-			shoot()
+			shoot(2)
 			await get_tree().create_timer(0.01, false).timeout
 		Gun.ammo -= 1
 		shotgunrackback_sfx.play()
@@ -63,7 +63,7 @@ func runSniper():
 	if Gun.type == "Sniper":
 		cooldown = true
 		sniper_sfx.play()
-		shoot()
+		shoot(3)
 		Gun.ammo -= 1
 		await get_tree().create_timer(0.8, false).timeout
 		sniperboltout_sfx.play()
@@ -85,6 +85,7 @@ func runHandgun():
 		cooldown = false
 	runHandgun()
 
-func shoot():
+func shoot(pierceCount: int = 1):
 	var newBullet = bullet.instantiate()
+	newBullet.pierceCount = pierceCount
 	self.call_deferred("add_child", newBullet)

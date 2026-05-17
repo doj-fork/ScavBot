@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var life = true
 var direction
+var pierceCount: int = 1
 
 func _ready():
 	determineVelocity()
@@ -33,4 +34,6 @@ func bulletDeath():
 	queue_free.call_deferred()
 
 func _on_enemy_mask_area_entered(_area: Area2D) -> void:
-	bulletDeath()
+	pierceCount -= 1
+	if pierceCount <= 0:
+		bulletDeath()
