@@ -40,10 +40,11 @@ func _startCollect() -> void:
 		Global.cannotShootIntermission = false
 		Global.cannotCraftCollecting = false
 		Global.canMove -= 1
-		await collectSound.finished
 		var fadeTween: Tween = create_tween()
 		fadeTween.tween_property(sprite, "modulate:a", 0.0, 0.6)
 		await fadeTween.finished
+		sprite.visible = false
+		await collectSound.finished
 		queue_free()
 	else:
 		Global.cannotShootIntermission = false
