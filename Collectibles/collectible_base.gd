@@ -32,7 +32,9 @@ func _startCollect() -> void:
 	await get_tree().create_timer(1.0, false).timeout
 	cooldown = false
 	health -= 1
-	_giveResources()
+	var resourceText: String = _giveResources()
+	if resourceText != "":
+		_showResourcePopup(resourceText)
 	if health <= 0:
 		_depleted = true
 		_stopFlash()
@@ -51,8 +53,35 @@ func _startCollect() -> void:
 		Global.cannotCraftCollecting = false
 		Global.canMove -= 1
 
-func _giveResources() -> void:
-	pass
+func _giveResources() -> String:
+	return ""
+
+func _showResourcePopup(text: String) -> void:
+	var font: FontFile = load("res://Assets/Fonts/SunkenMini.ttf")
+
+	var canvas: CanvasLayer = CanvasLayer.new()
+	canvas.layer = 10
+
+	var label: Label = Label.new()
+	label.text = text
+	label.add_theme_font_override("font", font)
+	label.add_theme_font_size_override("font_size", 48)
+	label.add_theme_color_override("font_color", Color.WHITE)
+	label.add_theme_color_override("font_outline_color", Color.BLACK)
+	label.add_theme_constant_override("outline_size", 3)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.custom_minimum_size = Vector2(300, 0)
+
+	canvas.add_child(label)
+	get_tree().current_scene.add_child(canvas)
+
+	var screen_pos: Vector2 = get_viewport().get_canvas_transform() * Global.playerPos
+	label.position = screen_pos - Vector2(150, 70)
+
+	var tween: Tween = label.create_tween().set_parallel(true)
+	tween.tween_property(label, "position:y", label.position.y - 40, 1.2)
+	tween.tween_property(label, "modulate:a", 0.0, 1.2)
+	tween.finished.connect(canvas.queue_free)
 
 func areaEntered(_area: Area2D) -> void:
 	entered = true
