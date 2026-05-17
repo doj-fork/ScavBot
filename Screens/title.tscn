@@ -83,29 +83,28 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 36
-text = "PLAY"
+text = "Play"
 
 [node name="OptionsButton" type="Button" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=1650782601]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 36
-text = "OPTIONS"
+text = "Options"
 
 [node name="CreditsButton" type="Button" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=331656722]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 36
-text = "CREDITS"
+text = "Credits"
 
 [node name="QuitButton" type="Button" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=1037864926]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 36
-text = "QUIT"
+text = "Quit"
 
 [node name="MenuBGM" type="AudioStreamPlayer2D" parent="." unique_id=1247246021]
 position = Vector2(960, 540)
-bus = "Music"
 stream = ExtResource("4_jkbyu")
 
 [node name="hoverSFX" type="AudioStreamPlayer2D" parent="." unique_id=58860179]
@@ -217,6 +216,7 @@ text = "BACK"
 
 [node name="OptionsOverlay" type="CanvasLayer" parent="." unique_id=700000001]
 layer = 10
+visible = false
 script = ExtResource("11_optsscript")
 
 [node name="Dim" type="ColorRect" parent="OptionsOverlay" unique_id=700000002]
@@ -361,12 +361,10 @@ text = "-"
 
 [node name="hoverSFX" type="AudioStreamPlayer2D" parent="OptionsOverlay" unique_id=700000017]
 stream = ExtResource("6_fhs18")
-bus = "SFX"
 volume_db = -5.0
 
 [node name="clickSFX" type="AudioStreamPlayer2D" parent="OptionsOverlay" unique_id=700000018]
 stream = ExtResource("7_v3jji")
-bus = "SFX"
 volume_db = -5.0
 
 [connection signal="pressed" from="UIRoot/CenterContainer/VBoxContainer/PlayButton" to="." method="pressPlay"]

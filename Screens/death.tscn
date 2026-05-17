@@ -73,7 +73,7 @@ grow_vertical = 2
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 72
-text = "RETRY"
+text = "Retry"
 
 [node name="MenuButton" type="Button" parent="OverlayLayer" unique_id=695113246]
 anchors_preset = 8
@@ -90,20 +90,17 @@ grow_vertical = 2
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 72
-text = "MENU"
+text = "Menu"
 
 [node name="hoverSFX" type="AudioStreamPlayer2D" parent="." unique_id=80939348]
-bus = "SFX"
 stream = ExtResource("4_3ml37")
 volume_db = -5.0
 
 [node name="clickSFX" type="AudioStreamPlayer2D" parent="." unique_id=408436936]
-bus = "SFX"
 stream = ExtResource("5_2dbpl")
 volume_db = -5.0
 
 [node name="staticSFX" type="AudioStreamPlayer2D" parent="." unique_id=385183373]
-bus = "SFX"
 stream = ExtResource("6_static")
 
 [connection signal="pressed" from="OverlayLayer/RetryButton" to="." method="_on_retry_button_pressed"]
