@@ -105,6 +105,7 @@ text = "Quit"
 
 [node name="MenuBGM" type="AudioStreamPlayer2D" parent="." unique_id=1247246021]
 position = Vector2(960, 540)
+bus = "Music"
 stream = ExtResource("4_jkbyu")
 
 [node name="hoverSFX" type="AudioStreamPlayer2D" parent="." unique_id=58860179]
@@ -361,10 +362,12 @@ text = "-"
 
 [node name="hoverSFX" type="AudioStreamPlayer2D" parent="OptionsOverlay" unique_id=700000017]
 stream = ExtResource("6_fhs18")
+bus = "SFX"
 volume_db = -5.0
 
 [node name="clickSFX" type="AudioStreamPlayer2D" parent="OptionsOverlay" unique_id=700000018]
 stream = ExtResource("7_v3jji")
+bus = "SFX"
 volume_db = -5.0
 
 [connection signal="pressed" from="UIRoot/CenterContainer/VBoxContainer/PlayButton" to="." method="pressPlay"]
