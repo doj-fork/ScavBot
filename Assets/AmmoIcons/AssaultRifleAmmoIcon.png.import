@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jqvhxqcvv7a3"
-path="res://.godot/imported/HUDHandgunAmmoIcon.png-b4f7f68779590f56f5181f84c742f370.ctex"
+uid="uid://qcplygovxft7"
+path="res://.godot/imported/AssaultRifleAmmoIcon.png-6d26c6de25339a87a1f33d71fdf965d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/HUDHandgunAmmoIcon.png"
-dest_files=["res://.godot/imported/HUDHandgunAmmoIcon.png-b4f7f68779590f56f5181f84c742f370.ctex"]
+source_file="res://Assets/AmmoIcons/AssaultRifleAmmoIcon.png"
+dest_files=["res://.godot/imported/AssaultRifleAmmoIcon.png-6d26c6de25339a87a1f33d71fdf965d0.ctex"]
 
 [params]
 

@@ -366,10 +366,10 @@ horizontal_alignment = 2
 visible_characters_behavior = 1
 
 [node name="Type" type="RichTextLabel" parent="Text" unique_id=1111222333]
-offset_left = 683.0
-offset_top = 48.0
-offset_right = 942.0
-offset_bottom = 90.0
+offset_left = 686.0
+offset_top = 22.0
+offset_right = 945.0
+offset_bottom = 64.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.75666225, 0.8037532, 0.8459766, 1)
 theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)
@@ -384,10 +384,10 @@ text = " Type: [DATA MISSING]"
 visible_characters_behavior = 1
 
 [node name="Damage" type="RichTextLabel" parent="Text" unique_id=839859212]
-offset_left = 683.0
-offset_top = 94.0
-offset_right = 968.0
-offset_bottom = 136.0
+offset_left = 686.0
+offset_top = 80.0
+offset_right = 971.0
+offset_bottom = 122.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.75666225, 0.8037532, 0.8459766, 1)
 theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)
@@ -402,10 +402,10 @@ text = " Damage: [DATA MISSING]"
 visible_characters_behavior = 1
 
 [node name="Accuracy" type="RichTextLabel" parent="Text" unique_id=99231506]
-offset_left = 683.0
-offset_top = 140.0
-offset_right = 942.0
-offset_bottom = 182.0
+offset_left = 686.0
+offset_top = 141.0
+offset_right = 945.0
+offset_bottom = 183.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.75666225, 0.8037532, 0.8459766, 1)
 theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)
@@ -420,10 +420,10 @@ text = " Accuracy: [DATA MISSING]"
 visible_characters_behavior = 1
 
 [node name="Durability" type="RichTextLabel" parent="Text" unique_id=870555666]
-offset_left = 683.0
-offset_top = 186.0
-offset_right = 968.0
-offset_bottom = 228.0
+offset_left = 686.0
+offset_top = 199.0
+offset_right = 971.0
+offset_bottom = 241.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.75666225, 0.8037532, 0.8459766, 1)
 theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)

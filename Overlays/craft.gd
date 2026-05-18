@@ -1,5 +1,15 @@
 extends CanvasLayer
 
+var durScale = 0
+var damScale = 0
+var typeScale = 0
+var accScale = 0
+
+@onready var durText = $Text/Durability
+@onready var damText = $Text/Damage
+@onready var typeText = $Text/Type
+@onready var accText = $Text/Accuracy
+
 @onready var woodNum = $Text/WoodNum
 @onready var rockNum = $Text/RockNum
 @onready var scrapNum = $Text/ScrapNum
@@ -16,7 +26,6 @@ extends CanvasLayer
 @onready var mItem = $Blueprint/MuzzleItem
 @onready var mShadow = $Blueprint/MuzzleItem/Shadow
 
-@onready var gunNameLabel = $Text/GunName
 @onready var craftButton = $Buttons/Craft
 @onready var hoverItem = $HoverItem
 @onready var woodSprite: Sprite2D = $Inventory/Wood
@@ -99,7 +108,7 @@ func _process(_delta):
 		
 	if Input.is_action_just_pressed("Refund"):
 		refundSlot()
-
+	
 	updateText()
 	updateIcons()
 	updateHover()
@@ -213,23 +222,113 @@ func _on_battery_pick_mouse_exited() -> void:
 	_set_material_highlight("Battery", false)
 
 func updateText(): 
+	
 	woodNum.text = str(Inventory.wood)
 	rockNum.text = str(Inventory.rock)
 	scrapNum.text = str(Inventory.scrap)
 	steelNum.text = str(Inventory.steel)
 	circuitNum.text = str(Inventory.circuit)
 	batteryNum.text = str(Inventory.battery)
+	
+	var burnList = previewUpdate()
+	if activeCraftList[0] == "Null" and activeCraftList[1] == "Null":
+		durText.text = " Durability: [DATA MISSING]"
+	else:
+		var indic = checkStrength(burnList[0])
+		durText.text = " Durability: " + str(indic)
+	
+	if activeCraftList[2] == "Null" and activeCraftList[1] == "Null":
+		accText.text = " Accuracy: [DATA MISSING]"
+	else:
+		var indic = checkStrength(burnList[1])
+		accText.text = " Accuracy: " + str(indic)
+		
+	if activeCraftList[3] == "Null" and activeCraftList[1] == "Null":
+		damText.text = " Damage: [DATA MISSING]"
+	else:
+		var indic = checkStrength(burnList[2])
+		damText.text = " Damage: " + str(indic)
+		
+	if activeCraftList[1] == "Null":
+		typeText.text = " Type: [DATA MISSING]"
+	else:
+		var indic0 = checkStrength(burnList[0])
+		var indic1 = checkStrength(burnList[1])
+		var indic2 = checkStrength(burnList[2])
+		var indicType = checkStrength(activeCraftList[1])
+		typeText.text = " Type: " + str(indicType)
+		damText.text = " Damage: " + str(indic2)
+		accText.text = " Accuracy: " + str(indic1)
+		durText.text = " Durability: " + str(indic0)
+	
+func previewUpdate():
+	var burnDam = 0
+	var burnAcc = 0
+	var burnDur = 0
+	match activeCraftList[0]:
+		"Wood", "Rock":
+			burnDur += -1
+		"Scrap":
+			burnDur += 0
+		"Steel":
+			burnDur += 2
+		"Battery", "Circuit":
+			burnDur += 1
+	match activeCraftList[2]:
+		"Wood", "Rock":
+			burnAcc += -1
+		"Scrap":
+			burnAcc += 0
+		"Battery", "Circuit":
+			burnAcc += 1
+		"Steel":
+			burnAcc += 2
+	match activeCraftList[3]:
+		"Wood", "Rock":
+			burnDam += -1
+		"Scrap":
+			burnDam += 0
+		"Battery", "Circuit":
+			burnDam += 2
+		"Steel":
+			burnDam += 1
 	match activeCraftList[1]:
 		"Wood", "Rock":
-			gunNameLabel.text = "Crafting Handgun"
+			burnDam += 0
+			burnDur += 0
+			burnAcc += 1
 		"Scrap":
-			gunNameLabel.text = "Crafting Shotgun"
-		"Steel":
-			gunNameLabel.text = "Crafting Sniper"
+			burnDam += 2
+			burnDur += 0
+			burnAcc += -2
 		"Battery", "Circuit":
-			gunNameLabel.text = "Crafting AR"
-		_:
-			gunNameLabel.text = ""
+			burnDam += -1
+			burnDur += 2
+			burnAcc += 0
+		"Steel":
+			burnDam += 1
+			burnDur += -2
+			burnAcc += 3
+	return [burnDur, burnAcc, burnDam]
+	
+func checkStrength(arg):
+	if arg is int:
+		if arg < 0:
+			return "Poor"
+		elif arg < 2:
+			return "Moderate"
+		else:
+			return "High"
+	elif arg is String:
+		if arg in ["Wood", "Rock"]:
+			return "Handgun"
+		elif arg in ["Scrap"]:
+			return "Shotgun"
+		elif arg in ["Steel"]:
+			return "Sniper"
+		elif arg in ["Circuit", "Battery"]:
+			return "Automatic"
+	
 func play_crafting_error_sfx() -> void:
 	if visible and Global.craftActive:
 		craftingmaterialerror_sfx.play()

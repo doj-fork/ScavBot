@@ -29,3 +29,4 @@ func majorReset():
 	Inventory.steel = 0
 	Inventory.circuit = 0
 	Inventory.battery = 0
+	Gun.ammo = 0
