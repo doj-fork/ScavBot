@@ -72,7 +72,7 @@ func openCraft():
 		Global.cannotPauseCrafting = true
 
 func _process(_delta):
-	if Input.is_action_just_pressed("Craft") and true not in Global.cannotCraftList and Global.craftActive == false:
+	if Input.is_action_just_pressed("Craft") and true not in Global.cannotCraftList and Global.craftActive == false and Global.pauseActive == false:
 		visible = true
 		Global.craftActive = true
 		Global.cannotPauseCrafting = true

@@ -497,30 +497,30 @@ hframes = 6
 script = ExtResource("16_18qjx")
 
 [node name="craftingconfirmSFX" type="AudioStreamPlayer2D" parent="." unique_id=1041846472]
-bus = "SFX"
 stream = ExtResource("18_ulw4q")
 volume_db = -10.0
+bus = &"SFX"
 
 [node name="dropmaterialcraftingSFX" type="AudioStreamPlayer2D" parent="." unique_id=2039093421]
-bus = "SFX"
 stream = ExtResource("18_atwtm")
 volume_db = -5.0
+bus = &"SFX"
 
 [node name="craftingmaterialerrorSFX" type="AudioStreamPlayer2D" parent="." unique_id=496719421]
-bus = "SFX"
 position = Vector2(87, 198)
 scale = Vector2(0.587037, 0.587037)
 stream = ExtResource("19_lqhh0")
+bus = &"SFX"
 
 [node name="hovercraftingSFX" type="AudioStreamPlayer2D" parent="." unique_id=478958857]
-bus = "SFX"
 stream = ExtResource("19_drtgm")
 volume_db = -5.0
+bus = &"SFX"
 
 [node name="pickupcraftingSFX" type="AudioStreamPlayer2D" parent="." unique_id=774744761]
-bus = "SFX"
 stream = ExtResource("18_0w4hh")
 volume_db = -5.0
+bus = &"SFX"
 
 [connection signal="pressed" from="Buttons/Craft" to="." method="craftGun"]
 [connection signal="mouse_entered" from="Buttons/H_Hover" to="." method="hEnter"]

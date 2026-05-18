@@ -20,6 +20,8 @@ var grain_material: ShaderMaterial = null
 
 
 func _ready() -> void:
+	Global.cannotCraftGeneral = true
+	Global.cannotPauseGeneral = true
 	randomize()
 	_hide_hud()
 	_setup_initial_state()
@@ -86,6 +88,8 @@ func _on_retry_button_pressed() -> void:
 	Global.hudActive = true
 	Stats.health = 100 + (Stats.healthMult * 5)
 	Stats.majorReset()
+	Global.cannotCraftGeneral = false
+	Global.cannotPauseGeneral = false
 	get_tree().change_scene_to_file("res://Screens/game_loader.tscn")
 	
 # game starts tweaking when you press from the menu i might remove

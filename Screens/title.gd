@@ -41,6 +41,7 @@ var parallax_base_center: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
+	Global.cannotCraftGeneral = true
 	Global.cannotPauseGeneral = true
 	parallax_base_center = parallax_ground.position
 	_fit_background_to_viewport()
@@ -206,6 +207,8 @@ func pressPlay() -> void:
 	menu_bgm.stop()
 
 	get_tree().change_scene_to_file("res://Screens/game_loader.tscn")
+	Global.cannotCraftGeneral = false
+	Global.cannotPauseGeneral = false
 	Global.hudActive = true
 
 

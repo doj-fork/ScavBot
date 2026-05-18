@@ -15,8 +15,8 @@ func _process(_delta):
 	if Input.is_action_just_pressed("Escape") and true not in Global.cannotPauseList and active == false:
 		active = true
 		visible = true
+		Global.cannotCraftPaused = true
 		get_tree().paused = true
-		Global.cannotCraftGeneral = true
 		_update_hostiles_killed()
 		_refresh_volume_label()
 	elif Input.is_action_just_pressed("Escape") and true not in Global.cannotPauseList and active == true:
@@ -24,10 +24,10 @@ func _process(_delta):
 		
 func resume():
 	active = false
+	Global.cannotCraftPaused = false
 	visible = false
 	get_tree().paused = false
-	Global.cannotCraftGeneral = false
-
+	
 func _on_menu_pressed() -> void:
 	Stats.majorReset()
 	resume()

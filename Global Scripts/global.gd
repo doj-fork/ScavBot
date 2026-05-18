@@ -24,9 +24,13 @@ var cannotShootList: Array[bool] = [cannotShootCollecting, cannotShootIntermissi
 var cannotCraftGeneral: bool = false
 var cannotCraftTransitioning: bool = false
 var cannotCraftCollecting: bool = false
-var cannotCraftList: Array[bool] = [cannotCraftGeneral, cannotCraftTransitioning, cannotCraftCollecting]
+var cannotCraftPaused: bool = false
+var cannotCraftList: Array[bool] = [cannotCraftGeneral, cannotCraftTransitioning, cannotCraftCollecting, cannotCraftPaused]
 
+func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 func _process(_delta: float) -> void:
 	cannotPauseList = [cannotPauseTransitioning, cannotPauseGeneral, cannotPauseCrafting]
-	cannotCraftList = [cannotCraftGeneral, cannotCraftTransitioning, cannotCraftCollecting]
+	cannotCraftList = [cannotCraftGeneral, cannotCraftTransitioning, cannotCraftCollecting, cannotCraftPaused]
 	cannotShootList = [cannotShootCollecting, cannotShootIntermission]

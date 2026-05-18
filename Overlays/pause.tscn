@@ -36,6 +36,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Blueprint" type="Sprite2D" parent="." unique_id=1450621308]
+process_mode = 3
 position = Vector2(495, 265)
 scale = Vector2(0.72222215, 0.72222215)
 texture = ExtResource("2_onp70")
@@ -180,39 +181,39 @@ theme_override_font_sizes/font_size = 36
 text = "-"
 
 [node name="hoverSFX" type="AudioStreamPlayer2D" parent="." unique_id=800000001]
-bus = "SFX"
 stream = ExtResource("6_hover")
 volume_db = -5.0
+bus = &"SFX"
 
 [node name="clickSFX" type="AudioStreamPlayer2D" parent="." unique_id=800000002]
-bus = "SFX"
 stream = ExtResource("7_click")
 volume_db = -5.0
+bus = &"SFX"
 
-[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="Windowed" to="." method="_on_windowed_pressed"]
-[connection signal="pressed" from="Fullscreen" to="." method="_on_fullscreen_pressed"]
-[connection signal="pressed" from="MusicUp" to="." method="_on_music_up_pressed"]
-[connection signal="pressed" from="MusicDown" to="." method="_on_music_down_pressed"]
-[connection signal="pressed" from="SFXUp" to="." method="_on_sfx_up_pressed"]
-[connection signal="pressed" from="SFXDown" to="." method="_on_sfx_down_pressed"]
 [connection signal="mouse_entered" from="Menu" to="." method="_on_button_hover"]
 [connection signal="pressed" from="Menu" to="." method="_on_button_click"]
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]
 [connection signal="mouse_entered" from="Quit" to="." method="_on_button_hover"]
 [connection signal="pressed" from="Quit" to="." method="_on_button_click"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="mouse_entered" from="Resume" to="." method="_on_button_hover"]
 [connection signal="pressed" from="Resume" to="." method="_on_button_click"]
+[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
 [connection signal="mouse_entered" from="Windowed" to="." method="_on_button_hover"]
 [connection signal="pressed" from="Windowed" to="." method="_on_button_click"]
+[connection signal="pressed" from="Windowed" to="." method="_on_windowed_pressed"]
 [connection signal="mouse_entered" from="Fullscreen" to="." method="_on_button_hover"]
 [connection signal="pressed" from="Fullscreen" to="." method="_on_button_click"]
+[connection signal="pressed" from="Fullscreen" to="." method="_on_fullscreen_pressed"]
 [connection signal="mouse_entered" from="MusicUp" to="." method="_on_button_hover"]
 [connection signal="pressed" from="MusicUp" to="." method="_on_button_click"]
+[connection signal="pressed" from="MusicUp" to="." method="_on_music_up_pressed"]
 [connection signal="mouse_entered" from="MusicDown" to="." method="_on_button_hover"]
 [connection signal="pressed" from="MusicDown" to="." method="_on_button_click"]
+[connection signal="pressed" from="MusicDown" to="." method="_on_music_down_pressed"]
 [connection signal="mouse_entered" from="SFXUp" to="." method="_on_button_hover"]
+[connection signal="pressed" from="SFXUp" to="." method="_on_sfx_up_pressed"]
 [connection signal="pressed" from="SFXUp" to="." method="_on_button_click"]
 [connection signal="mouse_entered" from="SFXDown" to="." method="_on_button_hover"]
+[connection signal="pressed" from="SFXDown" to="." method="_on_sfx_down_pressed"]
 [connection signal="pressed" from="SFXDown" to="." method="_on_button_click"]

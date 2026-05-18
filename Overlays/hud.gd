@@ -78,7 +78,7 @@ func waveEnd():
 	waveTimer.text = ""
 
 func _on_craft_button_pressed() -> void:
-	if true not in Global.cannotCraftList and Global.craftActive == false:
+	if true not in Global.cannotCraftList and Global.craftActive == false and Global.pauseActive == false:
 		Crafting.openCraft()
 
 func reloadGun():

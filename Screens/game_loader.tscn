@@ -172,7 +172,6 @@ position_smoothing_enabled = true
 position_smoothing_speed = 5.5
 
 [node name="camLimit" type="Node2D" parent="." unique_id=1410762935]
-visible = false
 
 [node name="camLimit1" type="CollisionShape2D" parent="camLimit" unique_id=408006986]
 position = Vector2(-1299, 438)
@@ -303,7 +302,7 @@ texture = ExtResource("10_oqsqv")
 offset = Vector2(0, -50)
 
 [node name="Z6" type="Sprite2D" parent="Barriers" unique_id=1041608511]
-position = Vector2(-793, 887)
+position = Vector2(-799, 866)
 texture = ExtResource("11_sntuq")
 offset = Vector2(0, -17)
 
