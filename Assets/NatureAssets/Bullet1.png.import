@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fg1ypljd6v4j"
-path="res://.godot/imported/Steel1.png-2e287d3be79adc06ff14c51038728f54.ctex"
+uid="uid://b2i1xjryp54e6"
+path="res://.godot/imported/Bullet1.png-955c845105a4b79d7746d948c10f8dd9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/NatureAssets/Steel1.png"
-dest_files=["res://.godot/imported/Steel1.png-2e287d3be79adc06ff14c51038728f54.ctex"]
+source_file="res://Assets/NatureAssets/Bullet1.png"
+dest_files=["res://.godot/imported/Bullet1.png-955c845105a4b79d7746d948c10f8dd9.ctex"]
 
 [params]
 

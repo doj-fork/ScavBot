@@ -1,5 +1,8 @@
 extends CollectibleBase
 
+func _setup() -> void:
+	sprite.texture = load("res://Assets/NatureAssets/RefinedScrap" + str(randi_range(1, 3)) + ".png")
+	
 func _giveResources() -> String:
 	var burn: int = randi_range(1, 3)
 	if burn == 1 or burn == 2:

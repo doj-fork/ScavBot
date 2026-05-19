@@ -32,6 +32,7 @@ var lingerTimers: Dictionary = {}
 	
 func _ready():
 	awaitCollect()
+	awaitCraft()
 	awaitCharge()
 	
 func _process(delta):
@@ -60,39 +61,77 @@ func awaitCollect():
 	await Signals.collecting
 	animState = "Special"
 	animSubState = "Collect"
-	await get_tree().create_timer(1, false).timeout
+	await get_tree().create_timer(0.1, false).timeout
+	sprite.texture = load("res://Player/Assets/Collect.png")
+	await get_tree().create_timer(0.8, false).timeout
+	animSubState = "Idle"
+	await get_tree().create_timer(0.1, false).timeout
+	animTree.set("parameters/Base/blend_position", animDir)
 	animState = "Base"
 	awaitCollect()
 	
+func awaitCraft():
+	await Signals.craft
+	animTree.set("parameters/Special/blend_position", Vector2(-1, 0))
+	animState = "Special"
+	animSubState = "Craft"
+	sprite.texture = load("res://Player/Assets/Special.png")
+	Global.cannotShootGeneral = true
+	Global.canMove = 1
+	await get_tree().create_timer(0.05, false).timeout
+	stateMachine.travel("Special")
+	await get_tree().create_timer(1, false).timeout
+	animSubState = "Idle"
+	Global.canMove = 0
+	Global.cannotShootGeneral = false
+	await get_tree().create_timer(0.2, false).timeout
+	animTree.set("parameters/Base/blend_position", animDir)
+	animState = "Base"
+	awaitCraft()
+	
 func awaitCharge():
 	await Signals.charge
+	animTree.set("parameters/Special/blend_position", Vector2(1, 0))
 	animState = "Special"
 	animSubState = "Charge"
-	await get_tree().create_timer(1, false).timeout
+	sprite.texture = load("res://Player/Assets/Special.png")
+	await get_tree().create_timer(0.05, false).timeout
+	Global.canMove = 1
+	stateMachine.travel("Special")
+	await get_tree().create_timer(1.4, false).timeout
+	Global.canMove = 0
+	animSubState = "Idle"
+	await get_tree().create_timer(0.1, false).timeout
+	animTree.set("parameters/Base/blend_position", animDir)
 	animState = "Base"
 	awaitCharge()
 	
+	
 func animUpdate():
+	animTree.set("parameters/Base/blend_position", animDir)
+	animTree.set("parameters/Collect/blend_position", animDir)
 	if animState == "Base":
 		updateTexture("Base")
-		animTree.set("parameters/Base/blend_position", animDir)
 		if velocity == Vector2(0, 0):
 			animSubState = "Idle"
 		else:
 			animSubState = "Move"
 		stateMachine.travel("Base")
-	else:
+	elif animState == "Special":
 		updateTexture("Special")
-		stateMachine.travel("Special")
 		if animSubState == "Charge":
-			animTree.set("parameters/Base/blend_position", Vector2(1, 0))
+			animTree.set("parameters/Special/blend_position", Vector2(1, 0))
+			stateMachine.travel("Special")
+		elif animSubState == "Craft":
+			animTree.set("parameters/Special/blend_position", Vector2(-1, 0))
+			stateMachine.travel("Special")
 		elif animSubState == "Collect":
-			animTree.set("parameters/Base/blend_position", Vector2(-1, 0))
-		
+			stateMachine.travel("Collect")
 		
 func updateTexture(arg):
 	if arg == "Base" and Gun.type != "Null":
 		if animSubState == "Idle":
+			print(Gun.type)
 			sprite.texture = load("res://Player/Assets/Idle" + Gun.type + ".png")
 		else:
 			sprite.texture = load("res://Player/Assets/Move" + Gun.type + ".png")
@@ -101,8 +140,6 @@ func updateTexture(arg):
 			sprite.texture = load("res://Player/Assets/IdleEmpty.png")
 		else:
 			sprite.texture = load("res://Player/Assets/MoveEmpty.png")
-	elif arg == "Special":
-		pass
 
 func play_walk_sound() -> void:
 	# Determine if player is walking

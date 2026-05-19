@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://7k8204ibpxgh" path="res://Assets/NatureAssets/Bush1.png" id="1_ggc3o"]
 [ext_resource type="Script" uid="uid://bcy387f2n0iom" path="res://Collectibles/bush.gd" id="1_i1g35"]
+[ext_resource type="Texture2D" uid="uid://olivkx82cts1" path="res://Assets/Misc/Shadow.png" id="3_3yv4v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqeof"]
 size = Vector2(129.5, 29)
@@ -14,6 +15,15 @@ position = Vector2(-22.99997, 70)
 scale = Vector2(1.0010418, 1.0010417)
 texture = ExtResource("1_ggc3o")
 offset = Vector2(0, -105)
+
+[node name="Shadow" type="Sprite2D" parent="Sprite" unique_id=719133079]
+modulate = Color(2.1168277, 2.1168277, 2.1168277, 1)
+show_behind_parent = true
+z_index = -2
+position = Vector2(-11.407592, 34.58268)
+scale = Vector2(0.36750993, 0.36750993)
+texture = ExtResource("3_3yv4v")
+offset = Vector2(0, -60)
 
 [node name="Collision" type="StaticBody2D" parent="." unique_id=677594490]
 collision_layer = 33

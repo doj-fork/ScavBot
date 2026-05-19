@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dv0ht2wpr73nc"]
 
 [ext_resource type="Script" uid="uid://cvvoi2btipyyk" path="res://Collectibles/steel.gd" id="1_k8w7a"]
-[ext_resource type="Texture2D" uid="uid://fg1ypljd6v4j" path="res://Assets/NatureAssets/Steel1.png" id="2_k8w7a"]
+[ext_resource type="Texture2D" uid="uid://g3551yfeo7y" path="res://Assets/NatureAssets/RefinedScrap1.png" id="2_160ij"]
 [ext_resource type="AudioStream" uid="uid://cqvahmlih7411" path="res://Assets/SFX/UI/collectitem.mp3" id="3_collect"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_18u5j"]
@@ -14,9 +14,9 @@ size = Vector2(125.5, 18)
 script = ExtResource("1_k8w7a")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1692961618]
-position = Vector2(3.5980928, -30.354267)
-scale = Vector2(0.25901565, 0.25901568)
-texture = ExtResource("2_k8w7a")
+position = Vector2(9, -31.000002)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_160ij")
 
 [node name="ItemCollect" type="Area2D" parent="." unique_id=1283826316]
 collision_layer = 0
@@ -35,12 +35,12 @@ position = Vector2(4, -8)
 shape = SubResource("RectangleShape2D_uqeof")
 
 [node name="InteractSound" type="AudioStreamPlayer2D" parent="." unique_id=658825208]
-bus = "SFX"
+bus = &"SFX"
 
 [node name="CollectSound" type="AudioStreamPlayer2D" parent="." unique_id=667363718]
-bus = "SFX"
 stream = ExtResource("3_collect")
 volume_db = -5.0
+bus = &"SFX"
 
 [connection signal="area_entered" from="ItemCollect" to="." method="areaEntered"]
 [connection signal="area_exited" from="ItemCollect" to="." method="areaExited"]

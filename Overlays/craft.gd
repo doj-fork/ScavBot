@@ -338,6 +338,8 @@ func craftGun() -> void:
 		craftingconfirm_sfx.play()
 		Gun.craft(activeCraftList[0], activeCraftList[1], activeCraftList[2], activeCraftList[3])
 		refund(5)
+		await get_tree().create_timer(0.05, false).timeout
+		Signals.craft.emit()
 	else:
 		play_crafting_error_sfx()
 
