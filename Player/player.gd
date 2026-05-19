@@ -74,14 +74,15 @@ func awaitCharge():
 	
 func animUpdate():
 	if animState == "Base":
+		updateTexture("Base")
 		animTree.set("parameters/Base/blend_position", animDir)
 		if velocity == Vector2(0, 0):
 			animSubState = "Idle"
 		else:
 			animSubState = "Move"
-		updateTexture("Base")
 		stateMachine.travel("Base")
 	else:
+		updateTexture("Special")
 		stateMachine.travel("Special")
 		if animSubState == "Charge":
 			animTree.set("parameters/Base/blend_position", Vector2(1, 0))
@@ -90,12 +91,18 @@ func animUpdate():
 		
 		
 func updateTexture(arg):
-	if arg == "Base":
+	if arg == "Base" and Gun.type != "Null":
 		if animSubState == "Idle":
-			sprite.texture = load("res://Player/Assets/IdlePlayerEmpty1.png")
+			sprite.texture = load("res://Player/Assets/Idle" + Gun.type + ".png")
 		else:
-			sprite.texture = load("res://Player/Assets/RunningPlayerEmpty1.png")
-	
+			sprite.texture = load("res://Player/Assets/Move" + Gun.type + ".png")
+	elif arg == "Base" and Gun.type == "Null":
+		if animSubState == "Idle":
+			sprite.texture = load("res://Player/Assets/IdleEmpty.png")
+		else:
+			sprite.texture = load("res://Player/Assets/MoveEmpty.png")
+	elif arg == "Special":
+		pass
 
 func play_walk_sound() -> void:
 	# Determine if player is walking

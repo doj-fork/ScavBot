@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cwfjmmvi5mck"]
 
 [ext_resource type="Script" uid="uid://dh1r14d3b673d" path="res://Player/player.gd" id="1_4ntmi"]
-[ext_resource type="Texture2D" uid="uid://c7ghpe1q07alw" path="res://Player/Assets/RunningPlayerEmpty1.png" id="2_5htga"]
+[ext_resource type="Texture2D" uid="uid://bm4oc21yrtngx" path="res://Player/Assets/IdleHandgun.png" id="2_5htga"]
 [ext_resource type="PackedScene" uid="uid://cyi5ia1lmgu1t" path="res://Player/weapon.tscn" id="3_btcbx"]
 [ext_resource type="AudioStream" uid="uid://cgbpulhfvjv77" path="res://Assets/SFX/Gun/AR15.wav" id="4_gwnis"]
 [ext_resource type="AudioStream" uid="uid://bne4aaidecqil" path="res://Assets/SFX/Gun/Sniper.wav" id="5_vtle1"]
@@ -287,7 +287,7 @@ libraries/ = SubResource("AnimationLibrary_k53q1")
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=859024362]
 tree_root = SubResource("AnimationNodeStateMachine_7emwf")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Base/blend_position = Vector2(0, 0)
+parameters/Base/blend_position = Vector2(-0.6513317, -1.8201795)
 parameters/Special/blend_position = Vector2(0, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1578713208]
