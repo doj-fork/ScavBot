@@ -1,24 +1,46 @@
 [gd_scene format=3 uid="uid://mc0ry67vkl7p"]
 
+[ext_resource type="PackedScene" uid="uid://cwfjmmvi5mck" path="res://Player/player.tscn" id="1_plyr"]
 [ext_resource type="Script" uid="uid://bfnbwg0dp5hyk" path="res://Screens/entrance_door.gd" id="2_d48hf"]
 [ext_resource type="Texture2D" uid="uid://qg066lrja8qb" path="res://Assets/NatureAssets/Door1.png" id="3_aooyq"]
-[ext_resource type="Script" uid="uid://p4dko8dlvqxl" path="res://Screens/upgrade.gd" id="6_tmyyq"]
-[ext_resource type="Texture2D" uid="uid://navvw5pegkel" path="res://Assets/NatureAssets/Computer1.png" id="7_fd10x"]
+[ext_resource type="Script" uid="uid://xnocasom4xub" path="res://Screens/speaker.gd" id="4_spkgd"]
+[ext_resource type="Texture2D" uid="uid://navvw5pegkel" path="res://Assets/NatureAssets/Computer1.png" id="5_compuimg"]
+[ext_resource type="Script" uid="uid://bwyl18wxv5f7n" path="res://Screens/heal.gd" id="6_healgd"]
+[ext_resource type="Texture2D" uid="uid://trp4s107gpdk" path="res://Assets/NatureAssets/Charge1.png" id="7_chargeimg"]
+[ext_resource type="Script" uid="uid://p4dko8dlvqxl" path="res://Screens/upgrade.gd" id="8_upgradegd"]
+[ext_resource type="PackedScene" uid="uid://bs26xp77s0ly4" path="res://Collectibles/tree.tscn" id="9_treescn"]
+[ext_resource type="PackedScene" uid="uid://csnhe5ji6disy" path="res://Collectibles/rock.tscn" id="10_rockscn"]
+[ext_resource type="PackedScene" uid="uid://dmnlpl2sm8twp" path="res://Collectibles/scrap.tscn" id="11_scrapscn"]
+[ext_resource type="PackedScene" uid="uid://dv0ht2wpr73nc" path="res://Collectibles/steel.tscn" id="12_steelscn"]
+[ext_resource type="PackedScene" uid="uid://blk7eljqwewgo" path="res://Collectibles/computer.tscn" id="13_computerscn"]
+[ext_resource type="PackedScene" uid="uid://dv75aq4ce7iyy" path="res://Enemies/Melee/tutorial_dummy.tscn" id="14_dummyscn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tow3t"]
 radius = 113.004425
 
-[node name="Intermission" type="Node2D" unique_id=1504878694]
+[node name="Tutorial" type="Node2D" unique_id=1504878694]
 y_sort_enabled = true
+
+[node name="Player" parent="." unique_id=253815592 instance=ExtResource("1_plyr")]
+y_sort_enabled = true
+position = Vector2(480, 494)
+
+[node name="CameraLink" type="RemoteTransform2D" parent="Player" unique_id=904402373]
+remote_path = NodePath("../../Camera")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=811053232]
 process_mode = 3
-position = Vector2(482, 266)
+position = Vector2(480, 494)
 scale = Vector2(0.075, 0.075)
 position_smoothing_enabled = true
 position_smoothing_speed = 5.5
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=492629040]
+offset_left = -25.0
+offset_right = 40.0
+offset_bottom = 534.0
+
+[node name="ColorRect5" type="ColorRect" parent="." unique_id=1103613036]
 offset_left = -25.0
 offset_right = 40.0
 offset_bottom = 534.0
@@ -41,6 +63,7 @@ offset_right = 958.0
 offset_bottom = 554.0
 
 [node name="ExitDoor" type="Node2D" parent="." unique_id=634711565]
+visible = false
 script = ExtResource("2_d48hf")
 
 [node name="Sprite" type="Sprite2D" parent="ExitDoor" unique_id=1166243583]
@@ -57,26 +80,115 @@ position = Vector2(478, 18)
 shape = SubResource("CircleShape2D_tow3t")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 
-[node name="Upgrade" type="Node2D" parent="." unique_id=1895100618]
-position = Vector2(268, 66)
-script = ExtResource("6_tmyyq")
+[node name="Speaker" type="Node2D" parent="." unique_id=1895100618]
+position = Vector2(154, 414)
+script = ExtResource("4_spkgd")
 
-[node name="Sprite" type="Sprite2D" parent="Upgrade" unique_id=952028038]
+[node name="Sprite" type="Sprite2D" parent="Speaker" unique_id=952028038]
 position = Vector2(487.99994, -20)
 scale = Vector2(0.89983046, 0.89983046)
-texture = ExtResource("7_fd10x")
+texture = ExtResource("5_compuimg")
 
-[node name="Collision" type="Area2D" parent="Upgrade" unique_id=1044577827]
+[node name="Collision" type="Area2D" parent="Speaker" unique_id=1044577827]
 position = Vector2(-6, 13)
 collision_layer = 0
 collision_mask = 2048
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Upgrade/Collision" unique_id=2099386547]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Speaker/Collision" unique_id=2099386547]
 position = Vector2(480, -25)
 shape = SubResource("CircleShape2D_tow3t")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 
+[node name="HealDevice" type="Node2D" parent="." unique_id=1836573874]
+process_mode = 4
+visible = false
+position = Vector2(-243, 266)
+script = ExtResource("6_healgd")
+
+[node name="Sprite" type="Sprite2D" parent="HealDevice" unique_id=303143606]
+position = Vector2(476, -36)
+scale = Vector2(0.5422535, 0.5422535)
+texture = ExtResource("7_chargeimg")
+
+[node name="Collision" type="Area2D" parent="HealDevice" unique_id=2084071735]
+position = Vector2(-6, 13)
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealDevice/Collision" unique_id=1408869281]
+position = Vector2(480, -25)
+shape = SubResource("CircleShape2D_tow3t")
+debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
+
+[node name="UpgradeDevice" type="Node2D" parent="." unique_id=2000000001]
+process_mode = 4
+visible = false
+position = Vector2(50, 380)
+script = ExtResource("8_upgradegd")
+
+[node name="Sprite" type="Sprite2D" parent="UpgradeDevice" unique_id=2000000002]
+position = Vector2(487.99994, -20)
+scale = Vector2(0.89983046, 0.89983046)
+texture = ExtResource("5_compuimg")
+
+[node name="Collision" type="Area2D" parent="UpgradeDevice" unique_id=2000000003]
+position = Vector2(-6, 13)
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpgradeDevice/Collision" unique_id=2000000004]
+position = Vector2(480, -25)
+shape = SubResource("CircleShape2D_tow3t")
+debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
+
+[node name="TutorialBatch1" type="Node2D" parent="." unique_id=2100000001]
+process_mode = 4
+visible = false
+
+[node name="Tree1" parent="TutorialBatch1" unique_id=2100000002 instance=ExtResource("9_treescn")]
+position = Vector2(200, 180)
+
+[node name="Tree2" parent="TutorialBatch1" unique_id=2100000003 instance=ExtResource("9_treescn")]
+position = Vector2(360, 160)
+
+[node name="Tree3" parent="TutorialBatch1" unique_id=2100000004 instance=ExtResource("9_treescn")]
+position = Vector2(540, 170)
+
+[node name="Tree4" parent="TutorialBatch1" unique_id=2100000005 instance=ExtResource("9_treescn")]
+position = Vector2(700, 180)
+
+[node name="TutorialBatch2" type="Node2D" parent="." unique_id=-2094967295]
+process_mode = 4
+visible = false
+
+[node name="Rock1" parent="TutorialBatch2" unique_id=-2094967294 instance=ExtResource("10_rockscn")]
+position = Vector2(200, 280)
+
+[node name="Scrap1" parent="TutorialBatch2" unique_id=-2094967293 instance=ExtResource("11_scrapscn")]
+position = Vector2(380, 265)
+
+[node name="Steel1" parent="TutorialBatch2" unique_id=-2094967292 instance=ExtResource("12_steelscn")]
+position = Vector2(570, 275)
+
+[node name="Computer1" parent="TutorialBatch2" unique_id=-2094967291 instance=ExtResource("13_computerscn")]
+position = Vector2(750, 270)
+
+[node name="TutorialDummy1" parent="." unique_id=-1994967295 instance=ExtResource("14_dummyscn")]
+process_mode = 4
+visible = false
+position = Vector2(480, 150)
+
+[node name="TutorialDummy2" parent="." unique_id=-1894967295 instance=ExtResource("14_dummyscn")]
+process_mode = 4
+visible = false
+position = Vector2(580, 160)
+initial_health = 100
+
 [connection signal="area_entered" from="ExitDoor/Collision" to="ExitDoor" method="areaEntered"]
 [connection signal="area_exited" from="ExitDoor/Collision" to="ExitDoor" method="areaExited"]
-[connection signal="area_entered" from="Upgrade/Collision" to="Upgrade" method="areaEntered"]
-[connection signal="area_exited" from="Upgrade/Collision" to="Upgrade" method="areaExited"]
+[connection signal="area_entered" from="Speaker/Collision" to="Speaker" method="areaEntered"]
+[connection signal="area_exited" from="Speaker/Collision" to="Speaker" method="areaExited"]
+[connection signal="area_entered" from="HealDevice/Collision" to="HealDevice" method="areaEntered"]
+[connection signal="area_exited" from="HealDevice/Collision" to="HealDevice" method="areaExited"]
+[connection signal="area_entered" from="UpgradeDevice/Collision" to="UpgradeDevice" method="areaEntered"]
+[connection signal="area_exited" from="UpgradeDevice/Collision" to="UpgradeDevice" method="areaExited"]

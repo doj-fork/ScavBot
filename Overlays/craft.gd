@@ -337,6 +337,7 @@ func craftGun() -> void:
 	if "Null" not in activeCraftList:
 		craftingconfirm_sfx.play()
 		Gun.craft(activeCraftList[0], activeCraftList[1], activeCraftList[2], activeCraftList[3])
+		Signals.gun_crafted.emit()
 		refund(5)
 		await get_tree().create_timer(0.05, false).timeout
 		Signals.craft.emit()

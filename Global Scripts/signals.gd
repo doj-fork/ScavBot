@@ -7,6 +7,7 @@ signal intermission
 signal craft
 signal charge
 signal collecting
+signal gun_crafted
 
 func runGen():
 	chunkGen.emit()

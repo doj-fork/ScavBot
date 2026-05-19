@@ -3,8 +3,8 @@ extends Node2D
 var entered = false
 
 func _ready():
-	visible = true
-	
+	pass
+
 func _process(_delta):
 	if Input.is_action_just_pressed("Interact") and entered == true and visible == true:
 		Upgrades.visible = true

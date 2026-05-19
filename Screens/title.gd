@@ -29,6 +29,9 @@ const LAYOUT_REGION_SIZE: Vector2 = Vector2(960.0, 540.0)
 @onready var close_button: Button = $CreditsOverlay/CloseButton
 @onready var options_button: Button = $UIRoot/CenterContainer/VBoxContainer/OptionsButton
 @onready var options_overlay: TitleOptions = $OptionsOverlay
+@onready var skip_tutorial_overlay: Control = $SkipTutorialOverlay
+@onready var skip_yes_button: Button = $SkipTutorialOverlay/CenterContainer/VBoxContainer/YesButton
+@onready var skip_no_button: Button = $SkipTutorialOverlay/CenterContainer/VBoxContainer/NoButton
 
 var is_starting_game: bool = false
 var is_intro_playing: bool = true
@@ -174,6 +177,15 @@ func _connect_button_signals() -> void:
 	if not options_button.pressed.is_connected(_on_button_click):
 		options_button.pressed.connect(_on_button_click)
 
+	if not skip_yes_button.mouse_entered.is_connected(_on_button_hover):
+		skip_yes_button.mouse_entered.connect(_on_button_hover)
+	if not skip_yes_button.pressed.is_connected(_on_button_click):
+		skip_yes_button.pressed.connect(_on_button_click)
+	if not skip_no_button.mouse_entered.is_connected(_on_button_hover):
+		skip_no_button.mouse_entered.connect(_on_button_hover)
+	if not skip_no_button.pressed.is_connected(_on_button_click):
+		skip_no_button.pressed.connect(_on_button_click)
+
 
 func _on_button_hover() -> void:
 	if hover_sfx.stream != null:
@@ -189,8 +201,28 @@ func pressPlay() -> void:
 	if is_starting_game or is_intro_playing:
 		return
 
+	if not Global.tutorial_prompt_shown:
+		Global.tutorial_prompt_shown = true
+		skip_tutorial_overlay.visible = true
+		return
+
+	_start_game("res://Screens/game_loader.tscn", true)
+
+
+func pressSkipYes() -> void:
+	_start_game("res://Screens/game_loader.tscn", true)
+
+
+func pressSkipNo() -> void:
+	_start_game("res://Screens/tutorial.tscn", false)
+
+
+func _start_game(scene_path: String, activate_hud: bool) -> void:
+	if is_starting_game:
+		return
 	is_starting_game = true
 	play_button.disabled = true
+	skip_tutorial_overlay.visible = false
 	var transition_node: Node = get_tree().root.get_node_or_null("Transition")
 	if transition_node != null and transition_node.has_method("playTransition"):
 		transition_node.call("playTransition")
@@ -203,10 +235,11 @@ func pressPlay() -> void:
 	await bgm_fade_tween.finished
 	menu_bgm.stop()
 
-	get_tree().change_scene_to_file("res://Screens/game_loader.tscn")
+	get_tree().change_scene_to_file(scene_path)
 	Global.cannotCraftGeneral = false
 	Global.cannotPauseGeneral = false
-	Global.hudActive = true
+	if activate_hud:
+		Global.hudActive = true
 
 
 func pressQuit() -> void:
