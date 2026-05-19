@@ -21,6 +21,7 @@ func _setup() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Interact") and not cooldown and not _depleted and entered and not Global.cannotCraftCollecting:
+		Signals.collecting.emit()
 		_startCollect()
 
 func _startCollect() -> void:

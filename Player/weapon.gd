@@ -4,7 +4,7 @@ var cooldown = false
 
 signal shootClick
 
-@onready var sprite = $Sprite
+
 @onready var bullet = preload("res://Player/bullet.tscn")
 @onready var ar_sfx: AudioStreamPlayer2D = $"../arSFX"
 @onready var sniper_sfx: AudioStreamPlayer2D = $"../sniperSFX"
@@ -16,17 +16,12 @@ signal shootClick
 @onready var shotgunrackforward_sfx: AudioStreamPlayer2D = $"../shotgunrackforwardSFX"
 
 func _ready():
-	sprite.visible = false
 	runAR()
 	runShotgun()
 	runHandgun()
 	runSniper()
 	
 func _process(_delta):
-	if Gun.type != "Null":
-		sprite.visible = true
-	else:
-		sprite.visible = false
 	if Input.is_action_just_pressed("Shoot") and Gun.ammo >= 1 and cooldown == false and true not in Global.cannotShootList:
 		shootClick.emit()
 		

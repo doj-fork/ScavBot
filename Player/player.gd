@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var animator = $AnimationPlayer
+@onready var sprite = $Sprite2D
 @onready var animTree = $AnimationTree
 @onready var stateMachine = animTree.get("parameters/playback")
 @onready var walkSFX: AudioStreamPlayer2D = $walkSFX
@@ -8,6 +10,9 @@ var immunity: bool = false
 
 var inputDir: Vector2 = Vector2(0, 0)
 var animDir: Vector2 = Vector2(0, 0)
+
+var animState = "Base"
+var animSubState = "Idle"
 
 const WALK_SOUNDS: Array[String] = [
 	"res://Assets/SFX/Player/walk1.wav",
@@ -24,8 +29,13 @@ var isWalking: bool = false
 var lingerDamageRadius: float = 60.0
 var lingerDamageThreshold: float = 0.4
 var lingerTimers: Dictionary = {}
-
+	
+func _ready():
+	awaitCollect()
+	awaitCharge()
+	
 func _process(delta):
+	animUpdate()
 	Global.playerPos = global_position
 	inputDir = (Vector2(Input.get_action_strength("Right") - Input.get_action_strength("Left"), Input.get_action_strength("Down") - Input.get_action_strength("Up"))).normalized()
 	velocity = inputDir * Stats.speed
@@ -36,9 +46,7 @@ func _process(delta):
 		if walkSFX.playing:
 			walkSFX.stop()
 		isWalking = false
-		stateMachine.travel("Idle")
 	else:
-		animUpdate()
 		play_walk_sound()
 	if Global.canMove == 0:
 		move_and_slide()
@@ -48,14 +56,46 @@ func _process(delta):
 		Global.dead = true
 		get_tree().change_scene_to_file.call_deferred("res://Screens/death.tscn")
 
-func animUpdate():
-	animTree.set("parameters/Idle/blend_position", animDir)
-	animTree.set("parameters/Walk/blend_position", animDir)
+func awaitCollect():
+	await Signals.collecting
+	animState = "Special"
+	animSubState = "Collect"
+	await get_tree().create_timer(1, false).timeout
+	animState = "Base"
+	awaitCollect()
 	
-	if velocity != Vector2(0, 0):
-		stateMachine.travel("Walk")
-	elif velocity == Vector2(0, 0):
-		stateMachine.travel("Idle")
+func awaitCharge():
+	await Signals.charge
+	animState = "Special"
+	animSubState = "Charge"
+	await get_tree().create_timer(1, false).timeout
+	animState = "Base"
+	awaitCharge()
+	
+func animUpdate():
+	if animState == "Base":
+		animTree.set("parameters/Base/blend_position", animDir)
+		if velocity == Vector2(0, 0):
+			animSubState = "Idle"
+		else:
+			animSubState = "Move"
+		updateTexture("Base")
+		stateMachine.travel("Base")
+	else:
+		stateMachine.travel("Special")
+		if animSubState == "Charge":
+			animTree.set("parameters/Base/blend_position", Vector2(1, 0))
+		elif animSubState == "Collect":
+			animTree.set("parameters/Base/blend_position", Vector2(-1, 0))
+		
+		
+func updateTexture(arg):
+	if arg == "Base":
+		if animSubState == "Idle":
+			sprite.texture = load("res://Player/Assets/IdlePlayerEmpty1.png")
+		else:
+			sprite.texture = load("res://Player/Assets/RunningPlayerEmpty1.png")
+	
 
 func play_walk_sound() -> void:
 	# Determine if player is walking
