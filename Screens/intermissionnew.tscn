@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://dvsog80tr515j"]
+
+[ext_resource type="PackedScene" uid="uid://cwfjmmvi5mck" path="res://Player/player.tscn" id="1_n5jmn"]
+[ext_resource type="Script" uid="uid://bfnbwg0dp5hyk" path="res://Screens/entrance_door.gd" id="2_4qrqg"]
+[ext_resource type="Texture2D" uid="uid://qg066lrja8qb" path="res://Assets/NatureAssets/Door1.png" id="3_aggbc"]
+[ext_resource type="Script" uid="uid://bwyl18wxv5f7n" path="res://Screens/heal.gd" id="4_3esgc"]
+[ext_resource type="Texture2D" uid="uid://trp4s107gpdk" path="res://Assets/NatureAssets/Charge1.png" id="5_wmegp"]
+[ext_resource type="Script" uid="uid://p4dko8dlvqxl" path="res://Screens/upgrade.gd" id="6_vfv7u"]
+[ext_resource type="Texture2D" uid="uid://navvw5pegkel" path="res://Assets/NatureAssets/Computer1.png" id="7_2g858"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tow3t"]
+radius = 113.004425
+
+[node name="Intermission" type="Node2D" unique_id=1504878694]
+y_sort_enabled = true
+
+[node name="Player" parent="." unique_id=253815592 instance=ExtResource("1_n5jmn")]
+y_sort_enabled = true
+position = Vector2(482, 266)
+
+[node name="CameraLink" type="RemoteTransform2D" parent="Player" unique_id=904402373]
+remote_path = NodePath("../../Camera")
+
+[node name="Camera" type="Camera2D" parent="." unique_id=811053232]
+process_mode = 3
+position = Vector2(482, 266)
+scale = Vector2(0.075, 0.075)
+position_smoothing_enabled = true
+position_smoothing_speed = 5.5
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=492629040]
+offset_left = -25.0
+offset_right = 40.0
+offset_bottom = 534.0
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=434092332]
+offset_left = 921.0
+offset_top = -3.0
+offset_right = 983.0
+offset_bottom = 531.0
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=900866712]
+offset_top = -18.0
+offset_right = 956.0
+offset_bottom = 32.0
+
+[node name="ColorRect4" type="ColorRect" parent="." unique_id=195071100]
+offset_left = 2.0
+offset_top = 502.0
+offset_right = 958.0
+offset_bottom = 554.0
+
+[node name="ExitDoor" type="Node2D" parent="." unique_id=634711565]
+script = ExtResource("2_4qrqg")
+
+[node name="Sprite" type="Sprite2D" parent="ExitDoor" unique_id=1166243583]
+position = Vector2(476, -36)
+scale = Vector2(0.5422535, 0.5422535)
+texture = ExtResource("3_aggbc")
+
+[node name="Collision" type="Area2D" parent="ExitDoor" unique_id=480629314]
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitDoor/Collision" unique_id=1759019754]
+position = Vector2(478, 18)
+shape = SubResource("CircleShape2D_tow3t")
+debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
+
+[node name="Heals" type="Node2D" parent="." unique_id=1836573874]
+position = Vector2(-243, 266)
+script = ExtResource("4_3esgc")
+
+[node name="Sprite" type="Sprite2D" parent="Heals" unique_id=303143606]
+position = Vector2(476, -36)
+scale = Vector2(0.5422535, 0.5422535)
+texture = ExtResource("5_wmegp")
+
+[node name="Collision" type="Area2D" parent="Heals" unique_id=2084071735]
+position = Vector2(-6, 13)
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Heals/Collision" unique_id=1408869281]
+position = Vector2(480, -25)
+shape = SubResource("CircleShape2D_tow3t")
+debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
+
+[node name="Upgrade" type="Node2D" parent="." unique_id=1895100618]
+position = Vector2(268, 267)
+script = ExtResource("6_vfv7u")
+
+[node name="Sprite" type="Sprite2D" parent="Upgrade" unique_id=952028038]
+position = Vector2(487.99994, -20)
+scale = Vector2(0.89983046, 0.89983046)
+texture = ExtResource("7_2g858")
+
+[node name="Collision" type="Area2D" parent="Upgrade" unique_id=1044577827]
+position = Vector2(-6, 13)
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Upgrade/Collision" unique_id=2099386547]
+position = Vector2(480, -25)
+shape = SubResource("CircleShape2D_tow3t")
+debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
+
+[connection signal="area_entered" from="ExitDoor/Collision" to="ExitDoor" method="areaEntered"]
+[connection signal="area_exited" from="ExitDoor/Collision" to="ExitDoor" method="areaExited"]
+[connection signal="area_entered" from="Heals/Collision" to="Heals" method="areaEntered"]
+[connection signal="area_exited" from="Heals/Collision" to="Heals" method="areaExited"]
+[connection signal="area_entered" from="Upgrade/Collision" to="Upgrade" method="areaEntered"]
+[connection signal="area_exited" from="Upgrade/Collision" to="Upgrade" method="areaExited"]
