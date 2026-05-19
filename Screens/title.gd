@@ -13,9 +13,6 @@ const INTRO_PRESENTS_FADE_OUT_DURATION: float = 0.8
 const INTRO_TITLE_FADE_IN_DURATION: float = 1.1
 const INTRO_BLACK_FADE_OUT_DURATION: float = 1.1
 const LAYOUT_REGION_SIZE: Vector2 = Vector2(960.0, 540.0)
-
-# 5/8/26 kind of fixed stuff will work on it more
-
 @onready var menu_bgm: AudioStreamPlayer2D = $MenuBGM
 @onready var play_button: Button = $UIRoot/CenterContainer/VBoxContainer/PlayButton
 @onready var credits_button: Button = $UIRoot/CenterContainer/VBoxContainer/CreditsButton
