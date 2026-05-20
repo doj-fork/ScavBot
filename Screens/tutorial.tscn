@@ -224,6 +224,7 @@ position = Vector2(663, 205)
 
 [node name="TutorialBatch2" type="Node2D" parent="." unique_id=657143118]
 process_mode = 4
+visible = false
 
 [node name="Rock1" parent="TutorialBatch2" unique_id=810788630 instance=ExtResource("10_rockscn")]
 position = Vector2(152, 146)
