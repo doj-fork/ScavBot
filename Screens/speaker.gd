@@ -233,13 +233,15 @@ func run_tutorial() -> void:
 	phase = Phase.DIALOGUE_INTRO
 	await _say("*bzzzt*", 2.0)
 	await _say("*connecting*", 2.5)
+	await _say("Connected to Tactical Response, Enforcement, Mobilization, and Battlefield Logistics Executive (T.R.E.M.B.L.E.)")
+	await _say("Connection redirected to nearest command center (T.R.E.M.B.L.E. Third Central Command).")
 	await _say("Please send the required quantum key authentication to proceed.")
 	await _say("*...*", 2.0)
 	await _say("Authentication confirmed \u2014")
 	await _say("Unit 0029144, of the TRAPPIST-1 branch of T.R.E.M.B.L.E.")
 	await _say("Orders confirmed \u2014 Unit 0029144.")
 	await _say("T.R.E.M.B.L.E. has ordered a full retreat to TRAPPIST-1E.")
-	await _say("Your location, TRAPPIST-1D, has been fully occupied by N.E.R.F.")
+	await _say("Your location, TRAPPIST-1D, has been fully occupied by the New Emergent Robotic Forces (N.E.R.F.).")
 	await _say("T.R.E.M.B.L.E. can not provide any extraction for you.")
 	await _say("Your new directive is to survive and eliminate hostiles if necessary.")
 	await _say("Follow the instructions given.")
@@ -257,7 +259,7 @@ func run_tutorial() -> void:
 	phase = Phase.DIALOGUE_CRAFT1
 	await _say("Data confirmed \u2014 4 Wood collected.")
 	await _say("Unit 0029144, you are now instructed to craft a weapon.")
-	await _say("Your crafting module has 4 built-in gun blueprints.")
+	await _say("Your crafting module has several built-in gun blueprints.")
 	await _say("Press [C] to open the menu and drag wood to each slot of the blueprint, then press \"Craft\".")
 
 	# ── Wait for Handgun craft ──
@@ -266,7 +268,7 @@ func run_tutorial() -> void:
 	await _wait_for_handgun_craft()
 
 	phase = Phase.DIALOGUE_DUMMY1
-	await _say("Data confirmed \u2014 WW-2 Handgun Crafted.")
+	await _say("Data confirmed \u2014 WW-2 Pistol Crafted.")
 	await _say("Unit 0029144, please fire at the dummy target until it has been eliminated.")
 
 	# ── Spawn dummy 1 (9999 hp), enable shooting ──
@@ -279,7 +281,8 @@ func run_tutorial() -> void:
 	# ── Gun broke dialogue + spawn second batch ──
 	phase = Phase.DIALOGUE_BATCH2
 	_spawn_batch2()
-	await _say("Unit 0029144, your gun has run out of durability. You must craft a new weapon.")
+	await _say("Unit 0029144, your gun has run out of durability.")
+	await _say("You must craft a new weapon.")
 	await _say("Use your collection module with nearby collectibles again.")
 
 	Global.cannotCraftGeneral = true
@@ -336,10 +339,11 @@ func run_tutorial() -> void:
 
 	# ── Final dialogue ──
 	phase = Phase.DIALOGUE_FINAL
-	await _say("Every wave, you must head north to escape to safety.")
+	await _say("N.E.R.F. forces encroach on your position in waves.")
 	await _say("Over time, N.E.R.F. hostiles also improve to adapt to your new upgrades.")
+	await _say("Every wave, you must head north to escape to safety.")
 	await _say("Please keep all of these instructions in mind.")
-	await _say("Unit 0029144, you are now clear to enter the area of operations. Goodluck.")
+	await _say("Unit 0029144, you are now clear to enter the area of operations. Good luck.")
 
 	# ── Done: unlock exit door ──
 	phase = Phase.DONE

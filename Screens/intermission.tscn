@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c3lc15yyssnvd" path="res://Assets/Chunks/ground.png" id="8_nrj0l"]
 [ext_resource type="Texture2D" uid="uid://dy20x4gxvt3mi" path="res://Assets/Chunks/groundThin.png" id="9_a7ylj"]
 [ext_resource type="Texture2D" uid="uid://ddi77qn6qnavi" path="res://Assets/NatureAssets/TransitionRoom.png" id="10_plpc2"]
+[ext_resource type="AudioStream" uid="uid://cmmuc1kh2g0th" path="res://Assets/SFX/Misc/dooropen.mp3" id="11_door"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tow3t"]
 radius = 113.004425
@@ -60,43 +61,54 @@ position = Vector2(478, 18)
 shape = SubResource("CircleShape2D_tow3t")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 
-[node name="Heals" type="Node2D" parent="." unique_id=1836573874]
+[node name="DoorSound" type="AudioStreamPlayer2D" parent="ExitDoor" unique_id=2700000001]
+stream = ExtResource("11_door")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="HealDevice" type="Node2D" parent="." unique_id=1836573874]
 position = Vector2(-243, 266)
 script = ExtResource("4_tow3t")
 
-[node name="Sprite" type="Sprite2D" parent="Heals" unique_id=303143606]
+[node name="Sprite" type="Sprite2D" parent="HealDevice" unique_id=303143606]
 position = Vector2(473.99994, -12)
 scale = Vector2(0.7457901, 0.7457901)
 texture = ExtResource("5_a7ylj")
 
-[node name="Collision" type="Area2D" parent="Heals" unique_id=2084071735]
+[node name="Collision" type="Area2D" parent="HealDevice" unique_id=2084071735]
 position = Vector2(-6, 13)
 collision_layer = 0
 collision_mask = 2048
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Heals/Collision" unique_id=1408869281]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealDevice/Collision" unique_id=1408869281]
 position = Vector2(480, -25)
 shape = SubResource("CircleShape2D_tow3t")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 
-[node name="Upgrade" type="Node2D" parent="." unique_id=1895100618]
+[node name="InteractSound" type="AudioStreamPlayer2D" parent="HealDevice" unique_id=2700000002]
+bus = &"SFX"
+
+[node name="UpgradeDevice" type="Node2D" parent="." unique_id=1895100618]
 position = Vector2(268, 267)
 script = ExtResource("6_3fba7")
 
-[node name="Sprite" type="Sprite2D" parent="Upgrade" unique_id=952028038]
+[node name="Sprite" type="Sprite2D" parent="UpgradeDevice" unique_id=952028038]
 position = Vector2(487.99994, -20)
 scale = Vector2(0.89983046, 0.89983046)
 texture = ExtResource("7_7vloe")
 
-[node name="Collision" type="Area2D" parent="Upgrade" unique_id=1044577827]
+[node name="Collision" type="Area2D" parent="UpgradeDevice" unique_id=1044577827]
 position = Vector2(-6, 13)
 collision_layer = 0
 collision_mask = 2048
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Upgrade/Collision" unique_id=2099386547]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpgradeDevice/Collision" unique_id=2099386547]
 position = Vector2(480, -25)
 shape = SubResource("CircleShape2D_tow3t")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
+
+[node name="InteractSound" type="AudioStreamPlayer2D" parent="UpgradeDevice" unique_id=2700000003]
+bus = &"SFX"
 
 [node name="Ground" type="Sprite2D" parent="." unique_id=534549594]
 position = Vector2(-952, 317)
@@ -199,7 +211,7 @@ offset_bottom = 857.0
 
 [connection signal="area_entered" from="ExitDoor/Collision" to="ExitDoor" method="areaEntered"]
 [connection signal="area_exited" from="ExitDoor/Collision" to="ExitDoor" method="areaExited"]
-[connection signal="area_entered" from="Heals/Collision" to="Heals" method="areaEntered"]
-[connection signal="area_exited" from="Heals/Collision" to="Heals" method="areaExited"]
-[connection signal="area_entered" from="Upgrade/Collision" to="Upgrade" method="areaEntered"]
-[connection signal="area_exited" from="Upgrade/Collision" to="Upgrade" method="areaExited"]
+[connection signal="area_entered" from="HealDevice/Collision" to="HealDevice" method="areaEntered"]
+[connection signal="area_exited" from="HealDevice/Collision" to="HealDevice" method="areaExited"]
+[connection signal="area_entered" from="UpgradeDevice/Collision" to="UpgradeDevice" method="areaEntered"]
+[connection signal="area_exited" from="UpgradeDevice/Collision" to="UpgradeDevice" method="areaExited"]

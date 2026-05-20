@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dv75aq4ce7iyy" path="res://Enemies/Melee/tutorial_dummy.tscn" id="14_dummyscn"]
 [ext_resource type="Texture2D" uid="uid://c3lc15yyssnvd" path="res://Assets/Chunks/ground.png" id="16_ybno7"]
 [ext_resource type="Texture2D" uid="uid://dy20x4gxvt3mi" path="res://Assets/Chunks/groundThin.png" id="17_4eef1"]
+[ext_resource type="AudioStream" uid="uid://cmmuc1kh2g0th" path="res://Assets/SFX/Misc/dooropen.mp3" id="18_door"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall1"]
 size = Vector2(25, 825)
@@ -133,6 +134,11 @@ position = Vector2(478, 18)
 shape = SubResource("CircleShape2D_tow3t")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 
+[node name="DoorSound" type="AudioStreamPlayer2D" parent="ExitDoor" unique_id=-1894967295]
+stream = ExtResource("18_door")
+volume_db = -15.0
+bus = &"SFX"
+
 [node name="Speaker" type="Node2D" parent="." unique_id=1895100618]
 position = Vector2(4, 388)
 script = ExtResource("4_spkgd")
@@ -173,6 +179,9 @@ position = Vector2(480, -25)
 shape = SubResource("CircleShape2D_tow3t")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 
+[node name="InteractSound" type="AudioStreamPlayer2D" parent="HealDevice" unique_id=-1894967294]
+bus = &"SFX"
+
 [node name="UpgradeDevice" type="Node2D" parent="." unique_id=2000000001]
 process_mode = 4
 visible = false
@@ -194,6 +203,9 @@ position = Vector2(480, -25)
 shape = SubResource("CircleShape2D_tow3t")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 
+[node name="InteractSound" type="AudioStreamPlayer2D" parent="UpgradeDevice" unique_id=-1894967293]
+bus = &"SFX"
+
 [node name="TutorialBatch1" type="Node2D" parent="." unique_id=2100000001]
 process_mode = 4
 visible = false
@@ -212,7 +224,6 @@ position = Vector2(663, 205)
 
 [node name="TutorialBatch2" type="Node2D" parent="." unique_id=657143118]
 process_mode = 4
-visible = false
 
 [node name="Rock1" parent="TutorialBatch2" unique_id=810788630 instance=ExtResource("10_rockscn")]
 position = Vector2(152, 146)
@@ -221,7 +232,7 @@ position = Vector2(152, 146)
 position = Vector2(415, 141)
 
 [node name="Steel1" parent="TutorialBatch2" unique_id=1044550339 instance=ExtResource("12_steelscn")]
-position = Vector2(113, 578)
+position = Vector2(280, 270)
 
 [node name="Computer1" parent="TutorialBatch2" unique_id=1828305528 instance=ExtResource("13_computerscn")]
 position = Vector2(116, 422)
@@ -231,7 +242,7 @@ process_mode = 4
 visible = false
 position = Vector2(884, 158)
 
-[node name="TutorialDummy2" parent="." unique_id=-1894967295 instance=ExtResource("14_dummyscn")]
+[node name="TutorialDummy2" parent="." unique_id=1684960660 instance=ExtResource("14_dummyscn")]
 process_mode = 4
 visible = false
 position = Vector2(883, 158)

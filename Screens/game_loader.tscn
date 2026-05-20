@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dicjadx63c2wn" path="res://Assets/BarrierAssets/SideBarrier3.png" id="12_1hgol"]
 [ext_resource type="Texture2D" uid="uid://bem565ar7u78c" path="res://Assets/NatureAssets/Door.png" id="14_h8eis"]
 [ext_resource type="Texture2D" uid="uid://btjl4lc30f4wx" path="res://Assets/BarrierAssets/Gate.png" id="16_lwy25"]
+[ext_resource type="AudioStream" uid="uid://cmmuc1kh2g0th" path="res://Assets/SFX/Misc/dooropen.mp3" id="17_door"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwy25"]
 size = Vector2(152, 2418)
@@ -675,6 +676,11 @@ collision_mask = 2048
 position = Vector2(479, -270)
 shape = SubResource("CircleShape2D_f6i06")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
+
+[node name="DoorSound" type="AudioStreamPlayer2D" parent="ExitDoor" unique_id=2600000001]
+stream = ExtResource("17_door")
+volume_db = -15.0
+bus = &"SFX"
 
 [node name="Gate1" type="Sprite2D" parent="." unique_id=449055307]
 position = Vector2(360, -238)
