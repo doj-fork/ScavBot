@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://bljueoroxruh1" path="res://Screens/chunkLoad.gd" id="2_7efq7"]
 [ext_resource type="PackedScene" uid="uid://cwfjmmvi5mck" path="res://Player/player.tscn" id="2_iyh47"]
 [ext_resource type="Script" uid="uid://d17g32cia8g76" path="res://Screens/exit_door.gd" id="3_iyh47"]
-[ext_resource type="Texture2D" uid="uid://qg066lrja8qb" path="res://Assets/NatureAssets/Door1.png" id="4_fybiw"]
 [ext_resource type="Script" uid="uid://doj4qr70go25x" path="res://Screens/walls.gd" id="4_oqsqv"]
 [ext_resource type="Texture2D" uid="uid://c3lc15yyssnvd" path="res://Assets/Chunks/ground.png" id="7_0uf4q"]
 [ext_resource type="Script" uid="uid://beq6vwiwq05ps" path="res://Screens/physical_walls.gd" id="8_cqiii"]
@@ -14,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dsqag0u14jcbx" path="res://Assets/BarrierAssets/SideBarrier2.png" id="11_lwy25"]
 [ext_resource type="Texture2D" uid="uid://csprnaue7sno8" path="res://Assets/BarrierAssets/Barrier3.png" id="11_sntuq"]
 [ext_resource type="Texture2D" uid="uid://dicjadx63c2wn" path="res://Assets/BarrierAssets/SideBarrier3.png" id="12_1hgol"]
+[ext_resource type="Texture2D" uid="uid://bem565ar7u78c" path="res://Assets/NatureAssets/Door.png" id="14_h8eis"]
 [ext_resource type="Texture2D" uid="uid://btjl4lc30f4wx" path="res://Assets/BarrierAssets/Gate.png" id="16_lwy25"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwy25"]
@@ -663,9 +663,9 @@ position = Vector2(-16, -272)
 script = ExtResource("3_iyh47")
 
 [node name="Sprite" type="Sprite2D" parent="ExitDoor" unique_id=459527909]
-position = Vector2(482.99997, -316.99997)
-scale = Vector2(0.5422535, 0.5422535)
-texture = ExtResource("4_fybiw")
+position = Vector2(471.00003, -317.99997)
+scale = Vector2(0.9786158, 0.9786158)
+texture = ExtResource("14_h8eis")
 
 [node name="Collision" type="Area2D" parent="ExitDoor" unique_id=1503078577]
 collision_layer = 0

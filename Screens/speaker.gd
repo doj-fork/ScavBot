@@ -1,8 +1,7 @@
 extends Node2D
 
 # ─────────────────────────────────────────────
-# Speaker — Tutorial controller
-# Replaces upgrade.gd on the Speaker node in tutorial.tscn.
+# Speaker — Tutorial controller/dialogue
 # Handles: glow highlight (collectible-style), floating labels, full tutorial state machine.
 # ─────────────────────────────────────────────
 
@@ -41,17 +40,19 @@ var _blip_radio: AudioStreamPlayer = null
 @onready var sprite: Sprite2D = $Sprite
 
 const FONT_PATH: String = "res://Assets/Fonts/SunkenMini.ttf"
+const SPRITE_TINT: Color = Color(1.0, 0.95, 0.72, 1.0)
 
 func _ready() -> void:
 	Stats.health = 75
 	Global.hudActive = true
+	sprite.modulate = SPRITE_TINT
 	# entrance_door.gd already sets cannotShootIntermission = true and plays intermission BGM
 	_create_prompt_label()
 	_setup_blip_players()
 	run_tutorial()
 
 # ─────────────────────────────────────────────
-# Area callbacks — glow highlight
+# Area callbacks; glow highlight
 # ─────────────────────────────────────────────
 
 func areaEntered(_area: Area2D) -> void:
@@ -77,7 +78,7 @@ func _stopFlash() -> void:
 		_flashTween.kill()
 		_flashTween = null
 	if is_instance_valid(sprite):
-		sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		sprite.modulate = SPRITE_TINT
 
 # ─────────────────────────────────────────────
 # Persistent prompt label above the Speaker sprite
@@ -134,10 +135,10 @@ func _play_blips(is_radio: bool, duration: float) -> void:
 			elapsed += 0.1
 
 # ─────────────────────────────────────────────
-# Floating popup label (collectible-style, fades up near Speaker)
+# Floating popup label (collectible kind of, fades up near Speaker)
 # ─────────────────────────────────────────────
 
-func _popup(text: String) -> void:
+func _popup(text: String, hold_secs: float = 3.0) -> void:
 	var is_radio: bool = text.begins_with("*") and text.ends_with("*")
 	_play_blips(is_radio, 3.0)
 	var font: FontFile = load(FONT_PATH)
@@ -163,18 +164,25 @@ func _popup(text: String) -> void:
 		clamp(raw_pos.x, 10.0, viewport_size.x - 510.0),
 		clamp(raw_pos.y, 20.0, viewport_size.y - 200.0)
 	)
+	var fade_duration: float = 3.0
+	var hold_delay: float = maxf(0.0, hold_secs - fade_duration)
 	var tween: Tween = label.create_tween().set_parallel(true)
-	tween.tween_property(label, "position:y", label.position.y - 50, 3.0)
-	tween.tween_property(label, "modulate:a", 0.0, 3.0)
+	tween.tween_property(label, "position:y", label.position.y - 50, fade_duration).set_delay(hold_delay)
+	tween.tween_property(label, "modulate:a", 0.0, fade_duration).set_delay(hold_delay)
 	tween.finished.connect(canvas.queue_free)
 
 # Show a line and wait for it to finish floating
-func _say(text: String, hold_secs: float = 3.5) -> void:
+func _say(text: String, hold_secs: float = -1.0) -> void:
+	var duration: float = hold_secs if hold_secs >= 0.0 else \
+		maxf(2.5, float(text.split(" ").size()) * 0.25 + 2.0)
 	var was_blocked: bool = Global.cannotCraftCollecting
+	var was_shoot_blocked: bool = Global.cannotShootIntermission
 	Global.cannotCraftCollecting = true
-	_popup(text)
-	await get_tree().create_timer(hold_secs, false).timeout
+	Global.cannotShootIntermission = true
+	_popup(text, duration)
+	await get_tree().create_timer(duration, false).timeout
 	Global.cannotCraftCollecting = was_blocked
+	Global.cannotShootIntermission = was_shoot_blocked
 
 # ─────────────────────────────────────────────
 # _process — poll-based phase transitions
@@ -227,7 +235,7 @@ func run_tutorial() -> void:
 	await _say("*connecting*", 2.5)
 	await _say("Please send the required quantum key authentication to proceed.")
 	await _say("*...*", 2.0)
-	await _say("Authentication confirmed \u2014.")
+	await _say("Authentication confirmed \u2014")
 	await _say("Unit 0029144, of the TRAPPIST-1 branch of T.R.E.M.B.L.E.")
 	await _say("Orders confirmed \u2014 Unit 0029144.")
 	await _say("T.R.E.M.B.L.E. has ordered a full retreat to TRAPPIST-1E.")
@@ -235,11 +243,12 @@ func run_tutorial() -> void:
 	await _say("T.R.E.M.B.L.E. can not provide any extraction for you.")
 	await _say("Your new directive is to survive and eliminate hostiles if necessary.")
 	await _say("Follow the instructions given.")
-	await _say("To survive, your collection module [E] and your crafting module [C] have been activated.")
+	await _say("To survive, your collection module [E] and crafting module [C] have been activated.")
 	await _say("Try using your collection module with nearby collectibles.")
 
 	# ── Spawn first batch of trees ──
 	_spawn_batch1()
+	Global.cannotCraftGeneral = true
 	phase = Phase.COLLECT1
 
 	await _wait_for_phase_change(Phase.DIALOGUE_CRAFT1)
@@ -248,10 +257,11 @@ func run_tutorial() -> void:
 	phase = Phase.DIALOGUE_CRAFT1
 	await _say("Data confirmed \u2014 4 Wood collected.")
 	await _say("Unit 0029144, you are now instructed to craft a weapon.")
-	await _say("Your crafting module has four built-in gun blueprints that have now been fully activated.")
+	await _say("Your crafting module has 4 built-in gun blueprints.")
 	await _say("Press [C] to open the menu and drag wood to each slot of the blueprint, then press \"Craft\".")
 
 	# ── Wait for Handgun craft ──
+	Global.cannotCraftGeneral = false
 	phase = Phase.CRAFT1
 	await _wait_for_handgun_craft()
 
@@ -272,6 +282,7 @@ func run_tutorial() -> void:
 	await _say("Unit 0029144, your gun has run out of durability. You must craft a new weapon.")
 	await _say("Use your collection module with nearby collectibles again.")
 
+	Global.cannotCraftGeneral = true
 	phase = Phase.COLLECT2
 
 	await _wait_for_phase_change(Phase.DIALOGUE_CRAFT2)
@@ -281,6 +292,7 @@ func run_tutorial() -> void:
 	await _say("The center of your gun, the chamber, determines weapon type.")
 
 	# ── Wait for any weapon crafted ──
+	Global.cannotCraftGeneral = false
 	phase = Phase.CRAFT2
 	await _wait_for_any_craft()
 
@@ -300,7 +312,7 @@ func run_tutorial() -> void:
 		await _say("Unit 0029144, good work at eliminating the dummy.")
 	else:
 		await _say("Unit 0029144, your aiming module must target the enemy dummy.")
-
+		await _say("Please remember this when engaging hostiles, as they will be more dangerous than the dummy target.")
 	# Remove gun
 	Gun.ammo = 0
 
@@ -324,8 +336,8 @@ func run_tutorial() -> void:
 
 	# ── Final dialogue ──
 	phase = Phase.DIALOGUE_FINAL
-	await _say("Every wave, you must head north to escape to safety to heal and upgrade.")
-	await _say("Over time, N.E.R.F. hostiles also improve in similar upgrades to adapt to your new upgrades.")
+	await _say("Every wave, you must head north to escape to safety.")
+	await _say("Over time, N.E.R.F. hostiles also improve to adapt to your new upgrades.")
 	await _say("Please keep all of these instructions in mind.")
 	await _say("Unit 0029144, you are now clear to enter the area of operations. Goodluck.")
 
@@ -378,8 +390,13 @@ func _spawn_dummy1() -> void:
 		dummy.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _spawn_dummy2() -> void:
+	var dummy1: Node = get_node_or_null("../TutorialDummy1")
 	var dummy: Node = get_node_or_null("../TutorialDummy2")
-	if dummy:
+	if is_instance_valid(dummy1) and is_instance_valid(dummy):
+		dummy.global_position = dummy1.global_position
+	if is_instance_valid(dummy1):
+		dummy1.queue_free()
+	if is_instance_valid(dummy):
 		dummy.visible = true
 		dummy.process_mode = Node.PROCESS_MODE_INHERIT
 		if dummy.has_signal("died") and not dummy.died.is_connected(_on_dummy2_died):
