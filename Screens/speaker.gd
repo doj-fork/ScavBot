@@ -61,6 +61,21 @@ func _ready() -> void:
 			collision.monitorable = false
 	run_tutorial()
 
+func _exit_tree() -> void:
+	# Reset all input/movement locks set by the tutorial coroutine
+	Global.canMove = 0
+	Global.cannotCraftCollecting = false
+	Global.cannotShootIntermission = false
+	Global.cannotCraftGeneral = false
+	# Hide tutorial HUD labels
+	if _dialogue_tween:
+		_dialogue_tween.kill()
+		_dialogue_tween = null
+	if is_instance_valid(Hud.tutorial_dialogue):
+		Hud.tutorial_dialogue.visible = false
+	if is_instance_valid(Hud.tutorial_speaker):
+		Hud.tutorial_speaker.visible = false
+
 # ─────────────────────────────────────────────
 # Area callbacks; glow highlight
 # ─────────────────────────────────────────────
@@ -140,6 +155,8 @@ func _play_blips(is_radio: bool, duration: float) -> void:
 			return
 		var elapsed: float = 0.0
 		while elapsed < duration:
+			if not is_inside_tree():
+				return
 			_blip_normal.play()
 			await get_tree().create_timer(0.1, false).timeout
 			elapsed += 0.1
@@ -187,9 +204,15 @@ func _say(text: String, hold_secs: float = -1.0) -> void:
 	if phase == Phase.DIALOGUE_INTRO:
 		Global.canMove += 1
 	_popup(text, duration)
+	if not is_inside_tree():
+		Global.cannotCraftCollecting = was_blocked
+		Global.cannotShootIntermission = was_shoot_blocked
+		return
 	await get_tree().create_timer(duration, false).timeout
 	Global.cannotCraftCollecting = was_blocked
 	Global.cannotShootIntermission = was_shoot_blocked
+	if not is_inside_tree():
+		return
 	if phase == Phase.DIALOGUE_INTRO:
 		Global.canMove -= 1
 
