@@ -61,24 +61,28 @@ offset_left = 8.0
 offset_top = 5.0
 offset_right = 33.0
 offset_bottom = 830.0
+color = Color(0.29219002, 0.29219005, 0.29219002, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=434092332]
 offset_left = 918.0
 offset_top = 5.0
 offset_right = 949.0
 offset_bottom = 830.0
+color = Color(0.29219002, 0.29219005, 0.29219002, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="." unique_id=900866712]
 offset_left = 8.0
 offset_top = -19.0
 offset_right = 949.0
 offset_bottom = 5.0
+color = Color(0.29586652, 0.2958665, 0.2958665, 1)
 
 [node name="ColorRect4" type="ColorRect" parent="." unique_id=195071100]
 offset_left = 8.0
 offset_top = 830.0
 offset_right = 949.0
 offset_bottom = 857.0
+color = Color(0.29219002, 0.29219005, 0.29219002, 1)
 
 [node name="Walls" type="StaticBody2D" parent="." unique_id=-2094967295]
 
@@ -91,7 +95,7 @@ position = Vector2(933.5, 417.5)
 shape = SubResource("RectangleShape2D_wall2")
 
 [node name="WallShape3" type="CollisionShape2D" parent="Walls" unique_id=-2094967292]
-position = Vector2(479, 212)
+position = Vector2(479, 246)
 shape = SubResource("RectangleShape2D_wall3")
 
 [node name="WallShape4" type="CollisionShape2D" parent="Walls" unique_id=-2094967291]
@@ -109,7 +113,7 @@ position = Vector2(933.5, 417.5)
 shape = SubResource("RectangleShape2D_wall2")
 
 [node name="camLimit3" type="CollisionShape2D" parent="camLimit" unique_id=-2094967287]
-position = Vector2(479, 212)
+position = Vector2(479, 246)
 shape = SubResource("RectangleShape2D_wall3")
 
 [node name="camLimit4" type="CollisionShape2D" parent="camLimit" unique_id=-2094967286]
@@ -228,16 +232,16 @@ process_mode = 4
 visible = false
 
 [node name="Rock1" parent="TutorialBatch2" unique_id=810788630 instance=ExtResource("10_rockscn")]
-position = Vector2(182, 458)
+position = Vector2(160, 380)
 
 [node name="Scrap1" parent="TutorialBatch2" unique_id=259848459 instance=ExtResource("11_scrapscn")]
-position = Vector2(805, 492)
+position = Vector2(816, 814)
 
 [node name="Steel1" parent="TutorialBatch2" unique_id=1044550339 instance=ExtResource("12_steelscn")]
-position = Vector2(825, 769)
+position = Vector2(442, 786)
 
 [node name="Computer1" parent="TutorialBatch2" unique_id=1828305528 instance=ExtResource("13_computerscn")]
-position = Vector2(141, 783)
+position = Vector2(117, 812)
 
 [node name="TutorialDummy1" parent="." unique_id=-1994967295 instance=ExtResource("14_dummyscn")]
 process_mode = 4

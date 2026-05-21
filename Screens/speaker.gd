@@ -36,6 +36,8 @@ var _dummy2_killed: bool = false
 var _upgrades_was_visible: bool = false
 var _blip_normal: AudioStreamPlayer = null
 var _blip_radio: AudioStreamPlayer = null
+var _dialogue_tween: Tween = null
+var _speaker_name: String = "[???]"
 
 @onready var sprite: Sprite2D = $Sprite
 
@@ -143,41 +145,36 @@ func _play_blips(is_radio: bool, duration: float) -> void:
 			elapsed += 0.1
 
 # ─────────────────────────────────────────────
-# Floating popup label (collectible kind of, fades up near Speaker)
+# HUD dialogue label (fixed bottom-right, right of GunType)
 # ─────────────────────────────────────────────
 
 func _popup(text: String, hold_secs: float = 3.0) -> void:
 	var is_radio: bool = text.begins_with("*") and text.ends_with("*")
 	_play_blips(is_radio, 3.0)
-	var font: FontFile = load(FONT_PATH)
-	var canvas: CanvasLayer = CanvasLayer.new()
-	canvas.layer = 10
-	var label: Label = Label.new()
-	label.text = text
-	label.add_theme_font_override("font", font)
-	label.add_theme_font_size_override("font_size", 32)
-	label.add_theme_color_override("font_color", Color.WHITE)
-	label.add_theme_color_override("font_outline_color", Color.BLACK)
-	label.add_theme_constant_override("outline_size", 3)
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	label.custom_minimum_size = Vector2(500, 0)
-	canvas.add_child(label)
-	get_tree().current_scene.add_child(canvas)
-	label.size = Vector2(500, 300)
-	var screen_pos: Vector2 = get_viewport().get_canvas_transform() * (global_position + sprite.position)
-	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
-	var raw_pos: Vector2 = screen_pos - Vector2(250, 80)
-	label.position = Vector2(
-		clamp(raw_pos.x, 10.0, viewport_size.x - 510.0),
-		clamp(raw_pos.y, 20.0, viewport_size.y - 200.0)
-	)
+	var dlabel: Label = Hud.tutorial_dialogue
+	var slabel: Label = Hud.tutorial_speaker
+	if dlabel == null:
+		return
+	# Cancel any in-progress fade before starting a new line
+	if _dialogue_tween:
+		_dialogue_tween.kill()
+		_dialogue_tween = null
+	dlabel.text = text
+	dlabel.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	dlabel.visible = true
+	slabel.text = _speaker_name
+	slabel.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	slabel.visible = true
 	var fade_duration: float = 3.0
 	var hold_delay: float = maxf(0.0, hold_secs - fade_duration)
-	var tween: Tween = label.create_tween().set_parallel(true)
-	tween.tween_property(label, "position:y", label.position.y - 50, fade_duration).set_delay(hold_delay)
-	tween.tween_property(label, "modulate:a", 0.0, fade_duration).set_delay(hold_delay)
-	tween.finished.connect(canvas.queue_free)
+	_dialogue_tween = create_tween().set_parallel(true)
+	_dialogue_tween.tween_property(dlabel, "modulate:a", 0.0, fade_duration).set_delay(hold_delay)
+	_dialogue_tween.tween_property(slabel, "modulate:a", 0.0, fade_duration).set_delay(hold_delay)
+	_dialogue_tween.finished.connect(func():
+		dlabel.visible = false
+		slabel.visible = false
+		_dialogue_tween = null
+	)
 
 # Show a line and wait for it to finish floating
 func _say(text: String, hold_secs: float = -1.0) -> void:
@@ -241,6 +238,7 @@ func run_tutorial() -> void:
 	phase = Phase.DIALOGUE_INTRO
 	await _say("*bzzzt*", 2.0)
 	await _say("*connecting*", 2.5)
+	_speaker_name = "[T.R.E.M.B.L.E. CMD]"
 	await _say("Connected to Tactical Response, Enforcement, Mobilization, and Battlefield Logistics Executive (T.R.E.M.B.L.E.)")
 	await _say("Connection redirected to nearest command center (T.R.E.M.B.L.E. Third Central Command).")
 	await _say("Please send the required quantum key authentication to proceed.")

@@ -45,6 +45,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 5.5
 
 [node name="ExitDoor" type="Node2D" parent="." unique_id=634711565]
+position = Vector2(-12, 260)
 script = ExtResource("2_gbru0")
 
 [node name="Sprite" type="Sprite2D" parent="ExitDoor" unique_id=1166243583]
@@ -61,13 +62,13 @@ position = Vector2(478, 18)
 shape = SubResource("CircleShape2D_tow3t")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 
-[node name="DoorSound" type="AudioStreamPlayer2D" parent="ExitDoor" unique_id=2700000001]
+[node name="DoorSound" type="AudioStreamPlayer2D" parent="ExitDoor" unique_id=-1594967295]
 stream = ExtResource("11_door")
 volume_db = -15.0
 bus = &"SFX"
 
 [node name="HealDevice" type="Node2D" parent="." unique_id=1836573874]
-position = Vector2(-243, 266)
+position = Vector2(-241, 283)
 script = ExtResource("4_tow3t")
 
 [node name="Sprite" type="Sprite2D" parent="HealDevice" unique_id=303143606]
@@ -85,11 +86,11 @@ position = Vector2(480, -25)
 shape = SubResource("CircleShape2D_tow3t")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 
-[node name="InteractSound" type="AudioStreamPlayer2D" parent="HealDevice" unique_id=2700000002]
+[node name="InteractSound" type="AudioStreamPlayer2D" parent="HealDevice" unique_id=-1594967294]
 bus = &"SFX"
 
 [node name="UpgradeDevice" type="Node2D" parent="." unique_id=1895100618]
-position = Vector2(268, 267)
+position = Vector2(219, 298)
 script = ExtResource("6_3fba7")
 
 [node name="Sprite" type="Sprite2D" parent="UpgradeDevice" unique_id=952028038]
@@ -107,7 +108,7 @@ position = Vector2(480, -25)
 shape = SubResource("CircleShape2D_tow3t")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 
-[node name="InteractSound" type="AudioStreamPlayer2D" parent="UpgradeDevice" unique_id=2700000003]
+[node name="InteractSound" type="AudioStreamPlayer2D" parent="UpgradeDevice" unique_id=-1594967293]
 bus = &"SFX"
 
 [node name="Ground" type="Sprite2D" parent="." unique_id=534549594]
@@ -154,7 +155,7 @@ position = Vector2(933.5, 417.5)
 shape = SubResource("RectangleShape2D_0gm5w")
 
 [node name="WallShape3" type="CollisionShape2D" parent="GroundThin4/Walls" unique_id=1365963123]
-position = Vector2(478.5, -7)
+position = Vector2(481, 250)
 shape = SubResource("RectangleShape2D_abovk")
 
 [node name="WallShape4" type="CollisionShape2D" parent="GroundThin4/Walls" unique_id=1370744004]
@@ -173,7 +174,7 @@ position = Vector2(933.5, 417.5)
 shape = SubResource("RectangleShape2D_0gm5w")
 
 [node name="camLimit3" type="CollisionShape2D" parent="GroundThin4/camLimit" unique_id=410019594]
-position = Vector2(478.5, -7)
+position = Vector2(479, 250)
 shape = SubResource("RectangleShape2D_abovk")
 
 [node name="camLimit4" type="CollisionShape2D" parent="GroundThin4/camLimit" unique_id=1657690283]
@@ -190,24 +191,28 @@ offset_left = 8.0
 offset_top = 5.0
 offset_right = 33.0
 offset_bottom = 830.0
+color = Color(0.29219002, 0.29219005, 0.29219002, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=1941236560]
 offset_left = 918.0
 offset_top = 5.0
 offset_right = 949.0
 offset_bottom = 830.0
+color = Color(0.29219002, 0.29219005, 0.29219002, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="." unique_id=1318362507]
 offset_left = 8.0
 offset_top = -19.0
 offset_right = 949.0
 offset_bottom = 5.0
+color = Color(0.29219002, 0.29219005, 0.29219002, 1)
 
 [node name="ColorRect4" type="ColorRect" parent="." unique_id=980052944]
 offset_left = 8.0
 offset_top = 830.0
 offset_right = 949.0
 offset_bottom = 857.0
+color = Color(0.29219002, 0.29219005, 0.29219002, 1)
 
 [connection signal="area_entered" from="ExitDoor/Collision" to="ExitDoor" method="areaEntered"]
 [connection signal="area_exited" from="ExitDoor/Collision" to="ExitDoor" method="areaExited"]

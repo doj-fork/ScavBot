@@ -7,6 +7,8 @@ extends CanvasLayer
 @onready var waveTimer = $WaveTimer
 @onready var bulletIcon = $BulletIcon
 @onready var reloadIcon = $ReloadIcon
+@onready var tutorial_dialogue: Label = $TutorialDialogue
+@onready var tutorial_speaker: Label = $TutorialSpeaker
 
 func _ready():
 	gun.text = " "
