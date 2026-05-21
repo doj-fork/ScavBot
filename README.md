@@ -6,7 +6,13 @@
 
 <br>
 
-Repository for the GDIM 61 Game Project for the group made up of Carlos S., Benjamin A., James D., and Eric W.,
+```Python
+//Beta
++Make sure to download all of the ScavBot files into a folder (recommended to name the folder ScavBot)
++Alternatively, you can play the game on Itch [Link TBA]
+```
+
+Repository for a GDIM 61 Game Project called ScavBot made up of Carlos S., Benjamin A., James D., and Eric W.,
 
 | Group Member | Role |
 |---------|-----------------|
