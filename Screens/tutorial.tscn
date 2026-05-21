@@ -91,7 +91,7 @@ position = Vector2(933.5, 417.5)
 shape = SubResource("RectangleShape2D_wall2")
 
 [node name="WallShape3" type="CollisionShape2D" parent="Walls" unique_id=-2094967292]
-position = Vector2(478.5, -7)
+position = Vector2(479, 212)
 shape = SubResource("RectangleShape2D_wall3")
 
 [node name="WallShape4" type="CollisionShape2D" parent="Walls" unique_id=-2094967291]
@@ -109,7 +109,7 @@ position = Vector2(933.5, 417.5)
 shape = SubResource("RectangleShape2D_wall2")
 
 [node name="camLimit3" type="CollisionShape2D" parent="camLimit" unique_id=-2094967287]
-position = Vector2(478.5, -7)
+position = Vector2(479, 212)
 shape = SubResource("RectangleShape2D_wall3")
 
 [node name="camLimit4" type="CollisionShape2D" parent="camLimit" unique_id=-2094967286]
@@ -118,6 +118,7 @@ shape = SubResource("RectangleShape2D_wall4")
 
 [node name="ExitDoor" type="Node2D" parent="." unique_id=634711565]
 visible = false
+position = Vector2(-7, 252)
 script = ExtResource("2_d48hf")
 
 [node name="Sprite" type="Sprite2D" parent="ExitDoor" unique_id=1166243583]
@@ -140,7 +141,7 @@ volume_db = -15.0
 bus = &"SFX"
 
 [node name="Speaker" type="Node2D" parent="." unique_id=1895100618]
-position = Vector2(4, 388)
+position = Vector2(-9, 553)
 script = ExtResource("4_spkgd")
 
 [node name="Sprite" type="Sprite2D" parent="Speaker" unique_id=952028038]
@@ -161,7 +162,7 @@ debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 [node name="HealDevice" type="Node2D" parent="." unique_id=1836573874]
 process_mode = 4
 visible = false
-position = Vector2(-174, 127)
+position = Vector2(-236, 282)
 script = ExtResource("6_healgd")
 
 [node name="Sprite" type="Sprite2D" parent="HealDevice" unique_id=303143606]
@@ -175,7 +176,7 @@ collision_layer = 0
 collision_mask = 2048
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealDevice/Collision" unique_id=1408869281]
-position = Vector2(480, -25)
+position = Vector2(485, -36)
 shape = SubResource("CircleShape2D_tow3t")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 
@@ -185,7 +186,7 @@ bus = &"SFX"
 [node name="UpgradeDevice" type="Node2D" parent="." unique_id=2000000001]
 process_mode = 4
 visible = false
-position = Vector2(173, 133)
+position = Vector2(238, 297)
 script = ExtResource("8_upgradegd")
 
 [node name="Sprite" type="Sprite2D" parent="UpgradeDevice" unique_id=2000000002]
@@ -211,42 +212,42 @@ process_mode = 4
 visible = false
 
 [node name="Tree1" parent="TutorialBatch1" unique_id=2100000002 instance=ExtResource("9_treescn")]
-position = Vector2(160, 207)
+position = Vector2(788, 827)
 
 [node name="Tree2" parent="TutorialBatch1" unique_id=2100000003 instance=ExtResource("9_treescn")]
-position = Vector2(166, 462)
+position = Vector2(167, 814)
 
 [node name="Tree3" parent="TutorialBatch1" unique_id=2100000004 instance=ExtResource("9_treescn")]
-position = Vector2(412, 207)
+position = Vector2(167, 501)
 
 [node name="Tree4" parent="TutorialBatch1" unique_id=2100000005 instance=ExtResource("9_treescn")]
-position = Vector2(663, 205)
+position = Vector2(792, 505)
 
 [node name="TutorialBatch2" type="Node2D" parent="." unique_id=657143118]
 process_mode = 4
 visible = false
 
 [node name="Rock1" parent="TutorialBatch2" unique_id=810788630 instance=ExtResource("10_rockscn")]
-position = Vector2(152, 146)
+position = Vector2(182, 458)
 
 [node name="Scrap1" parent="TutorialBatch2" unique_id=259848459 instance=ExtResource("11_scrapscn")]
-position = Vector2(415, 141)
+position = Vector2(805, 492)
 
 [node name="Steel1" parent="TutorialBatch2" unique_id=1044550339 instance=ExtResource("12_steelscn")]
-position = Vector2(280, 270)
+position = Vector2(825, 769)
 
 [node name="Computer1" parent="TutorialBatch2" unique_id=1828305528 instance=ExtResource("13_computerscn")]
-position = Vector2(116, 422)
+position = Vector2(141, 783)
 
 [node name="TutorialDummy1" parent="." unique_id=-1994967295 instance=ExtResource("14_dummyscn")]
 process_mode = 4
 visible = false
-position = Vector2(884, 158)
+position = Vector2(884, 429)
 
 [node name="TutorialDummy2" parent="." unique_id=1684960660 instance=ExtResource("14_dummyscn")]
 process_mode = 4
 visible = false
-position = Vector2(883, 158)
+position = Vector2(884, 429)
 initial_health = 100
 
 [node name="Ground" type="Sprite2D" parent="." unique_id=1906325461]

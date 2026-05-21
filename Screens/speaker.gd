@@ -49,6 +49,14 @@ func _ready() -> void:
 	# entrance_door.gd already sets cannotShootIntermission = true and plays intermission BGM
 	_create_prompt_label()
 	_setup_blip_players()
+	# Show the exit door sprite from the start, but keep it non-interactable
+	var exit: Node = get_node_or_null("../ExitDoor")
+	if exit:
+		exit.visible = true
+		var collision: Area2D = exit.get_node_or_null("Collision")
+		if collision:
+			collision.monitoring = false
+			collision.monitorable = false
 	run_tutorial()
 
 # ─────────────────────────────────────────────
@@ -87,7 +95,7 @@ func _stopFlash() -> void:
 func _create_prompt_label() -> void:
 	_prompt_label = Label.new()
 	_prompt_label.add_theme_font_override("font", load(FONT_PATH))
-	_prompt_label.add_theme_font_size_override("font_size", 24)
+	_prompt_label.add_theme_font_size_override("font_size", 32)
 	_prompt_label.add_theme_color_override("font_color", Color.WHITE)
 	_prompt_label.add_theme_color_override("font_outline_color", Color.BLACK)
 	_prompt_label.add_theme_constant_override("outline_size", 3)
@@ -409,7 +417,10 @@ func _spawn_dummy2() -> void:
 func _unlock_exit() -> void:
 	var exit: Node = get_node_or_null("../ExitDoor")
 	if exit:
-		exit.visible = true
+		var collision: Area2D = exit.get_node_or_null("Collision")
+		if collision:
+			collision.monitoring = true
+			collision.monitorable = true
 	_popup("Head north to the exit when ready.")
 
 func _enable_device(path: String) -> void:
