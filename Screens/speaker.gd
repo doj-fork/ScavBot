@@ -184,10 +184,14 @@ func _say(text: String, hold_secs: float = -1.0) -> void:
 	var was_shoot_blocked: bool = Global.cannotShootIntermission
 	Global.cannotCraftCollecting = true
 	Global.cannotShootIntermission = true
+	if phase == Phase.DIALOGUE_INTRO:
+		Global.canMove += 1
 	_popup(text, duration)
 	await get_tree().create_timer(duration, false).timeout
 	Global.cannotCraftCollecting = was_blocked
 	Global.cannotShootIntermission = was_shoot_blocked
+	if phase == Phase.DIALOGUE_INTRO:
+		Global.canMove -= 1
 
 # ─────────────────────────────────────────────
 # _process — poll-based phase transitions
@@ -361,6 +365,8 @@ func run_tutorial() -> void:
 
 func _wait_for_phase_change(target_phase: Phase) -> void:
 	while phase != target_phase:
+		if not is_inside_tree():
+			return
 		await get_tree().process_frame
 
 func _wait_for_handgun_craft() -> void:

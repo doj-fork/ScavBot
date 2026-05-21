@@ -42,7 +42,7 @@ func _process(delta):
 	velocity = inputDir * Stats.speed
 	if inputDir != Vector2(0, 0):
 		animDir = inputDir
-	if Global.cannotCraftCollecting:
+	if Global.canMove > 0:
 		velocity = Vector2.ZERO
 		if walkSFX.playing:
 			walkSFX.stop()

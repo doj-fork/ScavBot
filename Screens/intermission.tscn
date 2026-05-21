@@ -32,14 +32,14 @@ y_sort_enabled = true
 
 [node name="Player" parent="." unique_id=253815592 instance=ExtResource("2_5v1f8")]
 y_sort_enabled = true
-position = Vector2(482, 266)
+position = Vector2(482, 396)
 
 [node name="CameraLink" type="RemoteTransform2D" parent="Player" unique_id=904402373]
 remote_path = NodePath("../../Camera")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=811053232]
 process_mode = 3
-position = Vector2(482, 266)
+position = Vector2(482, 396)
 scale = Vector2(0.075, 0.075)
 position_smoothing_enabled = true
 position_smoothing_speed = 5.5
@@ -68,7 +68,7 @@ volume_db = -15.0
 bus = &"SFX"
 
 [node name="HealDevice" type="Node2D" parent="." unique_id=1836573874]
-position = Vector2(-241, 283)
+position = Vector2(-354, 285)
 script = ExtResource("4_tow3t")
 
 [node name="Sprite" type="Sprite2D" parent="HealDevice" unique_id=303143606]
@@ -90,7 +90,7 @@ debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 bus = &"SFX"
 
 [node name="UpgradeDevice" type="Node2D" parent="." unique_id=1895100618]
-position = Vector2(219, 298)
+position = Vector2(305, 297)
 script = ExtResource("6_3fba7")
 
 [node name="Sprite" type="Sprite2D" parent="UpgradeDevice" unique_id=952028038]
