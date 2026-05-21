@@ -41,6 +41,10 @@ var wanderDirection: Vector2 = Vector2.RIGHT
 var wanderDirectionTimer: float = 0.0
 var randomNumberGenerator: RandomNumberGenerator = RandomNumberGenerator.new()
 
+var animState = "Move"
+@onready var animTree = $AnimationTree
+@onready var stateMachine = animTree.get("parameters/playback")
+
 func _ready() -> void:
 	add_to_group("Enemies")
 	add_to_group("Melee")
@@ -48,6 +52,19 @@ func _ready() -> void:
 	crowdStrafeBias = randomNumberGenerator.randf_range(-1.0, 1.0)
 	_pickRandomWanderDirection()
 
+func _process(_delta):
+	var animDir = velocity.normalized()
+	animUpdate(animDir)
+	
+func animUpdate(dir):
+	animTree.set("parameters/Move/blend_position", dir)
+	animTree.set("parameters/Move/blend_position", dir)
+	stateMachine.travel(animState)
+	
+func hitAnim():
+	animState = "Hit"
+	await get_tree().create_timer(0.9, false).timeout
+	animState = "Move"
 # main enemy movement from your thing
 func _physics_process(delta: float) -> void:
 	var playerPosition: Vector2 = Vector2(Global.playerPos)
@@ -275,6 +292,7 @@ func _getPlayerHitRetreatDirection(playerPosition: Vector2) -> Vector2:
 
 # trigger retreat when player is hit by this enemy
 func _triggerPlayerHitRetreat() -> void:
+	hitAnim()
 	playerHitRetreatTimer = playerHitRetreatDuration
 	isPlayerHitRetreating = true
 	isChasingPlayer = false
