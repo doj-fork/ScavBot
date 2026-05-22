@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://yaejdyb2whoo" path="res://Screens/melee_spawner.gd" id="7_4g37g"]
 [ext_resource type="PackedScene" uid="uid://bs26xp77s0ly4" path="res://Collectibles/tree.tscn" id="7_tf4ai"]
 [ext_resource type="Script" uid="uid://bpgs2iovj4ui0" path="res://Screens/tank_spawner.gd" id="8_tf4ai"]
+[ext_resource type="PackedScene" uid="uid://c6tmh6v73lh1a" path="res://Enemies/Tank/tank.tscn" id="8_w476a"]
+[ext_resource type="PackedScene" uid="uid://cunsuenbpva52" path="res://Enemies/Melee/melee.tscn" id="9_plcow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1w7h"]
 size = Vector2(1805, 545)
@@ -15,14 +17,14 @@ size = Vector2(1805, 545)
 y_sort_enabled = true
 
 [node name="Player" parent="." unique_id=253815592 instance=ExtResource("1_7igx6")]
-position = Vector2(299, 132)
+position = Vector2(145, 460)
 
 [node name="CameraLink" type="RemoteTransform2D" parent="Player" unique_id=822386098]
 remote_path = NodePath("../../Camera")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1756609286]
 process_mode = 3
-position = Vector2(299, 132)
+position = Vector2(145, 460)
 scale = Vector2(0.075, 0.075)
 position_smoothing_enabled = true
 position_smoothing_speed = 5.5
@@ -30,7 +32,7 @@ position_smoothing_speed = 5.5
 [node name="Grass" type="Sprite2D" parent="." unique_id=2088586906]
 modulate = Color(0, 0.42535287, 0.36177427, 1)
 z_index = -10
-position = Vector2(-57, -192)
+position = Vector2(-76, -145)
 texture = ExtResource("2_ib1il")
 
 [node name="Grass2" type="Sprite2D" parent="." unique_id=2086197898]
@@ -55,15 +57,6 @@ texture = ExtResource("2_ib1il")
 position = Vector2(76.00001, -20.000008)
 scale = Vector2(0.1, 0.1)
 
-[node name="Rock" type="Sprite2D" parent="Rock1" unique_id=735016217]
-scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("4_j67id")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock1" unique_id=247374946]
-position = Vector2(29.999939, 150.00008)
-scale = Vector2(0.9999998, 0.9999998)
-shape = SubResource("RectangleShape2D_h1w7h")
-
 [node name="Rock2" type="StaticBody2D" parent="." unique_id=482085508]
 position = Vector2(819.99994, 308.99997)
 scale = Vector2(0.1, 0.1)
@@ -81,30 +74,12 @@ shape = SubResource("RectangleShape2D_h1w7h")
 position = Vector2(-29.999992, 421.99997)
 scale = Vector2(0.1, 0.1)
 
-[node name="Rock" type="Sprite2D" parent="Rock3" unique_id=737771514]
-scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("4_j67id")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock3" unique_id=1148598927]
-position = Vector2(19.999924, 110.00038)
-scale = Vector2(0.9999998, 0.9999998)
-shape = SubResource("RectangleShape2D_h1w7h")
-
 [node name="Rock4" type="StaticBody2D" parent="." unique_id=82987808]
 position = Vector2(435, 245)
 scale = Vector2(0.070815966, -0.3399997)
 
-[node name="Rock" type="Sprite2D" parent="Rock4" unique_id=1691200214]
-scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("4_j67id")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock4" unique_id=235023191]
-position = Vector2(29.999939, 150.00008)
-scale = Vector2(0.9999998, 0.9999998)
-shape = SubResource("RectangleShape2D_h1w7h")
-
 [node name="StaticBody2D" parent="." unique_id=1786780614 instance=ExtResource("5_h1w7h")]
-position = Vector2(405.99997, -72)
+position = Vector2(143.99997, 105)
 scale = Vector2(0.33627686, 0.33627686)
 
 [node name="MeleeSpawner" type="Node2D" parent="." unique_id=2068892240]
@@ -129,3 +104,9 @@ script = ExtResource("8_tf4ai")
 
 [node name="Tree" parent="." unique_id=1227711547 instance=ExtResource("7_tf4ai")]
 position = Vector2(907, -112)
+
+[node name="Tank" parent="." unique_id=1471520854 instance=ExtResource("8_w476a")]
+position = Vector2(-245, 450)
+
+[node name="Melee" parent="." unique_id=1440097127 instance=ExtResource("9_plcow")]
+position = Vector2(-37, 574)

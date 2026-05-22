@@ -58,7 +58,7 @@ func _process(_delta):
 	
 func animUpdate(dir):
 	animTree.set("parameters/Move/blend_position", dir)
-	animTree.set("parameters/Move/blend_position", dir)
+	animTree.set("parameters/Hit/blend_position", ((Global.playerPos - global_position).normalized()))
 	stateMachine.travel(animState)
 	
 func hitAnim():

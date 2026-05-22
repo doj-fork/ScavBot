@@ -81,6 +81,24 @@ var frozenSpriteModulate: Color = Color.RED
 @onready var chargeSound: AudioStreamPlayer2D = $ChargeSound
 @onready var crashSound: AudioStreamPlayer2D = $CrashSound
 
+var animState = "Move"
+@onready var animTree = $AnimationTree
+@onready var stateMachine = animTree.get("parameters/playback")
+
+func _process(_delta):
+	var animDir = velocity.normalized()
+	animUpdate(animDir)
+	
+func animUpdate(dir):
+	animTree.set("parameters/Move/blend_position", dir)
+	animTree.set("parameters/Hit/blend_position", ((Global.playerPos - global_position).normalized()))
+	stateMachine.travel(animState)
+	
+func hitAnim():
+	animState = "Hit"
+	await get_tree().create_timer(0.9, false).timeout
+	animState = "Move"
+
 # main function
 func _ready() -> void:
 	add_to_group("Enemies")
@@ -395,6 +413,7 @@ func _getPlayerHitRetreatDirection(playerPosition: Vector2) -> Vector2:
 
 # trigger retreat when player is hit by this enemy
 func _triggerPlayerHitRetreat() -> void:
+	hitAnim()
 	playerHitRetreatTimer = playerHitRetreatDuration
 	isPlayerHitRetreating = true
 	isChasingPlayer = false
