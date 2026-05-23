@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bvaxbnbjtdtcn"]
+
+[ext_resource type="Texture2D" uid="uid://by4fijua1m8xr" path="res://Assets/NatureAssets/Floor.png" id="1_d2frr"]
+
+[node name="BFloor" type="Node2D" unique_id=576194753]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=237380839]
+modulate = Color(1, 0.6431373, 0.68235296, 1)
+z_index = -2
+position = Vector2(160, 10)
+texture = ExtResource("1_d2frr")
+offset = Vector2(0, -39)

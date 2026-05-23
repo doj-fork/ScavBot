@@ -27,6 +27,8 @@ func _process(_delta: float) -> void:
 		_start_enter()
 
 func _start_enter() -> void:
+	if get_parent().name != "Intermission":
+		Stats.majorReset()
 	_hide_prompt()
 	_entering = true
 	_stopFlash()

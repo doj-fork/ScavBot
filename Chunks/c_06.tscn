@@ -4,13 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://c3lc15yyssnvd" path="res://Assets/Chunks/ground.png" id="1_rfnqs"]
 [ext_resource type="PackedScene" uid="uid://csnhe5ji6disy" path="res://Collectibles/rock.tscn" id="2_bxvjh"]
 [ext_resource type="PackedScene" uid="uid://dmnlpl2sm8twp" path="res://Collectibles/scrap.tscn" id="3_aqaa2"]
-[ext_resource type="PackedScene" uid="uid://dv0ht2wpr73nc" path="res://Collectibles/steel.tscn" id="4_73yl4"]
-[ext_resource type="PackedScene" uid="uid://bs26xp77s0ly4" path="res://Collectibles/tree.tscn" id="5_aqaa2"]
-[ext_resource type="PackedScene" uid="uid://blk7eljqwewgo" path="res://Collectibles/computer.tscn" id="6_73yl4"]
-[ext_resource type="PackedScene" uid="uid://d1mssaq48q7r7" path="res://Collectibles/bush.tscn" id="7_73yl4"]
-[ext_resource type="PackedScene" uid="uid://ddygo00e65gg" path="res://Screens/meleespawner.tscn" id="9_lqnmx"]
+[ext_resource type="PackedScene" uid="uid://ddygo00e65gg" path="res://Screens/spawner.tscn" id="6_aqaa2"]
+[ext_resource type="PackedScene" uid="uid://dfqsirbg5713l" path="res://Collectibles/sheet.tscn" id="7_lqnmx"]
+[ext_resource type="PackedScene" uid="uid://bcgnv76ho3d06" path="res://Collectibles/pebbles.tscn" id="8_jymw7"]
+[ext_resource type="PackedScene" uid="uid://ckq2wmhmr0jsx" path="res://Collectibles/wall.tscn" id="9_jnfed"]
 
-[node name="Town" type="Node2D" unique_id=317759896]
+[node name="Junkyard" type="Node2D" unique_id=317759896]
 script = ExtResource("1_8311g")
 
 [node name="Floor" type="Sprite2D" parent="." unique_id=900892796]
@@ -18,23 +17,32 @@ z_index = -3
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_rfnqs")
 
-[node name="Rock" parent="." unique_id=665590815 instance=ExtResource("2_bxvjh")]
-position = Vector2(-18, 115)
+[node name="Spawner" parent="." unique_id=156898322 instance=ExtResource("6_aqaa2")]
+position = Vector2(-36, -28)
 
 [node name="Scrap" parent="." unique_id=1227711547 instance=ExtResource("3_aqaa2")]
-position = Vector2(-317, -95)
+position = Vector2(-227, 104)
 
-[node name="Steel" parent="." unique_id=1516161333 instance=ExtResource("4_73yl4")]
-position = Vector2(337, -125)
+[node name="Rock" parent="." unique_id=124380269 instance=ExtResource("2_bxvjh")]
+position = Vector2(233, -53)
 
-[node name="Tree" parent="." unique_id=1208135267 instance=ExtResource("5_aqaa2")]
-position = Vector2(323, 237)
+[node name="Wall" parent="." unique_id=1808145813 instance=ExtResource("9_jnfed")]
+position = Vector2(-318, -180)
 
-[node name="Computer" parent="." unique_id=635896547 instance=ExtResource("6_73yl4")]
-position = Vector2(-357, 201)
+[node name="Wall2" parent="." unique_id=1310512128 instance=ExtResource("9_jnfed")]
+position = Vector2(-139, -167)
 
-[node name="Bush" parent="." unique_id=797100348 instance=ExtResource("7_73yl4")]
-position = Vector2(-95, -159)
+[node name="Wall3" parent="." unique_id=265678501 instance=ExtResource("9_jnfed")]
+position = Vector2(338, 94)
 
-[node name="MeleeSpawner" parent="." unique_id=156898322 instance=ExtResource("9_lqnmx")]
-position = Vector2(102, -157)
+[node name="Wall4" parent="." unique_id=1369408067 instance=ExtResource("9_jnfed")]
+position = Vector2(156, 105)
+
+[node name="Metal Sheet" parent="." unique_id=276659835 instance=ExtResource("7_lqnmx")]
+position = Vector2(-317, 127)
+
+[node name="Metal Sheet2" parent="." unique_id=1444852589 instance=ExtResource("7_lqnmx")]
+position = Vector2(-138, 140)
+
+[node name="Pebbles" parent="." unique_id=112113728 instance=ExtResource("8_jymw7")]
+position = Vector2(147, -20)

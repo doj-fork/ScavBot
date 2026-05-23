@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dl11y4nva40rj"]
+
+[ext_resource type="Texture2D" uid="uid://b6dpb4yksydjo" path="res://Assets/NatureAssets/Back.png" id="1_d2vpt"]
+
+[node name="BBack" type="Node2D" unique_id=576194753]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=794518080]
+modulate = Color(1, 0.6431373, 0.68235296, 1)
+position = Vector2(232, 0)
+texture = ExtResource("1_d2vpt")
+offset = Vector2(0, 80)

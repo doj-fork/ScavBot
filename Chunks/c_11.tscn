@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bujc2kudppgmj"]
+
+[ext_resource type="Script" uid="uid://dufmw0kvgqnou" path="res://Chunks/chunk.gd" id="1_fec7t"]
+[ext_resource type="Texture2D" uid="uid://c3lc15yyssnvd" path="res://Assets/Chunks/ground.png" id="2_jobid"]
+[ext_resource type="PackedScene" uid="uid://ddygo00e65gg" path="res://Screens/spawner.tscn" id="3_7dt31"]
+[ext_resource type="PackedScene" uid="uid://d1mssaq48q7r7" path="res://Collectibles/bush.tscn" id="4_4x53r"]
+[ext_resource type="PackedScene" uid="uid://bs26xp77s0ly4" path="res://Collectibles/tree.tscn" id="4_fec7t"]
+[ext_resource type="PackedScene" uid="uid://csnhe5ji6disy" path="res://Collectibles/rock.tscn" id="5_jobid"]
+
+[node name="Field" type="Node2D" unique_id=317759896]
+script = ExtResource("1_fec7t")
+
+[node name="Floor" type="Sprite2D" parent="." unique_id=900892796]
+z_index = -3
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_jobid")
+
+[node name="Spawner" parent="." unique_id=156898322 instance=ExtResource("3_7dt31")]
+position = Vector2(-51, 127)
+
+[node name="Tree" parent="." unique_id=1227711547 instance=ExtResource("4_fec7t")]
+position = Vector2(-306, -24)
+
+[node name="Rock" parent="." unique_id=1620870901 instance=ExtResource("5_jobid")]
+position = Vector2(282, 137)
+
+[node name="Bush" parent="." unique_id=116835689 instance=ExtResource("4_4x53r")]
+position = Vector2(-374, 130)
+
+[node name="Bush2" parent="." unique_id=477448120 instance=ExtResource("4_4x53r")]
+position = Vector2(-285, 237)
+
+[node name="Bush3" parent="." unique_id=1789099852 instance=ExtResource("4_4x53r")]
+position = Vector2(19, -120)

@@ -37,6 +37,10 @@ func _process(_delta):
 		battery.texture = load("res://Assets/HUD/HUDBattery25.png")
 		
 	if Gun.ammo > 0:
+		
+		var cursor_image = load("res://Assets/HUD/HUDCrosshair.png")
+		Input.set_custom_mouse_cursor(cursor_image, Input.CURSOR_ARROW, Vector2(17, 17))
+		
 		ammo.visible = true
 		gun.visible = true
 		if Gun.type != "AR":
@@ -50,6 +54,8 @@ func _process(_delta):
 		gun.visible = false
 		bulletIcon.visible = false
 		reloadIcon.visible = false
+		
+		Input.set_custom_mouse_cursor(null, Input.CURSOR_ARROW, Vector2(0, 0))
 
 func waveCountdown():
 	await Signals.waveStart

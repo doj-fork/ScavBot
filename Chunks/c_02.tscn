@@ -2,11 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://c3lc15yyssnvd" path="res://Assets/Chunks/ground.png" id="1_3gg4c"]
 [ext_resource type="Script" uid="uid://dufmw0kvgqnou" path="res://Chunks/chunk.gd" id="1_w7vsu"]
-[ext_resource type="PackedScene" uid="uid://bs26xp77s0ly4" path="res://Collectibles/tree.tscn" id="2_77t05"]
-[ext_resource type="PackedScene" uid="uid://csnhe5ji6disy" path="res://Collectibles/rock.tscn" id="3_77t05"]
-[ext_resource type="PackedScene" uid="uid://ckq2wmhmr0jsx" path="res://Collectibles/wall.tscn" id="4_xiqds"]
+[ext_resource type="PackedScene" uid="uid://csnhe5ji6disy" path="res://Collectibles/rock.tscn" id="4_xiqds"]
+[ext_resource type="PackedScene" uid="uid://bcgnv76ho3d06" path="res://Collectibles/pebbles.tscn" id="5_3fe0o"]
+[ext_resource type="PackedScene" uid="uid://ckq2wmhmr0jsx" path="res://Collectibles/wall.tscn" id="5_14ujf"]
 [ext_resource type="PackedScene" uid="uid://d1mssaq48q7r7" path="res://Collectibles/bush.tscn" id="5_b487s"]
-[ext_resource type="PackedScene" uid="uid://ddygo00e65gg" path="res://Screens/meleespawner.tscn" id="7_3fe0o"]
+[ext_resource type="PackedScene" uid="uid://ddygo00e65gg" path="res://Screens/spawner.tscn" id="8_14ujf"]
 
 [node name="Quarry" type="Node2D" unique_id=317759896]
 script = ExtResource("1_w7vsu")
@@ -16,23 +16,35 @@ z_index = -3
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_3gg4c")
 
-[node name="Tree" parent="." unique_id=1227711547 instance=ExtResource("2_77t05")]
-position = Vector2(32, -10)
+[node name="Spawner" parent="." unique_id=156898322 instance=ExtResource("8_14ujf")]
+position = Vector2(19, 97)
 
-[node name="Rock" parent="." unique_id=665590815 instance=ExtResource("3_77t05")]
-position = Vector2(-299, 129)
+[node name="Rock" parent="." unique_id=1227711547 instance=ExtResource("4_xiqds")]
+position = Vector2(-309, 151)
 
-[node name="Rock2" parent="." unique_id=1727316419 instance=ExtResource("3_77t05")]
-position = Vector2(304, 125)
+[node name="Wall" parent="." unique_id=1736757441 instance=ExtResource("5_14ujf")]
+position = Vector2(-313, -123)
 
-[node name="Tree2" parent="." unique_id=732663610 instance=ExtResource("4_xiqds")]
-position = Vector2(-338, -143)
+[node name="Wall2" parent="." unique_id=1345465771 instance=ExtResource("5_14ujf")]
+position = Vector2(-123, -106)
 
-[node name="Tree3" parent="." unique_id=178365233 instance=ExtResource("4_xiqds")]
-position = Vector2(343, -70)
+[node name="Rock2" parent="." unique_id=911530958 instance=ExtResource("4_xiqds")]
+position = Vector2(299, -77)
 
-[node name="Bush" parent="." unique_id=1305350676 instance=ExtResource("5_b487s")]
-position = Vector2(-21, 103)
+[node name="Pebbles" parent="." unique_id=276659835 instance=ExtResource("5_3fe0o")]
+position = Vector2(-197, 131)
 
-[node name="MeleeSpawner" parent="." unique_id=156898322 instance=ExtResource("7_3fe0o")]
-position = Vector2(-169, -93)
+[node name="Pebbles2" parent="." unique_id=1966352274 instance=ExtResource("5_3fe0o")]
+position = Vector2(-402, 188)
+
+[node name="Pebbles3" parent="." unique_id=423092192 instance=ExtResource("5_3fe0o")]
+position = Vector2(227, -20)
+
+[node name="Pebbles4" parent="." unique_id=1627181425 instance=ExtResource("5_3fe0o")]
+position = Vector2(439, -88)
+
+[node name="Bush" parent="." unique_id=1974587427 instance=ExtResource("5_b487s")]
+position = Vector2(-251, -53)
+
+[node name="Bush2" parent="." unique_id=1138327900 instance=ExtResource("5_b487s")]
+position = Vector2(382, 224)

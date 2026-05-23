@@ -19,7 +19,7 @@ func _start_interact() -> void:
 	_hide_prompt()
 	_interacting = true
 	_stopFlash()
-	Signals.collecting.emit()
+	Signals.charge.emit()
 	Global.canMove += 1
 	Global.cannotCraftCollecting = true
 	Global.cannotShootCollecting = true

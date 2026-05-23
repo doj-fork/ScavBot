@@ -440,6 +440,9 @@ size = Vector2(240, 426.66666)
 [sub_resource type="CircleShape2D" id="CircleShape2D_btcbx"]
 radius = 554.5769
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gu6f8"]
+size = Vector2(15306.667, 9266.666)
+
 [node name="Player" type="CharacterBody2D" unique_id=253815592]
 scale = Vector2(0.075, 0.075)
 motion_mode = 1
@@ -456,7 +459,7 @@ vframes = 4
 [node name="Shadow" type="Sprite2D" parent="Sprite2D" unique_id=1733824454]
 modulate = Color(2.1168277, 2.1168277, 2.1168277, 1)
 show_behind_parent = true
-z_index = -2
+z_index = -1
 position = Vector2(-1.4305115e-05, 43.809532)
 scale = Vector2(0.47565234, 0.5941618)
 texture = ExtResource("3_gu6f8")
@@ -546,5 +549,14 @@ collision_mask = 0
 position = Vector2(13.333333, -413.3333)
 shape = SubResource("CircleShape2D_btcbx")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
+
+[node name="AntiSpawn" type="Area2D" parent="." unique_id=576197605]
+collision_layer = 8388608
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AntiSpawn" unique_id=86402330]
+position = Vector2(0, -346.66675)
+shape = SubResource("RectangleShape2D_gu6f8")
+debug_color = Color(0.9529412, 0, 0.5647059, 0.039215688)
 
 [connection signal="area_entered" from="EnemyPlayerCollision" to="." method="_on_area_2d_area_entered"]

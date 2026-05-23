@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bdbt4b5mpgkj0"]
+
+[ext_resource type="Script" uid="uid://dufmw0kvgqnou" path="res://Chunks/chunk.gd" id="1_x7tmb"]
+[ext_resource type="Texture2D" uid="uid://c3lc15yyssnvd" path="res://Assets/Chunks/ground.png" id="2_i5k6l"]
+[ext_resource type="PackedScene" uid="uid://ddygo00e65gg" path="res://Screens/spawner.tscn" id="3_hahys"]
+[ext_resource type="PackedScene" uid="uid://ckq2wmhmr0jsx" path="res://Collectibles/wall.tscn" id="4_qs0as"]
+[ext_resource type="PackedScene" uid="uid://h7vhyxfte43a" path="res://Collectibles/roboscrap.tscn" id="5_orpmr"]
+[ext_resource type="PackedScene" uid="uid://csnhe5ji6disy" path="res://Collectibles/rock.tscn" id="7_i5k6l"]
+[ext_resource type="PackedScene" uid="uid://dmnlpl2sm8twp" path="res://Collectibles/scrap.tscn" id="8_qs26y"]
+
+[node name="MechField" type="Node2D" unique_id=317759896]
+script = ExtResource("1_x7tmb")
+
+[node name="Floor" type="Sprite2D" parent="." unique_id=900892796]
+z_index = -3
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_i5k6l")
+
+[node name="Spawner" parent="." unique_id=156898322 instance=ExtResource("3_hahys")]
+position = Vector2(71, 5)
+
+[node name="Ruined Robot" parent="." unique_id=276659835 instance=ExtResource("5_orpmr")]
+position = Vector2(-364, 34)
+
+[node name="Ruined Robot2" parent="." unique_id=333713324 instance=ExtResource("5_orpmr")]
+position = Vector2(-254, -176)
+
+[node name="Ruined Robot3" parent="." unique_id=1842460090 instance=ExtResource("5_orpmr")]
+position = Vector2(328, 158)
+
+[node name="Ruined Robot4" parent="." unique_id=23183989 instance=ExtResource("5_orpmr")]
+position = Vector2(251, 132)
+
+[node name="Wall" parent="." unique_id=1227711547 instance=ExtResource("4_qs0as")]
+position = Vector2(-300, 2)
+
+[node name="Wall2" parent="." unique_id=980159510 instance=ExtResource("4_qs0as")]
+position = Vector2(167, -145)
+
+[node name="Scrap" parent="." unique_id=390176406 instance=ExtResource("8_qs26y")]
+position = Vector2(306, 88)
+
+[node name="Rock" parent="." unique_id=1904154118 instance=ExtResource("7_i5k6l")]
+position = Vector2(-131, 110)

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://ddygo00e65gg"]
+
+[ext_resource type="Script" uid="uid://yaejdyb2whoo" path="res://Screens/spawner.gd" id="1_6th0i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vans4"]
+radius = 6.0
+
+[node name="Spawner" type="Node2D" unique_id=156898322]
+script = ExtResource("1_6th0i")
+
+[node name="PlayerScan" type="Area2D" parent="." unique_id=30820441]
+collision_layer = 0
+collision_mask = 8388608
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerScan" unique_id=553279263]
+shape = SubResource("CircleShape2D_vans4")
+
+[connection signal="area_entered" from="PlayerScan" to="." method="_on_player_scan_area_entered"]
+[connection signal="area_exited" from="PlayerScan" to="." method="_on_player_scan_area_exited"]

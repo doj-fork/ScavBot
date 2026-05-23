@@ -46,6 +46,7 @@ var animState = "Move"
 @onready var stateMachine = animTree.get("parameters/playback")
 
 func _ready() -> void:
+	self.reparent(get_tree().current_scene)
 	add_to_group("Enemies")
 	add_to_group("Melee")
 	randomNumberGenerator.randomize()

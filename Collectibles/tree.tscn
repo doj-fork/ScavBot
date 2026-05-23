@@ -8,7 +8,7 @@
 radius = 126.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqeof"]
-size = Vector2(61, 42)
+size = Vector2(74.5, 26)
 
 [node name="Tree" type="Node2D" unique_id=1227711547]
 script = ExtResource("1_uqeof")
@@ -30,7 +30,7 @@ debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 collision_layer = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=209587586]
-position = Vector2(2, -65)
+position = Vector2(7, -60)
 shape = SubResource("RectangleShape2D_uqeof")
 
 [node name="InteractSound" type="AudioStreamPlayer2D" parent="." unique_id=1958187646]

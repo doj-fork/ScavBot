@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://h7vhyxfte43a"]
+
+[ext_resource type="Texture2D" uid="uid://cdcsq0idtplge" path="res://Assets/NatureAssets/Robot1.png" id="1_6gvdt"]
+[ext_resource type="Script" uid="uid://b8llrkujnsnad" path="res://Collectibles/ruinedrobot.gd" id="2_6gvdt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gvdt"]
+size = Vector2(70.625, 23)
+
+[node name="Ruined Robot" type="Node2D" unique_id=276659835]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1048871822]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_6gvdt")
+offset = Vector2(0, -10)
+script = ExtResource("2_6gvdt")
+
+[node name="Collision" type="StaticBody2D" parent="." unique_id=948348898]
+collision_layer = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=774059183]
+position = Vector2(4, -12)
+shape = SubResource("RectangleShape2D_6gvdt")

@@ -31,7 +31,7 @@ debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 collision_layer = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=209587586]
-position = Vector2(3, -21)
+position = Vector2(3, -23)
 shape = SubResource("RectangleShape2D_uqeof")
 
 [node name="InteractSound" type="AudioStreamPlayer2D" parent="." unique_id=1236629477]

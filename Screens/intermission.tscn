@@ -41,6 +41,10 @@ remote_path = NodePath("../../Camera")
 process_mode = 3
 position = Vector2(482, 396)
 scale = Vector2(0.075, 0.075)
+limit_left = -60
+limit_top = 60
+limit_right = 1030
+limit_bottom = 920
 position_smoothing_enabled = true
 position_smoothing_speed = 5.5
 
@@ -112,34 +116,42 @@ debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 bus = &"SFX"
 
 [node name="Ground" type="Sprite2D" parent="." unique_id=534549594]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(-952, 317)
 texture = ExtResource("8_nrj0l")
 
 [node name="Ground2" type="Sprite2D" parent="." unique_id=1869109343]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(479, -559)
 texture = ExtResource("8_nrj0l")
 
 [node name="Ground3" type="Sprite2D" parent="." unique_id=6424994]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(1909, 521)
 texture = ExtResource("8_nrj0l")
 
 [node name="Ground4" type="Sprite2D" parent="." unique_id=641619284]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(479, 1397)
 texture = ExtResource("8_nrj0l")
 
 [node name="GroundThin2" type="Sprite2D" parent="." unique_id=1492447841]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(1601, -384)
 texture = ExtResource("9_a7ylj")
 
 [node name="GroundThin3" type="Sprite2D" parent="." unique_id=1448577933]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(-643, -588)
 texture = ExtResource("9_a7ylj")
 
 [node name="GroundThin" type="Sprite2D" parent="." unique_id=1820806379]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(-643, 1222)
 texture = ExtResource("9_a7ylj")
 
 [node name="GroundThin4" type="Sprite2D" parent="." unique_id=217015062]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(1601, 1426)
 texture = ExtResource("9_a7ylj")
 
@@ -155,7 +167,7 @@ position = Vector2(933.5, 417.5)
 shape = SubResource("RectangleShape2D_0gm5w")
 
 [node name="WallShape3" type="CollisionShape2D" parent="GroundThin4/Walls" unique_id=1365963123]
-position = Vector2(481, 250)
+position = Vector2(481, 282)
 shape = SubResource("RectangleShape2D_abovk")
 
 [node name="WallShape4" type="CollisionShape2D" parent="GroundThin4/Walls" unique_id=1370744004]
@@ -174,7 +186,7 @@ position = Vector2(933.5, 417.5)
 shape = SubResource("RectangleShape2D_0gm5w")
 
 [node name="camLimit3" type="CollisionShape2D" parent="GroundThin4/camLimit" unique_id=410019594]
-position = Vector2(479, 250)
+position = Vector2(479, 282)
 shape = SubResource("RectangleShape2D_abovk")
 
 [node name="camLimit4" type="CollisionShape2D" parent="GroundThin4/camLimit" unique_id=1657690283]

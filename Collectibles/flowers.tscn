@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://danqunwm7k5kr"]
+
+[ext_resource type="Texture2D" uid="uid://cneo0q4e253ie" path="res://Assets/NatureAssets/Dandelion1.png" id="1_7gcka"]
+[ext_resource type="Script" uid="uid://dbt1w1rwiv2w8" path="res://Collectibles/dandelion.gd" id="2_7gcka"]
+
+[node name="Flowers" type="Node2D" unique_id=276659835]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1048871822]
+z_index = -2
+texture = ExtResource("1_7gcka")
+script = ExtResource("2_7gcka")

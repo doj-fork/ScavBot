@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ouek75q8fvbo"]
+
+[ext_resource type="Texture2D" uid="uid://cq4dm5iumi4d7" path="res://Assets/NatureAssets/Walls.png" id="1_pmh0r"]
+
+[node name="BFront" type="Node2D" unique_id=576194753]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=794518080]
+modulate = Color(1, 0.6435507, 0.680502, 1)
+position = Vector2(232, 0)
+texture = ExtResource("1_pmh0r")
+offset = Vector2(0, -30)

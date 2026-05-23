@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dfqsirbg5713l"]
+
+[ext_resource type="Texture2D" uid="uid://m14axfurwv7s" path="res://Assets/NatureAssets/MetalSheet1.png" id="1_dksl7"]
+[ext_resource type="Script" uid="uid://crhmucdygpdmm" path="res://Collectibles/metalsheet.gd" id="2_dksl7"]
+
+[node name="Metal Sheet" type="Node2D" unique_id=276659835]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1048871822]
+z_index = -2
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_dksl7")
+script = ExtResource("2_dksl7")

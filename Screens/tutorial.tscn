@@ -48,6 +48,10 @@ remote_path = NodePath("../../Camera")
 process_mode = 3
 position = Vector2(480, 494)
 scale = Vector2(0.075, 0.075)
+limit_left = -60
+limit_top = 60
+limit_right = 1030
+limit_bottom = 920
 position_smoothing_enabled = true
 position_smoothing_speed = 5.5
 
@@ -95,7 +99,7 @@ position = Vector2(933.5, 417.5)
 shape = SubResource("RectangleShape2D_wall2")
 
 [node name="WallShape3" type="CollisionShape2D" parent="Walls" unique_id=-2094967292]
-position = Vector2(479, 246)
+position = Vector2(479, 278)
 shape = SubResource("RectangleShape2D_wall3")
 
 [node name="WallShape4" type="CollisionShape2D" parent="Walls" unique_id=-2094967291]
@@ -113,7 +117,7 @@ position = Vector2(933.5, 417.5)
 shape = SubResource("RectangleShape2D_wall2")
 
 [node name="camLimit3" type="CollisionShape2D" parent="camLimit" unique_id=-2094967287]
-position = Vector2(479, 246)
+position = Vector2(479, 278)
 shape = SubResource("RectangleShape2D_wall3")
 
 [node name="camLimit4" type="CollisionShape2D" parent="camLimit" unique_id=-2094967286]
@@ -255,34 +259,42 @@ position = Vector2(884, 429)
 initial_health = 100
 
 [node name="Ground" type="Sprite2D" parent="." unique_id=1906325461]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(-952, 317)
 texture = ExtResource("16_ybno7")
 
 [node name="Ground2" type="Sprite2D" parent="." unique_id=184670862]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(479, -559)
 texture = ExtResource("16_ybno7")
 
 [node name="Ground3" type="Sprite2D" parent="." unique_id=200497298]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(1909, 521)
 texture = ExtResource("16_ybno7")
 
 [node name="Ground4" type="Sprite2D" parent="." unique_id=1004267860]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(479, 1397)
 texture = ExtResource("16_ybno7")
 
 [node name="GroundThin2" type="Sprite2D" parent="." unique_id=439494469]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(1601, -384)
 texture = ExtResource("17_4eef1")
 
 [node name="GroundThin3" type="Sprite2D" parent="." unique_id=1586189357]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(-643, -588)
 texture = ExtResource("17_4eef1")
 
 [node name="GroundThin" type="Sprite2D" parent="." unique_id=1057369999]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(-643, 1222)
 texture = ExtResource("17_4eef1")
 
 [node name="GroundThin4" type="Sprite2D" parent="." unique_id=1921103838]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(1601, 1426)
 texture = ExtResource("17_4eef1")
 

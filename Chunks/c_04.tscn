@@ -3,11 +3,16 @@
 [ext_resource type="Script" uid="uid://dufmw0kvgqnou" path="res://Chunks/chunk.gd" id="1_jo13e"]
 [ext_resource type="Texture2D" uid="uid://c3lc15yyssnvd" path="res://Assets/Chunks/ground.png" id="1_xhl2t"]
 [ext_resource type="PackedScene" uid="uid://dmnlpl2sm8twp" path="res://Collectibles/scrap.tscn" id="3_4td7q"]
-[ext_resource type="PackedScene" uid="uid://blk7eljqwewgo" path="res://Collectibles/computer.tscn" id="3_qkchw"]
+[ext_resource type="PackedScene" uid="uid://bdv8j4cjql5xa" path="res://Collectibles/artillery.tscn" id="4_4td7q"]
 [ext_resource type="PackedScene" uid="uid://ckq2wmhmr0jsx" path="res://Collectibles/wall.tscn" id="4_xhl2t"]
-[ext_resource type="PackedScene" uid="uid://ddygo00e65gg" path="res://Screens/meleespawner.tscn" id="6_4td7q"]
+[ext_resource type="PackedScene" uid="uid://diibl42tg4uvf" path="res://Collectibles/machinery.tscn" id="6_cxbjh"]
+[ext_resource type="PackedScene" uid="uid://ddygo00e65gg" path="res://Screens/spawner.tscn" id="7_a6sv7"]
+[ext_resource type="PackedScene" uid="uid://h7vhyxfte43a" path="res://Collectibles/roboscrap.tscn" id="8_u7qo6"]
+[ext_resource type="PackedScene" uid="uid://d1mssaq48q7r7" path="res://Collectibles/bush.tscn" id="9_0wqqq"]
+[ext_resource type="PackedScene" uid="uid://danqunwm7k5kr" path="res://Collectibles/flowers.tscn" id="9_313gp"]
+[ext_resource type="PackedScene" uid="uid://dfqsirbg5713l" path="res://Collectibles/sheet.tscn" id="10_313gp"]
 
-[node name="Facility" type="Node2D" unique_id=317759896]
+[node name="DemolishedArtillery" type="Node2D" unique_id=317759896]
 script = ExtResource("1_jo13e")
 
 [node name="Floor" type="Sprite2D" parent="." unique_id=900892796]
@@ -15,20 +20,44 @@ z_index = -3
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_xhl2t")
 
+[node name="Spawner" parent="." unique_id=156898322 instance=ExtResource("7_a6sv7")]
+position = Vector2(-83, 13)
+
+[node name="Artillery" parent="." unique_id=276659835 instance=ExtResource("4_4td7q")]
+position = Vector2(-321, -111)
+
+[node name="Ruined Robot" parent="." unique_id=817542608 instance=ExtResource("8_u7qo6")]
+position = Vector2(-378, -72)
+
+[node name="Ruined Robot2" parent="." unique_id=1892374652 instance=ExtResource("8_u7qo6")]
+position = Vector2(-143, 149)
+
+[node name="Machinery" parent="." unique_id=1153405581 instance=ExtResource("6_cxbjh")]
+position = Vector2(360, 105)
+
 [node name="Scrap" parent="." unique_id=1227711547 instance=ExtResource("3_4td7q")]
-position = Vector2(-300, 119)
+position = Vector2(257, -69)
 
-[node name="Computer" parent="." unique_id=1079546017 instance=ExtResource("3_qkchw")]
-position = Vector2(-8, -26)
+[node name="Metal Sheet" parent="." unique_id=594813614 instance=ExtResource("10_313gp")]
+position = Vector2(167, -57)
 
-[node name="Computer2" parent="." unique_id=339016862 instance=ExtResource("3_qkchw")]
-position = Vector2(281, 84)
+[node name="Metal Sheet2" parent="." unique_id=1384191459 instance=ExtResource("10_313gp")]
+position = Vector2(342, -37)
 
-[node name="Wall" parent="." unique_id=2045475996 instance=ExtResource("4_xhl2t")]
-position = Vector2(-300, -132)
+[node name="Flowers" parent="." unique_id=2014636291 instance=ExtResource("9_313gp")]
+position = Vector2(-246, -78)
 
-[node name="Wall2" parent="." unique_id=316193113 instance=ExtResource("4_xhl2t")]
-position = Vector2(120, 185)
+[node name="Flowers2" parent="." unique_id=224561441 instance=ExtResource("9_313gp")]
+position = Vector2(-325, -37)
 
-[node name="MeleeSpawner" parent="." unique_id=156898322 instance=ExtResource("6_4td7q")]
-position = Vector2(312, -179)
+[node name="Bush" parent="." unique_id=1549756565 instance=ExtResource("9_0wqqq")]
+position = Vector2(-362, 207)
+
+[node name="Bush2" parent="." unique_id=1176127663 instance=ExtResource("9_0wqqq")]
+position = Vector2(-22, -149)
+
+[node name="Wall" parent="." unique_id=1369001954 instance=ExtResource("4_xhl2t")]
+position = Vector2(350, 69)
+
+[node name="Wall2" parent="." unique_id=492962455 instance=ExtResource("4_xhl2t")]
+position = Vector2(160, 58)

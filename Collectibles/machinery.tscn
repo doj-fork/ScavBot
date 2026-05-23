@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://diibl42tg4uvf"]
+
+[ext_resource type="Texture2D" uid="uid://dmyh873otruik" path="res://Assets/NatureAssets/Machine1.png" id="1_t1aex"]
+[ext_resource type="Script" uid="uid://wa2vxwd831ub" path="res://Collectibles/machinery.gd" id="2_t1aex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gvdt"]
+size = Vector2(129.25, 46)
+
+[node name="Machinery" type="Node2D" unique_id=276659835]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1048871822]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_t1aex")
+offset = Vector2(0, -45)
+script = ExtResource("2_t1aex")
+
+[node name="Collision" type="StaticBody2D" parent="." unique_id=948348898]
+collision_layer = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=774059183]
+position = Vector2(8, -23)
+shape = SubResource("RectangleShape2D_6gvdt")

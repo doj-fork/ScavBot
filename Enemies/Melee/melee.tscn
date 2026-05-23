@@ -14,7 +14,7 @@ height = 52.0
 size = Vector2(65, 37)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_042w3"]
-radius = 49.09175
+radius = 37.01351
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xcuec"]
 animation = &"LHit"
@@ -259,7 +259,7 @@ vframes = 6
 [node name="Shadow" type="Sprite2D" parent="Sprite2D" unique_id=1864204324]
 modulate = Color(2.1168277, 2.1168277, 2.1168277, 1)
 show_behind_parent = true
-z_index = -2
+z_index = -1
 position = Vector2(-2.9999995, 32.000004)
 scale = Vector2(0.43313867, 0.59473026)
 texture = ExtResource("3_jxloj")
@@ -290,7 +290,7 @@ collision_layer = 32
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BulletCollision" unique_id=775599783]
-position = Vector2(-4, -36)
+position = Vector2(-1, -46)
 shape = SubResource("CircleShape2D_042w3")
 debug_color = Color(0.19813973, 0.61040646, 0.5649672, 0.41960785)
 

@@ -4,14 +4,28 @@
 [ext_resource type="Texture2D" uid="uid://b3sifrl1jxjky" path="res://Assets/Misc/Grass.png" id="2_ib1il"]
 [ext_resource type="Texture2D" uid="uid://c8eqbmd0afa33" path="res://Assets/Misc/pngtree-background-a-rock-png-image_16683368.png" id="4_j67id"]
 [ext_resource type="PackedScene" uid="uid://cjwu1mthtoyrn" path="res://Assets/Misc/roomtest.tscn" id="5_h1w7h"]
-[ext_resource type="Script" uid="uid://yaejdyb2whoo" path="res://Screens/melee_spawner.gd" id="7_4g37g"]
+[ext_resource type="Script" uid="uid://yaejdyb2whoo" path="res://Screens/spawner.gd" id="7_4g37g"]
 [ext_resource type="PackedScene" uid="uid://bs26xp77s0ly4" path="res://Collectibles/tree.tscn" id="7_tf4ai"]
-[ext_resource type="Script" uid="uid://bpgs2iovj4ui0" path="res://Screens/tank_spawner.gd" id="8_tf4ai"]
 [ext_resource type="PackedScene" uid="uid://c6tmh6v73lh1a" path="res://Enemies/Tank/tank.tscn" id="8_w476a"]
 [ext_resource type="PackedScene" uid="uid://cunsuenbpva52" path="res://Enemies/Melee/melee.tscn" id="9_plcow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1w7h"]
 size = Vector2(1805, 545)
+
+[sub_resource type="GDScript" id="GDScript_tf4ai"]
+script/source = "extends Node2D
+
+@onready var tank = preload(\"res://Enemies/Tank/tank.tscn\")
+
+func _ready():
+	spawnTank()
+	
+func spawnTank():
+	await get_tree().create_timer(17, false).timeout
+	var newTank = tank.instantiate()
+	self.call_deferred(\"add_child\", newTank)
+	spawnTank()
+"
 
 [node name="Map" type="Node2D" unique_id=1031170873]
 y_sort_enabled = true
@@ -100,7 +114,7 @@ script = ExtResource("7_4g37g")
 
 [node name="TankSpawner" type="Node2D" parent="." unique_id=1081021157]
 position = Vector2(908, -260)
-script = ExtResource("8_tf4ai")
+script = SubResource("GDScript_tf4ai")
 
 [node name="Tree" parent="." unique_id=1227711547 instance=ExtResource("7_tf4ai")]
 position = Vector2(907, -112)

@@ -8,7 +8,7 @@
 radius = 87.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqeof"]
-size = Vector2(125.5, 18)
+size = Vector2(126.75, 25)
 
 [node name="Steel" type="Node2D" unique_id=1227711547]
 script = ExtResource("1_k8w7a")
@@ -17,6 +17,7 @@ script = ExtResource("1_k8w7a")
 position = Vector2(9, -31.000002)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_160ij")
+offset = Vector2(0, -30)
 
 [node name="ItemCollect" type="Area2D" parent="." unique_id=1283826316]
 collision_layer = 0
@@ -31,7 +32,7 @@ debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 collision_layer = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=209587586]
-position = Vector2(4, -8)
+position = Vector2(-1.375, -24.5)
 shape = SubResource("RectangleShape2D_uqeof")
 
 [node name="InteractSound" type="AudioStreamPlayer2D" parent="." unique_id=658825208]

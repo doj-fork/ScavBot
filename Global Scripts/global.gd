@@ -1,6 +1,10 @@
 class_name GlobalState
 extends Node
 
+var maxEnemies = 16
+var currentEnemies = 0
+
+
 var bulletMax = 0
 var dead = false
 var playerPos: Vector2 = Vector2.ZERO
@@ -34,6 +38,8 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 func _process(_delta: float) -> void:
+	maxEnemies = (16 + (2 * Stats.wave))
+	
 	cannotPauseList = [cannotPauseTransitioning, cannotPauseGeneral, cannotPauseCrafting]
 	cannotCraftList = [cannotCraftGeneral, cannotCraftTransitioning, cannotCraftCollecting, cannotCraftPaused]
 	cannotShootList = [cannotShootCollecting, cannotShootIntermission, cannotShootGeneral]

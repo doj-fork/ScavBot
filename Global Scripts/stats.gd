@@ -14,7 +14,10 @@ var tank_kills: int = 0
 var sfx_volume: int = 5
 var music_volume: int = 5
 
+var wave = 0
+
 func majorReset():
+	wave = 0
 	health = 100
 	speed = 200
 	damageMult = 0

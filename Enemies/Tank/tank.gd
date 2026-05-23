@@ -101,6 +101,7 @@ func hitAnim():
 
 # main function
 func _ready() -> void:
+	self.reparent(get_tree().current_scene)
 	add_to_group("Enemies")
 	add_to_group("Tank")
 	randomNumberGenerator.randomize()

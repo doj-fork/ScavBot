@@ -2,14 +2,13 @@
 
 [ext_resource type="Script" uid="uid://b4oq0q7yvrbj0" path="res://Collectibles/rock.gd" id="1_eblmw"]
 [ext_resource type="Texture2D" uid="uid://dcq3k4w6716a0" path="res://Assets/NatureAssets/Rock1.png" id="1_vrk0g"]
-[ext_resource type="Texture2D" uid="uid://olivkx82cts1" path="res://Assets/Misc/Shadow.png" id="3_5d018"]
 [ext_resource type="AudioStream" uid="uid://cqvahmlih7411" path="res://Assets/SFX/UI/collectitem.mp3" id="3_collect"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vrk0g"]
-radius = 145.00345
+radius = 120.53045
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eblmw"]
-size = Vector2(193, 37.5)
+size = Vector2(171.5, 37.5)
 
 [node name="Rock" type="Node2D" unique_id=1227711547]
 script = ExtResource("1_eblmw")
@@ -20,21 +19,12 @@ scale = Vector2(1.2858407, 1.2858405)
 texture = ExtResource("1_vrk0g")
 offset = Vector2(0, -1200)
 
-[node name="Shadow" type="Sprite2D" parent="Sprite" unique_id=1994240402]
-modulate = Color(2.1168277, 2.1168277, 2.1168277, 1)
-show_behind_parent = true
-z_index = -2
-position = Vector2(-1.9047756, 34.285717)
-scale = Vector2(0.44175068, 0.44175068)
-texture = ExtResource("3_5d018")
-offset = Vector2(0, -60)
-
 [node name="ItemCollect" type="Area2D" parent="." unique_id=2121326085]
 collision_layer = 0
 collision_mask = 2048
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemCollect" unique_id=236895671]
-position = Vector2(0.50024414, -23.719818)
+position = Vector2(-5, -32)
 shape = SubResource("CircleShape2D_vrk0g")
 debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 
@@ -42,7 +32,7 @@ debug_color = Color(0.5859615, 0.4096952, 0.85611826, 0.41960785)
 collision_layer = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=2121215114]
-position = Vector2(0.00024414063, -3.969818)
+position = Vector2(-11.75, -20)
 shape = SubResource("RectangleShape2D_eblmw")
 
 [node name="InteractSound" type="AudioStreamPlayer2D" parent="." unique_id=1629191602]

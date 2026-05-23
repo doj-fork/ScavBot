@@ -34,7 +34,26 @@ var wanderDirection: Vector2 = Vector2.RIGHT
 var wanderDirectionTimer: float = 0.0
 var randomNumberGenerator: RandomNumberGenerator = RandomNumberGenerator.new()
 
+var animState = "Move"
+@onready var animTree = $AnimationTree
+@onready var stateMachine = animTree.get("parameters/playback")
+
+func _process(_delta):
+	var animDir = velocity.normalized()
+	animUpdate(animDir)
+	
+func animUpdate(dir):
+	animTree.set("parameters/Move/blend_position", dir)
+	animTree.set("parameters/Hit/blend_position", ((Global.playerPos - global_position).normalized()))
+	stateMachine.travel(animState)
+	
+func hitAnim():
+	animState = "Hit"
+	await get_tree().create_timer(0.9, false).timeout
+	animState = "Move"
+
 func _ready() -> void:
+	self.reparent(get_tree().current_scene)
 	add_to_group("Enemies")
 	add_to_group("Ranger")
 	randomNumberGenerator.randomize()
@@ -144,13 +163,16 @@ func _tryShoot(playerPosition: Vector2) -> void:
 	var bullet: Area2D = RANGER_BULLET_SCENE.instantiate() as Area2D
 	if bullet == null:
 		return
-
+	
+	
+	
 	bullet.global_position = global_position
 	if bullet.has_method("setup"):
 		bullet.setup(bulletDirection, projectileSpeed, projectileDamage, self)
 
 	get_tree().current_scene.call_deferred("add_child", bullet)
 	shootSound.play()
+	hitAnim()
 	shootTimer = shootCooldown
 
 func _on_bullet_collision_area_entered(_area: Area2D) -> void:

@@ -16,7 +16,7 @@ height = 736.0
 size = Vector2(704, 612)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2bbpy"]
-radius = 586.3105
+radius = 424.3018
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uap3a"]
 animation = &"LHit"
@@ -262,7 +262,7 @@ vframes = 6
 [node name="Shadow" type="Sprite2D" parent="Tank" unique_id=881795821]
 modulate = Color(2.1168277, 2.1168277, 2.1168277, 1)
 show_behind_parent = true
-z_index = -2
+z_index = -1
 position = Vector2(-2.9090939, 148.36363)
 scale = Vector2(0.7671981, 1.0534176)
 texture = ExtResource("3_2bbpy")
