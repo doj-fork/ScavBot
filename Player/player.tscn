@@ -529,6 +529,12 @@ bus = &"SFX"
 
 [node name="walkSFX" type="AudioStreamPlayer2D" parent="." unique_id=-475690447]
 volume_db = -10.0
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="runSFX" type="AudioStreamPlayer2D" parent="." unique_id=987654321]
+volume_db = -10.0
+max_polyphony = 3
 bus = &"SFX"
 
 [node name="EnemyPlayerCollision" type="Area2D" parent="." unique_id=1535774745]

@@ -10,6 +10,9 @@
 [ext_resource type="Shader" uid="uid://b5o7l4cpum7ua" path="res://Shaders/blur.gdshader" id="8_blur"]
 [ext_resource type="Texture2D" uid="uid://dcv4cmbc24uw1" path="res://Assets/MenuAssets/CraftingMenu.png" id="9_craftmenu"]
 [ext_resource type="Script" uid="uid://bmo05q2tirav0" path="res://Screens/title_options.gd" id="11_optsscript"]
+[ext_resource type="Texture2D" uid="uid://c5vcdc2o1lejr" path="res://Assets/MenuAssets/MenuButtonNew.png" id="13_mbtn"]
+[ext_resource type="Texture2D" uid="uid://1qbcmpi0xvoo" path="res://Assets/MenuAssets/MenuButtonHoverNew.png" id="14_mbtnhover"]
+[ext_resource type="Texture2D" uid="uid://csniy1ke164wd" path="res://Assets/MenuAssets/MenuButtonClickNew.png" id="15_mbtnclick"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_itjia"]
 shader = ExtResource("3_1e64e")
@@ -18,6 +21,17 @@ shader_parameter/scale = 220.0
 shader_parameter/scroll_velocity = Vector2(0.06, 0.02)
 shader_parameter/refresh_rate = 60.0
 shader_parameter/seed = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mbtn_normal"]
+texture = ExtResource("13_mbtn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mbtn_pressed"]
+texture = ExtResource("15_mbtnclick")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mbtn_hover"]
+texture = ExtResource("14_mbtnhover")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mbtn_focus"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_opts"]
 shader = ExtResource("8_blur")
@@ -58,7 +72,8 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="CenterContainer" type="CenterContainer" parent="UIRoot" unique_id=1324006708]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -66,41 +81,82 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UIRoot/CenterContainer" unique_id=244088142]
 layout_mode = 2
-theme_override_constants/separation = 26
+theme_override_constants/separation = 10
 alignment = 1
 
-[node name="TitleText" type="Label" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=948067172]
+[node name="TitleText" type="RichTextLabel" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=948067172]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 44
-text = "          ScavBot          "
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0.13333334, 0.21568628, 0.25882354, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.3137255)
+theme_override_constants/shadow_outline_size = 12
+theme_override_constants/shadow_offset_x = -5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("2_font")
+theme_override_font_sizes/normal_font_size = 44
+text = "ScavBot"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=293573289]
+custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
-[node name="PlayButton" type="Button" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=502190193]
+[node name="GridContainer" type="GridContainer" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=111222333]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="PlayButton" type="Button" parent="UIRoot/CenterContainer/VBoxContainer/GridContainer" unique_id=502190193]
+custom_minimum_size = Vector2(150, 58)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mbtn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mbtn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
 text = "Play"
 
-[node name="OptionsButton" type="Button" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=1650782601]
+[node name="CreditsButton" type="Button" parent="UIRoot/CenterContainer/VBoxContainer/GridContainer" unique_id=331656722]
+custom_minimum_size = Vector2(150, 58)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 36
-text = "Options"
-
-[node name="CreditsButton" type="Button" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=331656722]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mbtn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mbtn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
 text = "Credits"
 
-[node name="QuitButton" type="Button" parent="UIRoot/CenterContainer/VBoxContainer" unique_id=1037864926]
+[node name="OptionsButton" type="Button" parent="UIRoot/CenterContainer/VBoxContainer/GridContainer" unique_id=1650782601]
+custom_minimum_size = Vector2(150, 58)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mbtn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mbtn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="UIRoot/CenterContainer/VBoxContainer/GridContainer" unique_id=1037864926]
+custom_minimum_size = Vector2(150, 58)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mbtn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mbtn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
 text = "Quit"
 
 [node name="MenuBGM" type="AudioStreamPlayer2D" parent="." unique_id=1247246021]
@@ -413,25 +469,25 @@ alignment = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 40
-text = "Skip Tutorial?"
+text = "Play Tutorial?"
 horizontal_alignment = 1
 
 [node name="YesButton" type="Button" parent="SkipTutorialOverlay/CenterContainer/VBoxContainer" unique_id=800000006]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 32
-text = "Yes   Skip to Game"
+text = "Yes"
 
 [node name="NoButton" type="Button" parent="SkipTutorialOverlay/CenterContainer/VBoxContainer" unique_id=800000007]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 32
-text = "No   Play Tutorial"
+text = "No (Skip)"
 
-[connection signal="pressed" from="UIRoot/CenterContainer/VBoxContainer/PlayButton" to="." method="pressPlay"]
-[connection signal="pressed" from="UIRoot/CenterContainer/VBoxContainer/OptionsButton" to="." method="pressOptions"]
-[connection signal="pressed" from="UIRoot/CenterContainer/VBoxContainer/CreditsButton" to="." method="pressCredits"]
-[connection signal="pressed" from="UIRoot/CenterContainer/VBoxContainer/QuitButton" to="." method="pressQuit"]
+[connection signal="pressed" from="UIRoot/CenterContainer/VBoxContainer/GridContainer/PlayButton" to="." method="pressPlay"]
+[connection signal="pressed" from="UIRoot/CenterContainer/VBoxContainer/GridContainer/CreditsButton" to="." method="pressCredits"]
+[connection signal="pressed" from="UIRoot/CenterContainer/VBoxContainer/GridContainer/OptionsButton" to="." method="pressOptions"]
+[connection signal="pressed" from="UIRoot/CenterContainer/VBoxContainer/GridContainer/QuitButton" to="." method="pressQuit"]
 [connection signal="finished" from="MenuBGM" to="." method="_on_menu_bgm_finished"]
 [connection signal="pressed" from="CreditsOverlay/CloseButton" to="." method="pressCreditsClose"]
 [connection signal="mouse_entered" from="OptionsOverlay/MainMenu" to="OptionsOverlay" method="_on_button_hover"]

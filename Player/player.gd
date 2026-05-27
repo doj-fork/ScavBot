@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var animTree = $AnimationTree
 @onready var stateMachine = animTree.get("parameters/playback")
 @onready var walkSFX: AudioStreamPlayer2D = $walkSFX
+@onready var runSFX: AudioStreamPlayer2D = $runSFX
 
 var immunity: bool = false
 
@@ -23,8 +24,19 @@ const WALK_SOUNDS: Array[String] = [
 ]
 const WALK_SOUND_INTERVAL: float = 1.5
 
+const RUN_SOUNDS: Array[String] = [
+	"res://Assets/SFX/Player/run1.wav",
+	"res://Assets/SFX/Player/run2.wav",
+	"res://Assets/SFX/Player/run3.wav",
+	"res://Assets/SFX/Player/run4.wav",
+	"res://Assets/SFX/Player/run5.wav"
+]
+const RUN_SOUND_INTERVAL: float = 1.0
+
 var walkSoundTimer: float = 0.0
+var runSoundTimer: float = 0.0
 var isWalking: bool = false
+var wasRunning: bool = false
 
 var lingerDamageRadius: float = 60.0
 var lingerDamageThreshold: float = 0.4
@@ -46,6 +58,8 @@ func _process(delta):
 		velocity = Vector2.ZERO
 		if walkSFX.playing:
 			walkSFX.stop()
+		if runSFX.playing:
+			runSFX.stop()
 		isWalking = false
 	else:
 		play_walk_sound()
@@ -142,23 +156,35 @@ func updateTexture(arg):
 			sprite.texture = load("res://Player/Assets/MoveEmpty.png")
 
 func play_walk_sound() -> void:
-	# Determine if player is walking
 	var currentlyWalking: bool = velocity != Vector2(0, 0)
-	
-	# If walking state changed, reset timer
+	var useRunSounds: bool = Stats.speedMult >= 5
+
 	if currentlyWalking != isWalking:
 		isWalking = currentlyWalking
 		walkSoundTimer = 0.0
-	
-	# Play sound if in walking state and timer is up
+		runSoundTimer = 0.0
+
+	if useRunSounds != wasRunning:
+		wasRunning = useRunSounds
+		walkSoundTimer = 0.0
+		runSoundTimer = 0.0
+
 	if isWalking:
-		walkSoundTimer -= get_physics_process_delta_time()
-		if walkSoundTimer <= 0.0:
-			var randomIndex: int = randi() % WALK_SOUNDS.size()
-			var soundPath: String = WALK_SOUNDS[randomIndex]
-			walkSFX.stream = load(soundPath)
-			walkSFX.play()
-			walkSoundTimer = WALK_SOUND_INTERVAL
+		if useRunSounds:
+			runSoundTimer -= get_physics_process_delta_time()
+			if runSoundTimer <= 0.0:
+				var randomIndex: int = randi() % RUN_SOUNDS.size()
+				runSFX.stream = load(RUN_SOUNDS[randomIndex])
+				runSFX.play()
+				runSoundTimer = RUN_SOUND_INTERVAL
+		else:
+			var effectiveInterval: float = WALK_SOUND_INTERVAL - (min(Stats.speedMult, 5) * 0.1)
+			walkSoundTimer -= get_physics_process_delta_time()
+			if walkSoundTimer <= 0.0:
+				var randomIndex: int = randi() % WALK_SOUNDS.size()
+				walkSFX.stream = load(WALK_SOUNDS[randomIndex])
+				walkSFX.play()
+				walkSoundTimer = effectiveInterval
 
 # solution to enemy linger issue
 func _checkEnemyLingerProximity(delta: float) -> void:
