@@ -472,13 +472,13 @@ theme_override_font_sizes/font_size = 40
 text = "Play Tutorial?"
 horizontal_alignment = 1
 
-[node name="YesButton" type="Button" parent="SkipTutorialOverlay/CenterContainer/VBoxContainer" unique_id=800000006]
+[node name="NoButton" type="Button" parent="SkipTutorialOverlay/CenterContainer/VBoxContainer" unique_id=800000007]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 32
 text = "Yes"
 
-[node name="NoButton" type="Button" parent="SkipTutorialOverlay/CenterContainer/VBoxContainer" unique_id=800000007]
+[node name="YesButton" type="Button" parent="SkipTutorialOverlay/CenterContainer/VBoxContainer" unique_id=800000006]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 32
@@ -504,5 +504,5 @@ text = "No (Skip)"
 [connection signal="pressed" from="OptionsOverlay/SFXUp" to="OptionsOverlay" method="_on_sfx_up_pressed"]
 [connection signal="mouse_entered" from="OptionsOverlay/SFXDown" to="OptionsOverlay" method="_on_button_hover"]
 [connection signal="pressed" from="OptionsOverlay/SFXDown" to="OptionsOverlay" method="_on_sfx_down_pressed"]
-[connection signal="pressed" from="SkipTutorialOverlay/CenterContainer/VBoxContainer/YesButton" to="." method="pressSkipYes"]
 [connection signal="pressed" from="SkipTutorialOverlay/CenterContainer/VBoxContainer/NoButton" to="." method="pressSkipNo"]
+[connection signal="pressed" from="SkipTutorialOverlay/CenterContainer/VBoxContainer/YesButton" to="." method="pressSkipYes"]
