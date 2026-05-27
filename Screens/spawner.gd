@@ -18,21 +18,21 @@ func spawnEnemy():
 	while entered == true or Global.currentEnemies >= Global.maxEnemies:
 		await get_tree().create_timer(3, false).timeout
 
-	var roll = randi_range(1, 80)
-	var rarityLim = 6 * Stats.wave
-	if rarityLim >= 42:
-		rarityLim = 42
-	
-	if roll <= (60 - rarityLim):
-		var newMelee = melee.instantiate()
-		self.call_deferred("add_child", newMelee)
-	elif roll <= (70 - (round(rarityLim * 0.66))):
-		var newRanger = ranger.instantiate()
-		self.call_deferred("add_child", newRanger)
-	else:
-		var newTank = tank.instantiate()
-		self.call_deferred("add_child", newTank)
-	spawnEnemy()
+		var roll = randi_range(1, 80)
+		var rarityLim = 6 * Stats.wave
+		if rarityLim >= 42:
+			rarityLim = 42
+		
+		if roll <= (60 - rarityLim):
+			var newMelee = melee.instantiate()
+			self.call_deferred("add_child", newMelee)
+		elif roll <= (70 - (round(rarityLim * 0.66))):
+			var newRanger = ranger.instantiate()
+			self.call_deferred("add_child", newRanger)
+		else:
+			var newTank = tank.instantiate()
+			self.call_deferred("add_child", newTank)
+		spawnEnemy()
 
 func _on_player_scan_area_entered(_area: Area2D) -> void:
 	entered = true
