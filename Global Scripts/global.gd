@@ -33,6 +33,7 @@ var cannotCraftPaused: bool = false
 var cannotCraftList: Array[bool] = [cannotCraftGeneral, cannotCraftTransitioning, cannotCraftCollecting, cannotCraftPaused]
 
 var tutorial_prompt_shown: bool = false
+var inGame = false
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS

@@ -9,6 +9,7 @@ func _ready():
 	BGM.play_game_bgm()
 	Signals.waveStart.emit()
 	awaitGateOpen()
+	Global.inGame = true
 	
 func awaitGateOpen():
 	await Signals.waveEnd

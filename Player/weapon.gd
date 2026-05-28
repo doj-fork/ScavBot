@@ -28,7 +28,7 @@ func _process(_delta):
 func runAR():
 	await shootClick
 	if Gun.type == "AR":
-		while Input.is_action_pressed("Shoot") and Gun.ammo >= 1 and cooldown == false:
+		while Input.is_action_pressed("Shoot") and Gun.ammo >= 1 and cooldown == false and true not in Global.cannotShootList:
 			ar_sfx.play()
 			shoot()
 			Gun.ammo -= 1

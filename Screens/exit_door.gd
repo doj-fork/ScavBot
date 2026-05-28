@@ -27,6 +27,7 @@ func _start_enter() -> void:
 	Transition.playTransition()
 	await get_tree().create_timer(0.6, false).timeout
 	Global.canMove -= 1
+	Global.inGame = false
 	get_tree().change_scene_to_file.call_deferred("res://Screens/intermission.tscn")
 
 func areaEntered(_area: Area2D) -> void:

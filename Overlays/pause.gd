@@ -14,16 +14,19 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed("Escape") and true not in Global.cannotPauseList and active == false:
 		active = true
+		Global.pauseActive = true
 		visible = true
 		Global.cannotCraftPaused = true
 		get_tree().paused = true
 		_update_hostiles_killed()
 		_refresh_volume_label()
+		await get_tree().create_timer(0.1, false).timeout
 	elif Input.is_action_just_pressed("Escape") and true not in Global.cannotPauseList and active == true:
 		resume()
 		
 func resume():
 	active = false
+	Global.pauseActive = false
 	Global.cannotCraftPaused = false
 	visible = false
 	get_tree().paused = false
