@@ -16,7 +16,6 @@ func spawnEnemy():
 	await get_tree().create_timer((randi_range(14, 18) - waitLimit), false).timeout
 	
 	while entered == true or Global.currentEnemies >= Global.maxEnemies:
-		print("I CANNOT SPAWN")
 		await get_tree().create_timer(3, false).timeout
 
 	var roll = randi_range(1, 80)
