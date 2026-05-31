@@ -43,6 +43,7 @@ var lingerDamageThreshold: float = 0.4
 var lingerTimers: Dictionary = {}
 	
 func _ready():
+	add_to_group("Player")
 	awaitCollect()
 	awaitCraft()
 	awaitCharge()
@@ -73,6 +74,7 @@ func _process(delta):
 
 func awaitCollect():
 	await Signals.collecting
+	Global.cannotShootCollecting = true
 	animState = "Special"
 	animSubState = "Collect"
 	await get_tree().create_timer(0.1, false).timeout
@@ -82,6 +84,7 @@ func awaitCollect():
 	await get_tree().create_timer(0.1, false).timeout
 	animTree.set("parameters/Base/blend_position", animDir)
 	animState = "Base"
+	Global.cannotShootCollecting = false
 	awaitCollect()
 	
 func awaitCraft():

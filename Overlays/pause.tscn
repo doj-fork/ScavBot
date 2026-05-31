@@ -7,10 +7,24 @@
 [ext_resource type="FontFile" uid="uid://c7oafmhek6vhy" path="res://Assets/Fonts/SunkenMini.ttf" id="5_xd0p5"]
 [ext_resource type="AudioStream" uid="uid://ln51k6c4pmtp" path="res://Assets/SFX/UI/hover.mp3" id="6_hover"]
 [ext_resource type="AudioStream" uid="uid://dukx0e6ancmsc" path="res://Assets/SFX/UI/click.mp3" id="7_click"]
+[ext_resource type="Texture2D" uid="uid://c5vcdc2o1lejr" path="res://Assets/MenuAssets/MenuButtonNew.png" id="13_mbtn"]
+[ext_resource type="Texture2D" uid="uid://1qbcmpi0xvoo" path="res://Assets/MenuAssets/MenuButtonHoverNew.png" id="14_mbtnhover"]
+[ext_resource type="Texture2D" uid="uid://csniy1ke164wd" path="res://Assets/MenuAssets/MenuButtonClickNew.png" id="15_mbtnclick"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_650wi"]
 shader = ExtResource("1_0fefx")
 shader_parameter/blur_size = Vector2(1, 0.5)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mbtn_normal"]
+texture = ExtResource("13_mbtn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mbtn_pressed"]
+texture = ExtResource("15_mbtnclick")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mbtn_hover"]
+texture = ExtResource("14_mbtnhover")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mbtn_focus"]
 
 [node name="Pause" type="CanvasLayer" unique_id=1312279411]
 process_mode = 3
@@ -106,6 +120,11 @@ offset_right = 417.0
 offset_bottom = 265.0
 theme_override_fonts/font = ExtResource("5_xd0p5")
 theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mbtn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mbtn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
 text = "Main Menu"
 
 [node name="Quit" type="Button" parent="." unique_id=928165743]
@@ -115,6 +134,11 @@ offset_right = 417.0
 offset_bottom = 353.0
 theme_override_fonts/font = ExtResource("5_xd0p5")
 theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mbtn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mbtn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
 text = "Quit Game"
 
 [node name="Resume" type="Button" parent="." unique_id=743361564]
@@ -124,6 +148,11 @@ offset_right = 417.0
 offset_bottom = 441.0
 theme_override_fonts/font = ExtResource("5_xd0p5")
 theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mbtn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mbtn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
 text = "Resume"
 
 [node name="Windowed" type="Button" parent="." unique_id=761329823]
@@ -133,6 +162,11 @@ offset_right = 618.0
 offset_bottom = 438.0
 theme_override_fonts/font = ExtResource("5_xd0p5")
 theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mbtn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mbtn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
 text = "Windowed"
 
 [node name="Fullscreen" type="Button" parent="." unique_id=624766992]
@@ -142,42 +176,67 @@ offset_right = 770.0
 offset_bottom = 439.0
 theme_override_fonts/font = ExtResource("5_xd0p5")
 theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mbtn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mbtn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
 text = "Fullscreen"
 
 [node name="MusicUp" type="Button" parent="." unique_id=26546244]
-offset_left = 683.0
-offset_top = 281.0
-offset_right = 742.2763
-offset_bottom = 334.0
+offset_left = 688.0
+offset_top = 294.0
+offset_right = 738.0
+offset_bottom = 321.0
 theme_override_fonts/font = ExtResource("5_xd0p5")
 theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mbtn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mbtn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
 text = "+"
 
 [node name="MusicDown" type="Button" parent="." unique_id=858623339]
-offset_left = 507.0
-offset_top = 281.0
-offset_right = 566.2763
-offset_bottom = 334.0
+offset_left = 512.0
+offset_top = 294.0
+offset_right = 562.0
+offset_bottom = 321.0
 theme_override_fonts/font = ExtResource("5_xd0p5")
 theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mbtn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mbtn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
 text = "-"
 
 [node name="SFXUp" type="Button" parent="." unique_id=427831527]
-offset_left = 683.0
-offset_top = 193.0
-offset_right = 742.2763
-offset_bottom = 246.0
+offset_left = 688.0
+offset_top = 206.0
+offset_right = 738.0
+offset_bottom = 233.0
 theme_override_fonts/font = ExtResource("5_xd0p5")
 theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mbtn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mbtn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
 text = "+"
 
 [node name="SFXDown" type="Button" parent="." unique_id=1003996449]
-offset_left = 507.0
-offset_top = 193.0
-offset_right = 566.2763
-offset_bottom = 246.0
+offset_left = 512.0
+offset_top = 206.0
+offset_right = 562.0
+offset_bottom = 233.0
 theme_override_fonts/font = ExtResource("5_xd0p5")
 theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mbtn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mbtn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_mbtn_normal")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
 text = "-"
 
 [node name="hoverSFX" type="AudioStreamPlayer2D" parent="." unique_id=800000001]

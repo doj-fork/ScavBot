@@ -24,7 +24,8 @@ var cannotPauseList: Array[bool] = [cannotPauseTransitioning, cannotPauseGeneral
 var cannotShootGeneral: bool = false
 var cannotShootIntermission: bool = false
 var cannotShootCollecting: bool = false
-var cannotShootList: Array[bool] = [cannotShootCollecting, cannotShootIntermission]
+var cannotShootList: Array[bool]:
+	get: return [cannotShootCollecting, cannotShootIntermission, cannotShootGeneral]
 
 var cannotCraftGeneral: bool = false
 var cannotCraftTransitioning: bool = false
@@ -43,4 +44,3 @@ func _process(_delta: float) -> void:
 	
 	cannotPauseList = [cannotPauseTransitioning, cannotPauseGeneral, cannotPauseCrafting]
 	cannotCraftList = [cannotCraftGeneral, cannotCraftTransitioning, cannotCraftCollecting, cannotCraftPaused]
-	cannotShootList = [cannotShootCollecting, cannotShootIntermission, cannotShootGeneral]

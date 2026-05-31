@@ -28,6 +28,12 @@ var playerHitRetreatDistance: float = 200.0
 var isPlayerHitRetreating: bool = false
 var hasPlayedDetectSound: bool = false
 
+var wallStuckTimer: float = 0.0
+var wallStuckThreshold: float = 4.0
+var wallEscapeTimer: float = 0.0
+var wallEscapeDuration: float = 1.0
+var wallEscapeDirection: Vector2 = Vector2.ZERO
+
 @onready var detectSound: AudioStreamPlayer2D = $DetectSound
 @onready var deathSound: AudioStreamPlayer2D = $DeathSound
 
@@ -91,6 +97,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	_applyCollisionResponses(playerPosition)
 	_recoverChaseSpeed(delta)
+	_updateWallStuck(delta, playerPosition)
 
 func _updateChaseState(playerPosition: Vector2) -> void:
 	if isChasingPlayer:
@@ -212,6 +219,39 @@ func _getEnemyCrowdPressure() -> float:
 		pressureTotal += 1.0 - (distanceToEnemy / separationRadius)
 
 	return clamp(pressureTotal, 0.0, 1.0)
+
+func _updateWallStuck(delta: float, playerPosition: Vector2) -> void:
+	if wallEscapeTimer > 0.0:
+		wallEscapeTimer -= delta
+		return
+
+	var isNearWall: bool = false
+	var collisionCount: int = get_slide_collision_count()
+	for i in range(collisionCount):
+		var collision: KinematicCollision2D = get_slide_collision(i)
+		var collider: Object = collision.get_collider()
+		if collider is TileMapLayer or collider is StaticBody2D:
+			isNearWall = true
+			break
+
+	if isNearWall and isChasingPlayer and not _isAntiCramRetreating() and not _isPlayerHitRetreating():
+		wallStuckTimer += delta
+		if wallStuckTimer >= wallStuckThreshold:
+			_triggerWallEscape(playerPosition)
+	else:
+		wallStuckTimer = max(wallStuckTimer - delta * 2.0, 0.0)
+
+func _triggerWallEscape(playerPosition: Vector2) -> void:
+	wallStuckTimer = 0.0
+	wallEscapeTimer = wallEscapeDuration
+	var directionToPlayer: Vector2 = global_position.direction_to(playerPosition)
+	var angleOffsets: Array[float] = [PI * 0.5, -PI * 0.5, PI * 0.6, -PI * 0.6]
+	var chosenAngle: float = angleOffsets[randomNumberGenerator.randi() % angleOffsets.size()]
+	wallEscapeDirection = directionToPlayer.rotated(chosenAngle).normalized()
+	# Force a fresh detour in the escape direction
+	detourTarget = global_position + wallEscapeDirection * detourDistance * 1.5
+	hasDetourTarget = true
+	detourTimer = wallEscapeDuration
 
 func _applyCollisionResponses(playerPosition: Vector2) -> void:
 	var collisionCount: int = get_slide_collision_count()

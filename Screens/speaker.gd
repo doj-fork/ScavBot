@@ -201,8 +201,6 @@ func _say(text: String, hold_secs: float = -1.0) -> void:
 	var was_shoot_blocked: bool = Global.cannotShootIntermission
 	Global.cannotCraftCollecting = true
 	Global.cannotShootIntermission = true
-	if phase == Phase.DIALOGUE_INTRO:
-		Global.canMove += 1
 	_popup(text, duration)
 	if not is_inside_tree():
 		Global.cannotCraftCollecting = was_blocked
@@ -211,10 +209,6 @@ func _say(text: String, hold_secs: float = -1.0) -> void:
 	await get_tree().create_timer(duration, false).timeout
 	Global.cannotCraftCollecting = was_blocked
 	Global.cannotShootIntermission = was_shoot_blocked
-	if not is_inside_tree():
-		return
-	if phase == Phase.DIALOGUE_INTRO:
-		Global.canMove -= 1
 
 # ─────────────────────────────────────────────
 # _process — poll-based phase transitions

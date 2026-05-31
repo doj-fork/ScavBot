@@ -75,6 +75,12 @@ var freezeDuration: float = 5.0
 var normalSpriteModulate: Color = Color.WHITE
 var frozenSpriteModulate: Color = Color.RED
 
+var wallStuckTimer: float = 0.0
+var wallStuckThreshold: float = 4.0
+var wallEscapeTimer: float = 0.0
+var wallEscapeDuration: float = 1.5
+var wallEscapeDirection: Vector2 = Vector2.ZERO
+
 @onready var tankSprite: Sprite2D = $Tank
 @onready var detectSound: AudioStreamPlayer2D = $DetectSound
 @onready var deathSound: AudioStreamPlayer2D = $DeathSound
@@ -145,6 +151,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	_applyCollisionResponses()
+	_updateWallStuck(delta, playerPosition)
 
 # checks for chase
 func _updateChaseState(playerPosition: Vector2) -> void:
@@ -331,6 +338,46 @@ func _getEnemyCrowdPressure() -> float:
 		pressureTotal += 1.0 - (distanceToEnemy / separationRadius)
 
 	return clamp(pressureTotal, 0.0, 1.0)
+
+func _updateWallStuck(delta: float, playerPosition: Vector2) -> void:
+	if isFrozenAfterCrash or _isAntiCramRetreating() or _isPlayerHitRetreating():
+		wallStuckTimer = 0.0
+		wallEscapeTimer = max(wallEscapeTimer - delta, 0.0)
+		return
+
+	if wallEscapeTimer > 0.0:
+		wallEscapeTimer -= delta
+		if wallEscapeTimer <= 0.0:
+			wallEscapeDirection = Vector2.ZERO
+		return
+
+	var isNearWall: bool = false
+	var collisionCount: int = get_slide_collision_count()
+	for i in range(collisionCount):
+		var collision: KinematicCollision2D = get_slide_collision(i)
+		var collider: Object = collision.get_collider()
+		if _isObstacleCollider(collider) and not _isMeleeCollider(collider):
+			isNearWall = true
+			break
+
+	if isNearWall and isChasingPlayer and chargeState == CHARGE_STATE_CHASE:
+		wallStuckTimer += delta
+		if wallStuckTimer >= wallStuckThreshold:
+			_triggerWallEscape(playerPosition)
+	else:
+		wallStuckTimer = max(wallStuckTimer - delta * 2.0, 0.0)
+
+func _triggerWallEscape(playerPosition: Vector2) -> void:
+	wallStuckTimer = 0.0
+	wallEscapeTimer = wallEscapeDuration
+	var directionToPlayer: Vector2 = global_position.direction_to(playerPosition)
+	var angleOffsets: Array[float] = [PI * 0.5, -PI * 0.5, PI * 0.55, -PI * 0.55]
+	var chosenAngle: float = angleOffsets[randomNumberGenerator.randi() % angleOffsets.size()]
+	wallEscapeDirection = directionToPlayer.rotated(chosenAngle).normalized()
+	# Interrupt any current chase and pick a new wander direction away from the wall
+	isChasingPlayer = false
+	wanderDirection = wallEscapeDirection
+	wanderDirectionTimer = wallEscapeDuration
 
 # timer for charge when enemy locks onto you
 func _scheduleNextCharge() -> void:

@@ -23,8 +23,22 @@ func _setup() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Interact") and not cooldown and not _depleted and entered and not Global.cannotCraftCollecting:
-		Signals.collecting.emit()
-		_startCollect()
+		if _hasLineOfSightToPlayer():
+			Signals.collecting.emit()
+			_startCollect()
+
+func _hasLineOfSightToPlayer() -> bool:
+	var space_state: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
+	var query: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(
+		Global.playerPos, global_position, 33)
+	var exclude_rids: Array[RID] = []
+	if has_node("Collision"):
+		exclude_rids.append($Collision.get_rid())
+	var player_nodes: Array[Node] = get_tree().get_nodes_in_group("Player")
+	if player_nodes.size() > 0 and player_nodes[0] is PhysicsBody2D:
+		exclude_rids.append((player_nodes[0] as PhysicsBody2D).get_rid())
+	query.exclude = exclude_rids
+	return space_state.intersect_ray(query).is_empty()
 
 func _startCollect() -> void:
 	_hide_prompt()
