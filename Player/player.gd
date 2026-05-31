@@ -160,7 +160,7 @@ func updateTexture(arg):
 
 func play_walk_sound() -> void:
 	var currentlyWalking: bool = velocity != Vector2(0, 0)
-	var useRunSounds: bool = Stats.speedMult >= 5
+	var useRunSounds: bool = Stats.speedUpgradeCount >= 5
 
 	if currentlyWalking != isWalking:
 		isWalking = currentlyWalking
@@ -181,7 +181,7 @@ func play_walk_sound() -> void:
 				runSFX.play()
 				runSoundTimer = RUN_SOUND_INTERVAL
 		else:
-			var effectiveInterval: float = WALK_SOUND_INTERVAL - (min(Stats.speedMult, 5) * 0.1)
+			var effectiveInterval: float = WALK_SOUND_INTERVAL - (min(Stats.speedUpgradeCount, 4) * 0.1)
 			walkSoundTimer -= get_physics_process_delta_time()
 			if walkSoundTimer <= 0.0:
 				var randomIndex: int = randi() % WALK_SOUNDS.size()

@@ -33,6 +33,9 @@ var wallStuckThreshold: float = 4.0
 var wallEscapeTimer: float = 0.0
 var wallEscapeDuration: float = 1.0
 var wallEscapeDirection: Vector2 = Vector2.ZERO
+var _thrashWindowTimer: float = 0.0
+var _thrashCount: int = 0
+var _lastThrashDir: Vector2 = Vector2.ZERO
 
 @onready var detectSound: AudioStreamPlayer2D = $DetectSound
 @onready var deathSound: AudioStreamPlayer2D = $DeathSound
@@ -98,6 +101,7 @@ func _physics_process(delta: float) -> void:
 	_applyCollisionResponses(playerPosition)
 	_recoverChaseSpeed(delta)
 	_updateWallStuck(delta, playerPosition)
+	_updateDirThrash(delta, playerPosition)
 
 func _updateChaseState(playerPosition: Vector2) -> void:
 	if isChasingPlayer:
@@ -252,6 +256,32 @@ func _triggerWallEscape(playerPosition: Vector2) -> void:
 	detourTarget = global_position + wallEscapeDirection * detourDistance * 1.5
 	hasDetourTarget = true
 	detourTimer = wallEscapeDuration
+
+func _updateDirThrash(delta: float, playerPosition: Vector2) -> void:
+	if wallEscapeTimer > 0.0 or _isAntiCramRetreating() or _isPlayerHitRetreating():
+		_thrashCount = 0
+		_lastThrashDir = Vector2.ZERO
+		_thrashWindowTimer = 0.0
+		return
+	if _thrashWindowTimer > 0.0:
+		_thrashWindowTimer -= delta
+		if _thrashWindowTimer <= 0.0:
+			_thrashCount = 0
+			_lastThrashDir = Vector2.ZERO
+	var currentDir: Vector2 = velocity.normalized()
+	if currentDir != Vector2.ZERO and _lastThrashDir != Vector2.ZERO:
+		if currentDir.dot(_lastThrashDir) < 0.0:
+			_thrashWindowTimer = 1.0
+			_thrashCount += 1
+			_lastThrashDir = currentDir
+			if _thrashCount > 4:
+				_triggerWallEscape(playerPosition)
+				_thrashCount = 0
+				_thrashWindowTimer = 0.0
+				_lastThrashDir = Vector2.ZERO
+			return
+	if currentDir != Vector2.ZERO:
+		_lastThrashDir = currentDir
 
 func _applyCollisionResponses(playerPosition: Vector2) -> void:
 	var collisionCount: int = get_slide_collision_count()

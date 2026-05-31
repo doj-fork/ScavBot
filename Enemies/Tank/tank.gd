@@ -80,6 +80,15 @@ var wallStuckThreshold: float = 4.0
 var wallEscapeTimer: float = 0.0
 var wallEscapeDuration: float = 1.5
 var wallEscapeDirection: Vector2 = Vector2.ZERO
+var _thrashWindowTimer: float = 0.0
+var _thrashCount: int = 0
+var _lastThrashDir: Vector2 = Vector2.ZERO
+
+var chaseNearObstacleRadius: float = 64.0
+var _chargeStartPosition: Vector2 = Vector2.ZERO
+var minCrashDistance: float = 50.0
+
+var _chargeExclusions: Array[PhysicsBody2D] = []
 
 @onready var tankSprite: Sprite2D = $Tank
 @onready var detectSound: AudioStreamPlayer2D = $DetectSound
@@ -152,12 +161,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	_applyCollisionResponses()
 	_updateWallStuck(delta, playerPosition)
+	_updateDirThrash(delta, playerPosition)
 
 # checks for chase
 func _updateChaseState(playerPosition: Vector2) -> void:
 	if isChasingPlayer:
 		return
 	if global_position.distance_to(playerPosition) <= detectionRadius:
+		if _isNearObstacle():
+			return
 		isChasingPlayer = true
 		chargeState = CHARGE_STATE_CHASE
 		_scheduleNextCharge()
@@ -184,6 +196,7 @@ func _updateAntiCramRetreat(delta: float) -> void:
 		isChasingPlayer = false
 		chargeState = CHARGE_STATE_CHASE
 		_scheduleNextCharge()
+		_setEnemyCollisionExclusions(false)
 
 # updates chase
 func _updateChaseMovement(playerPosition: Vector2, delta: float) -> void:
@@ -237,12 +250,14 @@ func _startBackstep(playerPosition: Vector2) -> void:
 
 	backstepTimer = randomNumberGenerator.randf_range(backstepMinDuration, backstepMaxDuration)
 	chargeState = CHARGE_STATE_BACKSTEP
+	_setEnemyCollisionExclusions(true)
 
 # starting forward charge 
 func _startCharge() -> void:
 	chargeState = CHARGE_STATE_CHARGE
 	chargeTimer = chargeDuration
 	currentChargeSpeed = baseSpeed * chargeStartSpeedMultiplier
+	_chargeStartPosition = global_position
 	chargeSound.play()
 
 	var refreshedDirection: Vector2 = global_position.direction_to(chargeTargetPosition)
@@ -264,6 +279,7 @@ func _updateCharge(delta: float) -> void:
 func _endCharge() -> void:
 	chargeState = CHARGE_STATE_CHASE
 	_scheduleNextCharge()
+	_setEnemyCollisionExclusions(false)
 
 # the random movement before an enemy sees you
 func _updateWanderMovement(playerPosition: Vector2, delta: float) -> void:
@@ -379,6 +395,32 @@ func _triggerWallEscape(playerPosition: Vector2) -> void:
 	wanderDirection = wallEscapeDirection
 	wanderDirectionTimer = wallEscapeDuration
 
+func _updateDirThrash(delta: float, playerPosition: Vector2) -> void:
+	if isFrozenAfterCrash or wallEscapeTimer > 0.0 or _isAntiCramRetreating() or _isPlayerHitRetreating() or chargeState != CHARGE_STATE_CHASE:
+		_thrashCount = 0
+		_lastThrashDir = Vector2.ZERO
+		_thrashWindowTimer = 0.0
+		return
+	if _thrashWindowTimer > 0.0:
+		_thrashWindowTimer -= delta
+		if _thrashWindowTimer <= 0.0:
+			_thrashCount = 0
+			_lastThrashDir = Vector2.ZERO
+	var currentDir: Vector2 = velocity.normalized()
+	if currentDir != Vector2.ZERO and _lastThrashDir != Vector2.ZERO:
+		if currentDir.dot(_lastThrashDir) < 0.0:
+			_thrashWindowTimer = 1.0
+			_thrashCount += 1
+			_lastThrashDir = currentDir
+			if _thrashCount > 4:
+				_triggerWallEscape(playerPosition)
+				_thrashCount = 0
+				_thrashWindowTimer = 0.0
+				_lastThrashDir = Vector2.ZERO
+			return
+	if currentDir != Vector2.ZERO:
+		_lastThrashDir = currentDir
+
 # timer for charge when enemy locks onto you
 func _scheduleNextCharge() -> void:
 	chargeTriggerTimer = randomNumberGenerator.randf_range(chargeTriggerMinTime, chargeTriggerMaxTime)
@@ -393,16 +435,37 @@ func _updateFrozenTint() -> void:
 # enemy collision check
 func _applyCollisionResponses() -> void:
 	var collisionCount: int = get_slide_collision_count()
+	# First pass: player collision takes full priority — prevents wall crashes
+	# in the same frame from firing the freeze/crash sequence
+	for collisionIndex in range(collisionCount):
+		var collision: KinematicCollision2D = get_slide_collision(collisionIndex)
+		var collider: Object = collision.get_collider()
+		if _isPlayerCollider(collider):
+			if chargeState == CHARGE_STATE_BACKSTEP or chargeState == CHARGE_STATE_CHARGE:
+				_startPlayerCollisionRepath(collision)
+			return
+	# Second pass: obstacle/wall collisions (only reached if no player was hit)
 	for collisionIndex in range(collisionCount):
 		var collision: KinematicCollision2D = get_slide_collision(collisionIndex)
 		var collider: Object = collision.get_collider()
 		if _isObstacleCollider(collider):
 			if chargeState == CHARGE_STATE_BACKSTEP or chargeState == CHARGE_STATE_CHARGE:
 				_startFreezeAfterCrash()
+			elif chargeState == CHARGE_STATE_CHASE and isChasingPlayer:
+				if _isCollectibleCollider(collider):
+					if randomNumberGenerator.randi() % 2 == 0:
+						_startFreezeAfterCrash()
+					else:
+						_startCollectibleAvoidance(collision)
+				else:
+					_startFreezeAfterCrash()
 			break
 
 # freeze state
 func _startFreezeAfterCrash() -> void:
+	if chargeState == CHARGE_STATE_CHARGE and global_position.distance_to(_chargeStartPosition) < minCrashDistance:
+		_endCharge()
+		return
 	isFrozenAfterCrash = true
 	freezeTimer = freezeDuration
 	velocity = Vector2.ZERO
@@ -411,6 +474,7 @@ func _startFreezeAfterCrash() -> void:
 		chargeSound.stop()
 	crashSound.play()
 	_updateFrozenTint()
+	_setEnemyCollisionExclusions(false)
 
 # updates freeze state
 func _updateFreeze(delta: float) -> void:
@@ -468,6 +532,7 @@ func _triggerPlayerHitRetreat() -> void:
 	if chargeState != CHARGE_STATE_CHASE:
 		chargeState = CHARGE_STATE_CHASE
 		_scheduleNextCharge()
+		_setEnemyCollisionExclusions(false)
 
 # check if currently retreating from player hit
 func _isPlayerHitRetreating() -> bool:
@@ -484,6 +549,77 @@ func _updatePlayerHitRetreatMovement(playerPosition: Vector2) -> void:
 		lastMoveDirection = retreatDirection
 	velocity = retreatDirection * baseSpeed * chaseSpeedMultiplier
 
+func _setEnemyCollisionExclusions(exclude: bool) -> void:
+	if exclude:
+		_chargeExclusions.clear()
+		var enemyNodes: Array[Node] = get_tree().get_nodes_in_group("Enemies")
+		for enemyNode in enemyNodes:
+			if enemyNode == self or not is_instance_valid(enemyNode):
+				continue
+			if enemyNode is PhysicsBody2D:
+				var body: PhysicsBody2D = enemyNode as PhysicsBody2D
+				add_collision_exception_with(body)
+				_chargeExclusions.append(body)
+	else:
+		for body in _chargeExclusions:
+			if is_instance_valid(body):
+				remove_collision_exception_with(body)
+		_chargeExclusions.clear()
+
+func _isCollectibleCollider(collider: Object) -> bool:
+	if collider == null or not (collider is StaticBody2D):
+		return false
+	var parent: Node = (collider as Node).get_parent()
+	return parent is CollectibleBase
+
+func _startCollectibleAvoidance(collision: KinematicCollision2D) -> void:
+	var normal: Vector2 = collision.get_normal().normalized()
+	if normal == Vector2.ZERO:
+		normal = -lastMoveDirection.normalized()
+	if normal == Vector2.ZERO:
+		normal = Vector2.RIGHT
+	isChasingPlayer = false
+	wanderDirection = normal
+	wanderDirectionTimer = randomNumberGenerator.randf_range(0.8, 1.5)
+
+func _isPlayerCollider(collider: Object) -> bool:
+	if collider == null:
+		return false
+	if collider is Node:
+		return (collider as Node).is_in_group("Player")
+	return false
+
+func _startPlayerCollisionRepath(collision: KinematicCollision2D) -> void:
+	var normal: Vector2 = collision.get_normal().normalized()
+	if normal == Vector2.ZERO:
+		normal = -lastMoveDirection.normalized()
+	if normal == Vector2.ZERO:
+		normal = Vector2.RIGHT
+	if chargeSound.playing:
+		chargeSound.stop()
+	chargeState = CHARGE_STATE_CHASE
+	_scheduleNextCharge()
+	_setEnemyCollisionExclusions(false)
+	isChasingPlayer = false
+	wanderDirection = normal
+	wanderDirectionTimer = randomNumberGenerator.randf_range(0.6, 1.2)
+
+func _isNearObstacle() -> bool:
+	var spaceState: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
+	var shape: CircleShape2D = CircleShape2D.new()
+	shape.radius = chaseNearObstacleRadius
+	var params: PhysicsShapeQueryParameters2D = PhysicsShapeQueryParameters2D.new()
+	params.shape = shape
+	params.transform = Transform2D(0.0, global_position)
+	params.collision_mask = 1
+	params.exclude = [get_rid()]
+	var results: Array[Dictionary] = spaceState.intersect_shape(params)
+	for result in results:
+		var collider: Object = result.get("collider")
+		if collider is StaticBody2D or collider is TileMapLayer:
+			return true
+	return false
+
 # idk if this works or not but its supposed to check if it collides to the right things
 func _isObstacleCollider(collider: Object) -> bool:
 	if collider == null:
@@ -491,6 +627,8 @@ func _isObstacleCollider(collider: Object) -> bool:
 	if collider == self:
 		return false
 	if _isMeleeCollider(collider):
+		return false
+	if _isPlayerCollider(collider):
 		return false
 	if collider is TileMapLayer:
 		return true

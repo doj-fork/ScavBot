@@ -28,6 +28,7 @@ func _on_speed_pressed() -> void:
 	_on_button_click()
 	Stats.speed += 25
 	Stats.speedMult += 25
+	Stats.speedUpgradeCount += 1
 	visible = false
 	Global.hudActive = true
 

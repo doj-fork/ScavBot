@@ -32,6 +32,9 @@ var wallEscapeTimer: float = 0.0
 var wallEscapeDuration: float = 1.2
 var wallEscapeDirection: Vector2 = Vector2.ZERO
 var wallEscapeAngleOffset: float = 0.0
+var _thrashWindowTimer: float = 0.0
+var _thrashCount: int = 0
+var _lastThrashDir: Vector2 = Vector2.ZERO
 
 @onready var detectSound: AudioStreamPlayer2D = $DetectSound
 @onready var deathSound: AudioStreamPlayer2D = $DeathSound
@@ -83,6 +86,7 @@ func _physics_process(delta: float) -> void:
 		_updateWanderMovement(delta)
 
 	move_and_slide()
+	_updateDirThrash(delta, playerPosition)
 
 func _updateChaseState(playerPosition: Vector2) -> void:
 	if isChasingPlayer:
@@ -166,6 +170,32 @@ func _triggerWallEscape(playerPosition: Vector2) -> void:
 		bestAngle = -wallEscapeAngleOffset
 	wallEscapeAngleOffset = bestAngle
 	wallEscapeDirection = directionToPlayer.rotated(bestAngle).normalized()
+
+func _updateDirThrash(delta: float, playerPosition: Vector2) -> void:
+	if wallEscapeTimer > 0.0:
+		_thrashCount = 0
+		_lastThrashDir = Vector2.ZERO
+		_thrashWindowTimer = 0.0
+		return
+	if _thrashWindowTimer > 0.0:
+		_thrashWindowTimer -= delta
+		if _thrashWindowTimer <= 0.0:
+			_thrashCount = 0
+			_lastThrashDir = Vector2.ZERO
+	var currentDir: Vector2 = velocity.normalized()
+	if currentDir != Vector2.ZERO and _lastThrashDir != Vector2.ZERO:
+		if currentDir.dot(_lastThrashDir) < 0.0:
+			_thrashWindowTimer = 1.0
+			_thrashCount += 1
+			_lastThrashDir = currentDir
+			if _thrashCount > 4:
+				_triggerWallEscape(playerPosition)
+				_thrashCount = 0
+				_thrashWindowTimer = 0.0
+				_lastThrashDir = Vector2.ZERO
+			return
+	if currentDir != Vector2.ZERO:
+		_lastThrashDir = currentDir
 
 func _updateWallEscapeMovement(delta: float) -> void:
 	var escapeDir: Vector2 = wallEscapeDirection

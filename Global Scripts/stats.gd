@@ -6,6 +6,7 @@ var speed = 200
 var damageMult = 0
 var speedMult = 0
 var healthMult = 0
+var speedUpgradeCount: int = 0
 
 var melee_kills: int = 0
 var ranger_kills: int = 0
@@ -23,6 +24,7 @@ func majorReset():
 	damageMult = 0
 	speedMult = 0
 	healthMult = 0
+	speedUpgradeCount = 0
 	melee_kills = 0
 	ranger_kills = 0
 	tank_kills = 0
