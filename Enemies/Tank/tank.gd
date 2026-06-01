@@ -35,7 +35,8 @@ var chaseSpeedMultiplier: float = 1.0
 var lastMoveDirection: Vector2 = Vector2.RIGHT
 var isChasingPlayer: bool = false
 var hasPlayedDetectSound: bool = false
-var requiresDetectionReset: bool = false
+var crashDetectionCooldownTimer: float = 0.0
+var crashDetectionCooldownDuration: float = 3.0
 var wanderDirection: Vector2 = Vector2.RIGHT
 var wanderDirectionTimer: float = 0.0
 var randomNumberGenerator: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -139,6 +140,7 @@ func _physics_process(delta: float) -> void:
 	_updatePlayerHitSlowdown(delta)
 	_updatePlayerHitRetreat(delta)
 	_updateAntiCramRetreat(delta)
+	_updateCrashDetectionCooldown(delta)
 
 	if _isAntiCramRetreating() or justEndedAntiCramRetreat:
 		isChasingPlayer = false
@@ -168,11 +170,8 @@ func _physics_process(delta: float) -> void:
 func _updateChaseState(playerPosition: Vector2) -> void:
 	if isChasingPlayer:
 		return
-	if requiresDetectionReset:
-		if global_position.distance_to(playerPosition) > detectionRadius:
-			requiresDetectionReset = false
-		else:
-			return
+	if crashDetectionCooldownTimer > 0.0:
+		return
 	if global_position.distance_to(playerPosition) <= detectionRadius:
 		if _isNearObstacle():
 			return
@@ -474,7 +473,8 @@ func _startFreezeAfterCrash() -> void:
 		return
 	isFrozenAfterCrash = true
 	isChasingPlayer = false
-	requiresDetectionReset = true
+	crashDetectionCooldownTimer = crashDetectionCooldownDuration
+	hasPlayedDetectSound = false
 	freezeTimer = freezeDuration
 	velocity = Vector2.ZERO
 	chargeState = CHARGE_STATE_CHASE
@@ -495,6 +495,10 @@ func _updateFreeze(delta: float) -> void:
 		_pickRandomWanderDirection()
 		_scheduleNextCharge()
 		_updateFrozenTint()
+
+func _updateCrashDetectionCooldown(delta: float) -> void:
+	if crashDetectionCooldownTimer > 0.0:
+		crashDetectionCooldownTimer = max(crashDetectionCooldownTimer - delta, 0.0)
 
 # updates player hit slowdown timer
 func _updatePlayerHitSlowdown(delta: float) -> void:
