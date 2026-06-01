@@ -30,17 +30,17 @@ position = Vector2(-105, 41)
 [node name="Wall3" parent="." unique_id=1149969409 instance=ExtResource("4_xqbyd")]
 position = Vector2(273, 34)
 
-[node name="Ruined Robot" parent="." unique_id=276659835 instance=ExtResource("8_t4dkh")]
-position = Vector2(-348, 66)
-
 [node name="Artillery" parent="." unique_id=696845471 instance=ExtResource("7_q547p")]
 position = Vector2(-339, -141)
 
 [node name="Artillery2" parent="." unique_id=1496719979 instance=ExtResource("7_q547p")]
-position = Vector2(364, 93)
+position = Vector2(310, 81)
 
 [node name="Machinery" parent="." unique_id=1012953226 instance=ExtResource("5_bru7g")]
-position = Vector2(-183, 93)
+position = Vector2(-183, 67)
+
+[node name="Ruined Robot" parent="." unique_id=276659835 instance=ExtResource("8_t4dkh")]
+position = Vector2(-179, 86)
 
 [node name="Steel" parent="." unique_id=1720404551 instance=ExtResource("6_3oxcl")]
 position = Vector2(77, 183)
