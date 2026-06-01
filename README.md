@@ -21,4 +21,4 @@ Repository for a GDIM 61 Game Project called ScavBot made up of Carlos S., Benja
 | Eric W. | Modeller |
 | Carlos S. | Artist, Rigger |
 
-#### Music by Kevin MacLeod
+#### Music by Kevin MacLeod and Benjamin A.
