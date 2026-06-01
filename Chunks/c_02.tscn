@@ -44,7 +44,7 @@ position = Vector2(227, -20)
 position = Vector2(439, -88)
 
 [node name="Bush" parent="." unique_id=1974587427 instance=ExtResource("5_b487s")]
-position = Vector2(-251, -53)
+position = Vector2(-251, -84)
 
 [node name="Bush2" parent="." unique_id=1138327900 instance=ExtResource("5_b487s")]
 position = Vector2(382, 224)
