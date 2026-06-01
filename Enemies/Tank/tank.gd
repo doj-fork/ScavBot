@@ -35,6 +35,7 @@ var chaseSpeedMultiplier: float = 1.0
 var lastMoveDirection: Vector2 = Vector2.RIGHT
 var isChasingPlayer: bool = false
 var hasPlayedDetectSound: bool = false
+var requiresDetectionReset: bool = false
 var wanderDirection: Vector2 = Vector2.RIGHT
 var wanderDirectionTimer: float = 0.0
 var randomNumberGenerator: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -167,6 +168,11 @@ func _physics_process(delta: float) -> void:
 func _updateChaseState(playerPosition: Vector2) -> void:
 	if isChasingPlayer:
 		return
+	if requiresDetectionReset:
+		if global_position.distance_to(playerPosition) > detectionRadius:
+			requiresDetectionReset = false
+		else:
+			return
 	if global_position.distance_to(playerPosition) <= detectionRadius:
 		if _isNearObstacle():
 			return
@@ -467,6 +473,8 @@ func _startFreezeAfterCrash() -> void:
 		_endCharge()
 		return
 	isFrozenAfterCrash = true
+	isChasingPlayer = false
+	requiresDetectionReset = true
 	freezeTimer = freezeDuration
 	velocity = Vector2.ZERO
 	chargeState = CHARGE_STATE_CHASE
@@ -482,6 +490,9 @@ func _updateFreeze(delta: float) -> void:
 	velocity = Vector2.ZERO
 	if freezeTimer <= 0.0:
 		isFrozenAfterCrash = false
+		isChasingPlayer = false
+		chargeState = CHARGE_STATE_CHASE
+		_pickRandomWanderDirection()
 		_scheduleNextCharge()
 		_updateFrozenTint()
 
