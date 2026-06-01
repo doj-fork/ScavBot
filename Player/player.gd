@@ -47,6 +47,7 @@ func _ready():
 	awaitCollect()
 	awaitCraft()
 	awaitCharge()
+	Global.canMove = 0
 	
 func _process(delta):
 	animUpdate()
