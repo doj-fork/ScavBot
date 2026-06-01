@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://xvcfm4fiaglv"
+path="res://.godot/imported/ScavBot - Warzone.mp3-5ff8b11f5fccf1f904f9b054d50b4407.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/BGMNew/ScavBot - Warzone.mp3"
+dest_files=["res://.godot/imported/ScavBot - Warzone.mp3-5ff8b11f5fccf1f904f9b054d50b4407.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

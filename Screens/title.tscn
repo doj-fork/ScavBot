@@ -4,9 +4,9 @@
 [ext_resource type="FontFile" uid="uid://c7oafmhek6vhy" path="res://Assets/Fonts/SunkenMini.ttf" id="2_font"]
 [ext_resource type="Shader" uid="uid://cwyinpeljd41b" path="res://Shaders/grain_overlay.gdshader" id="3_1e64e"]
 [ext_resource type="Texture2D" uid="uid://c3lc15yyssnvd" path="res://Assets/Chunks/ground.png" id="3_ground"]
-[ext_resource type="AudioStream" uid="uid://1b83mnmwynxa" path="res://Assets/SFX/UI/SCP-x6x-by-Kevin-Macleod.mp3" id="4_jkbyu"]
 [ext_resource type="AudioStream" uid="uid://ln51k6c4pmtp" path="res://Assets/SFX/UI/hover.mp3" id="6_fhs18"]
 [ext_resource type="AudioStream" uid="uid://dukx0e6ancmsc" path="res://Assets/SFX/UI/click.mp3" id="7_v3jji"]
+[ext_resource type="AudioStream" uid="uid://diblvpmoh82yk" path="res://Assets/SFX/BGMNew/ScavBot - Title.mp3" id="8_8efxo"]
 [ext_resource type="Shader" uid="uid://b5o7l4cpum7ua" path="res://Shaders/blur.gdshader" id="8_blur"]
 [ext_resource type="Texture2D" uid="uid://dcv4cmbc24uw1" path="res://Assets/MenuAssets/CraftingMenu.png" id="9_craftmenu"]
 [ext_resource type="Script" uid="uid://bmo05q2tirav0" path="res://Screens/title_options.gd" id="11_optsscript"]
@@ -82,6 +82,25 @@ offset_right = 960.0
 offset_bottom = 540.0
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="BetaLabel" type="RichTextLabel" parent="UIRoot" unique_id=901000001]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 0.5)
+theme_override_fonts/normal_font = ExtResource("2_font")
+theme_override_font_sizes/normal_font_size = 44
+text = "Open Beta - Expect Changes"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="UIRoot" unique_id=1324006708]
 layout_mode = 1
@@ -173,7 +192,7 @@ text = "Quit"
 
 [node name="MenuBGM" type="AudioStreamPlayer2D" parent="." unique_id=1247246021]
 position = Vector2(960, 540)
-stream = ExtResource("4_jkbyu")
+stream = ExtResource("8_8efxo")
 bus = &"Music"
 
 [node name="hoverSFX" type="AudioStreamPlayer2D" parent="." unique_id=58860179]
@@ -265,7 +284,7 @@ Eric W.	 | Modeller
 Carlos S. | Artist, Rigger
 
 
-Music by Kevin MacLeod"
+Music by Kevin MacLeod and Benjamin A."
 horizontal_alignment = 1
 vertical_alignment = 1
 

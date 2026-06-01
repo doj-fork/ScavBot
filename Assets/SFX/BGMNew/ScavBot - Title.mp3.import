@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://diblvpmoh82yk"
+path="res://.godot/imported/ScavBot - Title.mp3-d18da62eb9a1e143af2bd0f864dd047d.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/BGMNew/ScavBot - Title.mp3"
+dest_files=["res://.godot/imported/ScavBot - Title.mp3-d18da62eb9a1e143af2bd0f864dd047d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
