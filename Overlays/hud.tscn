@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://c7oafmhek6vhy" path="res://Assets/Fonts/SunkenMini.ttf" id="2_036h3"]
 [ext_resource type="Texture2D" uid="uid://d2p2eaa6gy2xa" path="res://Assets/HUD/HUDBattery25.png" id="2_628gg"]
 [ext_resource type="Texture2D" uid="uid://uikyf14lummk" path="res://Assets/HUD/CraftingIcon.png" id="4_628gg"]
+[ext_resource type="Script" uid="uid://c14tkravuinc1" path="res://Overlays/wave_timer.gd" id="4_ftexa"]
 [ext_resource type="Texture2D" uid="uid://qcplygovxft7" path="res://Assets/AmmoIcons/AssaultRifleAmmoIcon.png" id="5_cdh0r"]
 [ext_resource type="Texture2D" uid="uid://dsrwu1po2ntkg" path="res://Assets/HUD/ReloadWheel.png" id="6_6508h"]
 [ext_resource type="Script" uid="uid://b3lmgklqmecem" path="res://Overlays/bullet_icon.gd" id="6_ftexa"]
@@ -121,6 +122,7 @@ theme_override_fonts/normal_font = ExtResource("2_036h3")
 theme_override_font_sizes/normal_font_size = 48
 text = " Wave Ends in:"
 horizontal_alignment = 2
+script = ExtResource("4_ftexa")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=303525971]
 modulate = Color(0, 0, 0, 0.39215687)

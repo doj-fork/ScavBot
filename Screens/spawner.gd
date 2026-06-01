@@ -20,18 +20,21 @@ func spawnEnemy():
 
 	var roll = randi_range(1, 80)
 	var rarityLim = 6 * Stats.wave
-	if rarityLim >= 64:
-		rarityLim = 64
+	if rarityLim >= 60:
+		rarityLim = 60
 	
 	if roll <= (80 - rarityLim):
 		var newMelee = melee.instantiate()
 		self.call_deferred("add_child", newMelee)
-	elif roll <= (70 - (round(rarityLim * 0.66))):
-		var newRanger = ranger.instantiate()
-		self.call_deferred("add_child", newRanger)
 	else:
-		var newTank = tank.instantiate()
-		self.call_deferred("add_child", newTank)
+		var rolltwo = randi_range(1, 12) - (rarityLim / 6.0)
+		if rolltwo <= 2:
+			var newTank = tank.instantiate()
+			self.call_deferred("add_child", newTank)
+		else:
+			var newRanger = ranger.instantiate()
+			self.call_deferred("add_child", newRanger)
+			
 	spawnEnemy()
 
 func _on_player_scan_area_entered(_area: Area2D) -> void:

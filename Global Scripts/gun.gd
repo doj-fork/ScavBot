@@ -47,8 +47,8 @@ func craft(handle, chamber, barrel, muzzle):
 	elif chamber in ["Battery", "Circuit"]:
 		burnType = "AR"
 		burnAmmo = 50
-		burnPrecision = 10
-		damage = 25
+		burnPrecision = 15
+		damage = 8
 		speed = 1650
 		
 	if barrel in ["Wood", "Rock"]:

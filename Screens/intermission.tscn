@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cqdm8k83tuccp"]
 
+[ext_resource type="Script" uid="uid://c6joi8rs2ew7d" path="res://Screens/intermission.gd" id="1_plpc2"]
 [ext_resource type="PackedScene" uid="uid://cwfjmmvi5mck" path="res://Player/player.tscn" id="2_5v1f8"]
 [ext_resource type="Script" uid="uid://bfnbwg0dp5hyk" path="res://Screens/entrance_door.gd" id="2_gbru0"]
 [ext_resource type="Texture2D" uid="uid://bem565ar7u78c" path="res://Assets/NatureAssets/Door.png" id="3_nrj0l"]
@@ -29,6 +30,7 @@ size = Vector2(941, 27)
 
 [node name="Intermission" type="Node2D" unique_id=1504878694]
 y_sort_enabled = true
+script = ExtResource("1_plpc2")
 
 [node name="Player" parent="." unique_id=253815592 instance=ExtResource("2_5v1f8")]
 y_sort_enabled = true

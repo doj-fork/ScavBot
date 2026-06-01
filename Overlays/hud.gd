@@ -43,11 +43,11 @@ func _process(_delta):
 		
 		ammo.visible = true
 		gun.visible = true
+		bulletIcon.visible = true
+		
 		if Gun.type != "AR":
-			bulletIcon.visible = true
 			reloadIcon.visible = true
 		else:
-			bulletIcon.visible = false
 			reloadIcon.visible = false
 	else:
 		ammo.visible = false

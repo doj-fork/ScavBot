@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://mc0ry67vkl7p"]
 
+[ext_resource type="Script" uid="uid://dmcsfii64t1dx" path="res://Screens/tutorial.gd" id="1_mcxgt"]
 [ext_resource type="PackedScene" uid="uid://cwfjmmvi5mck" path="res://Player/player.tscn" id="1_plyr"]
 [ext_resource type="Script" uid="uid://bfnbwg0dp5hyk" path="res://Screens/entrance_door.gd" id="2_d48hf"]
 [ext_resource type="Texture2D" uid="uid://ddi77qn6qnavi" path="res://Assets/NatureAssets/TransitionRoom.png" id="2_ldon4"]
@@ -36,6 +37,7 @@ radius = 113.004425
 
 [node name="Tutorial" type="Node2D" unique_id=1504878694]
 y_sort_enabled = true
+script = ExtResource("1_mcxgt")
 
 [node name="Player" parent="." unique_id=253815592 instance=ExtResource("1_plyr")]
 y_sort_enabled = true
