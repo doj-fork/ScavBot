@@ -6,5 +6,4 @@ func _setup() -> void:
 
 func _giveResources() -> String:
 	Inventory.wood += 2
-	Inventory.battery += 4
 	return "+2 Wood"
