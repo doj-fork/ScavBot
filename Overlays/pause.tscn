@@ -30,13 +30,13 @@ texture = ExtResource("14_mbtnhover")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqbtn_normal"]
 texture = ExtResource("16_sqbtn")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqbtn_hover"]
-texture = ExtResource("16_sqbtn")
-modulate_color = Color(1.35, 1.35, 1.35, 1)
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqbtn_pressed"]
 texture = ExtResource("16_sqbtn")
 modulate_color = Color(0.7, 0.7, 0.7, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqbtn_hover"]
+texture = ExtResource("16_sqbtn")
+modulate_color = Color(1.35, 1.35, 1.35, 1)
 
 [node name="Pause" type="CanvasLayer" unique_id=1312279411]
 process_mode = 3
@@ -196,12 +196,12 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
 text = "Fullscreen"
 
 [node name="MusicUp" type="Button" parent="." unique_id=26546244]
-offset_left = 676.0
-offset_top = 270.0
-offset_right = 752.0
-offset_bottom = 346.0
+offset_left = 686.0
+offset_top = 280.0
+offset_right = 743.0
+offset_bottom = 337.0
 theme_override_fonts/font = ExtResource("5_xd0p5")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_sqbtn_normal")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_sqbtn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxTexture_sqbtn_hover")
@@ -210,12 +210,12 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
 text = "+"
 
 [node name="MusicDown" type="Button" parent="." unique_id=858623339]
-offset_left = 500.0
-offset_top = 270.0
-offset_right = 576.0
-offset_bottom = 346.0
+offset_left = 510.0
+offset_top = 280.0
+offset_right = 567.0
+offset_bottom = 337.0
 theme_override_fonts/font = ExtResource("5_xd0p5")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_sqbtn_normal")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_sqbtn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxTexture_sqbtn_hover")
@@ -224,12 +224,12 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
 text = "-"
 
 [node name="SFXUp" type="Button" parent="." unique_id=427831527]
-offset_left = 676.0
-offset_top = 182.0
-offset_right = 752.0
-offset_bottom = 258.0
+offset_left = 686.0
+offset_top = 198.0
+offset_right = 743.0
+offset_bottom = 255.0
 theme_override_fonts/font = ExtResource("5_xd0p5")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_sqbtn_normal")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_sqbtn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxTexture_sqbtn_hover")
@@ -238,12 +238,12 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_mbtn_focus")
 text = "+"
 
 [node name="SFXDown" type="Button" parent="." unique_id=1003996449]
-offset_left = 500.0
-offset_top = 182.0
-offset_right = 576.0
-offset_bottom = 258.0
+offset_left = 510.0
+offset_top = 198.0
+offset_right = 567.0
+offset_bottom = 255.0
 theme_override_fonts/font = ExtResource("5_xd0p5")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_sqbtn_normal")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_sqbtn_pressed")
 theme_override_styles/hover = SubResource("StyleBoxTexture_sqbtn_hover")
