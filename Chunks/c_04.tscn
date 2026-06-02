@@ -27,7 +27,7 @@ position = Vector2(-83, 13)
 position = Vector2(-321, -111)
 
 [node name="Ruined Robot" parent="." unique_id=817542608 instance=ExtResource("8_u7qo6")]
-position = Vector2(-378, -72)
+position = Vector2(-354, -87)
 
 [node name="Ruined Robot2" parent="." unique_id=1892374652 instance=ExtResource("8_u7qo6")]
 position = Vector2(-143, 149)
