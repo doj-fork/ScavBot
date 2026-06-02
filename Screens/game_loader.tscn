@@ -200,7 +200,7 @@ debug_color = Color(0, 0.64705884, 0.24705882, 0.41960785)
 [node name="ExitDoor" type="Node2D" parent="." unique_id=634711565]
 z_index = 5
 y_sort_enabled = true
-position = Vector2(-16, -426)
+position = Vector2(-16, -378)
 script = ExtResource("3_iyh47")
 
 [node name="Sprite" type="Sprite2D" parent="ExitDoor" unique_id=459527909]

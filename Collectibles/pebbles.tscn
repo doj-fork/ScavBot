@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bcgnv76ho3d06"]
 
 [ext_resource type="Texture2D" uid="uid://cf8xa4enl01s1" path="res://Assets/NatureAssets/Pebbles1.png" id="1_g34a8"]
-[ext_resource type="Script" uid="uid://4jbe4ebwwut7" path="res://collectibles/pebbles.gd" id="2_lxfru"]
+[ext_resource type="Script" uid="uid://4jbe4ebwwut7" path="res://Collectibles/pebbles.gd" id="2_lxfru"]
 
 [node name="Pebbles" type="Node2D" unique_id=276659835]
 
