@@ -36,7 +36,11 @@ func _process(_delta):
 		health.add_theme_color_override("font_outline_color", Color(0.507, 0.052, 0.061, 1.0))
 		battery.texture = load("res://Assets/HUD/HUDBattery25.png")
 		
-	if Gun.ammo > 0 and Global.craftActive == false and Global.inGame == true and Global.pauseActive == false:
+	var in_tutorial_scene: bool = false
+	if get_tree().current_scene != null:
+		in_tutorial_scene = get_tree().current_scene.name == "Tutorial"
+
+	if Gun.ammo > 0 and Global.craftActive == false and (Global.inGame == true or in_tutorial_scene) and Global.pauseActive == false:
 		
 		var cursor_image = load("res://Assets/HUD/HUDCrosshair.png")
 		Input.set_custom_mouse_cursor(cursor_image, Input.CURSOR_ARROW, Vector2(17, 17))
