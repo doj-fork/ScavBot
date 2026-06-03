@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://clufpr2yd23m6"]
 
 [ext_resource type="Script" uid="uid://wffwnftw2433" path="res://Enemies/Ranger/ranger_bullet.gd" id="1_rb"]
-[ext_resource type="Texture2D" uid="uid://cb6tyk36qlt8h" path="res://Assets/Misc/Bullet.png" id="2_rb"]
+[ext_resource type="Texture2D" uid="uid://b2i1xjryp54e6" path="res://Assets/AmmoIcons/Bullet1.png" id="2_rb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rb"]
 
@@ -11,7 +11,8 @@ collision_mask = 97
 script = ExtResource("1_rb")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1537037517]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.375, 0.375)
+modulate = Color(1, 0, 0, 1)
 texture = ExtResource("2_rb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1556211261]

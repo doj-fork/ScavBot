@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cvfvgsvdcttlv"]
 
 [ext_resource type="Script" uid="uid://b5fercas84pe3" path="res://Player/bullet.gd" id="1_kxw81"]
+[ext_resource type="Texture2D" uid="uid://b2i1xjryp54e6" path="res://Assets/AmmoIcons/Bullet1.png" id="2_kxw81"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kxw81"]
 size = Vector2(50.5, 50)
@@ -10,11 +11,9 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_kxw81")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1639559189]
-offset_left = -25.0
-offset_top = -23.0
-offset_right = 25.0
-offset_bottom = 27.0
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1639559189]
+scale = Vector2(5, 5)
+texture = ExtResource("2_kxw81")
 
 [node name="EnemyMask" type="Area2D" parent="." unique_id=1341842380]
 collision_layer = 16

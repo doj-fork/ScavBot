@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2i1xjryp54e6"
-path="res://.godot/imported/Bullet1.png-955c845105a4b79d7746d948c10f8dd9.ctex"
+uid="uid://wfg8wim5thcm"
+path="res://.godot/imported/Bullet3.png-a9e128c2961534a7e615f52824fdc3fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/NatureAssets/Bullet1.png"
-dest_files=["res://.godot/imported/Bullet1.png-955c845105a4b79d7746d948c10f8dd9.ctex"]
+source_file="res://Assets/AmmoIcons/Bullet3.png"
+dest_files=["res://.godot/imported/Bullet3.png-a9e128c2961534a7e615f52824fdc3fa.ctex"]
 
 [params]
 

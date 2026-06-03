@@ -5,6 +5,12 @@ var speed: float = 520.0
 var damage: int = 5
 var shooter: Node = null
 
+var tex1 = preload("res://Assets/AmmoIcons/Bullet1.png")
+var tex2 = preload("res://Assets/AmmoIcons/Bullet2.png")
+var tex3 = preload("res://Assets/AmmoIcons/Bullet3.png")
+
+@onready var sprite: Sprite2D = $Sprite2D
+
 func setup(newDirection: Vector2, newSpeed: float, newDamage: int, newShooter: Node) -> void:
 	direction = newDirection.normalized() if newDirection != Vector2.ZERO else Vector2.RIGHT
 	speed = newSpeed
@@ -13,9 +19,21 @@ func setup(newDirection: Vector2, newSpeed: float, newDamage: int, newShooter: N
 	rotation = direction.angle()
 
 func _ready() -> void:
+	animateBullet()
 	await get_tree().create_timer(2.5, false).timeout
 	if is_inside_tree():
 		queue_free()
+
+func animateBullet() -> void:
+	sprite.texture = tex1
+	await get_tree().create_timer(0.2, false).timeout
+	if not is_inside_tree():
+		return
+	sprite.texture = tex2
+	await get_tree().create_timer(0.2, false).timeout
+	if not is_inside_tree():
+		return
+	sprite.texture = tex3
 
 func _physics_process(delta: float) -> void:
 	global_position += direction * speed * delta
