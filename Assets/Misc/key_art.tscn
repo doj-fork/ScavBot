@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://blq3jcok8cux1"]
+
+[ext_resource type="Texture2D" uid="uid://6kyfevyay6vp" path="res://Assets/MenuAssets/ScavBotHeroImage.png" id="1_itis6"]
+[ext_resource type="FontFile" uid="uid://c7oafmhek6vhy" path="res://Assets/Fonts/SunkenMini.ttf" id="2_itis6"]
+
+[node name="KeyArt" type="Node2D" unique_id=1492878433]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1518420478]
+position = Vector2(272.00003, 269)
+scale = Vector2(0.46744788, 0.46744788)
+texture = ExtResource("1_itis6")
+
+[node name="Text" type="RichTextLabel" parent="Sprite2D" unique_id=1027112113]
+offset_left = -793.67163
+offset_top = -504.86914
+offset_right = 323.03052
+offset_bottom = -77.01395
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.5439323, 0.6973349, 0.73755646, 1)
+theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.52156866)
+theme_override_constants/shadow_outline_size = 32
+theme_override_constants/shadow_offset_x = -12
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("2_itis6")
+theme_override_font_sizes/normal_font_size = 256
+text = "ScavBot"
+horizontal_alignment = 1
+visible_characters_behavior = 1
+
+[node name="Text2" type="RichTextLabel" parent="Sprite2D" unique_id=1595023137]
+offset_left = -564.7689
+offset_top = 213.92761
+offset_right = 551.9332
+offset_bottom = 641.78284
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.5439323, 0.6973349, 0.73755646, 1)
+theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.52156866)
+theme_override_constants/shadow_outline_size = 32
+theme_override_constants/shadow_offset_x = -12
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("2_itis6")
+theme_override_font_sizes/normal_font_size = 160
+text = " Original
+ Soundtrack"
+visible_characters_behavior = 1
+
+[node name="Text3" type="RichTextLabel" parent="Sprite2D" unique_id=1904073137]
+offset_left = -1024.7133
+offset_top = 402.18387
+offset_right = 489.89417
+offset_bottom = 830.0392
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.5439323, 0.6973349, 0.73755646, 1)
+theme_override_colors/font_outline_color = Color(0.027505916, 0.045809247, 0.06142626, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.52156866)
+theme_override_constants/shadow_outline_size = 32
+theme_override_constants/shadow_offset_x = -12
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("2_itis6")
+theme_override_font_sizes/normal_font_size = 96
+horizontal_alignment = 1
+visible_characters_behavior = 1
