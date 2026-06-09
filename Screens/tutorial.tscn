@@ -36,7 +36,7 @@ size = Vector2(941, 27)
 radius = 113.004425
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mcxgt"]
-size = Vector2(114, 29)
+size = Vector2(114, 58.772186)
 
 [node name="Tutorial" type="Node2D" unique_id=1504878694]
 y_sort_enabled = true
@@ -178,7 +178,7 @@ scale = Vector2(1.15, 1.15)
 collision_layer = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Speaker/Collision2" unique_id=306168720]
-position = Vector2(3, -23)
+position = Vector2(3, -40.118988)
 scale = Vector2(1.15, 1.15)
 shape = SubResource("RectangleShape2D_mcxgt")
 

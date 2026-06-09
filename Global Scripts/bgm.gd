@@ -3,7 +3,7 @@ extends Node
 const GAME_BGM_TRACKS: Array[String] = [
 	"res://Assets/SFX/BGMNew/ScavBot - Warzone.mp3",
 ]
-const INTERMISSION_TRACK: String = "res://Assets/SFX/BGM/Vibing Over Venus.mp3"
+const INTERMISSION_TRACK: String = "res://Assets/SFX/BGMNew/ScavBot - Stalemate.mp3"
 const TARGET_DB: float = -30.0
 const FADE_IN_DURATION: float = 1.5
 const FADE_OUT_DURATION: float = 0.8

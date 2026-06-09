@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var gun = $GunType
 @onready var ammo = $Ammo
 @onready var waveTimer = $WaveTimer
+@onready var controls = $Controls
 @onready var bulletIcon = $BulletIcon
 @onready var reloadIcon = $ReloadIcon
 @onready var tutorial_dialogue: Label = $TutorialDialogue
@@ -63,11 +64,14 @@ func _process(_delta):
 
 func waveCountdown():
 	await Signals.waveStart
+	controls.text = "Wave: " + str(Stats.wave)
 	var countdown = 60
 	while countdown > 0 and Global.dead == false:
 		waveTimer.text = " Wave ends in " + str(countdown) + " seconds"
 		await get_tree().create_timer(1, false).timeout
 		countdown -= 1
+	if Global.dead:
+		controls.text = ""
 	Signals.waveEnd.emit()
 	waveEnd()
 	waveCountdown()

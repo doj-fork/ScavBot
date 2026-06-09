@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b58urcrt5lvgl"
+path="res://.godot/imported/ScavBot - Stalemate.mp3-4d104210f25a36fb36a5e5da6c80abce.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/BGMNew/ScavBot - Stalemate.mp3"
+dest_files=["res://.godot/imported/ScavBot - Stalemate.mp3-4d104210f25a36fb36a5e5da6c80abce.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
