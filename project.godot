@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="GDIM61GameProject"
+config/name="ScavBot"
 run/main_scene="uid://ds51iwghq622k"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://Assets/Misc/icon.svg"
+boot_splash/image="uid://bfos56uumhuvo"
+config/icon="uid://bw3x6eq0grt1h"
 
 [autoload]
 
