@@ -149,7 +149,6 @@ func animUpdate():
 func updateTexture(arg):
 	if arg == "Base" and Gun.type != "Null":
 		if animSubState == "Idle":
-			print(Gun.type)
 			sprite.texture = load("res://Player/Assets/Idle" + Gun.type + ".png")
 		else:
 			sprite.texture = load("res://Player/Assets/Move" + Gun.type + ".png")

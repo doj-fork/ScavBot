@@ -64,7 +64,7 @@ func _process(_delta):
 
 func waveCountdown():
 	await Signals.waveStart
-	controls.text = "Wave: " + str(Stats.wave)
+	controls.text = "Wave " + str(Stats.wave)
 	var countdown = 60
 	while countdown > 0 and Global.dead == false:
 		waveTimer.text = " Wave ends in " + str(countdown) + " seconds"
@@ -87,7 +87,6 @@ func waveEnd():
 	waveTimer.text = " Exit has been cleared. Head north."
 	waveTimer.visible_characters = 0
 	for i in range(len(waveTimer.text)):
-		print(waveTimer.text)
 		waveTimer.visible_characters += 1
 		await get_tree().create_timer(0.03, false).timeout
 	await Signals.intermission

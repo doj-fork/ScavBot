@@ -35,7 +35,6 @@ func closeText():
 			var burn = randi_range(0, 8)
 			if burn != 0:
 				replacement += i
-				print(replacement)
 		newTxt = replacement
 		label.text = newTxt
 		await get_tree().create_timer(0.025, false).timeout
